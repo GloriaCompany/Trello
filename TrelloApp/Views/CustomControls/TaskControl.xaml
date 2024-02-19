@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="TrelloApp.Views.CustomControls.TaskControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="250">
+    <Border Background="Transparent"
+            BorderBrush="White"
+            BorderThickness="1"
+            CornerRadius="25">
+        <Border Background="#1d2125"
+                CornerRadius="25">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" 
+                        Background="SkyBlue"
+                        CornerRadius="25,25,0,0"/>
+                <Border Grid.Row="1" Background="White"/>
+                <TextBlock Text="Task Name" 
+                           VerticalAlignment="Top" 
+                           HorizontalAlignment="Left" 
+                           Grid.Row="2"
+                           FontSize="14"
+                           Foreground="White"
+                           Background="Transparent"
+                           Margin="15,30,0,0"
+                           />
+                <ListView FlowDirection="RightToLeft"
+                          Background="Transparent"
+                          Grid.Row="0"
+                          Grid.RowSpan="3"
+                          Height="58"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          BorderThickness="0"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          >
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        FlowDirection="LeftToRight"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListViewItem Margin="0,0,0,0">
+                        <Border Background="Transparent"
+                            BorderBrush="White"
+                            BorderThickness="1"
+                            CornerRadius="25"
+                            Width="50" 
+                            Height="50"
+                            >
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Resources/userAvatar.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Border>
+                    </ListViewItem>
+                    <ListViewItem Margin="-40,0,0,0">
+                        <Border Background="Transparent"
+                            BorderBrush="White"
+                            BorderThickness="1"
+                            CornerRadius="25"
+                            Width="50" 
+                            Height="50"
+                            >
+                            <Ellipse>
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="/Resources/userAvatar.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </Border>
+                    </ListViewItem>
+                </ListView>
+            </Grid>
+        </Border>
+    </Border>
+</UserControl>

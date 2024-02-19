@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Class="TrelloDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SQL5107.site4now.net;Initial Catalog=db_aa5374_trello;Persist Security Info=True;User ID=db_aa5374_trello_admin" SettingsObjectName="TrelloDBAccess.Properties.Settings" SettingsPropertyName="db_aa5374_trelloConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="" Member="Users">
+    <Type Name="Users">
+      <Column Name="UserID" Type="System.Int32" DbType="INT PRIMARY KEY IDENTITY" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Login" Type="System.String" DbType="NVARCHAR(50) NOT NULL UNIQUE" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVARCHAR(100) NOT NULL UNIQUE" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVARCHAR(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Avatar" Type="System.String" DbType="NVARCHAR(100)" CanBeNull="true" />
+      <Association Name="Tasks_Users" Member="Tasks" ThisKey="UserID" OtherKey="UserID" Type="Tasks" IsForeignKey="true" />
+      <Association Name="ProjectMembers_Users" Member="ProjectMembers" ThisKey="UserID" OtherKey="UserID" Type="ProjectMembers" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Projects">
+    <Type Name="Projects">
+      <Column Name="ProjectID" Type="System.Int32" DbType="INT PRIMARY KEY IDENTITY" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProjectName" Type="System.String" DbType="NVARCHAR(100) NOT NULL UNIQUE" CanBeNull="false" />
+      <Association Name="Boards_Projects" Member="Boards" ThisKey="ProjectID" OtherKey="ProjectID" Type="Boards" IsForeignKey="true" />
+      <Association Name="ProjectMembers_Projects" Member="ProjectMembers" ThisKey="ProjectID" OtherKey="ProjectID" Type="ProjectMembers" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Boards">
+    <Type Name="Boards">
+      <Column Name="BoardID" Type="System.Int32" DbType="INT PRIMARY KEY IDENTITY" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProjectID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+      <Column Name="BoardName" Type="System.String" DbType="NVARCHAR(100) NOT NULL" CanBeNull="false" />
+      <Column Name="BoardColor" Type="System.String" DbType="NVARCHAR(20)" CanBeNull="false" />
+      <Association Name="Boards_Projects" Member="Projects" ThisKey="ProjectID" OtherKey="ProjectID" Type="Projects" />
+      <Association Name="Tasks_Boards" Member="Tasks" ThisKey="BoardID" OtherKey="BoardID" Type="Tasks" IsForeignKey="true" />
+      <Association Name="TaskMovements_Boards" Member="TaskMovements" ThisKey="BoardID" OtherKey="FromBoardID" Type="TaskMovements" IsForeignKey="true" />
+      <Association Name="TaskMovements_Boards1" Member="TaskMovements1" ThisKey="BoardID" OtherKey="ToBoardID" Type="TaskMovements" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Tasks">
+    <Type Name="Tasks">
+      <Column Name="TaskID" Type="System.Int32" DbType="INT PRIMARY KEY IDENTITY" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BoardID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="TaskTitle" Type="System.String" DbType="NVARCHAR(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TaskDescription" Type="System.String" DbType="NVARCHAR(MAX)" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="INT" CanBeNull="false" />
+      <Association Name="Tasks_Users" Member="Users" ThisKey="UserID" OtherKey="UserID" Type="Users" />
+      <Association Name="Tasks_Boards" Member="Boards" ThisKey="BoardID" OtherKey="BoardID" Type="Boards" />
+      <Association Name="TaskMovements_Tasks" Member="TaskMovements" ThisKey="TaskID" OtherKey="TaskID" Type="TaskMovements" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ProjectMembers">
+    <Type Name="ProjectMembers">
+      <Column Name="ProjectID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="INT NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="ProjectMembers_Users" Member="Users" ThisKey="UserID" OtherKey="UserID" Type="Users" />
+      <Association Name="ProjectMembers_Projects" Member="Projects" ThisKey="ProjectID" OtherKey="ProjectID" Type="Projects" />
+    </Type>
+  </Table>
+  <Table Name="" Member="TaskMovements">
+    <Type Name="TaskMovements">
+      <Column Name="MovementID" Type="System.Int32" DbType="INT PRIMARY KEY IDENTITY" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TaskID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+      <Column Name="FromBoardID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+      <Column Name="ToBoardID" Type="System.Int32" DbType="INT NOT NULL" CanBeNull="false" />
+      <Column Name="MovementTimestamp" Type="System.DateTime" DbType="DATETIME" CanBeNull="false" />
+      <Association Name="TaskMovements_Boards" Member="Boards" ThisKey="FromBoardID" OtherKey="BoardID" Type="Boards" />
+      <Association Name="TaskMovements_Boards1" Member="Boards1" ThisKey="ToBoardID" OtherKey="BoardID" Type="Boards" />
+      <Association Name="TaskMovements_Tasks" Member="Tasks" ThisKey="TaskID" OtherKey="TaskID" Type="Tasks" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,71 @@
+﻿<Window x:Class="TrelloApp.Views.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+        xmlns:userVM="clr-namespace:TrelloApp.ViewModels"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Login" Height="300" Width="400" Background="#1d2125">
+    <Window.DataContext>
+        <userVM:UsersViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label Content="Авторизація / Login" 
+               Grid.Row="0" 
+               Grid.Column="0" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center" 
+               Foreground="White" 
+               FontSize="14"
+               />
+        <customControls:CustomInput
+            Grid.Row="1"
+            Width="250"
+            Height="35"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="InputLogin"
+            Placeholder="Login"
+            Text="{Binding userModel.Login, Mode=TwoWay}"
+            />
+        <customControls:CustomInput
+            Grid.Row="2"
+            Width="250"
+            Height="35"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="InputPassword"
+            Placeholder="Password"
+            Text="{Binding userModel.Password, Mode=TwoWay}"
+            />
+        <customControls:CustomButton 
+            Text="LOGIN" 
+            Width="180" 
+            Height="35"
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="BtnLogin"
+            Command="{Binding LoginCommand}"
+            />
+        <customControls:CustomButton 
+            Text="REGISTER" 
+            Width="180" 
+            Height="35"
+            Grid.Row="4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="BtnRegister"
+            Command="{Binding SignUpCommand}"
+            />
+    </Grid>
+</Window>
