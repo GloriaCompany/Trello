@@ -9,9 +9,6 @@ namespace TrelloApp.Views
         public Login()
         {
             InitializeComponent();
-            DataContext = new UsersViewModel();
-            var viewModel = (UsersViewModel)DataContext;
-            viewModel.LoginSuccess += ViewModel_LoginSuccess;
         }
 
         private void ViewModel_LoginSuccess(object sender, EventArgs e)

@@ -7,9 +7,9 @@
         xmlns:userVM="clr-namespace:TrelloApp.ViewModels"
         mc:Ignorable="d"
         Title="Register" Height="450" Width="400" Background="#1d2125">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <userVM:UsersViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -37,7 +37,6 @@
             VerticalAlignment="Center"
             x:Name="InputLogin"
             Placeholder="Login"
-            Text="{Binding userModel.Login, Mode=TwoWay}"
             />
         <customControls:CustomInput
             Grid.Row="2"
@@ -47,7 +46,6 @@
             VerticalAlignment="Center"
             x:Name="InputEmail"
             Placeholder="E-mail"
-            Text="{Binding userModel.Email, Mode=TwoWay}"
             />
         <customControls:CustomInput
             Grid.Row="3"
@@ -57,7 +55,6 @@
             VerticalAlignment="Center"
             x:Name="InputPassword"
             Placeholder="Password"
-            Text="{Binding userModel.Password, Mode=TwoWay}"
             />
         <customControls:CustomInput
             Grid.Row="4"
@@ -67,17 +64,14 @@
             VerticalAlignment="Center"
             x:Name="InputConfirmPassword"
             Placeholder="Confirm Password"
-            Text="{Binding userModel.ConfirmPassword, Mode=TwoWay}"
             />
-        <customControls:CustomInput
+        <customControls:ImageInput
             Grid.Row="5"
-            Width="250"
-            Height="35"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="InputAvatar"
-            Placeholder="Avatar"
-            Text="{Binding userModel.Avatar, Mode=TwoWay}"
+            Width="250"
+            Height="35"
             />
         <customControls:CustomButton 
             Text="REGISTER" 
@@ -87,7 +81,6 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="BtnRegister"
-            Command="{Binding SignUpCommand}"
             />
         <customControls:CustomButton 
             Text="LOGIN" 

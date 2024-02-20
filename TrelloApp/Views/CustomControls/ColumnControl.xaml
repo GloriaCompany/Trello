@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="TrelloApp.Views.CustomControls.BoardControl"
+﻿<UserControl x:Class="TrelloApp.Views.CustomControls.ColumnControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="225" d:DesignWidth="150">
+             d:DesignHeight="225" d:DesignWidth="152">
     <Border
         Background="Transparent"
         BorderBrush="White"
@@ -23,14 +23,23 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" 
-                           Text="Board Name"
+                           Text="Column Name"
                            FontSize="14"
                            Foreground="White"
                            Background="Transparent"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"/>
-                <customControls:TaskControl
-                    Grid.Row="2"/>
+                <ScrollViewer Grid.Row="2"
+                              VerticalScrollBarVisibility="Hidden"
+                              HorizontalScrollBarVisibility="Hidden"
+                              HorizontalAlignment="Left"
+                              Width="150">
+                    <StackPanel Orientation="Vertical">
+                        <customControls:TaskControl Width="150" Height="75"/>
+                        <customControls:TaskControl Width="150" Height="75"/>
+                        <customControls:TaskControl Width="150" Height="75"/>
+                    </StackPanel>
+                </ScrollViewer>
                 <Border Grid.Row="1" Background="White"/>
                 <Border Grid.Row="3" Background="White"/>
                 <Button Grid.Row="4" 

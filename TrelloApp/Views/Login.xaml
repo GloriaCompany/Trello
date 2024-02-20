@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Login" Height="300" Width="400" Background="#1d2125">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <userVM:UsersViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -35,7 +35,6 @@
             VerticalAlignment="Center"
             x:Name="InputLogin"
             Placeholder="Login"
-            Text="{Binding userModel.Login, Mode=TwoWay}"
             />
         <customControls:CustomInput
             Grid.Row="2"
@@ -45,7 +44,6 @@
             VerticalAlignment="Center"
             x:Name="InputPassword"
             Placeholder="Password"
-            Text="{Binding userModel.Password, Mode=TwoWay}"
             />
         <customControls:CustomButton 
             Text="LOGIN" 
@@ -55,7 +53,6 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="BtnLogin"
-            Command="{Binding LoginCommand}"
             />
         <customControls:CustomButton 
             Text="REGISTER" 
@@ -65,7 +62,6 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="BtnRegister"
-            Command="{Binding SignUpCommand}"
             />
     </Grid>
 </Window>

@@ -60,19 +60,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\ProjectModel.cs" />
-    <Compile Include="Models\UserModel.cs" />
-    <Compile Include="ViewModels\ProjectsViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
-    <Compile Include="ViewModels\UsersViewModel.cs" />
-    <Compile Include="Views\CustomControls\BoardControl.xaml.cs">
-      <DependentUpon>BoardControl.xaml</DependentUpon>
+    <Compile Include="Views\CustomControls\ColumnControl.xaml.cs">
+      <DependentUpon>ColumnControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\CustomButton.xaml.cs">
       <DependentUpon>CustomButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\CustomInput.xaml.cs">
       <DependentUpon>CustomInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\ImageInput.xaml.cs">
+      <DependentUpon>ImageInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\StringToVisibilityConverter.cs" />
     <Compile Include="Views\CustomControls\TaskControl.xaml.cs">
@@ -86,6 +85,9 @@
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
@@ -122,9 +124,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\CustomControls\BoardControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\CustomControls\ColumnControl.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CustomControls\CustomButton.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +135,10 @@
     <Page Include="Views\CustomControls\CustomInput.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CustomControls\ImageInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CustomControls\TaskControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -149,6 +155,10 @@
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Profile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Register.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -168,10 +178,16 @@
     <Resource Include="Resources\userAvatar.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TrelloDBAccess\TrelloDBAccess.csproj">
+    <ProjectReference Include="..\..\..\TrelloDBAccess\TrelloDBAccess.csproj">
       <Project>{6e375a22-6387-4a6f-9900-6842d6f3f69f}</Project>
       <Name>TrelloDBAccess</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\edit-16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

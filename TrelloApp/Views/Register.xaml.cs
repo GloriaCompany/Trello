@@ -12,9 +12,6 @@ namespace TrelloApp.Views
         public Register()
         {
             InitializeComponent();
-            DataContext = new UsersViewModel();
-            var viewModel = (UsersViewModel)DataContext;
-            viewModel.SignUpSuccess += ViewModel_SignUpSuccess;
         }
 
         private void ViewModel_SignUpSuccess(object sender, EventArgs e)

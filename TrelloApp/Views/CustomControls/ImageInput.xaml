@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="TrelloApp.Views.CustomControls.ImageInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Grid Background="#1d2125">
+        <Border BorderBrush="White" 
+                BorderThickness="1" 
+                CornerRadius="25" 
+                >
+            <StackPanel Orientation="Horizontal">
+                <Button 
+                    Content="Load Image..." 
+                    Click="LoadImageButton_Click" 
+                    Width="150"
+                    Height="25"
+                    Background="White" 
+                    Foreground="Black"
+                    Margin="15,0,0,0"
+                    />
+                <Image
+                    x:Name="LoadedImage" 
+                    Source="/Resources/userAvatar.png" 
+                    Width="30" 
+                    Height="30"
+                    Margin="5"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

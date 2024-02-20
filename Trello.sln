@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrelloApp", "TrelloApp\TrelloApp.csproj", "{E2245AB3-C0BC-4DF7-8955-1F3A288D0004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrelloDBAccess", "TrelloDBAccess\TrelloDBAccess.csproj", "{6E375A22-6387-4A6F-9900-6842D6F3F69F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrelloDBAccess", "..\..\TrelloDBAccess\TrelloDBAccess.csproj", "{6E375A22-6387-4A6F-9900-6842D6F3F69F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
