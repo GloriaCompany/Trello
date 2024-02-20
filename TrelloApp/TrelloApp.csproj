@@ -113,8 +113,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ResourcesTrello\Images.resx" />
-    <EmbeddedResource Include="Views\ResourcesTrello\Languages\Lang.en.resx" />
-    <EmbeddedResource Include="Views\ResourcesTrello\Languages\Lang.ua.resx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -163,6 +161,14 @@
     <Page Include="Views\Register.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ResourcesTrello\Languages\EN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResourcesTrello\Languages\UA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ResourcesTrello\Themes\DarkThene.xaml">
       <Generator>MSBuild:Compile</Generator>
