@@ -12,6 +12,14 @@
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <TextBlock Text="Board Name"
+                   Grid.Row="0"
+                   FontSize="14"
+                   Foreground="White"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="10,0,0,0"
+                   />
         <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 
