@@ -87,6 +87,9 @@
     <Compile Include="Views\CustomControls\CustomButton.xaml.cs">
       <DependentUpon>CustomButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomControls\CustomCheckBox.xaml.cs">
+      <DependentUpon>CustomCheckBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomControls\CustomColorPicker.xaml.cs">
       <DependentUpon>CustomColorPicker.xaml</DependentUpon>
     </Compile>
@@ -104,9 +107,6 @@
     </Compile>
     <Compile Include="Views\CustomControls\DiscardChangesButton.xaml.cs">
       <DependentUpon>DiscardChangesButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CustomControls\ImageInput.xaml.cs">
-      <DependentUpon>ImageInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\StringToVisibilityConverter.cs" />
     <Compile Include="Views\CustomControls\SubmitChangesButton.xaml.cs">
@@ -187,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CustomControls\CustomCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomControls\CustomColorPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,10 +212,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CustomControls\DiscardChangesButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CustomControls\ImageInput.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -268,9 +268,7 @@
     <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\userAvatar.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TrelloDBLayer\TrelloDBLayer.csproj">
       <Project>{16b3a097-40f0-4dc0-9f08-d7bef210806b}</Project>

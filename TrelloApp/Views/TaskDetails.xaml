@@ -3,10 +3,107 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"  
         xmlns:local="clr-namespace:TrelloApp.Views"
         mc:Ignorable="d"
-        Title="TaskDetails" Height="450" Width="800" Background="#1d2125">
+        Title="TaskDetails" Height="500" Width="600" Background="#1d2125">
     <Grid>
-        
+        <Border 
+                BorderBrush="White" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Width="400"
+                Height="375" Cursor="None"
+                >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           Text="Task Name"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="14"/>
+                <Border Grid.Row="1" Background="White" Width="400"/>
+                <customControls:CircleImage
+                    Grid.Row="2"
+                    Width="35"
+                    Height="35"
+                    ImageSource="/Resources/plus.png"
+                    HorizontalAlignment="Left"
+                    Margin="15,0,0,0"/>
+                <Border Grid.Row="3" Background="White" Width="400"/>
+                <RichTextBox Grid.Row="4"
+                             Background="Transparent"
+                             Foreground="White"
+                             Padding="5"
+                             BorderThickness="0"
+                             >
+                    <FlowDocument>
+                        <Paragraph FontSize="14"
+                                   TextAlignment="Justify">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <Border Grid.Row="5" Background="White" Width="400"/>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="6"
+                            Width="400"
+                            HorizontalAlignment="Center">
+                    <customControls:CustomInput
+                        Width="250"
+                        Margin="5"
+                        Placeholder="Task Name"/>
+                    <customControls:CustomButton
+                        Width="130"
+                        Margin="5"
+                        Text="Add Task"/>
+                </StackPanel>
+                <ListView
+                        Grid.Row="7"
+                        Background="#1d2125"
+                        Padding="5"
+                        BorderThickness="0"
+                        >
+                    <ListView.Resources>
+                        <Style TargetType="ScrollViewer">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ScrollViewer">
+                                        <ScrollContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>
+                    <customControls:CustomCheckBox 
+                              Content="Task 1"
+                              Foreground="White"
+                              IsChecked="True"
+                              />
+                    <customControls:CustomCheckBox 
+                              Content="Task 2"
+                              Foreground="White"
+                              />
+                    <customControls:CustomCheckBox 
+                              Content="Task 3"
+                              Foreground="White"
+                              />
+                    <customControls:CustomCheckBox 
+                              Content="Task 4"
+                              Foreground="White"
+                              />
+                </ListView>
+            </Grid>
+        </Border>
     </Grid>
 </Page>
