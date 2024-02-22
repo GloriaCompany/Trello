@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ColorPicker, Version=3.4.1.0, Culture=neutral, PublicKeyToken=1c61eec504ce2276, processorArchitecture=MSIL">
+      <HintPath>..\packages\PixiEditor.ColorPicker.3.4.1\lib\net451\ColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -61,19 +67,40 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="Views\ChooseAvatar.xaml.cs">
+      <DependentUpon>ChooseAvatar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomControls\ColumnControl.xaml.cs">
       <DependentUpon>ColumnControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\CustomButton.xaml.cs">
       <DependentUpon>CustomButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomControls\CustomColorPicker.xaml.cs">
+      <DependentUpon>CustomColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CustomComboBox.xaml.cs">
+      <DependentUpon>CustomComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CustomEditButton.xaml.cs">
+      <DependentUpon>CustomEditButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomControls\CustomInput.xaml.cs">
       <DependentUpon>CustomInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CustomWindowButtons.xaml.cs">
+      <DependentUpon>CustomWindowButtons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\DiscardChangesButton.xaml.cs">
+      <DependentUpon>DiscardChangesButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\ImageInput.xaml.cs">
       <DependentUpon>ImageInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\StringToVisibilityConverter.cs" />
+    <Compile Include="Views\CustomControls\SubmitChangesButton.xaml.cs">
+      <DependentUpon>SubmitChangesButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomControls\TaskControl.xaml.cs">
       <DependentUpon>TaskControl.xaml</DependentUpon>
     </Compile>
@@ -116,6 +143,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ResourcesTrello\Images.resx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,6 +153,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ChooseAvatar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomControls\ColumnControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,11 +165,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CustomControls\CustomColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\CustomComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\CustomEditButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomControls\CustomInput.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CustomControls\CustomWindowButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\DiscardChangesButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomControls\ImageInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\SubmitChangesButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,16 +247,23 @@
     <Resource Include="Resources\userAvatar.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\TrelloDBAccess\TrelloDBAccess.csproj">
-      <Project>{6e375a22-6387-4a6f-9900-6842d6f3f69f}</Project>
-      <Name>TrelloDBAccess</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\edit-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TrelloDBLayer\TrelloDBLayer.csproj">
+      <Project>{16b3a097-40f0-4dc0-9f08-d7bef210806b}</Project>
+      <Name>TrelloDBLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\discard.png" />
+    <Resource Include="Resources\submit.png" />
+    <Resource Include="Resources\window-close.png" />
+    <Resource Include="Resources\window-maximize.png" />
+    <Resource Include="Resources\window-minimize.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,12 +7,8 @@
         xmlns:userVM="clr-namespace:TrelloApp.ViewModels"
         mc:Ignorable="d"
         Title="Register" Height="450" Width="400" Background="#1d2125">
-    <!--<Window.DataContext>
-        <userVM:UsersViewModel/>
-    </Window.DataContext>-->
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -65,19 +61,11 @@
             x:Name="InputConfirmPassword"
             Placeholder="Confirm Password"
             />
-        <customControls:ImageInput
-            Grid.Row="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            x:Name="InputAvatar"
-            Width="250"
-            Height="35"
-            />
         <customControls:CustomButton 
-            Text="REGISTER" 
+            Text="CONTINUE" 
             Width="180" 
             Height="35"
-            Grid.Row="6"
+            Grid.Row="5"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="BtnRegister"
@@ -86,7 +74,7 @@
             Text="LOGIN" 
             Width="180" 
             Height="35"
-            Grid.Row="7"
+            Grid.Row="6"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="BtnLogin"

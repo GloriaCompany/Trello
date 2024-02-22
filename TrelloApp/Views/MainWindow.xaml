@@ -12,20 +12,35 @@
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Board Name"
-                   Grid.Row="0"
-                   FontSize="14"
-                   Foreground="White"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   Margin="10,0,0,0"
-                   />
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Width="Auto"
+                    Height="30">
+            <customControls:CustomInput
+                Width="150"
+                Text="Board Name"/>
+            <customControls:CustomEditButton
+                Width="15"
+                Height="15"
+                Margin="5,0,0,0"/>
+            <customControls:SubmitChangesButton
+                Width="15"
+                Height="15"
+                Margin="5,0,0,0"/>
+            <customControls:DiscardChangesButton
+                Width="15"
+                Height="15"
+                Margin="5,0,0,0"/>
+        </StackPanel>
         <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 
                 Grid.Column="1"
                 CornerRadius="15"
-                Width="225"
+                Width="165"
                 Height="30"
                 HorizontalAlignment="Right"
                 >

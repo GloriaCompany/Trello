@@ -6,102 +6,147 @@
         xmlns:local="clr-namespace:TrelloApp.Views"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Profile" Height="250" Width="400" Background="#1d2125">
+        Title="Profile" Height="435" Width="450" Background="#1d2125">
     <Grid>
         <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 
                 CornerRadius="25"
-                Width="250"
-                Height="175"
+                Width="320"
+                Height="375"
                 Padding="5"
                 >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
-                <Border
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Grid.Row="0"
+                            >
+                    <Border
                         BorderBrush="White"
                         BorderThickness="1"
                         CornerRadius="25"
                         Width="50"
                         Height="50"
                         HorizontalAlignment="Center"
+                        Margin="25,0,0,0"
                         >
-                    <Ellipse>
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </Border>
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Border>
+                    <customControls:CustomEditButton
+                        Width="20"
+                        Height="20"
+                        Margin="5,0,0,0"
+                        />
+                </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="1"
-                            VerticalAlignment="Center"
                             HorizontalAlignment="Center"
-                            >
-                    <TextBlock Text="Login"
-                           Grid.Row="1"
-                           Foreground="White"
-                           FontSize="12"
-                           />
-                    <Image Source="/Resources/edit-16.png"
-                           Grid.Row="1"
-                           Width="10"
-                           Height="10"
-                           Margin="10,0,0,0"/>
+                            VerticalAlignment="Center">
+                    <customControls:SubmitChangesButton/>
+                    <customControls:DiscardChangesButton/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="2"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             >
-                    <TextBlock Text="Email"
-                           Grid.Row="1"
-                           Foreground="White"
-                           FontSize="12"
-                           />
-                    <Image Source="/Resources/edit-16.png"
-                           Grid.Row="1"
-                           Width="10"
-                           Height="10"
-                           Margin="10,0,0,0"/>
+                    <customControls:CustomInput
+                        Width="250"
+                        Height="35"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Name"
+                        />
+                    <customControls:CustomEditButton
+                        Width="20"
+                        Height="20"
+                        Margin="5,0,0,0"
+                        />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="3"
-                            VerticalAlignment="Center"
                             HorizontalAlignment="Center"
-                            >
-                    <TextBlock Text="Password"
-                           Grid.Row="1"
-                           Foreground="White"
-                           FontSize="12"
-                           />
-                    <Image Source="/Resources/edit-16.png"
-                           Grid.Row="1"
-                           Width="10"
-                           Height="10"
-                           Margin="10,0,0,0"/>
+                            VerticalAlignment="Center">
+                    <customControls:SubmitChangesButton/>
+                    <customControls:DiscardChangesButton/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="4"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             >
-                    <TextBlock Text="Avatar"
-                           Grid.Row="1"
+                    <customControls:CustomInput
+                        Width="250"
+                        Height="35"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Email"/>
+                    <customControls:CustomEditButton
+                        Width="20"
+                        Height="20"
+                        Margin="5,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <customControls:SubmitChangesButton/>
+                    <customControls:DiscardChangesButton/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="6"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            >
+                    <customControls:CustomInput
+                        Width="250"
+                        Height="35"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Password"/>
+                    <customControls:CustomEditButton
+                        Width="20"
+                        Height="20"
+                        Margin="5,0,0,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="7"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <customControls:SubmitChangesButton/>
+                    <customControls:DiscardChangesButton/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="8"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            >
+                    <TextBlock Text="Current Role"
                            Foreground="White"
                            FontSize="12"
                            />
-                    <Image Source="/Resources/edit-16.png"
-                           Grid.Row="1"
-                           Width="10"
-                           Height="10"
-                           Margin="10,0,0,0"/>
                 </StackPanel>
+                <customControls:CustomButton
+                    Grid.Row="9"
+                    Text="Logout"
+                    Height="30"
+                    Width="175"/>
             </Grid>
         </Border>
     </Grid>

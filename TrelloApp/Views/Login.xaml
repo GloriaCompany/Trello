@@ -8,9 +8,6 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Login" Height="300" Width="400" Background="#1d2125">
-    <!--<Window.DataContext>
-        <userVM:UsersViewModel/>
-    </Window.DataContext>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
