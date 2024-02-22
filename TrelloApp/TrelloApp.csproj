@@ -66,6 +66,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\ChooseAvatarModel.cs" />
+    <Compile Include="Models\DashboardModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\TaskDetailesModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\ChooseAvatar.xaml.cs">
       <DependentUpon>ChooseAvatar.xaml</DependentUpon>
@@ -246,9 +253,7 @@
     <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\userAvatar.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\edit-16.png" />
   </ItemGroup>
