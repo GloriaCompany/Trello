@@ -1,8 +1,9 @@
-﻿<Window x:Class="TrelloApp.Views.Dashboard"
+﻿<Page x:Class="TrelloApp.Views.Dashboard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
         xmlns:projectVM="clr-namespace:TrelloApp.ViewModels"
         Title="Dashboard" Height="450" Width="800" Background="#1d2125">
@@ -42,21 +43,12 @@
                             HorizontalAlignment="Left"
                             Margin="10 0 0 0" 
                             />
-                    <Border
-                            Grid.Column="1"
-                            BorderBrush="White"
-                            BorderThickness="1"
-                            CornerRadius="25"
-                            Width="48"
-                            Height="48"
-                            HorizontalAlignment="Right"
-                            >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
+                    <customControls:CircleImage
+                        Width="48"
+                        Height="48"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        ImageSource="/Resources/userAvatar.png"/>
                 </Grid>
             </Border>
         </StackPanel>
@@ -79,21 +71,12 @@
                     Grid.Row="0"
                     CornerRadius="25"
                     Margin="10">
-                <Border
-                        Grid.Column="1"
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
-                        Width="48"
-                        Height="48"
-                        HorizontalAlignment="Center"
-                        >
-                    <Ellipse Width="25" Height="25">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="/Resources/plus.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </Border>
+                <customControls:CircleImage
+                    Width="48"
+                    Height="48"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    ImageSource="/Resources/plus.png"/>
             </Border>
             <Border
                     BorderBrush="White" 
@@ -113,4 +96,4 @@
             </Border>
         </Grid>
     </Grid>
-</Window>
+</Page>

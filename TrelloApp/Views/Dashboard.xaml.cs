@@ -18,7 +18,7 @@ namespace TrelloApp.Views
     /// <summary>
     /// Логика взаимодействия для Dashboard.xaml
     /// </summary>
-    public partial class Dashboard : Window
+    public partial class Dashboard : Page
     {
         public Dashboard()
         {

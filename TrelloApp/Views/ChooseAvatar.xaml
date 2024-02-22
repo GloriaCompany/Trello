@@ -1,4 +1,4 @@
-﻿<Window x:Class="TrelloApp.Views.ChooseAvatar"
+﻿<Page x:Class="TrelloApp.Views.ChooseAvatar"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -36,146 +36,56 @@
                            Margin="15"
                            Width="225"
                            >
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
                         Width="35"
                         Height="35"
                         Margin="5"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
+                        ImageSource="/Resources/userAvatar.png"/>
                 </WrapPanel>
                 <customControls:CustomButton
                     Grid.Row="2"
@@ -185,4 +95,4 @@
             </Grid>
         </Border>
     </Grid>
-</Window>
+</Page>

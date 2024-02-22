@@ -13,8 +13,11 @@
             Foreground="White"
             BorderThickness="0"
             >
-        <Image Source="../../Resources/submit.png"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+        <Image Source="/Resources/submit.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Width="50"
+               Height="50"
+               />
     </Button>
 </UserControl>

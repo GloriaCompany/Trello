@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,6 +79,9 @@
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\ChooseAvatar.xaml.cs">
       <DependentUpon>ChooseAvatar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CircleImage.xaml.cs">
+      <DependentUpon>CircleImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\ColumnControl.xaml.cs">
       <DependentUpon>ColumnControl.xaml</DependentUpon>
@@ -128,7 +132,11 @@
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ResourcesTrello\Images.Designer.cs" />
+    <Compile Include="Views\ResourcesTrello\Assets.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Assets.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\TaskDetails.xaml.cs">
       <DependentUpon>TaskDetails.xaml</DependentUpon>
     </Compile>
@@ -151,7 +159,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ResourcesTrello\Images.resx" />
+    <EmbeddedResource Include="Views\ResourcesTrello\Assets.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Assets.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -163,6 +174,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\ChooseAvatar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\CircleImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -255,9 +270,8 @@
     <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\userAvatar.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\edit-16.png" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrelloDBLayer\TrelloDBLayer.csproj">
@@ -266,11 +280,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\discard.png" />
-    <Resource Include="Resources\submit.png" />
-    <Resource Include="Resources\window-close.png" />
-    <Resource Include="Resources\window-maximize.png" />
-    <Resource Include="Resources\window-minimize.png" />
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userAvatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-maximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\discard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\submit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
