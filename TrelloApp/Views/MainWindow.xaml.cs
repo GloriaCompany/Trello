@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using System.Windows;
-using TrelloDBLayer;
+﻿using System.Windows;
 
 namespace TrelloApp
 {

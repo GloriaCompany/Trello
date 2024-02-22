@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using TrelloApp.ViewModels;
 
 namespace TrelloApp.Views
 {
