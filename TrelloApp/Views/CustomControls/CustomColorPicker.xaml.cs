@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColorPicker;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,22 @@ namespace TrelloApp.Views.CustomControls
         public CustomColorPicker()
         {
             InitializeComponent();
+        }
+
+        private void ColorButton_Click(object sender, RoutedEventArgs e)
+        {
+            Picker.Visibility = Visibility.Visible;
+        }
+
+        private void Picker_ColorChanged(object sender, RoutedEventArgs e)
+        {
+            var colorPicker = sender as StandardColorPicker;
+            if (colorPicker != null)
+            {
+                var selectedColor = colorPicker.SelectedColor;
+                colorRectangle.Fill = new SolidColorBrush(selectedColor);
+                hexTextBlock.Text = $"#{selectedColor.R:X2}{selectedColor.G:X2}{selectedColor.B:X2}";
+            }
         }
     }
 }
