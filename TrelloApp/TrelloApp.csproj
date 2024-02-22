@@ -66,12 +66,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\ChooseAvatarModel.cs" />
+    <Compile Include="Models\BoardModel.cs" />
+    <Compile Include="Models\CheckBoxModel.cs" />
+    <Compile Include="Models\ColumnModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="Models\TaskDetailesModel.cs" />
+    <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="Views\ChooseAvatar.xaml.cs">
