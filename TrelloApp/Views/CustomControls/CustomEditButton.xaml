@@ -14,7 +14,7 @@
             Foreground="White"
             BorderThickness="0"
             >
-            <Image Source="../../Resources/edit-16.png"
+            <Image Source="/Resources/edit.png"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"/>
         </Button>

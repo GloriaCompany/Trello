@@ -1,11 +1,10 @@
-﻿<Window x:Class="TrelloApp.Views.Profile"
+﻿<Page x:Class="TrelloApp.Views.Profile"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrelloApp.Views"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="Profile" Height="435" Width="450" Background="#1d2125">
     <Grid>
@@ -34,21 +33,12 @@
                             HorizontalAlignment="Center"
                             Grid.Row="0"
                             >
-                    <Border
-                        BorderBrush="White"
-                        BorderThickness="1"
-                        CornerRadius="25"
+                    <customControls:CircleImage
                         Width="50"
                         Height="50"
                         HorizontalAlignment="Center"
                         Margin="25,0,0,0"
-                        >
-                        <Ellipse>
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="/Resources/userAvatar.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </Border>
+                        ImageSource="/Resources/userAvatar.png"/>
                     <customControls:CustomEditButton
                         Width="20"
                         Height="20"
@@ -151,4 +141,4 @@
             </Grid>
         </Border>
     </Grid>
-</Window>
+</Page>

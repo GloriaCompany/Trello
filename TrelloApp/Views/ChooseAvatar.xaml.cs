@@ -17,7 +17,7 @@ namespace TrelloApp.Views
     /// <summary>
     /// Логика взаимодействия для ChooseAvatar.xaml
     /// </summary>
-    public partial class ChooseAvatar : Window
+    public partial class ChooseAvatar : Page
     {
         public ChooseAvatar()
         {
