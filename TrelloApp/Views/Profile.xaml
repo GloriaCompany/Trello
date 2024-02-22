@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrelloApp.Views"
+        xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="Profile" Height="435" Width="450" Background="#1d2125">
