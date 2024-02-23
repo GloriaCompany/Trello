@@ -7,10 +7,10 @@ namespace TrelloApp.Views.CustomControls
     /// </summary>
     public partial class CustomCheckBox : CheckBox
     {
-         public CustomCheckBox()
-         {
-             InitializeComponent();
-             
+        public CustomCheckBox()
+        {
+            InitializeComponent();
+
         }
     }
 }

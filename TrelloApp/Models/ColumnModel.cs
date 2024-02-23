@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TrelloApp.Models
 {
@@ -7,6 +6,6 @@ namespace TrelloApp.Models
     {
         public int ColumnID { get; set; }
         public string ColumnName { get; set; }
-        public List<TaskModel> TaskDetailes { get; set; } = new List<TaskModel>();
+        public List<TaskModel> TaskDetailes { get; set; }
     }
 }

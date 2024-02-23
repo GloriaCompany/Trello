@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TrelloApp.Models
 {
     public class DashboardModel
     {
-        public UserModel User { get; set; } = new UserModel();
-        public List<BoardModel> Boards { get; set; } = new List<BoardModel>();
+        public string UserName { get; set; }
+        public int AvatarID { get; set; }
+        public List<BoardModel> Boards { get; set; }
     }
 }
