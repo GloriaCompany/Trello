@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TrelloApp.Models
+﻿namespace TrelloApp.Models
 {
     public class UserModel
     {
