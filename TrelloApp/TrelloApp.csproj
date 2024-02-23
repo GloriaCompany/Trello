@@ -71,9 +71,6 @@
     <Compile Include="Models\CheckBoxModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\ProfileModel.cs" />
-    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
@@ -324,6 +321,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\en.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\moon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
