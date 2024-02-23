@@ -5,7 +5,8 @@ namespace TrelloApp.Models
 {
     public class DashboardModel
     {
-        public UserModel User { get; set; } = new UserModel();
-        public List<BoardModel> Boards { get; set; } = new List<BoardModel>();
+        public string UserName { get; set; }
+        public int Avatar { get; set; }
+        public List<BoardModel> Boards { get; set; }
     }
 }
