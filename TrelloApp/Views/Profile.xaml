@@ -40,17 +40,20 @@
                         Margin="25,0,0,0"
                         ImageSource="/Resources/userAvatar.png"/>
                     <customControls:CustomEditButton
-                        Width="20"
-                        Height="20"
+                        Width="15"
+                        Height="15"
                         Margin="5,0,0,0"
+                        ImageSource="/Resources/edit.png"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <customControls:SubmitChangesButton/>
-                    <customControls:DiscardChangesButton/>
+                    <customControls:SubmitChangesButton
+                        ImageSource="/Resources/submit.png"/>
+                    <customControls:DiscardChangesButton
+                        ImageSource="/Resources/discard.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="2"
@@ -65,17 +68,21 @@
                         Text="Name"
                         />
                     <customControls:CustomEditButton
-                        Width="20"
-                        Height="20"
+                        Width="15"
+                        Height="15"
                         Margin="5,0,0,0"
+                        ImageSource="/Resources/edit.png"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="3"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                    <customControls:SubmitChangesButton/>
-                    <customControls:DiscardChangesButton/>
+                            VerticalAlignment="Top"
+                            >
+                    <customControls:SubmitChangesButton
+                        ImageSource="/Resources/submit.png"/>
+                    <customControls:DiscardChangesButton
+                        ImageSource="/Resources/discard.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="4"
@@ -89,16 +96,19 @@
                         VerticalAlignment="Center"
                         Text="Email"/>
                     <customControls:CustomEditButton
-                        Width="20"
-                        Height="20"
-                        Margin="5,0,0,0"/>
+                        Width="15"
+                        Height="15"
+                        Margin="5,0,0,0"
+                        ImageSource="/Resources/edit.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="5"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <customControls:SubmitChangesButton/>
-                    <customControls:DiscardChangesButton/>
+                    <customControls:SubmitChangesButton
+                        ImageSource="/Resources/submit.png"/>
+                    <customControls:DiscardChangesButton
+                        ImageSource="/Resources/discard.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="6"
@@ -112,16 +122,19 @@
                         VerticalAlignment="Center"
                         Text="Password"/>
                     <customControls:CustomEditButton
-                        Width="20"
-                        Height="20"
-                        Margin="5,0,0,0"/>
+                        Width="15"
+                        Height="15"
+                        Margin="5,0,0,0"
+                        ImageSource="/Resources/edit.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="7"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                    <customControls:SubmitChangesButton/>
-                    <customControls:DiscardChangesButton/>
+                    <customControls:SubmitChangesButton
+                        ImageSource="/Resources/submit.png"/>
+                    <customControls:DiscardChangesButton
+                        ImageSource="/Resources/discard.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="8"

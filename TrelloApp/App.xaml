@@ -29,13 +29,100 @@
                                     </Path.Data>
                                 </Path>
                             </Border>
-                            <ContentPresenter Margin="5,0,0,0"/>
+                            <ContentPresenter Margin="5,0,0,0"
+                                              VerticalAlignment="Center"/>
                         </StackPanel>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type customControls:CustomComboBox}">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type customControls:CustomComboBox}">
+                        <Grid>
+                            <Border 
+                        BorderBrush="White" 
+                        BorderThickness="1" 
+                        CornerRadius="15"
+                        Width="165"
+                        Height="30"
+                        HorizontalAlignment="Right"
+                        >
+                                <ToggleButton
+                            Name="ToggleButton"
+                            BorderBrush="Transparent"
+                            Background="Transparent"
+                            Grid.Column="2"
+                            Focusable="false"
+                            IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                            ClickMode="Press"
+                        >
+                                    <ToggleButton.Template>
+                                        <ControlTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="20" />
+                                                </Grid.ColumnDefinitions>
+                                                <Border 
+                                            x:Name="Border" 
+                                            Grid.ColumnSpan="2" 
+                                            Background="{TemplateBinding Background}" 
+                                            BorderBrush="{TemplateBinding BorderBrush}" 
+                                            BorderThickness="{TemplateBinding BorderThickness}" 
+                                            CornerRadius="15" />
+                                                <Path 
+                                            x:Name="Arrow" 
+                                            Grid.Column="1" 
+                                            Fill="White" 
+                                            HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center" 
+                                            Data="M 0 0 L 4 4 L 8 0 Z"
+                                        />
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                                                    <Setter TargetName="Arrow" Property="Data" Value="M 0 4 L 4 0 L 8 4 Z"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                </ToggleButton>
+                            </Border>
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}">
+                                    <Border x:Name="DropDownBorder" Background="White" BorderThickness="1" BorderBrush="Black"/>
+                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type customControls:CustomComboBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type customControls:CustomComboBoxItem}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding ImageSource, RelativeSource={RelativeSource TemplatedParent}}" />
+                                <TextBlock Text="{TemplateBinding Content}" Margin="5,0,0,0" />
+                            </StackPanel>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

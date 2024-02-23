@@ -98,6 +98,9 @@
     <Compile Include="Views\CustomControls\CustomComboBox.xaml.cs">
       <DependentUpon>CustomComboBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomControls\CustomComboBoxItem.xaml.cs">
+      <DependentUpon>CustomComboBoxItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomControls\CustomEditButton.xaml.cs">
       <DependentUpon>CustomEditButton.xaml</DependentUpon>
     </Compile>
@@ -201,6 +204,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CustomControls\CustomComboBoxItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomControls\CustomEditButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -270,7 +277,9 @@
     <Resource Include="Resources\plus.png" />
     <Resource Include="Resources\userAvatar.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\ua.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrelloDBLayer\TrelloDBLayer.csproj">
       <Project>{16b3a097-40f0-4dc0-9f08-d7bef210806b}</Project>
@@ -306,6 +315,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\submit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

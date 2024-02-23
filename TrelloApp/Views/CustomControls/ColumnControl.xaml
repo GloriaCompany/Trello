@@ -29,17 +29,23 @@
                            Background="Transparent"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"/>
-                <ScrollViewer Grid.Row="2"
-                              VerticalScrollBarVisibility="Hidden"
-                              HorizontalScrollBarVisibility="Hidden"
-                              HorizontalAlignment="Left"
-                              Width="150">
+                <ListView Grid.Row="2"
+                          HorizontalAlignment="Left"
+                          Width="145">
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                                          HorizontalScrollBarVisibility="Hidden">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListView.Template>
                     <StackPanel Orientation="Vertical">
-                        <customControls:TaskControl Width="150" Height="75"/>
-                        <customControls:TaskControl Width="150" Height="75"/>
-                        <customControls:TaskControl Width="150" Height="75"/>
+                        <customControls:TaskControl Width="145" Height="75"/>
+                        <customControls:TaskControl Width="145" Height="75"/>
+                        <customControls:TaskControl Width="145" Height="75"/>
                     </StackPanel>
-                </ScrollViewer>
+                </ListView>
                 <Border Grid.Row="1" Background="White"/>
                 <Border Grid.Row="3" Background="White"/>
                 <Button Grid.Row="4" 

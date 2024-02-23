@@ -13,11 +13,10 @@
             Foreground="White"
             BorderThickness="0"
             >
-        <Image Source="/Resources/submit.png"
+        <Image Source="{Binding ImageSource, 
+                        RelativeSource={RelativeSource AncestorType=local:SubmitChangesButton}}"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               Width="50"
-               Height="50"
                />
     </Button>
 </UserControl>

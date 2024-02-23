@@ -12,8 +12,9 @@
             Background="Transparent"
             Foreground="White"
             BorderThickness="0"
+            Padding="2"
             >
-        <Image Source="/Resources/discard.png"
+        <Image Source="{Binding ImageSource, RelativeSource={RelativeSource AncestorType=local:DiscardChangesButton}}"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                />

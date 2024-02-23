@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:TrelloApp"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="516" Background="#1d2125">
+        Title="MainWindow" Height="400" Width="616" Background="#1d2125">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -25,16 +25,33 @@
             <customControls:CustomEditButton
                 Width="15"
                 Height="15"
-                Margin="5,0,0,0"/>
+                Margin="5,0,0,0"
+                ImageSource="/Resources/edit.png"/>
             <customControls:SubmitChangesButton
                 Width="15"
                 Height="15"
-                Margin="5,0,0,0"/>
+                Margin="5,0,0,0"
+                ImageSource="/Resources/submit.png"/>
             <customControls:DiscardChangesButton
                 Width="15"
                 Height="15"
-                Margin="5,0,0,0"/>
+                Margin="5,0,0,0"
+                ImageSource="/Resources/discard.png"/>
         </StackPanel>
+        <customControls:CustomComboBox
+                Width="165"
+                Margin="100,0,0,0">
+            <customControls:CustomComboBox.Items>
+                <customControls:CustomComboBoxItem 
+                    ImageSource="/Resources/ua.png">
+                    Українська
+                </customControls:CustomComboBoxItem>
+                <customControls:CustomComboBoxItem 
+                    ImageSource="/Resources/en.png">
+                    English
+                </customControls:CustomComboBoxItem>
+            </customControls:CustomComboBox.Items>
+        </customControls:CustomComboBox>
         <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 
@@ -50,34 +67,51 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel
-                    Orientation="Horizontal"
+                <ListView
+                    Background="Transparent"
+                    BorderThickness="0"
                     HorizontalAlignment="Left"
-                    Grid.Column="0">
+                    Grid.Column="0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                    Padding="0"
+                    Margin="-1">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="-1"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
-                        HorizontalAlignment="Left"
                         ImageSource="/Resources/userAvatar.png"/>
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
-                        HorizontalAlignment="Left"
-                        Margin="-17.5,0,0,0"
+                        Margin="-19.5,0,0,0"
                         ImageSource="/Resources/userAvatar.png"/>
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
-                        HorizontalAlignment="Left"
-                        Margin="-17.5,0,0,0"
+                        Margin="-19.5,0,0,0"
                         ImageSource="/Resources/userAvatar.png"/>
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
-                        HorizontalAlignment="Left"
-                        Margin="-17.5,0,0,0"
+                        Margin="-19.5,0,0,0"
+                        ImageSource="/Resources/userAvatar.png"/>
+                    <customControls:CircleImage
+                        Width="28"
+                        Height="28"
+                        Margin="-19.5,0,0,0"
                         ImageSource="/Resources/plus.png"/>
-                </StackPanel>
+                </ListView>
                 <TextBlock 
                         Text="Name"
                         FontSize="10"
