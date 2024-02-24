@@ -816,9 +816,9 @@ namespace TrelloDBLayer
 		
 		private int _AssignedUserID;
 		
-		private EntitySet<Column> _Column;
-		
 		private EntitySet<User> _User;
+		
+		private EntitySet<Column> _Column;
 		
 		private EntityRef<Checklist> _Checklist;
 		
@@ -840,8 +840,8 @@ namespace TrelloDBLayer
 		
 		public Task()
 		{
-			this._Column = new EntitySet<Column>(new Action<Column>(this.attach_Column), new Action<Column>(this.detach_Column));
 			this._User = new EntitySet<User>(new Action<User>(this.attach_User), new Action<User>(this.detach_User));
+			this._Column = new EntitySet<Column>(new Action<Column>(this.attach_Column), new Action<Column>(this.detach_Column));
 			this._Checklist = default(EntityRef<Checklist>);
 			OnCreated();
 		}
@@ -950,19 +950,6 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_Column", Storage="_Column", ThisKey="ColumnID", OtherKey="ColumnID")]
-		public EntitySet<Column> Column
-		{
-			get
-			{
-				return this._Column;
-			}
-			set
-			{
-				this._Column.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_User", Storage="_User", ThisKey="AssignedUserID", OtherKey="UserID")]
 		public EntitySet<User> User
 		{
@@ -973,6 +960,19 @@ namespace TrelloDBLayer
 			set
 			{
 				this._User.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_Column", Storage="_Column", ThisKey="ColumnID", OtherKey="ColumnID")]
+		public EntitySet<Column> Column
+		{
+			get
+			{
+				return this._Column;
+			}
+			set
+			{
+				this._Column.Assign(value);
 			}
 		}
 		
@@ -1030,18 +1030,6 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		private void attach_Column(Column entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = this;
-		}
-		
-		private void detach_Column(Column entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = null;
-		}
-		
 		private void attach_User(User entity)
 		{
 			this.SendPropertyChanging();
@@ -1049,6 +1037,18 @@ namespace TrelloDBLayer
 		}
 		
 		private void detach_User(User entity)
+		{
+			this.SendPropertyChanging();
+			entity.Task = null;
+		}
+		
+		private void attach_Column(Column entity)
+		{
+			this.SendPropertyChanging();
+			entity.Task = this;
+		}
+		
+		private void detach_Column(Column entity)
 		{
 			this.SendPropertyChanging();
 			entity.Task = null;

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using TrelloApp.Models;
 namespace TrelloApp.ViewModels
 {
-    internal class TaskViewModel : INotifyPropertyChanged
+    public class TaskViewModel : INotifyPropertyChanged
     {
         private TaskModel task;
 

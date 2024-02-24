@@ -4,7 +4,7 @@ using TrelloApp.Models;
 
 namespace TrelloApp.ViewModels
 {
-    internal class DashboardViewModel : INotifyPropertyChanged
+    public class DashboardViewModel : INotifyPropertyChanged
     {
         private DashboardModel dashboard;
 
@@ -13,15 +13,15 @@ namespace TrelloApp.ViewModels
             dashboard = new DashboardModel();
         }
 
-        public string UserName
+        public string Username
         {
-            get { return dashboard.UserName; }
-            set { dashboard.UserName = value; OnPropertyChanged(nameof(UserName)); }
+            get { return dashboard.Username; }
+            set { dashboard.Username = value; OnPropertyChanged(nameof(Username)); }
         }
-        public int AvatarID
+        public string Avatar
         {
-            get { return dashboard.AvatarID; }
-            set { dashboard.AvatarID = value; OnPropertyChanged(nameof(AvatarID)); }
+            get { return dashboard.Avatar; }
+            set { dashboard.Avatar = value; OnPropertyChanged(nameof(Avatar)); }
         }
         public List<BoardModel> Boards
         {

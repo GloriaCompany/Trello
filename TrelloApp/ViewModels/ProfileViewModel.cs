@@ -1,15 +1,54 @@
 ﻿using System.ComponentModel;
+using System.Configuration;
+using System.Linq;
+using System.Windows.Input;
 using TrelloApp.Models;
+using TrelloApp.Views;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
-    internal class ProfileViewModel : INotifyPropertyChanged
+    public class ProfileViewModel : INotifyPropertyChanged
     {
         private UserModel user;
+        public ICommand ProfileUpdateCommand { get; set; }
 
-        public ProfileViewModel()
+        public ProfileViewModel(UserModel currentUser)
         {
-            user = new UserModel();
+            user = currentUser;
+            ProfileUpdateCommand = new RelayCommand(UpdateProfile, CanUpdateProfile);
+        }
+
+        private bool CanUpdateProfile()
+        {
+            return
+                !string.IsNullOrEmpty(user.Username) ||
+                !string.IsNullOrEmpty(user.Email) ||
+                !string.IsNullOrEmpty(user.Password) ||
+                !string.IsNullOrEmpty(user.Avatar);
+        }
+        private void UpdateProfile()
+        {
+            using (var dbContext = new TrelloDataClassesDataContext(
+                ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString))
+            {
+                var existingUser = dbContext.User.SingleOrDefault(u => u.UserID == user.UserID);
+                if (existingUser != null)
+                {
+                    existingUser.Username = user.Username;
+                    existingUser.Password = user.Password;
+                    existingUser.Email = user.Email;
+                    existingUser.Avatar = user.Avatar;
+
+                    dbContext.SubmitChanges();
+
+                    //Изменения успешно сохранены
+                }
+                else
+                {
+                    //Пользователь не найден
+                }
+            }
         }
 
         public int UserID
@@ -17,10 +56,10 @@ namespace TrelloApp.ViewModels
             get { return user.UserID; }
         }
 
-        public string UserName
+        public string Username
         {
-            get { return user.UserName; }
-            set { user.UserName = value; OnPropertyChanged(nameof(UserName)); }
+            get { return user.Username; }
+            set { user.Username = value; OnPropertyChanged(nameof(Username)); }
         }
         public string Password
         {
@@ -32,10 +71,10 @@ namespace TrelloApp.ViewModels
             get { return user.Email; }
             set { user.Email = value; OnPropertyChanged(nameof(Email)); }
         }
-        public int AvatarID
+        public string Avatar
         {
-            get { return user.AvatarID; }
-            set { user.AvatarID = value; OnPropertyChanged(nameof(AvatarID)); }
+            get { return user.Avatar; }
+            set { user.Avatar = value; OnPropertyChanged(nameof(Avatar)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

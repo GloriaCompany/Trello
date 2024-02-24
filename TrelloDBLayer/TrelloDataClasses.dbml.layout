@@ -45,42 +45,42 @@
         <classShapeMoniker Id="0a25931a-7c48-4b53-b2c7-d9a2a85fe4b5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.125 : 1.19314697265625); (2.5 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.125 : 1.19314697265625); (2.5 : 1.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TrelloDataClassesDataContext/Board/Board_User" />
       <nodes>
         <classShapeMoniker Id="3489d8b0-820c-4731-9aac-1b2fbb6ddc2d" />
         <classShapeMoniker Id="0a25931a-7c48-4b53-b2c7-d9a2a85fe4b5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.625 : 1.19314697265625); (5.125 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.625 : 1.19314697265625); (5.125 : 1.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TrelloDataClassesDataContext/Column/Column_Board" />
       <nodes>
         <classShapeMoniker Id="452cfa13-8cf4-4b8b-9025-216c659b3ac1" />
         <classShapeMoniker Id="3489d8b0-820c-4731-9aac-1b2fbb6ddc2d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.625 : 2.5); (6.625 : 2.07859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.625 : 2.5); (6.625 : 2.07859537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TrelloDataClassesDataContext/Task/Task_Column" />
       <nodes>
         <classShapeMoniker Id="2d53ba58-a091-43fe-8156-bd44baa06db3" />
         <classShapeMoniker Id="452cfa13-8cf4-4b8b-9025-216c659b3ac1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.093748 : 2.5); (6.093748 : 2.25); (4.23958583333333 : 2.25 : JumpStart); (4.07291916666667 : 2.25 : JumpEnd); (2.875 : 2.25); (2.875 : 1.73202189127604); (2.5 : 1.73202189127604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.093748 : 2.5); (6.093748 : 2.25); (4.23958583333333 : 2.25 : JumpStart); (4.07291916666667 : 2.25 : JumpEnd); (2.875 : 2.25); (2.875 : 1.73202189127604); (2.5 : 1.73202189127604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TrelloDataClassesDataContext/Task/Task_User" />
       <nodes>
         <classShapeMoniker Id="2d53ba58-a091-43fe-8156-bd44baa06db3" />
         <classShapeMoniker Id="0a25931a-7c48-4b53-b2c7-d9a2a85fe4b5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 4.10984537760417); (5.625 : 4.10984537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.5 : 4.10984537760417); (5.625 : 4.10984537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TrelloDataClassesDataContext/Checklist/Checklist_Task" />
       <nodes>
         <classShapeMoniker Id="1e1bba75-7d6a-418b-a4df-92e912627438" />
         <classShapeMoniker Id="2d53ba58-a091-43fe-8156-bd44baa06db3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.1562525 : 2.5); (4.1562525 : 1.8862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.1562525 : 2.5); (4.1562525 : 1.8862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TrelloDataClassesDataContext/BoardMember/BoardMember_Board" />
       <nodes>
         <classShapeMoniker Id="06556f03-45ea-43dc-bea3-3de48273861e" />

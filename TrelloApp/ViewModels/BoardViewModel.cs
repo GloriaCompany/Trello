@@ -4,7 +4,7 @@ using TrelloApp.Models;
 
 namespace TrelloApp.ViewModels
 {
-    internal class BoardViewModel : INotifyPropertyChanged
+    public class BoardViewModel : INotifyPropertyChanged
     {
         private BoardModel board;
 
