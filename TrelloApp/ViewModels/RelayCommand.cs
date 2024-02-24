@@ -22,6 +22,8 @@ namespace TrelloApp.ViewModels
 
         public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
 
+        public void RaiseCanExecuteChanged() => CommandManager.InvalidateRequerySuggested();
+
         public void Execute(object parameter) => _execute();
     }
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using TrelloApp.ViewModels;
 
 namespace TrelloApp.Views
 {
@@ -11,13 +11,7 @@ namespace TrelloApp.Views
         public Register()
         {
             InitializeComponent();
-        }
-
-        private void ViewModel_SignUpSuccess(object sender, EventArgs e)
-        {
-            //Close();
-            //var mainWindow = new MainWindow();
-            //mainWindow.Show();
+            DataContext = new RegisterViewModel();
         }
     }
 }

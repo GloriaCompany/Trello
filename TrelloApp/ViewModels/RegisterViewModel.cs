@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Input;
 using TrelloApp.Models;
@@ -8,67 +9,63 @@ namespace TrelloApp.ViewModels
 {
     public class RegisterViewModel : INotifyPropertyChanged
     {
-        private UserModel user;
+        private UserModel _user;
         public ICommand RegisterCommand { get; set; }
 
         public RegisterViewModel()
         {
-            user = new UserModel();
+            _user = new UserModel();
             RegisterCommand = new RelayCommand(Register, CanRegister);
+            ((RelayCommand)RegisterCommand).CanExecuteChanged += RegisterCommand_CanExecuteChanged;
+        }
+
+        public UserModel User
+        {
+            get { return _user; }
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(User));
+            }
+        }
+
+        private void RegisterCommand_CanExecuteChanged(object sender, EventArgs e)
+        {
+            ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
         }
 
         private bool CanRegister()
         {
-            return 
-                !string.IsNullOrEmpty(user.Username) && 
-                !string.IsNullOrEmpty(user.Email) &&
-                !string.IsNullOrEmpty(user.Password) &&
-                !string.IsNullOrEmpty(user.Avatar);
+            bool res =
+                !string.IsNullOrEmpty(User.Username) &&
+                !string.IsNullOrEmpty(User.Email) &&
+                !string.IsNullOrEmpty(User.Password) &&
+                !string.IsNullOrEmpty(User.PasswordConfirmation);
+
+            ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
+
+            return res;
         }
+
         private void Register()
         {
+            //MessageBox.Show("Clicked");
             using (var dbContext = new TrelloDataClassesDataContext(
                 ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString))
             {
                 var newUserEntity = new User
                 {
-                    Username = user.Username,
-                    Password = user.Password,
-                    Email = user.Email,
-                    Avatar = user.Avatar
+                    Username = User.Username,
+                    Password = User.Password,
+                    Email = User.Email,
+                    Avatar = User.Avatar
                 };
 
                 dbContext.User.InsertOnSubmit(newUserEntity);
                 dbContext.SubmitChanges();
 
-                //Переключение окна
+                //MessageBox.Show("Registered");
             }
-        }
-
-        public int UserID
-        {
-            get { return user.UserID; }
-        }
-
-        public string Username
-        {
-            get { return user.Username; }
-            set { user.Username = value; OnPropertyChanged(nameof(Username)); }
-        }
-        public string Password
-        {
-            get { return user.Password; }
-            set { user.Password = value; OnPropertyChanged(nameof(Password)); }
-        }
-        public string Email
-        {
-            get { return user.Email; }
-            set { user.Email = value; OnPropertyChanged(nameof(Email)); }
-        }
-        public string Avatar
-        {
-            get { return user.Avatar; }
-            set { user.Avatar = value; OnPropertyChanged(nameof(Avatar)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

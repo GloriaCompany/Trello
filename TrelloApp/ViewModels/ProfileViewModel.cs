@@ -29,32 +29,32 @@ namespace TrelloApp.ViewModels
         }
         private void UpdateProfile()
         {
-            using (var dbContext = new TrelloDataClassesDataContext(
-                ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString))
-            {
-                var existingUser = dbContext.User.SingleOrDefault(u => u.UserID == user.UserID);
-                if (existingUser != null)
-                {
-                    existingUser.Username = user.Username;
-                    existingUser.Password = user.Password;
-                    existingUser.Email = user.Email;
-                    existingUser.Avatar = user.Avatar;
+            //using (var dbContext = new TrelloDataClassesDataContext(
+            //    ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString))
+            //{
+            //    var existingUser = dbContext.User.SingleOrDefault(u => u.UserID == user.UserID);
+            //    if (existingUser != null)
+            //    {
+            //        existingUser.Username = user.Username;
+            //        existingUser.Password = user.Password;
+            //        existingUser.Email = user.Email;
+            //        existingUser.Avatar = user.Avatar;
 
-                    dbContext.SubmitChanges();
+            //        dbContext.SubmitChanges();
 
-                    //Изменения успешно сохранены
-                }
-                else
-                {
-                    //Пользователь не найден
-                }
-            }
+            //        //Изменения успешно сохранены
+            //    }
+            //    else
+            //    {
+            //        //Пользователь не найден
+            //    }
+            //}
         }
 
-        public int UserID
-        {
-            get { return user.UserID; }
-        }
+        //public int UserID
+        //{
+        //    get { return user.UserID; }
+        //}
 
         public string Username
         {
