@@ -16,17 +16,17 @@ namespace TrelloApp.ViewModels
         public ProfileViewModel(UserModel currentUser)
         {
             user = currentUser;
-            ProfileUpdateCommand = new RelayCommand(UpdateProfile, CanUpdateProfile);
+            //ProfileUpdateCommand = new RelayCommand(UpdateProfile, CanUpdateProfile);
         }
 
-        private bool CanUpdateProfile()
-        {
-            return
-                !string.IsNullOrEmpty(user.Username) ||
-                !string.IsNullOrEmpty(user.Email) ||
-                !string.IsNullOrEmpty(user.Password) ||
-                !string.IsNullOrEmpty(user.Avatar);
-        }
+        //private bool CanUpdateProfile()
+        //{
+        //    return
+        //        !string.IsNullOrEmpty(user.Username) ||
+        //        !string.IsNullOrEmpty(user.Email) ||
+        //        !string.IsNullOrEmpty(user.Password) ||
+        //        !string.IsNullOrEmpty(user.Avatar);
+        //}
         private void UpdateProfile()
         {
             //using (var dbContext = new TrelloDataClassesDataContext(
@@ -71,11 +71,11 @@ namespace TrelloApp.ViewModels
             get { return user.Email; }
             set { user.Email = value; OnPropertyChanged(nameof(Email)); }
         }
-        public string Avatar
-        {
-            get { return user.Avatar; }
-            set { user.Avatar = value; OnPropertyChanged(nameof(Avatar)); }
-        }
+        //public string Avatar
+        //{
+        //    get { return user.Avatar; }
+        //    set { user.Avatar = value; OnPropertyChanged(nameof(Avatar)); }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 

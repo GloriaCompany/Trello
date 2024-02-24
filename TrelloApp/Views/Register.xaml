@@ -66,7 +66,7 @@
             VerticalAlignment="Center"
             x:Name="InputConfirmPassword"
             Placeholder="Confirm Password"
-            Text="{Binding User.PasswordConfirmation, Mode=TwoWay}"
+            Text="{Binding User.ConfirmPassword, Mode=TwoWay}"
             />
         <customControls:CustomButton 
             Text="CONTINUE" 

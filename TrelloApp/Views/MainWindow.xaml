@@ -39,8 +39,8 @@
                 ImageSource="/Resources/discard.png"/>
         </StackPanel>
         <customControls:CustomComboBox
-                Width="80"
-                Margin="22,0,0,0">
+                Width="100"
+                Margin="-20,0,0,0">
             <customControls:CustomComboBox.Items>
                 <customControls:CustomComboBoxItem 
                     ImageSource="/Resources/sun.png">
@@ -53,7 +53,7 @@
             </customControls:CustomComboBox.Items>
         </customControls:CustomComboBox>
         <customControls:CustomComboBox
-                Width="80"
+                Width="100"
                 Margin="182,0,0,0">
             <customControls:CustomComboBox.Items>
                 <customControls:CustomComboBoxItem 

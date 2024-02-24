@@ -1,6 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Configuration;
+using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloDBLayer;
@@ -10,15 +10,6 @@ namespace TrelloApp.ViewModels
     public class RegisterViewModel : INotifyPropertyChanged
     {
         private UserModel _user;
-        public ICommand RegisterCommand { get; set; }
-
-        public RegisterViewModel()
-        {
-            _user = new UserModel();
-            RegisterCommand = new RelayCommand(Register, CanRegister);
-            ((RelayCommand)RegisterCommand).CanExecuteChanged += RegisterCommand_CanExecuteChanged;
-        }
-
         public UserModel User
         {
             get { return _user; }
@@ -29,9 +20,12 @@ namespace TrelloApp.ViewModels
             }
         }
 
-        private void RegisterCommand_CanExecuteChanged(object sender, EventArgs e)
+        public ICommand RegisterCommand { get; set; }
+
+        public RegisterViewModel()
         {
-            ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
+            _user = new UserModel();
+            RegisterCommand = new RelayCommand(Register, CanRegister);
         }
 
         private bool CanRegister()
@@ -40,7 +34,7 @@ namespace TrelloApp.ViewModels
                 !string.IsNullOrEmpty(User.Username) &&
                 !string.IsNullOrEmpty(User.Email) &&
                 !string.IsNullOrEmpty(User.Password) &&
-                !string.IsNullOrEmpty(User.PasswordConfirmation);
+                User.Password == User.ConfirmPassword;
 
             ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
 
@@ -49,7 +43,7 @@ namespace TrelloApp.ViewModels
 
         private void Register()
         {
-            //MessageBox.Show("Clicked");
+            MessageBox.Show("Clicked");
             using (var dbContext = new TrelloDataClassesDataContext(
                 ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString))
             {
@@ -58,13 +52,13 @@ namespace TrelloApp.ViewModels
                     Username = User.Username,
                     Password = User.Password,
                     Email = User.Email,
-                    Avatar = User.Avatar
+                    Avatar = "",
                 };
 
                 dbContext.User.InsertOnSubmit(newUserEntity);
                 dbContext.SubmitChanges();
 
-                //MessageBox.Show("Registered");
+                MessageBox.Show("Registered");
             }
         }
 

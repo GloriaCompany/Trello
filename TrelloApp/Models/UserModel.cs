@@ -5,14 +5,13 @@ namespace TrelloApp.Models
     public class UserModel : INotifyPropertyChanged
     {
         private string _username;
-        private string _password;
         private string _email;
-        private string _avatar;
-        private string _passwordConfirmation;
+        private string _password;
+        private string _confirmPassword;
 
         public string Username
         {
-            get { return _username; }
+            get => _username;
             set
             {
                 _username = value;
@@ -20,30 +19,9 @@ namespace TrelloApp.Models
             }
         }
 
-        public string Password
-        {
-            get { return _password; }
-            set
-            {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
-                OnPropertyChanged(nameof(PasswordConfirmation));
-            }
-        }
-
-        public string PasswordConfirmation
-        {
-            get { return _passwordConfirmation; }
-            set
-            {
-                _passwordConfirmation = value;
-                OnPropertyChanged(nameof(PasswordConfirmation));
-            }
-        }
-
         public string Email
         {
-            get { return _email; }
+            get => _email;
             set
             {
                 _email = value;
@@ -51,13 +29,23 @@ namespace TrelloApp.Models
             }
         }
 
-        public string Avatar
+        public string Password
         {
-            get { return _avatar; }
+            get => _password;
             set
             {
-                _avatar = value;
-                OnPropertyChanged(nameof(Avatar));
+                _password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        public string ConfirmPassword
+        {
+            get => _confirmPassword;
+            set
+            {
+                _confirmPassword = value;
+                OnPropertyChanged(nameof(ConfirmPassword));
             }
         }
 

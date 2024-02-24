@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Class="TrelloDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SQL5107.site4now.net;Initial Catalog=db_aa5374_trello;Persist Security Info=True;User ID=db_aa5374_trello_admin" SettingsObjectName="TrelloDBLayer.Properties.Settings" SettingsPropertyName="db_aa5374_trelloConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="" Member="User">
     <Type Name="User">
       <Column Name="UserID" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />

@@ -46,6 +46,12 @@ namespace TrelloDBLayer
     partial void DeleteChecklist(Checklist instance);
     #endregion
 		
+		public TrelloDataClassesDataContext() : 
+				base(global::TrelloDBLayer.Properties.Settings.Default.db_aa5374_trelloConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
+		
 		public TrelloDataClassesDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
