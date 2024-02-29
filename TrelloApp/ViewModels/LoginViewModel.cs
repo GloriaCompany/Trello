@@ -7,6 +7,8 @@ using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
+    // TODO: Переделать логику
+
     public class LoginViewModel : INotifyPropertyChanged
     {
         private UserModel user;

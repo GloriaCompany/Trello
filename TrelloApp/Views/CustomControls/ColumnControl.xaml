@@ -22,15 +22,24 @@
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" 
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+                    <TextBlock
                            Text="Column Name"
                            FontSize="14"
                            Foreground="White"
                            Background="Transparent"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"/>
+                    <customControls:ChangesButton
+                        ImageSource="/Resources/edit.png"
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="5,0,0,0"/>
+                </StackPanel>
                 <ListView Grid.Row="2"
-                          HorizontalAlignment="Left"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
                           Width="145">
                     <ListView.Template>
                         <ControlTemplate>
@@ -40,7 +49,7 @@
                             </ScrollViewer>
                         </ControlTemplate>
                     </ListView.Template>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Vertical" Margin="-5,0,0,0">
                         <customControls:TaskControl Width="145" Height="75"/>
                         <customControls:TaskControl Width="145" Height="75"/>
                         <customControls:TaskControl Width="145" Height="75"/>

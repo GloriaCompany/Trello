@@ -10,16 +10,16 @@
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Авторизація / Login" 
                Grid.Row="0" 
                Grid.Column="0" 
                HorizontalAlignment="Center" 
-               VerticalAlignment="Center" 
+               VerticalAlignment="Bottom" 
                Foreground="White" 
                FontSize="14"
                />
@@ -49,6 +49,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="BtnLogin"
+            Click="BtnLogin_Click"
             />
         <customControls:CustomButton 
             Text="REGISTER" 
@@ -56,9 +57,20 @@
             Height="35"
             Grid.Row="4"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
+            VerticalAlignment="Top"
             x:Name="BtnRegister"
             Click="BtnRegister_Click"
+            />
+        <customControls:CustomButton 
+            Text="CREATE DATABASE" 
+            Width="180" 
+            Height="35"
+            Grid.Row="4"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            x:Name="BtnCreateDatabase"
+            Click="BtnCreateDatabase_Click"
+            Visibility="Hidden"
             />
     </Grid>
 </Page>

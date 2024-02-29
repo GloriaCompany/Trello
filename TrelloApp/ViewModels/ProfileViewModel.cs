@@ -8,6 +8,8 @@ using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
+    // TODO: Переделать логику
+
     public class ProfileViewModel : INotifyPropertyChanged
     {
         private UserModel user;

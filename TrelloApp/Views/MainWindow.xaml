@@ -22,17 +22,17 @@
             <customControls:CustomInput
                 Width="150"
                 Text="Board Name"/>
-            <customControls:CustomEditButton
+            <customControls:ChangesButton
                 Width="15"
                 Height="15"
                 Margin="5,0,0,0"
                 ImageSource="/Resources/edit.png"/>
-            <customControls:SubmitChangesButton
+            <customControls:ChangesButton
                 Width="15"
                 Height="15"
                 Margin="5,0,0,0"
                 ImageSource="/Resources/submit.png"/>
-            <customControls:DiscardChangesButton
+            <customControls:ChangesButton
                 Width="15"
                 Height="15"
                 Margin="5,0,0,0"
@@ -158,16 +158,19 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Margin="10"
+                EditIconSource="/Resources/edit.png"
                 />
             <customControls:ColumnControl
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="10"
+                EditIconSource="/Resources/edit.png"
                 />
             <customControls:ColumnControl
                 Grid.Row="0"
                 Grid.Column="2"
                 Margin="10"
+                EditIconSource="/Resources/edit.png"
                 />
             <customControls:CustomButton
                 Grid.Row="1"

@@ -4,6 +4,8 @@ using TrelloApp.Models;
 
 namespace TrelloApp.ViewModels
 {
+    // TODO: Полностью переделать 
+
     public class CheckBoxViewModel
     {
         public List<CheckBoxItemViewModel> CheckBoxItems { get; set; }

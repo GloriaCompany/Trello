@@ -1,15 +1,17 @@
-﻿using System.ComponentModel;
-using System.Configuration;
+﻿using System;
 using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
+using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
-    public class RegisterViewModel : INotifyPropertyChanged
+    public class RegisterViewModel : ViewModelBase
     {
+        private readonly IUserRepository _userRepository;
         private UserModel _user;
+
         public UserModel User
         {
             get { return _user; }
@@ -22,8 +24,9 @@ namespace TrelloApp.ViewModels
 
         public ICommand RegisterCommand { get; set; }
 
-        public RegisterViewModel()
+        public RegisterViewModel(IUserRepository userRepository)
         {
+            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _user = new UserModel();
             RegisterCommand = new RelayCommand(Register, CanRegister);
         }
@@ -34,6 +37,7 @@ namespace TrelloApp.ViewModels
                 !string.IsNullOrEmpty(User.Username) &&
                 !string.IsNullOrEmpty(User.Email) &&
                 !string.IsNullOrEmpty(User.Password) &&
+                !string.IsNullOrEmpty(User.ConfirmPassword) &&
                 User.Password == User.ConfirmPassword;
 
             ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
@@ -43,30 +47,30 @@ namespace TrelloApp.ViewModels
 
         private void Register()
         {
-            MessageBox.Show("Clicked");
-            using (var dbContext = new TrelloDataClassesDataContext(
-                ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString))
+            try
             {
-                var newUserEntity = new User
+                if (!CanRegister())
                 {
-                    Username = User.Username,
-                    Password = User.Password,
-                    Email = User.Email,
-                    Avatar = "",
+                    MessageBox.Show("Заповніть усі поля форми, будь-ласка.");
+                    return;
+                }
+
+                var newUser = new User
+                {
+                    Username = _user.Username,
+                    Email = _user.Email,
+                    Password = _user.Password,
+                    Avatar = ""
                 };
 
-                dbContext.User.InsertOnSubmit(newUserEntity);
-                dbContext.SubmitChanges();
+                _userRepository.AddUser(newUser);
 
-                MessageBox.Show("Registered");
+                MessageBox.Show("Користувача зареєстровано.");
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

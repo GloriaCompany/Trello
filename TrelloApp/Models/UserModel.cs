@@ -1,59 +1,24 @@
-﻿using System.ComponentModel;
+﻿using TrelloDBLayer;
 
 namespace TrelloApp.Models
 {
-    public class UserModel : INotifyPropertyChanged
+    public class UserModel : User
     {
-        private string _username;
-        private string _email;
-        private string _password;
-        private string _confirmPassword;
-
-        public string Username
-        {
-            get => _username;
-            set
-            {
-                _username = value;
-                OnPropertyChanged(nameof(Username));
-            }
-        }
-
-        public string Email
-        {
-            get => _email;
-            set
-            {
-                _email = value;
-                OnPropertyChanged(nameof(Email));
-            }
-        }
-
-        public string Password
-        {
-            get => _password;
-            set
-            {
-                _password = value;
-                OnPropertyChanged(nameof(Password));
-            }
-        }
-
+        public string _сonfirmPassword { get; set; }
         public string ConfirmPassword
         {
-            get => _confirmPassword;
+            get
+            {
+                return _сonfirmPassword;
+            }
             set
             {
-                _confirmPassword = value;
-                OnPropertyChanged(nameof(ConfirmPassword));
+                if (_сonfirmPassword != value)
+                {
+                    _сonfirmPassword = value;
+                    SendPropertyChanged(nameof(ConfirmPassword));
+                }
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

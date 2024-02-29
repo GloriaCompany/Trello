@@ -11,7 +11,6 @@ namespace TrelloApp.Views
         public Register()
         {
             InitializeComponent();
-            DataContext = new RegisterViewModel();
         }
     }
 }

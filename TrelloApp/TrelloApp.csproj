@@ -74,6 +74,9 @@
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="ViewModels\Base\ITrelloDataClassesDataContext.cs" />
+    <Compile Include="ViewModels\Base\TrelloDataContext.cs" />
+    <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="ViewModels\CheckBoxViewModel.cs" />
     <Compile Include="ViewModels\ColumnViewModel.cs" />
@@ -83,8 +86,12 @@
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
+    <Compile Include="ViewModels\UserRepository.cs" />
     <Compile Include="Views\ChooseAvatar.xaml.cs">
       <DependentUpon>ChooseAvatar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\ChangesButton.xaml.cs">
+      <DependentUpon>ChangesButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\CircleImage.xaml.cs">
       <DependentUpon>CircleImage.xaml</DependentUpon>
@@ -107,22 +114,13 @@
     <Compile Include="Views\CustomControls\CustomComboBoxItem.xaml.cs">
       <DependentUpon>CustomComboBoxItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomControls\CustomEditButton.xaml.cs">
-      <DependentUpon>CustomEditButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CustomControls\CustomInput.xaml.cs">
       <DependentUpon>CustomInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\CustomWindowButtons.xaml.cs">
       <DependentUpon>CustomWindowButtons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomControls\DiscardChangesButton.xaml.cs">
-      <DependentUpon>DiscardChangesButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CustomControls\StringToVisibilityConverter.cs" />
-    <Compile Include="Views\CustomControls\SubmitChangesButton.xaml.cs">
-      <DependentUpon>SubmitChangesButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CustomControls\TaskControl.xaml.cs">
       <DependentUpon>TaskControl.xaml</DependentUpon>
     </Compile>
@@ -186,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CustomControls\ChangesButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomControls\CircleImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,23 +216,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CustomControls\CustomEditButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\CustomControls\CustomInput.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CustomControls\CustomWindowButtons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CustomControls\DiscardChangesButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CustomControls\SubmitChangesButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -280,10 +270,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\plus.png" />
-    <Resource Include="Resources\userAvatar.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ua.png" />
   </ItemGroup>
   <ItemGroup>
@@ -296,12 +282,6 @@
     <None Include="Resources\edit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\plus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\userAvatar.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\window-close.png" />
   </ItemGroup>
   <ItemGroup>
@@ -309,12 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\window-minimize.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\disc.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\sub.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\discard.png" />
@@ -330,6 +304,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\moon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userAvatar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

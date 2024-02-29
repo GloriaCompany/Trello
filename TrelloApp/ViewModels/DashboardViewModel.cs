@@ -4,6 +4,8 @@ using TrelloApp.Models;
 
 namespace TrelloApp.ViewModels
 {
+    // TODO: Переделать логику
+
     public class DashboardViewModel : INotifyPropertyChanged
     {
         private DashboardModel dashboard;

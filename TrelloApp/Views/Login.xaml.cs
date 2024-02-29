@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using TrelloDBLayer;
 
 namespace TrelloApp.Views
 {
@@ -23,6 +25,26 @@ namespace TrelloApp.Views
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Register());
+        }
+
+        private void BtnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            if (InputLogin.Text == ConfigurationManager.AppSettings["AdminLogin"].ToString() && 
+                InputPassword.Text == ConfigurationManager.AppSettings["AdminPassword"].ToString())
+            {
+                BtnCreateDatabase.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //...
+            }
+        }
+
+        private void BtnCreateDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            var db = new TrelloDataClassesDataContext();
+            if (!db.DatabaseExists()) db.CreateDatabase();
+            else MessageBox.Show("База даних вже створена. Ви можете продовжувати роботу.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="150">
+             d:DesignHeight="75" d:DesignWidth="145">
     <Border Background="Transparent"
             BorderBrush="White"
             BorderThickness="1"
@@ -24,9 +24,9 @@
                 <Border Grid.Row="0" 
                         Background="SkyBlue"
                         CornerRadius="13.5,13.5,0,0"
-                        Width="138"
+                        Width="133"
                         Height="14"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Stretch"/>
                 <Border Grid.Row="1" Background="White" Width="150"/>
                 <TextBlock Text="Task Name" 
                            VerticalAlignment="Top" 
@@ -38,14 +38,15 @@
                            Margin="12,15,0,0"
                            />
                 <customControls:CircleImage
-                        Width="23" 
-                        Height="23"
-                        Grid.Row="0"
-                        Grid.RowSpan="3"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Margin="-17.5,0,0,0"
-                        ImageSource="/Resources/userAvatar.png"/>
+                    Width="23" 
+                    Height="23"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="-17.5,0,0,0"
+                    ImageSource="/Resources/userAvatar.png"
+                    />
             </Grid>
         </Border>
     </Border>

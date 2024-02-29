@@ -4,6 +4,8 @@ using TrelloApp.Models;
 
 namespace TrelloApp.ViewModels
 {
+    // TODO: Полностью переделать 
+
     public class ColumnViewModel
     {
         public int ColumnID { get; set; }

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using TrelloApp.Models;
+using TrelloApp.ViewModels.Base;
 
 namespace TrelloApp.ViewModels
 {
-    public class BoardViewModel : INotifyPropertyChanged
+    public class BoardViewModel : ViewModelBase
     {
         private BoardModel board;
 
@@ -31,13 +31,6 @@ namespace TrelloApp.ViewModels
         {
             get { return board.Users; }
             set { board.Users = value; OnPropertyChanged(nameof(Users)); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

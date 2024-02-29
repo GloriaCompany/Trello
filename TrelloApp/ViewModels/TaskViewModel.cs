@@ -3,6 +3,8 @@ using System.ComponentModel;
 using TrelloApp.Models;
 namespace TrelloApp.ViewModels
 {
+    // TODO: Переделать логику
+
     public class TaskViewModel : INotifyPropertyChanged
     {
         private TaskModel task;
