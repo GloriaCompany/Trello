@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels"  
         xmlns:local="clr-namespace:TrelloApp.Views"
         mc:Ignorable="d"
         Title="ChooseAvatar" Height="300" Width="400" Background="#1d2125">
+    <Page.DataContext>
+        <viewModel:RegisterViewModel/>
+    </Page.DataContext>
     <Grid>
         <Border 
                 BorderBrush="White" 
@@ -91,7 +95,8 @@
                     Grid.Row="2"
                     Height="30"
                     Width="175"
-                    Text="Submit"/>
+                    Text="Submit"
+                    Command="{Binding RegisterCommand}"/>
             </Grid>
         </Border>
     </Grid>
