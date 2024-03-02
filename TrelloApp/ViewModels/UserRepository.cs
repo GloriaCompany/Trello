@@ -28,8 +28,7 @@ namespace TrelloApp.ViewModels
 
             try
             {
-                var userList = _dbContext.Users.ToList();
-                userList.Add(user);
+                _dbContext.AddUser(user);
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)

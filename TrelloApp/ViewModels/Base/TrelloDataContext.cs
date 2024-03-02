@@ -14,6 +14,12 @@ namespace TrelloApp.ViewModels.Base
 
         public IQueryable<User> Users => _context.User;
 
+        public void AddUser(User user)
+        {
+            _context.User.InsertOnSubmit(user);
+            SaveChanges();
+        }
+
         public void SaveChanges()
         {
             _context.SubmitChanges();

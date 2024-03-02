@@ -7,6 +7,8 @@ namespace TrelloApp.ViewModels.Base
     {
         IQueryable<User> Users { get; }
 
+        void AddUser(User user);
+
         void SaveChanges();
     }
 }

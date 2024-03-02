@@ -5,10 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         xmlns:viewModel="clr-namespace:TrelloApp.ViewModels"
+        xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"
         mc:Ignorable="d"
         Title="Register" Height="450" Width="400" Background="#1d2125">
     <Page.DataContext>
-        <viewModel:RegisterViewModel/>
+        <viewModel:RegisterViewModel>
+            <viewModel:RegisterViewModel.UserRepository>
+                <viewModel:UserRepository>
+                    <viewModel:UserRepository.dbContext>
+                        <viewModelBase:TrelloDataContext/>
+                    </viewModel:UserRepository.dbContext>
+                </viewModel:UserRepository>
+            </viewModel:RegisterViewModel.UserRepository>
+        </viewModel:RegisterViewModel>
     </Page.DataContext>
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>

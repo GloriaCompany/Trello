@@ -3,15 +3,12 @@ using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
-using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
     public class RegisterViewModel : ViewModelBase
     {
-        private readonly IUserRepository _userRepository;
         private UserModel _user;
-
         public UserModel User
         {
             get { return _user; }
@@ -22,11 +19,12 @@ namespace TrelloApp.ViewModels
             }
         }
 
+        public IUserRepository UserRepository { get; set; } 
+
         public ICommand RegisterCommand { get; set; }
 
-        public RegisterViewModel(IUserRepository userRepository)
+        public RegisterViewModel()
         {
-            _userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             _user = new UserModel();
             RegisterCommand = new RelayCommand(Register, CanRegister);
         }
@@ -34,10 +32,7 @@ namespace TrelloApp.ViewModels
         private bool CanRegister()
         {
             bool res =
-                !string.IsNullOrEmpty(User.Username) &&
-                !string.IsNullOrEmpty(User.Email) &&
-                !string.IsNullOrEmpty(User.Password) &&
-                !string.IsNullOrEmpty(User.ConfirmPassword) &&
+                User != null &&
                 User.Password == User.ConfirmPassword;
 
             ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
@@ -55,15 +50,7 @@ namespace TrelloApp.ViewModels
                     return;
                 }
 
-                var newUser = new User
-                {
-                    Username = _user.Username,
-                    Email = _user.Email,
-                    Password = _user.Password,
-                    Avatar = ""
-                };
-
-                _userRepository.AddUser(newUser);
+                UserRepository.AddUser(User);
 
                 MessageBox.Show("Користувача зареєстровано.");
             }
