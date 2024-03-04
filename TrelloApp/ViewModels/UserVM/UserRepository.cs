@@ -11,8 +11,14 @@ namespace TrelloApp.ViewModels.UserVM
 
     internal class UserRepository : IUserRepository
     {
-        private readonly ITrelloDataClassesDataContext _dbContext;
+        private ITrelloDataClassesDataContext _dbContext;
+        public ITrelloDataClassesDataContext DbContext
+        {
+            get { return _dbContext; }
+            set { _dbContext = value; }
+        }
 
+        public UserRepository() { }
         public UserRepository(ITrelloDataClassesDataContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -36,5 +42,4 @@ namespace TrelloApp.ViewModels.UserVM
             }
         }
     }
-
 }

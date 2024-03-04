@@ -7,12 +7,18 @@ namespace TrelloApp.ViewModels.Base
     {
         private readonly TrelloDataClassesDataContext _context;
 
-        public TrelloDataContext(string connectionString)
+        public TrelloDataContext()
         {
-            _context = new TrelloDataClassesDataContext(connectionString);
+            _context = new TrelloDataClassesDataContext();
         }
 
-        public IQueryable<User> Users => _context.User;
+        public IQueryable<User> Users
+        {
+            get
+            {
+                return _context.User;
+            }
+        }
 
         public void AddUser(User user)
         {

@@ -12,9 +12,9 @@
         <viewModel:RegisterViewModel>
             <viewModel:RegisterViewModel.UserRepository>
                 <viewModel:UserRepository>
-                    <viewModel:UserRepository.dbContext>
+                    <viewModel:UserRepository.DbContext>
                         <viewModelBase:TrelloDataContext/>
-                    </viewModel:UserRepository.dbContext>
+                    </viewModel:UserRepository.DbContext>
                 </viewModel:UserRepository>
             </viewModel:RegisterViewModel.UserRepository>
         </viewModel:RegisterViewModel>

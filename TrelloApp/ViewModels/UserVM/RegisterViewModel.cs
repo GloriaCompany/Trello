@@ -19,7 +19,8 @@ namespace TrelloApp.ViewModels.UserVM
             }
         }
 
-        public IUserRepository UserRepository { get; set; } 
+        private IUserRepository _userRepository;
+        public IUserRepository UserRepository { get { return _userRepository; } set { _userRepository = value; } } 
 
         public ICommand RegisterCommand { get; set; }
 
@@ -50,7 +51,7 @@ namespace TrelloApp.ViewModels.UserVM
                     return;
                 }
 
-                UserRepository.AddUser(User);
+                _userRepository.AddUser(User);
 
                 MessageBox.Show("Користувача зареєстровано.");
             }
