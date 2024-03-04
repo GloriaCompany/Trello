@@ -4,7 +4,7 @@ using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 
-namespace TrelloApp.ViewModels
+namespace TrelloApp.ViewModels.UserVM
 {
     public class RegisterViewModel : ViewModelBase
     {

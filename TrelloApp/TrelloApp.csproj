@@ -81,12 +81,12 @@
     <Compile Include="ViewModels\CheckBoxViewModel.cs" />
     <Compile Include="ViewModels\ColumnViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
-    <Compile Include="ViewModels\User\LoginViewModel.cs" />
+    <Compile Include="ViewModels\UserVM\LoginViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
-    <Compile Include="ViewModels\User\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\UserVM\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />
-    <Compile Include="ViewModels\User\UserRepository.cs" />
+    <Compile Include="ViewModels\UserVM\UserRepository.cs" />
     <Compile Include="Views\ChooseAvatar.xaml.cs">
       <DependentUpon>ChooseAvatar.xaml</DependentUpon>
     </Compile>

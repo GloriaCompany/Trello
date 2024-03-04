@@ -5,13 +5,13 @@ using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels
+namespace TrelloApp.ViewModels.UserVM
 {
     // TODO: Переделать логику
 
     public class LoginViewModel : INotifyPropertyChanged
     {
-        private UserModel user;
+        private readonly UserModel user;
         public ICommand LoginCommand { get; set; }
 
         public LoginViewModel()

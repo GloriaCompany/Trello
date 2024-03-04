@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels"
+        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.UserVM"
         xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"
         mc:Ignorable="d"
         Title="Register" Height="450" Width="400" Background="#1d2125">

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Linq;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels
+namespace TrelloApp.ViewModels.UserVM
 {
     public interface IUserRepository
     {
