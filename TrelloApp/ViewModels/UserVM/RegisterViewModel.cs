@@ -46,7 +46,7 @@ namespace TrelloApp.ViewModels.UserVM
             {
                 if (!CanRegister())
                 {
-                    MessageBox.Show("Заповніть усі поля форми, будь-ласка.");
+                    MessageBox.Show("Паролі мають співпадати. Перевірте правильність введених даних, будь-ласка.");
                     return;
                 }
 
