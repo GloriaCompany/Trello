@@ -270,7 +270,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ua.png" />
+    <Resource Include="Resources\ua.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrelloDBLayer\TrelloDBLayer.csproj">
@@ -279,37 +279,37 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\edit.png" />
+    <Resource Include="Resources\edit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\window-close.png" />
+    <Resource Include="Resources\window-close.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\window-maximize.png" />
+    <Resource Include="Resources\window-maximize.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\window-minimize.png" />
+    <Resource Include="Resources\window-minimize.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\discard.png" />
+    <Resource Include="Resources\discard.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\submit.png" />
+    <Resource Include="Resources\submit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\en.png" />
+    <Resource Include="Resources\en.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sun.png" />
+    <Resource Include="Resources\sun.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\moon.png" />
+    <Resource Include="Resources\moon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\plus.png" />
+    <Resource Include="Resources\plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\userAvatar.png" />
+    <Resource Include="Resources\userAvatar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
