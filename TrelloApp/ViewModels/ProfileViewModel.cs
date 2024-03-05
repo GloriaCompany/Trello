@@ -1,89 +1,85 @@
-﻿using System.ComponentModel;
-using System.Configuration;
-using System.Linq;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
-using TrelloApp.Views;
+using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.UserVM;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
-    // TODO: Переделать логику
-
-    public class ProfileViewModel : INotifyPropertyChanged
+    public class ProfileViewModel : ViewModelBase
     {
-        private UserModel user;
+        private UserModel _user;
+        public UserModel User
+        {
+            get { return _user; }
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(User));
+            }
+        }
+
+        private IUserRepository _userRepository;
+        public IUserRepository UserRepository
+        {
+            get { return _userRepository; }
+            set { _userRepository = value; }
+        }
+
         public ICommand ProfileUpdateCommand { get; set; }
 
-        public ProfileViewModel(UserModel currentUser)
+        public ProfileViewModel(UserModel currentUser, IUserRepository userRepository)
         {
-            user = currentUser;
-            //ProfileUpdateCommand = new RelayCommand(UpdateProfile, CanUpdateProfile);
+            LoadUser(currentUser.UserID);
+            _user = currentUser;
+            ProfileUpdateCommand = new RelayCommand(UpdateProfile, CanUpdateProfile);
         }
 
-        //private bool CanUpdateProfile()
-        //{
-        //    return
-        //        !string.IsNullOrEmpty(user.Username) ||
-        //        !string.IsNullOrEmpty(user.Email) ||
-        //        !string.IsNullOrEmpty(user.Password) ||
-        //        !string.IsNullOrEmpty(user.Avatar);
-        //}
+        private void LoadUser(int userID)
+        {
+            try
+            {
+                User = (UserModel)_userRepository.GetUserByID(userID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool CanUpdateProfile()
+        {
+            bool res =
+                !string.IsNullOrEmpty(User.Username) ||
+                !string.IsNullOrEmpty(User.Email) ||
+                !string.IsNullOrEmpty(User.Password) ||
+                !string.IsNullOrEmpty(User.Avatar);
+
+            ((RelayCommand)ProfileUpdateCommand).RaiseCanExecuteChanged();
+
+            return res;
+        }
+
         private void UpdateProfile()
         {
-            //using (var dbContext = new TrelloDataClassesDataContext(
-            //    ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString))
-            //{
-            //    var existingUser = dbContext.User.SingleOrDefault(u => u.UserID == user.UserID);
-            //    if (existingUser != null)
-            //    {
-            //        existingUser.Username = user.Username;
-            //        existingUser.Password = user.Password;
-            //        existingUser.Email = user.Email;
-            //        existingUser.Avatar = user.Avatar;
+            try
+            {
+                if (!CanUpdateProfile())
+                {
+                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
+                    return;
+                }
 
-            //        dbContext.SubmitChanges();
+                _userRepository.UpdateUser(User);
 
-            //        //Изменения успешно сохранены
-            //    }
-            //    else
-            //    {
-            //        //Пользователь не найден
-            //    }
-            //}
-        }
-
-        //public int UserID
-        //{
-        //    get { return user.UserID; }
-        //}
-
-        public string Username
-        {
-            get { return user.Username; }
-            set { user.Username = value; OnPropertyChanged(nameof(Username)); }
-        }
-        public string Password
-        {
-            get { return user.Password; }
-            set { user.Password = value; OnPropertyChanged(nameof(Password)); }
-        }
-        public string Email
-        {
-            get { return user.Email; }
-            set { user.Email = value; OnPropertyChanged(nameof(Email)); }
-        }
-        //public string Avatar
-        //{
-        //    get { return user.Avatar; }
-        //    set { user.Avatar = value; OnPropertyChanged(nameof(Avatar)); }
-        //}
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                MessageBox.Show("Дані користувача змінено.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

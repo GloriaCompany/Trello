@@ -8,6 +8,8 @@ namespace TrelloApp.ViewModels.Base
         IQueryable<User> Users { get; }
 
         void AddUser(User user);
+        User GetUserByID(int userID);
+        void UpdateUser(User user);
 
         void SaveChanges();
     }
