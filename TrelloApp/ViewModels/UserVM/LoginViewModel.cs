@@ -1,22 +1,30 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloDBLayer;
+using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.UserVM;
 
 namespace TrelloApp.ViewModels.UserVM
 {
-    // TODO: Переделать логику
-
     public class LoginViewModel : INotifyPropertyChanged
     {
         private readonly UserModel user;
+        private readonly IUserRepository userRepository;
+
+        public event EventHandler SuccessfullyLoggedIn;
+
         public ICommand LoginCommand { get; set; }
 
         public LoginViewModel()
         {
             user = new UserModel();
+            userRepository = new UserRepository();
+
             LoginCommand = new RelayCommand(Login, CanLogin);
         }
 
@@ -26,25 +34,25 @@ namespace TrelloApp.ViewModels.UserVM
                 !string.IsNullOrEmpty(user.Username) &&
                 !string.IsNullOrEmpty(user.Password);
         }
+
         private void Login()
         {
-            using (var dbContext = new TrelloDataClassesDataContext(
-                ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString))
+            try
             {
-                var existingUser = dbContext.User.SingleOrDefault(
-                    u =>
-                    u.Username == user.Username &&
-                    u.Password == user.Password);
+                var existingUser = userRepository.GetUserByID(user.UserID);
 
-                if (existingUser != null)
+                if (existingUser != null && existingUser.Username == user.Username && existingUser.Password == user.Password)
                 {
-                    dbContext.SubmitChanges();
-                    //Переключение окна
+                    SuccessfullyLoggedIn?.Invoke(this, EventArgs.Empty);
                 }
                 else
                 {
-                    //Пользователь не найден
+                    MessageBox.Show("Помилка: Невірне ім'я користувача або пароль.");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Помилка: {ex.Message}");
             }
         }
 
