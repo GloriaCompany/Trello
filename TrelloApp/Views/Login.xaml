@@ -5,10 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         xmlns:viewModels="clr-namespace:TrelloApp.ViewModels.UserVM"
+        xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"
         mc:Ignorable="d"
         Title="Login" Height="450" Width="400" Background="#1d2125">
     <Page.DataContext>
-        <viewModels:LoginViewModel/>
+        <viewModels:LoginViewModel>
+            <viewModels:LoginViewModel.UserRepository>
+                <viewModels:UserRepository>
+                    <viewModels:UserRepository.DbContext>
+                        <viewModelBase:TrelloDataContext/>
+                    </viewModels:UserRepository.DbContext>
+                </viewModels:UserRepository>
+            </viewModels:LoginViewModel.UserRepository>
+        </viewModels:LoginViewModel>
     </Page.DataContext>
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>
