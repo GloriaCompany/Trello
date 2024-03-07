@@ -45,7 +45,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
                     Margin="-17.5,0,0,0"
-                    ImageSource="/Resources/userAvatar.png"
+                    ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                     />
             </Grid>
         </Border>

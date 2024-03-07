@@ -1,27 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.BoardVM;
 using TrelloApp.ViewModels.UserVM;
-using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
-    public class DashboardViewModel : ViewModelBase
+    public class ProfileViewModel : ViewModelBase
     {
-        private BoardModel _board;
-        public BoardModel Board
-        {
-            get { return _board; }
-            set
-            {
-                _board = value;
-                OnPropertyChanged(nameof(Board));
-            }
-        }
-
         private UserModel _user;
         public UserModel User
         {
@@ -33,13 +20,6 @@ namespace TrelloApp.ViewModels
             }
         }
 
-        public DashboardViewModel(UserModel currentUser)
-        {
-            LoadUser(currentUser.UserID);
-            LoadBoards(currentUser.UserID);
-            _user = currentUser;
-        }
-
         private IUserRepository _userRepository;
         public IUserRepository UserRepository
         {
@@ -47,11 +27,13 @@ namespace TrelloApp.ViewModels
             set { _userRepository = value; }
         }
 
-        private IBoardRepository _boardRepository;
-        public IBoardRepository BoardRepository
+        public ICommand ProfileUpdateCommand { get; set; }
+
+        public ProfileViewModel(UserModel currentUser)
         {
-            get { return _boardRepository; }
-            set { _boardRepository = value; }
+            LoadUser(currentUser.UserID);
+            _user = currentUser;
+            ProfileUpdateCommand = new RelayCommand(UpdateProfile, CanUpdateProfile);
         }
 
         private void LoadUser(int userID)
@@ -66,12 +48,32 @@ namespace TrelloApp.ViewModels
             }
         }
 
-        private void LoadBoards(int userID)
+        private bool CanUpdateProfile()
+        {
+            bool res =
+                !string.IsNullOrEmpty(User.Username) ||
+                !string.IsNullOrEmpty(User.Email) ||
+                !string.IsNullOrEmpty(User.Password) ||
+                !string.IsNullOrEmpty(User.Avatar);
+
+            ((RelayCommand)ProfileUpdateCommand).RaiseCanExecuteChanged();
+
+            return res;
+        }
+
+        private void UpdateProfile()
         {
             try
             {
-                //Board, BoardModel? Need Fix
-                List<Board> userBoards = _boardRepository.GetBoardsByUserID(userID);
+                if (!CanUpdateProfile())
+                {
+                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
+                    return;
+                }
+
+                _userRepository.UpdateUser(User);
+
+                MessageBox.Show("Дані користувача змінено.");
             }
             catch (Exception ex)
             {

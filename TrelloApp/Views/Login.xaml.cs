@@ -29,7 +29,7 @@ namespace TrelloApp.Views
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (InputLogin.Text == ConfigurationManager.AppSettings["AdminLogin"].ToString() && 
+            if (InputLogin.Text == ConfigurationManager.AppSettings["AdminLogin"].ToString() &&
                 InputPassword.Text == ConfigurationManager.AppSettings["AdminPassword"].ToString())
             {
                 BtnCreateDatabase.Visibility = Visibility.Visible;

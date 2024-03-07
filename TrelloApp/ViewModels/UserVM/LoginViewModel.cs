@@ -33,7 +33,7 @@ namespace TrelloApp.ViewModels.UserVM
             {
                 var existingUser = dbContext.User.SingleOrDefault(
                     u =>
-                    u.Username == user.Username && 
+                    u.Username == user.Username &&
                     u.Password == user.Password);
 
                 if (existingUser != null)
