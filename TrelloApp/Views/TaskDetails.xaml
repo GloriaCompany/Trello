@@ -37,7 +37,7 @@
                     Grid.Row="2"
                     Width="35"
                     Height="35"
-                    ImageSource="/Resources/plus.png"
+                    ImageSource="/TrelloApp;component/Resources/plus.png"
                     HorizontalAlignment="Left"
                     Margin="15,0,0,0"/>
                 <customControls:ChangesButton
@@ -46,14 +46,14 @@
                     Height="20"
                     HorizontalAlignment="Left"
                     Margin="55,0,0,0"
-                    ImageSource="/Resources/discard.png"/>
+                    ImageSource="/TrelloApp;component/Resources/discard.png"/>
                 <customControls:ChangesButton
                     Grid.Row="2"
                     Width="20"
                     Height="20"
                     HorizontalAlignment="Left"
                     Margin="235,0,0,0"
-                    ImageSource="/Resources/discard.png"/>
+                    ImageSource="/TrelloApp;component/Resources/discard.png"/>
                 <customControls:CustomColorPicker
                     Grid.Row="2"
                     Width="125"
@@ -124,7 +124,7 @@
                                     Width="20"
                                     Height="20"
                                     HorizontalAlignment="Right"
-                                    ImageSource="/Resources/discard.png"/>
+                                    ImageSource="/TrelloApp;component/Resources/discard.png"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
