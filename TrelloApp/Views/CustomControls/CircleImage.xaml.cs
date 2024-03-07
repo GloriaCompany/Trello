@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace TrelloApp.Views.CustomControls
@@ -14,6 +16,8 @@ namespace TrelloApp.Views.CustomControls
             InitializeComponent();
         }
 
+        public static readonly DependencyProperty ButtonsProperty =
+            DependencyProperty.Register("Buttons", typeof(ObservableCollection<string>), typeof(CircleImage), new PropertyMetadata(new ObservableCollection<string>()));
         public static readonly DependencyProperty ImageSourceProperty =
             DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(CircleImage), new PropertyMetadata(null, ImageSourceChanged));
 
@@ -21,6 +25,12 @@ namespace TrelloApp.Views.CustomControls
         {
             get { return (ImageSource)GetValue(ImageSourceProperty); }
             set { SetValue(ImageSourceProperty, value); }
+        }
+
+        public ObservableCollection<string> Buttons
+        {
+            get { return (ObservableCollection<string>)GetValue(ButtonsProperty); }
+            set { SetValue(ButtonsProperty, value); }
         }
 
         private static void ImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -32,6 +42,11 @@ namespace TrelloApp.Views.CustomControls
         private void UpdateImageSource(ImageSource source)
         {
             imageBrush.ImageSource = source;
+        }
+
+        private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            popup.IsOpen = !popup.IsOpen;
         }
     }
 }

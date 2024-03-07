@@ -3,17 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TrelloApp.Views"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="Profile" Height="435" Width="450" Background="#1d2125">
+        Title="Profile" Height="465" Width="450" Background="#1d2125">
     <Grid>
         <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Width="320"
-                Height="375"
+                Height="415"
                 Padding="5"
                 >
             <Grid>
@@ -26,6 +25,7 @@
                     <RowDefinition Height="15"/>
                     <RowDefinition/>
                     <RowDefinition Height="15"/>
+                    <RowDefinition Height="45"/>
                     <RowDefinition Height="45"/>
                     <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
@@ -65,7 +65,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Name"
+                        Placeholder="Name"
                         />
                     <customControls:ChangesButton
                         Width="15"
@@ -94,7 +94,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Email"/>
+                        Placeholder="Email"/>
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
@@ -120,7 +120,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Password"/>
+                        Placeholder="Password"/>
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
@@ -148,7 +148,13 @@
                 </StackPanel>
                 <customControls:CustomButton
                     Grid.Row="9"
-                    Text="Logout"
+                    Text="LOGOUT"
+                    Height="30"
+                    Width="175"/>
+                <!--Text="LEAVE TEAM"-->
+                <customControls:CustomButton
+                    Grid.Row="10"
+                    Text="DELETE ACCOUNT"
                     Height="30"
                     Width="175"/>
             </Grid>

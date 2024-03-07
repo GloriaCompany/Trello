@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TrelloApp"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="MainWindow" Height="400" Width="616" Background="#1d2125">
     <Grid>
         <Grid.RowDefinitions>

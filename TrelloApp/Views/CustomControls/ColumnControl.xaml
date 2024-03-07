@@ -40,7 +40,7 @@
                 <ListView Grid.Row="2"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
-                          Width="145">
+                          >
                     <ListView.Template>
                         <ControlTemplate>
                             <ScrollViewer VerticalScrollBarVisibility="Hidden"

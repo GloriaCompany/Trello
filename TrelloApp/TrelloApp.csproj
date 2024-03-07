@@ -124,6 +124,9 @@
     <Compile Include="Views\CustomControls\TaskControl.xaml.cs">
       <DependentUpon>TaskControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomControls\UserSearchControl.xaml.cs">
+      <DependentUpon>UserSearchControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
@@ -228,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CustomControls\UserSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Dashboard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -270,7 +277,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ua.png" />
+    <EmbeddedResource Include="Resources\ua.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrelloDBLayer\TrelloDBLayer.csproj">
@@ -279,37 +286,40 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\edit.png" />
+    <EmbeddedResource Include="Resources\edit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\window-close.png" />
+    <EmbeddedResource Include="Resources\window-close.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\window-maximize.png" />
+    <EmbeddedResource Include="Resources\window-maximize.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\window-minimize.png" />
+    <EmbeddedResource Include="Resources\window-minimize.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\discard.png" />
+    <EmbeddedResource Include="Resources\discard.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\submit.png" />
+    <EmbeddedResource Include="Resources\submit.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\en.png" />
+    <EmbeddedResource Include="Resources\en.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sun.png" />
+    <EmbeddedResource Include="Resources\sun.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\moon.png" />
+    <EmbeddedResource Include="Resources\moon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\plus.png" />
+    <EmbeddedResource Include="Resources\plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\userAvatar.png" />
+    <EmbeddedResource Include="Resources\userAvatar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

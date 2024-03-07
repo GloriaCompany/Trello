@@ -4,19 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TrelloApp.Views.CustomControls"
+             xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="50">
-    <Border x:Name="border"
-            BorderBrush="White"
-            BorderThickness="1"
-            CornerRadius="25"
-            Width="{Binding ElementName=userControl, Path=Width}"
-            Height="{Binding ElementName=userControl, Path=Height}"
-            >
-        <Ellipse>
-            <Ellipse.Fill>
-                <ImageBrush x:Name="imageBrush" />
-            </Ellipse.Fill>
-        </Ellipse>
-    </Border>
+    <Grid>
+        <Border x:Name="border"
+                BorderBrush="White"
+                BorderThickness="1"
+                CornerRadius="25"
+                Width="{Binding ElementName=userControl, Path=Width}"
+                Height="{Binding ElementName=userControl, Path=Height}">
+            <Ellipse MouseDown="Ellipse_MouseDown">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="imageBrush" />
+                </Ellipse.Fill>
+            </Ellipse>
+        </Border>
+        <Popup x:Name="popup" PlacementTarget="{Binding ElementName=border}" StaysOpen="False">
+            <ItemsControl ItemsSource="{Binding Buttons}" Background="#1d2125" Width="100">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <customControls:CustomButton Content="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Popup>
+    </Grid>
 </UserControl>

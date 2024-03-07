@@ -13,6 +13,7 @@
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Авторизація / Login" 
@@ -65,7 +66,7 @@
             Text="CREATE DATABASE" 
             Width="180" 
             Height="35"
-            Grid.Row="4"
+            Grid.Row="5"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             x:Name="BtnCreateDatabase"

@@ -42,6 +42,7 @@
             </Setter>
         </Style>
 
+        <!--Custom Combo Box-->
         <Style TargetType="{x:Type customControls:CustomComboBox}">
             <Setter Property="Background" Value="Black"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -119,8 +120,8 @@
                     <ControlTemplate TargetType="{x:Type customControls:CustomComboBoxItem}">
                         <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding ImageSource, RelativeSource={RelativeSource TemplatedParent}}" />
-                                <TextBlock Text="{TemplateBinding Content}" Margin="5,0,0,0" />
+                                <Image Source="{Binding ImageSource, RelativeSource={RelativeSource TemplatedParent}}" Width="15" Height="15"/>
+                                <TextBlock Text="{TemplateBinding Content}" Margin="5,0,0,0" FontSize="14"/>
                             </StackPanel>
                         </Border>
                     </ControlTemplate>
