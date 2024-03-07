@@ -17,10 +17,10 @@ namespace TrelloApp.ViewModels
         {
             get { return board.BoardID; }
         }
-        public string BoardName
+        public string BoardTitle
         {
-            get { return board.BoardName; }
-            set { board.BoardName = value; OnPropertyChanged(nameof(BoardName)); }
+            get { return board.Title; }
+            set { board.Title = value; OnPropertyChanged(nameof(BoardTitle)); }
         }
         public List<ColumnModel> Columns
         {

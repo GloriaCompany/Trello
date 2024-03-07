@@ -4,7 +4,6 @@ using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.UserVM;
-using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
@@ -30,7 +29,7 @@ namespace TrelloApp.ViewModels
 
         public ICommand ProfileUpdateCommand { get; set; }
 
-        public ProfileViewModel(UserModel currentUser, IUserRepository userRepository)
+        public ProfileViewModel(UserModel currentUser)
         {
             LoadUser(currentUser.UserID);
             _user = currentUser;

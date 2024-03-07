@@ -77,12 +77,13 @@
     <Compile Include="ViewModels\Base\ITrelloDataClassesDataContext.cs" />
     <Compile Include="ViewModels\Base\TrelloDataContext.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
-    <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\BoardVM\BoardRepository.cs" />
+    <Compile Include="ViewModels\BoardVM\BoardViewModel.cs" />
     <Compile Include="ViewModels\CheckBoxViewModel.cs" />
     <Compile Include="ViewModels\ColumnViewModel.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\UserVM\LoginViewModel.cs" />
-    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\UserVM\ProfileViewModel.cs" />
     <Compile Include="ViewModels\UserVM\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />

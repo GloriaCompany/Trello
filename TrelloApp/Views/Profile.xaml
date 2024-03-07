@@ -38,7 +38,7 @@
                         Height="50"
                         HorizontalAlignment="Center"
                         Margin="25,0,0,0"
-                        ImageSource="/Resources/userAvatar.png"/>
+                        ImageSource="{Binding User.Avatar, Mode=TwoWay}"/>
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
@@ -65,7 +65,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Name"
+                        Text="{Binding User.Username, Mode=TwoWay}"
                         />
                     <customControls:ChangesButton
                         Width="15"
@@ -94,7 +94,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Email"/>
+                        Text="{Binding User.Email, Mode=TwoWay}"/>
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
@@ -120,7 +120,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Password"/>
+                        Text="{Binding User.Password, Mode=TwoWay}"/>
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"

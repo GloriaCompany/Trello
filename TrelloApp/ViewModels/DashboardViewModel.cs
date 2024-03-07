@@ -1,41 +1,82 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using TrelloApp.Models;
+using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.BoardVM;
+using TrelloApp.ViewModels.UserVM;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
-    // TODO: Переделать логику
-
-    public class DashboardViewModel : INotifyPropertyChanged
+    public class DashboardViewModel : ViewModelBase
     {
-        private DashboardModel dashboard;
-
-        public DashboardViewModel()
+        private BoardModel _board;
+        public BoardModel Board
         {
-            dashboard = new DashboardModel();
+            get { return _board; }
+            set
+            {
+                _board = value;
+                OnPropertyChanged(nameof(Board));
+            }
         }
 
-        public string Username
+        private UserModel _user;
+        public UserModel User
         {
-            get { return dashboard.Username; }
-            set { dashboard.Username = value; OnPropertyChanged(nameof(Username)); }
-        }
-        public string Avatar
-        {
-            get { return dashboard.Avatar; }
-            set { dashboard.Avatar = value; OnPropertyChanged(nameof(Avatar)); }
-        }
-        public List<BoardModel> Boards
-        {
-            get { return dashboard.Boards; }
-            set { dashboard.Boards = value; OnPropertyChanged(nameof(Boards)); }
+            get { return _user; }
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(User));
+            }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
+        public DashboardViewModel(UserModel currentUser)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            LoadUser(currentUser.UserID);
+            LoadBoards(currentUser.UserID);
+            _user = currentUser;
+        }
+
+        private IUserRepository _userRepository;
+        public IUserRepository UserRepository
+        {
+            get { return _userRepository; }
+            set { _userRepository = value; }
+        }
+
+        private IBoardRepository _boardRepository;
+        public IBoardRepository BoardRepository
+        {
+            get { return _boardRepository; }
+            set { _boardRepository = value; }
+        }
+
+        private void LoadUser(int userID)
+        {
+            try
+            {
+                User = (UserModel)_userRepository.GetUserByID(userID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void LoadBoards(int userID)
+        {
+            try
+            {
+                //Board, BoardModel? Need Fix
+                List<Board> userBoards = _boardRepository.GetBoardsByUserID(userID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
