@@ -3,6 +3,7 @@
           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
           xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+          xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
           mc:Ignorable="d" 
           d:DesignHeight="50" d:DesignWidth="400"
           Background="#1d2125" 
@@ -17,8 +18,8 @@
                         <ControlTemplate TargetType="TextBox">
                             <Grid>
                                 <TextBox x:Name="text" Background="#1d2125" Foreground="White" BorderThickness="0" Text="{TemplateBinding Text}" Padding="5"/>
-                                <Button Width="20" Height="20" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0">
-                                    <Image Source="/Resources/search.png"/>
+                                <Button Width="30" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Margin="0,0,10,0">
+                                    <customControls:ChangesButton ImageSource="/Resources/search.png"/>
                                 </Button>
                             </Grid>
                         </ControlTemplate>
@@ -42,7 +43,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Source="{Binding Avatar}" Width="20" Height="20"/>
+                <customControls:CircleImage Grid.Column="0" ImageSource="{Binding Avatar}" Width="20" Height="20"/>
                 <ListView Grid.Column="1">
                     <TextBlock Text="{Binding Nickname}" Foreground="White"/>
                     <TextBlock Text="{Binding Position}" Foreground="White"/>

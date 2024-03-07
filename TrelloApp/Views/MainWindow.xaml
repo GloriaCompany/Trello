@@ -159,19 +159,16 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Margin="10"
-                EditIconSource="/Resources/edit.png"
                 />
             <customControls:ColumnControl
                 Grid.Row="0"
                 Grid.Column="1"
                 Margin="10"
-                EditIconSource="/Resources/edit.png"
                 />
             <customControls:ColumnControl
                 Grid.Row="0"
                 Grid.Column="2"
                 Margin="10"
-                EditIconSource="/Resources/edit.png"
                 />
             <customControls:CustomButton
                 Grid.Row="1"

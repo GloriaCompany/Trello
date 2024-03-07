@@ -66,6 +66,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Text="{Binding User.Username, Mode=TwoWay}"
+                        Placeholder="Username"
                         />
                     <customControls:ChangesButton
                         Width="15"
@@ -94,7 +95,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Email"/>
+                        Placeholder="Email"/>
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
@@ -120,7 +121,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Text="Password"/>
+                        Placeholder="Password"/>
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
