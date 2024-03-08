@@ -6,6 +6,8 @@ namespace TrelloApp.ViewModels
 {
     public class BoardViewModel : ViewModelBase
     {
+        // TODO: New Logic
+
         private BoardModel board;
 
         public BoardViewModel()

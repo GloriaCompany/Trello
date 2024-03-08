@@ -13,21 +13,9 @@ namespace TrelloApp.ViewModels.Base
             _context = new TrelloDataClassesDataContext();
         }
 
-        public IQueryable<User> Users
-        {
-            get
-            {
-                return _context.User;
-            }
-        }
+        public IQueryable<User> Users => _context.User;
 
-        public IQueryable<Board> Boards
-        {
-            get
-            {
-                return _context.Board;
-            }
-        }
+        public IQueryable<Board> Boards => _context.Board;
 
         public void AddUser(User user)
         {
@@ -35,10 +23,7 @@ namespace TrelloApp.ViewModels.Base
             SaveChanges();
         }
 
-        public User GetUserByID(int userID)
-        {
-            return _context.User.FirstOrDefault(u => u.UserID == userID);
-        }
+        public User GetUserByID(int userID) => _context.User.FirstOrDefault(u => u.UserID == userID);
 
         public void UpdateUser(User user)
         {
@@ -66,14 +51,8 @@ namespace TrelloApp.ViewModels.Base
             SaveChanges();
         }
 
-        public List<Board> GetBoardsByUserID(int userID)
-        {
-            return _context.Board.Where(b => b.AdminID == userID).ToList();
-        }
+        public List<Board> GetBoardsByUserID(int userID) => _context.Board.Where(b => b.AdminID == userID).ToList();
 
-        public void SaveChanges()
-        {
-            _context.SubmitChanges();
-        }
+        public void SaveChanges() => _context.SubmitChanges();
     }
 }

@@ -20,6 +20,15 @@
                     VerticalAlignment="Center"
                     Width="Auto"
                     Height="30">
+            <customControls:ChangesButton
+                ImageSource="/Resources/arrow.png"
+                Width="22.5"
+                Height="22.5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Padding="6"
+                BorderThickness="0"
+                />
             <customControls:CustomInput
                 Width="150"
                 Text="Board Name"/>

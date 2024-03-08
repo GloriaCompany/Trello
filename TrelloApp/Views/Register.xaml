@@ -29,6 +29,15 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <customControls:ChangesButton
+            ImageSource="/Resources/arrow.png"
+            Width="22.5"
+            Height="22.5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Padding="6"
+            BorderThickness="0"
+            />
         <Label Content="Реєстрація / Registration" 
                Grid.Row="0" 
                Grid.Column="0" 

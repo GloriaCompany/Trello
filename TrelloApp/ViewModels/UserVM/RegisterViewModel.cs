@@ -20,7 +20,11 @@ namespace TrelloApp.ViewModels.UserVM
         }
 
         private IUserRepository _userRepository;
-        public IUserRepository UserRepository { get { return _userRepository; } set { _userRepository = value; } }
+        public IUserRepository UserRepository 
+        { 
+            get { return _userRepository; } 
+            set { _userRepository = value; } 
+        }
 
         public ICommand RegisterCommand { get; set; }
 
