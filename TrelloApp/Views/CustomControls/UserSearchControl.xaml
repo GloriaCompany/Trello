@@ -19,7 +19,7 @@
                             <Grid>
                                 <TextBox x:Name="text" Background="#1d2125" Foreground="White" BorderThickness="0" Text="{TemplateBinding Text}" Padding="5"/>
                                 <Button Width="30" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Margin="0,0,10,0">
-                                    <customControls:ChangesButton ImageSource="/Resources/search.png"/>
+                                    <customControls:ChangesButton ImageSource="/TrelloApp;component/Resources/search.png"/>
                                 </Button>
                             </Grid>
                         </ControlTemplate>

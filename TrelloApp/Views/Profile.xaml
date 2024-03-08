@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.UserVM"
+        xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"
         mc:Ignorable="d"
         Title="Profile" Height="495" Width="450" Background="#1d2125">
     <Grid>
@@ -52,7 +54,7 @@
                         Width="15"
                         Height="15"
                         Margin="5,0,0,0"
-                        ImageSource="/Resources/edit.png"
+                        ImageSource="/TrelloApp;component/Resources/edit.png"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -60,9 +62,9 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <customControls:ChangesButton
-                        ImageSource="/Resources/submit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/submit.png"/>
                     <customControls:ChangesButton
-                        ImageSource="/Resources/discard.png"/>
+                        ImageSource="/TrelloApp;component/Resources/discard.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="2"
@@ -81,7 +83,7 @@
                         Width="15"
                         Height="15"
                         Margin="5,0,0,0"
-                        ImageSource="/Resources/edit.png"
+                        ImageSource="/TrelloApp;component/Resources/edit.png"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -90,9 +92,9 @@
                             VerticalAlignment="Top"
                             >
                     <customControls:ChangesButton
-                        ImageSource="/Resources/submit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/submit.png"/>
                     <customControls:ChangesButton
-                        ImageSource="/Resources/discard.png"/>
+                        ImageSource="/TrelloApp;component/Resources/discard.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="4"
@@ -109,16 +111,16 @@
                         Width="15"
                         Height="15"
                         Margin="5,0,0,0"
-                        ImageSource="/Resources/edit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/edit.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="5"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <customControls:ChangesButton
-                        ImageSource="/Resources/submit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/submit.png"/>
                     <customControls:ChangesButton
-                        ImageSource="/Resources/discard.png"/>
+                        ImageSource="/TrelloApp;component/Resources/discard.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="6"
@@ -135,16 +137,16 @@
                         Width="15"
                         Height="15"
                         Margin="5,0,0,0"
-                        ImageSource="/Resources/edit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/edit.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="7"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <customControls:ChangesButton
-                        ImageSource="/Resources/submit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/submit.png"/>
                     <customControls:ChangesButton
-                        ImageSource="/Resources/discard.png"/>
+                        ImageSource="/TrelloApp;component/Resources/discard.png"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="8"

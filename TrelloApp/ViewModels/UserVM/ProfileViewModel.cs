@@ -3,9 +3,8 @@ using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.UserVM;
 
-namespace TrelloApp.ViewModels
+namespace TrelloApp.ViewModels.UserVM
 {
     public class ProfileViewModel : ViewModelBase
     {

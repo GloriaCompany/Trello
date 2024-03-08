@@ -36,28 +36,28 @@
                 Width="15"
                 Height="15"
                 Margin="5,0,0,0"
-                ImageSource="/Resources/edit.png"/>
+                ImageSource="/TrelloApp;component/Resources/edit.png"/>
             <customControls:ChangesButton
                 Width="15"
                 Height="15"
                 Margin="5,0,0,0"
-                ImageSource="/Resources/submit.png"/>
+                ImageSource="/TrelloApp;component/Resources/submit.png"/>
             <customControls:ChangesButton
                 Width="15"
                 Height="15"
                 Margin="5,0,0,0"
-                ImageSource="/Resources/discard.png"/>
+                ImageSource="/TrelloApp;component/Resources/discard.png"/>
         </StackPanel>
         <customControls:CustomComboBox
                 Width="100"
                 Margin="-20,0,0,0">
             <customControls:CustomComboBox.Items>
                 <customControls:CustomComboBoxItem 
-                    ImageSource="/Resources/sun.png">
+                    ImageSource="/TrelloApp;component/Resources/sun.png">
                     Світла
                 </customControls:CustomComboBoxItem>
                 <customControls:CustomComboBoxItem 
-                    ImageSource="/Resources/moon.png">
+                    ImageSource="/TrelloApp;component/Resources/moon.png">
                     Темна
                 </customControls:CustomComboBoxItem>
             </customControls:CustomComboBox.Items>
@@ -67,11 +67,11 @@
                 Margin="182,0,0,0">
             <customControls:CustomComboBox.Items>
                 <customControls:CustomComboBoxItem 
-                    ImageSource="/Resources/ua.png">
+                    ImageSource="/TrelloApp;component/Resources/ua.png">
                     УК
                 </customControls:CustomComboBoxItem>
                 <customControls:CustomComboBoxItem 
-                    ImageSource="/Resources/en.png">
+                    ImageSource="/TrelloApp;component/Resources/en.png">
                     EN
                 </customControls:CustomComboBoxItem>
             </customControls:CustomComboBox.Items>
@@ -114,27 +114,27 @@
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
-                        ImageSource="/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
                         Margin="-19.5,0,0,0"
-                        ImageSource="/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
                         Margin="-19.5,0,0,0"
-                        ImageSource="/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
                         Margin="-19.5,0,0,0"
-                        ImageSource="/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
                         Width="28"
                         Height="28"
                         Margin="-19.5,0,0,0"
-                        ImageSource="/Resources/plus.png"/>
+                        ImageSource="/TrelloApp;component/Resources/plus.png"/>
                 </ListView>
                 <TextBlock 
                         Text="Name"
@@ -151,7 +151,7 @@
                     Grid.Column="1"
                     HorizontalAlignment="Right"
                     Margin="-17.5,0,0,0"
-                    ImageSource="/Resources/userAvatar.png"/>
+                    ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
             </Grid>
         </Border>
         <Grid Grid.Row="1">
