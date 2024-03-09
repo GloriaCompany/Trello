@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TrelloApp"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="MainWindow" Height="400" Width="616" Background="#1d2125">
+        WindowStartupLocation="CenterScreen"
+        Icon="/TrelloApp;component/Resources/app-logo.ico"
+        Title="MainWindow" Height="400" Width="636" Background="#1d2125">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -20,17 +21,8 @@
                     VerticalAlignment="Center"
                     Width="Auto"
                     Height="30">
-            <customControls:ChangesButton
-                ImageSource="/Resources/arrow.png"
-                Width="22.5"
-                Height="22.5"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Padding="6"
-                BorderThickness="0"
-                />
             <customControls:CustomInput
-                Width="150"
+                Width="145"
                 Text="Board Name"/>
             <customControls:ChangesButton
                 Width="15"
@@ -49,7 +41,7 @@
                 ImageSource="/TrelloApp;component/Resources/discard.png"/>
         </StackPanel>
         <customControls:CustomComboBox
-                Width="100"
+                Width="110"
                 Margin="-20,0,0,0">
             <customControls:CustomComboBox.Items>
                 <customControls:CustomComboBoxItem 
@@ -63,16 +55,16 @@
             </customControls:CustomComboBox.Items>
         </customControls:CustomComboBox>
         <customControls:CustomComboBox
-                Width="100"
+                Width="110"
                 Margin="182,0,0,0">
             <customControls:CustomComboBox.Items>
                 <customControls:CustomComboBoxItem 
                     ImageSource="/TrelloApp;component/Resources/ua.png">
-                    УК
+                    Українська
                 </customControls:CustomComboBoxItem>
                 <customControls:CustomComboBoxItem 
                     ImageSource="/TrelloApp;component/Resources/en.png">
-                    EN
+                    English
                 </customControls:CustomComboBoxItem>
             </customControls:CustomComboBox.Items>
         </customControls:CustomComboBox>

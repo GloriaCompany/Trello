@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="145">
+             d:DesignHeight="85" d:DesignWidth="175"
+             Width="175" Height="80">
     <Border Background="Transparent"
             BorderBrush="White"
             BorderThickness="1"
@@ -24,10 +25,8 @@
                 <Border Grid.Row="0" 
                         Background="SkyBlue"
                         CornerRadius="13.5,13.5,0,0"
-                        Width="133"
-                        Height="14"
                         HorizontalAlignment="Stretch"/>
-                <Border Grid.Row="1" Background="White" Width="150"/>
+                <Border Grid.Row="1" Background="White" Width="195"/>
                 <TextBlock Text="Task Name" 
                            VerticalAlignment="Top" 
                            HorizontalAlignment="Left" 

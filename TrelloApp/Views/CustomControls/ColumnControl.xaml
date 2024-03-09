@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="225" d:DesignWidth="152">
+             d:DesignHeight="255" d:DesignWidth="185">
     <Border
         Background="Transparent"
         BorderBrush="White"
