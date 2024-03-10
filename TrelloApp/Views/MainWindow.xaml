@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Icon="/TrelloApp;component/Resources/app-logo.ico"
-        Title="MainWindow" Height="400" Width="636" Background="#1d2125">
+        Title="Trello - Board Name" Height="400" Width="636" Background="#1d2125">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>

@@ -52,15 +52,9 @@
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Stretch"
                                 VerticalAlignment="Stretch">
-                        <customControls:TaskControl 
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"/>
-                        <customControls:TaskControl 
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"/>
-                        <customControls:TaskControl 
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"/>
+                        <customControls:TaskControl/>
+                        <customControls:TaskControl/>
+                        <customControls:TaskControl/>
                     </StackPanel>
                 </ListView>
                 <Border Grid.Row="1" Background="White"/>
