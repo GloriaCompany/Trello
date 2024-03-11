@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
-using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.UserVM
 {
