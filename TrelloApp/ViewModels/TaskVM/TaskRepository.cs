@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.BoardVM
+namespace TrelloApp.ViewModels.TaskVM
 {
-    public interface IBoardRepository
+    public interface ITaskRepository
     {
-        void AddBoard(Board board);
-        void DelBoard(int boardID);
-        List<Board> GetBoardsByUserID(int userID);
+        void AddTask(Task task);
+        void DelTask(int taskID);
+        List<Task> GetTasksByColumnID(int columnID);
     }
 
-    internal class BoardRepository : IBoardRepository
+    internal class TaskRepository : ITaskRepository
     {
         private ITrelloDataClassesDataContext _dbContext;
         public ITrelloDataClassesDataContext DbContext
@@ -21,64 +21,64 @@ namespace TrelloApp.ViewModels.BoardVM
             set { _dbContext = value; }
         }
 
-        public BoardRepository() { }
-        public BoardRepository(ITrelloDataClassesDataContext dbContext)
+        public TaskRepository() { }
+        public TaskRepository(ITrelloDataClassesDataContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void AddBoard(Board board)
+        public void AddTask(Task task)
         {
-            if (board == null)
+            if (task == null)
             {
-                throw new ArgumentNullException(nameof(board));
+                throw new ArgumentNullException(nameof(task));
             }
 
             try
             {
-                _dbContext.AddBoard(board);
+                _dbContext.AddTask(task);
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to add board.", ex);
+                throw new Exception("Failed to add task.", ex);
             }
         }
 
-        public void DelBoard(int boardID)
+        public void DelTask(int taskID)
         {
             //Сделать isExist тут или в DataContext
-            if (boardID < 0)
+            if (taskID < 0)
             {
-                throw new ArgumentNullException(nameof(boardID));
+                throw new ArgumentNullException(nameof(taskID));
             }
 
             try
             {
-                _dbContext.DelBoard(boardID);
+                _dbContext.DelTask(taskID);
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to delete board.", ex);
+                throw new Exception("Failed to delete task.", ex);
             }
         }
 
-        public List<Board> GetBoardsByUserID(int userID)
+        public List<Task> GetTasksByColumnID(int columnID)
         {
             //Сделать isExist тут или в DataContext
-            if (userID < 0)
+            if (columnID < 0)
             {
-                throw new ArgumentNullException(nameof(userID));
+                throw new ArgumentNullException(nameof(columnID));
             }
 
             try
             {
-                return _dbContext.GetBoardsByUserID(userID);
+                return _dbContext.GetTasksByColumnID(columnID);
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to get boards.", ex);
+                throw new Exception("Failed to get tasks.", ex);
             }
         }
     }
