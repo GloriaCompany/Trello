@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Windows;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.UserVM;
 using TrelloApp.ViewModels.BoardVM;
 using TrelloApp.ViewModels.ColumnVM;
-using TrelloApp.ViewModels.UserVM;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels

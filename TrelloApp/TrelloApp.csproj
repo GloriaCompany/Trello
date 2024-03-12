@@ -84,20 +84,17 @@
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\BoardVM\BoardRepository.cs" />
     <Compile Include="ViewModels\BoardVM\BoardViewModel.cs" />
-    <Compile Include="ViewModels\CheckBoxViewModel.cs" />
     <Compile Include="ViewModels\ChecklistVM\ChecklistRepository.cs" />
     <Compile Include="ViewModels\ChecklistVM\ChecklistViewModel.cs" />
-    <Compile Include="ViewModels\ColumnViewModel.cs" />
     <Compile Include="ViewModels\ColumnVM\ColumnRepository.cs" />
     <Compile Include="ViewModels\ColumnVM\ColumnViewModel.cs" />
-    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\BoardVM\DashboardViewModel.cs" />
     <Compile Include="ViewModels\TaskVM\TaskRepository.cs" />
     <Compile Include="ViewModels\TaskVM\TaskViewModel.cs" />
     <Compile Include="ViewModels\UserVM\LoginViewModel.cs" />
     <Compile Include="ViewModels\UserVM\ProfileViewModel.cs" />
     <Compile Include="ViewModels\UserVM\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
-    <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\UserVM\UserRepository.cs" />
     <Compile Include="Views\ChooseAvatar.xaml.cs">
       <DependentUpon>ChooseAvatar.xaml</DependentUpon>
