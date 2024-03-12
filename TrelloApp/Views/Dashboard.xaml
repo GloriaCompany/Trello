@@ -53,36 +53,25 @@
             </Border>
         </StackPanel>
 
-        <Grid
-            Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+        <WrapPanel
+            Grid.Row="1"
+            Orientation="Horizontal"
+            ItemWidth="200"
+            ItemHeight="200">
             <Border
                     BorderBrush="White" 
                     BorderThickness="1" 
-                    Grid.Column="0"
-                    Grid.Row="0"
                     CornerRadius="25"
                     Margin="10">
                 <customControls:CircleImage
                     Width="48"
                     Height="48"
-                    Grid.Column="1"
                     HorizontalAlignment="Center"
                     ImageSource="/TrelloApp;component/Resources/plus.png"/>
             </Border>
             <Border
                     BorderBrush="White" 
                     BorderThickness="1" 
-                    Grid.Column="1"
-                    Grid.Row="0"
                     CornerRadius="25"
                     Margin="10"
                 >
@@ -94,6 +83,48 @@
                     FontSize="14"
                     />
             </Border>
-        </Grid>
+            <Border
+                    BorderBrush="White" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Text="Board Name"
+                    FontSize="14"
+                    />
+            </Border>
+            <Border
+                    BorderBrush="White" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Text="Board Name"
+                    FontSize="14"
+                    />
+            </Border>
+            <Border
+                    BorderBrush="White" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Text="Board Name"
+                    FontSize="14"
+                    />
+            </Border>
+        </WrapPanel>
     </Grid>
 </Page>

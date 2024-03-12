@@ -46,6 +46,14 @@
                     Margin="-17.5,0,0,0"
                     ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                     />
+                <customControls:ChangesButton
+                    ImageSource="/TrelloApp;component/Resources/change-column.png"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Width="20"
+                    Margin="5"
+                    />
             </Grid>
         </Border>
     </Border>

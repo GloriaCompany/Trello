@@ -31,7 +31,7 @@
                 Click="MinimizeButtonClick" 
                 Style="{StaticResource RoundButtonStyle}"
                 Background="#99ccff">
-            <Image Source="/Resources/window-minimize.png" 
+            <Image Source="/TrelloApp;component/Resources/window-minimize.png" 
                    Width="20" 
                    Height="20"/>
         </Button>
@@ -39,7 +39,7 @@
                 Click="MaximizeButtonClick" 
                 Style="{StaticResource RoundButtonStyle}"
                 Background="#99ff99">
-            <Image Source="/Resources/window-maximize.png" 
+            <Image Source="/TrelloApp;component/Resources/window-maximize.png" 
                    Width="20" 
                    Height="20"/>
         </Button>
@@ -47,7 +47,7 @@
                 Click="CloseButtonClick" 
                 Style="{StaticResource RoundButtonStyle}" 
                 Background="#ff9999">
-            <Image Source="/Resources/window-close.png" 
+            <Image Source="/TrelloApp;component/Resources/window-close.png" 
                    Width="20" 
                    Height="20"/>
         </Button>

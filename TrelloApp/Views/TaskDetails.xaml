@@ -8,15 +8,6 @@
         mc:Ignorable="d"
         Title="TaskDetails" Height="500" Width="600" Background="#1d2125">
     <Grid>
-        <customControls:ChangesButton
-            ImageSource="/Resources/arrow.png"
-            Width="25"
-            Height="25"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Padding="6"
-            BorderThickness="0"
-            />
         <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 

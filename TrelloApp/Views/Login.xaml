@@ -7,7 +7,7 @@
         xmlns:viewModels="clr-namespace:TrelloApp.ViewModels.UserVM"
         xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"
         mc:Ignorable="d"
-        Title="Login" Height="525" Width="400" Background="#1d2125">
+        Title="Login" Height="430" Width="400" Background="#1d2125">
     <Page.DataContext>
         <viewModels:LoginViewModel>
             <viewModels:LoginViewModel.UserRepository>
@@ -54,7 +54,7 @@
             Placeholder="Login"
             Text="{Binding Username, Mode=TwoWay}"
             />
-        <customControls:CustomInput
+        <customControls:CustomPasswordInput
             Grid.Row="3"
             Width="250"
             Height="35"
@@ -62,7 +62,7 @@
             VerticalAlignment="Center"
             x:Name="InputPassword"
             Placeholder="Password"
-            Text="{Binding Password, Mode=TwoWay}"
+            Password="{Binding Password, Mode=TwoWay}"
             />
         <customControls:CustomButton 
             Text="LOGIN" 
@@ -73,6 +73,7 @@
             VerticalAlignment="Center"
             x:Name="BtnLogin"
             Command="{Binding LoginCommand}"
+            Click="BtnLogin_Click"
             />
         <customControls:CustomButton 
             Text="REGISTER" 

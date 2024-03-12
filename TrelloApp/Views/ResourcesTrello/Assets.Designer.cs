@@ -83,6 +83,16 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap change_column {
+            get {
+                object obj = ResourceManager.GetObject("change_column", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap discard {
             get {
                 object obj = ResourceManager.GetObject("discard", resourceCulture);
@@ -106,6 +116,16 @@ namespace TrelloApp.Views.ResourcesTrello {
         public static System.Drawing.Bitmap en {
             get {
                 object obj = ResourceManager.GetObject("en", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap eye {
+            get {
+                object obj = ResourceManager.GetObject("eye", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

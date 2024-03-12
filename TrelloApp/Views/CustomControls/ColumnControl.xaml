@@ -16,14 +16,18 @@
             CornerRadius="25">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
                     <RowDefinition Height="1"/>
                     <RowDefinition/>
                     <RowDefinition Height="1"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center">
+                <Grid HorizontalAlignment="Center"
+                      Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
                     <TextBlock
                            Text="Column Name"
                            FontSize="14"
@@ -35,8 +39,30 @@
                         ImageSource="/TrelloApp;component/Resources/edit.png"
                         Width="17.5"
                         Height="17.5"
-                        Margin="5,0,0,0"/>
-                </StackPanel>
+                        Margin="5,0,0,0"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"/>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <customControls:ChangesButton
+                            ImageSource="/TrelloApp;component/Resources/submit.png"
+                            Width="17.5"
+                            Height="17.5"
+                            Margin="5,0,0,0"
+                            Grid.Column="1"
+                            Visibility="Hidden"
+                            />
+                        <customControls:ChangesButton
+                            ImageSource="/TrelloApp;component/Resources/discard.png"
+                            Width="17.5"
+                            Height="17.5"
+                            Margin="5,0,0,0"
+                            Grid.Column="1"
+                            Visibility="Hidden"
+                            />
+                    </StackPanel>
+                </Grid>
                 <ListView Grid.Row="2"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
