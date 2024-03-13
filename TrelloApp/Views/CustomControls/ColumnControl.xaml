@@ -87,12 +87,22 @@
                 <Border Grid.Row="3" Background="White"/>
                 <Button Grid.Row="4" 
                         BorderBrush="Transparent"
-                        Foreground="White"
                         FontSize="14"
                         Background="#1d2125"
                         Content="+ Add Task"
                         Width="85"
-                        Height="25"/>
+                        Height="25">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </Grid>
         </Border>
     </Border>

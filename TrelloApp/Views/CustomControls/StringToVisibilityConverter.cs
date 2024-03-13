@@ -9,12 +9,27 @@ namespace TrelloApp.Views.CustomControls
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return string.IsNullOrWhiteSpace((string)value) ? Visibility.Visible : Visibility.Collapsed;
+            if (!(value is string))
+                return DependencyProperty.UnsetValue;
+
+            string text = (string)value;
+            bool isEmpty = string.IsNullOrEmpty(text);
+
+            if (parameter != null && parameter.ToString() == "Inverse")
+                isEmpty = !isEmpty;
+
+            return isEmpty ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            if (!(value is Visibility))
+                return DependencyProperty.UnsetValue;
+
+            Visibility visibility = (Visibility)value;
+
+            return visibility == Visibility.Visible;
         }
     }
+
 }
