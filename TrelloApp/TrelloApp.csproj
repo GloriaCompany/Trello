@@ -74,7 +74,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\BoardModel.cs" />
-    <Compile Include="Models\CheckBoxModel.cs" />
+    <Compile Include="Models\ChecklistModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
