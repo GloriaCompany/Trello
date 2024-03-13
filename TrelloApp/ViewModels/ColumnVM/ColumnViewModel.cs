@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.TaskVM;
@@ -46,13 +47,24 @@ namespace TrelloApp.ViewModels.ColumnVM
             set { _taskRepository = value; }
         }
 
+        public ICommand LoadTasksCommand { get; set; }
+
         public ColumnViewModel(ColumnModel currentColumn)
         {
-            LoadTasks(currentColumn.ColumnID);
             _column = currentColumn;
+            LoadTasksCommand = new RelayCommand(() => LoadTasks(_column.ColumnID), CanLoadTasks);
         }
 
-        public void LoadTasks(int columnID)
+        private bool CanLoadTasks()
+        {
+            bool res =
+               Task != null;
+
+            ((RelayCommand)LoadTasksCommand).RaiseCanExecuteChanged();
+
+            return res;
+        }
+        private void LoadTasks(int columnID)
         {
             try
             {

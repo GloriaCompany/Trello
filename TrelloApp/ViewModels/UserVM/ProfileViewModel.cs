@@ -3,13 +3,14 @@ using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.UserVM
 {
     public class ProfileViewModel : ViewModelBase
     {
-        private UserModel _user;
-        public UserModel User
+        private User _user;
+        public User User
         {
             get { return _user; }
             set
@@ -26,20 +27,30 @@ namespace TrelloApp.ViewModels.UserVM
             set { _userRepository = value; }
         }
 
+        public ICommand LoadUserCommand { get; set; }
         public ICommand ProfileUpdateCommand { get; set; }
 
         public ProfileViewModel(UserModel currentUser)
         {
-            LoadUser(currentUser.UserID);
             _user = currentUser;
+            ProfileUpdateCommand = new RelayCommand(() => LoadUser(_user.UserID), CanLoadUser);
             ProfileUpdateCommand = new RelayCommand(UpdateProfile, CanUpdateProfile);
         }
 
+        private bool CanLoadUser()
+        {
+            bool res =
+                User != null;
+
+            ((RelayCommand)LoadUserCommand).RaiseCanExecuteChanged();
+
+            return res;
+        }
         private void LoadUser(int userID)
         {
             try
             {
-                User = (UserModel)_userRepository.GetUserByID(userID);
+                User = _userRepository.GetUserByID(userID);
             }
             catch (Exception ex)
             {
@@ -59,7 +70,6 @@ namespace TrelloApp.ViewModels.UserVM
 
             return res;
         }
-
         private void UpdateProfile()
         {
             try

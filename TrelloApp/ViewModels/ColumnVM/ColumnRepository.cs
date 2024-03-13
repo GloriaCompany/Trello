@@ -9,6 +9,7 @@ namespace TrelloApp.ViewModels.ColumnVM
     {
         void AddColumn(Column column);
         void DelColumn(int columnID);
+        void UpdateColumn(Column column);
         List<Column> GetColumnsByBoardID(int boardID);
     }
 
@@ -61,6 +62,24 @@ namespace TrelloApp.ViewModels.ColumnVM
             catch (Exception ex)
             {
                 throw new Exception("Failed to delete column.", ex);
+            }
+        }
+
+        public void UpdateColumn(Column column)
+        {
+            if (column == null)
+            {
+                throw new ArgumentNullException(nameof(column));
+            }
+
+            try
+            {
+                _dbContext.UpdateColumn(column);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update column.", ex);
             }
         }
 

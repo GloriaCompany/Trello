@@ -9,6 +9,7 @@ namespace TrelloApp.ViewModels.BoardVM
     {
         void AddBoard(Board board);
         void DelBoard(int boardID);
+        void UpdateBoard(Board board);
         List<Board> GetBoardsByUserID(int userID);
     }
 
@@ -61,6 +62,24 @@ namespace TrelloApp.ViewModels.BoardVM
             catch (Exception ex)
             {
                 throw new Exception("Failed to delete board.", ex);
+            }
+        }
+
+        public void UpdateBoard(Board board)
+        {
+            if (board == null)
+            {
+                throw new ArgumentNullException(nameof(board));
+            }
+
+            try
+            {
+                _dbContext.UpdateBoard(board);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update board.", ex);
             }
         }
 

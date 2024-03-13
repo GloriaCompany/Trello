@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using TrelloApp.Models;
+using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.CheckVM;
 using TrelloDBLayer;
@@ -9,8 +9,8 @@ namespace TrelloApp.ViewModels.TaskVM
 {
     public class TaskViewModel : ViewModelBase
     {
-        private TaskModel _task;
-        public TaskModel Task
+        private Task _task;
+        public Task Task
         {
             get { return _task; }
             set
@@ -45,17 +45,60 @@ namespace TrelloApp.ViewModels.TaskVM
             set { _checklistRepository = value; }
         }
 
-        public TaskViewModel(TaskModel currentTask)
+        public ICommand UpdateTaskCommand { get; set; }
+        public ICommand LoadChecklistsCommand { get; set; }
+
+        public TaskViewModel(Task currentTask)
         {
-            LoadChecklists(currentTask.TaskID);
             _task = currentTask;
+            UpdateTaskCommand = new RelayCommand(UpdateTask, CanUpdateTask);
+            LoadChecklistsCommand = new RelayCommand(() => LoadChecklists(_task.TaskID), CanLoadChecklists);
         }
 
-        public void LoadChecklists(int taskID)
+        private bool CanLoadChecklists()
+        {
+            bool res =
+                Checklist != null;
+
+            ((RelayCommand)LoadChecklistsCommand).RaiseCanExecuteChanged();
+
+            return res;
+        }
+        private void LoadChecklists(int taskID)
         {
             try
             {
                 Checklist taskChecklist = _checklistRepository.GetChecklistByTaskID(taskID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool CanUpdateTask()
+        {
+            bool res =
+                Task != null;
+
+            ((RelayCommand)UpdateTaskCommand).RaiseCanExecuteChanged();
+
+            return res;
+
+        }
+        private void UpdateTask()
+        {
+            try
+            {
+                if (!CanUpdateTask())
+                {
+                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
+                    return;
+                }
+
+                _taskRepository.UpdateTask(Task);
+
+                MessageBox.Show("Дані дошки змінено.");
             }
             catch (Exception ex)
             {

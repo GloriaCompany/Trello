@@ -554,6 +554,8 @@ namespace TrelloDBLayer
 		
 		private string _OrderIndex;
 		
+		private string _Color;
+		
 		private EntitySet<Board> _Board;
 		
 		private EntityRef<Task> _Task;
@@ -570,6 +572,8 @@ namespace TrelloDBLayer
     partial void OnTitleChanged();
     partial void OnOrderIndexChanging(string value);
     partial void OnOrderIndexChanged();
+    partial void OnColorChanging(string value);
+    partial void OnColorChanged();
     #endregion
 		
 		public Column()
@@ -659,6 +663,26 @@ namespace TrelloDBLayer
 					this._OrderIndex = value;
 					this.SendPropertyChanged("OrderIndex");
 					this.OnOrderIndexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color", CanBeNull=false)]
+		public string Color
+		{
+			get
+			{
+				return this._Color;
+			}
+			set
+			{
+				if ((this._Color != value))
+				{
+					this.OnColorChanging(value);
+					this.SendPropertyChanging();
+					this._Color = value;
+					this.SendPropertyChanged("Color");
+					this.OnColorChanged();
 				}
 			}
 		}

@@ -20,7 +20,11 @@ namespace TrelloApp.ViewModels.UserVM
         }
 
         private IUserRepository _userRepository;
-        public IUserRepository UserRepository { get { return _userRepository; } set { _userRepository = value; } }
+        public IUserRepository UserRepository
+        {
+            get { return _userRepository; }
+            set { _userRepository = value; }
+        }
 
         public event EventHandler SuccessfullyLoggedIn;
 
@@ -39,7 +43,6 @@ namespace TrelloApp.ViewModels.UserVM
                 !string.IsNullOrEmpty(User.Username) &&
                 !string.IsNullOrEmpty(User.Password);
         }
-
         private void Login()
         {
             try

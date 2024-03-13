@@ -9,6 +9,7 @@ namespace TrelloApp.ViewModels.TaskVM
     {
         void AddTask(Task task);
         void DelTask(int taskID);
+        void UpdateTask(Task task);
         List<Task> GetTasksByColumnID(int columnID);
     }
 
@@ -61,6 +62,24 @@ namespace TrelloApp.ViewModels.TaskVM
             catch (Exception ex)
             {
                 throw new Exception("Failed to delete task.", ex);
+            }
+        }
+
+        public void UpdateTask(Task task)
+        {
+            if (task == null)
+            {
+                throw new ArgumentNullException(nameof(task));
+            }
+
+            try
+            {
+                _dbContext.UpdateTask(task);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to update task.", ex);
             }
         }
 

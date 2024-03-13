@@ -40,7 +40,7 @@ namespace TrelloApp.ViewModels.CheckVM
             }
             catch (Exception ex)
             {
-                throw new Exception("Failed to add task.", ex);
+                throw new Exception("Failed to add checklist.", ex);
             }
         }
 

@@ -49,6 +49,14 @@ namespace TrelloApp.ViewModels.Base
 
             SaveChanges();
         }
+        public void UpdateBoard(Board board)
+        {
+            var existingBoard = _context.Board.FirstOrDefault(b => b.BoardID == board.BoardID);
+
+            existingBoard.Title = board.Title;
+
+            SaveChanges();
+        }
         public List<Board> GetBoardsByUserID(int userID) => _context.Board.Where(b => b.AdminID == userID).ToList();
 
         public void AddColumn(Column column)
@@ -63,6 +71,15 @@ namespace TrelloApp.ViewModels.Base
 
             SaveChanges();
         }
+        public void UpdateColumn(Column column)
+        {
+            var existingColumn = _context.Column.FirstOrDefault(c => c.ColumnID == column.ColumnID);
+
+            existingColumn.Title = column.Title;
+            existingColumn.Color = column.Color;
+
+            SaveChanges();
+        }
         public List<Column> GetColumnsByBoardID(int boardID) => _context.Column.Where(c => c.BoardID == boardID).ToList();
 
         public void AddTask(Task task)
@@ -74,6 +91,15 @@ namespace TrelloApp.ViewModels.Base
         {
             var taskToDelete = _context.Task.FirstOrDefault(t => t.TaskID == taskID);
             _context.Task.DeleteOnSubmit(taskToDelete);
+
+            SaveChanges();
+        }
+        public void UpdateTask(Task task)
+        {
+            var existingTask = _context.Task.FirstOrDefault(t => t.TaskID == t.TaskID);
+
+            existingTask.Title = task.Title;
+            existingTask.Description = task.Description;
 
             SaveChanges();
         }
