@@ -33,7 +33,7 @@ namespace TrelloApp.ViewModels.Base
 
         void AddChecklist(Checklist checklist);
         void DelChecklist(int checklistID);
-        Checklist GetChecklistByTaskID(int taskID);
+        List<Checklist> GetChecklistsByTaskID(int taskID);
 
         void SaveChanges();
     }

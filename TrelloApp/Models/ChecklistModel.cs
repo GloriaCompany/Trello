@@ -1,6 +1,6 @@
 ﻿namespace TrelloApp.Models
 {
-    public class CheckBoxModel
+    public class ChecklistModel
     {
         // TODO: New Specific Model + Validations
         public int CheckBoxID { get; }

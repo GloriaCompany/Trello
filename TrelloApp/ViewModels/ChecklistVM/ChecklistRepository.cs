@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Documents;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
@@ -8,7 +9,7 @@ namespace TrelloApp.ViewModels.CheckVM
     {
         void AddChecklist(Checklist checklist);
         void DelChecklist(int checklistID);
-        Checklist GetChecklistByTaskID(int taskID);
+        List<Checklist> GetChecklistsByTaskID(int taskID);
     }
 
     internal class ChecklistRepository : IChecklistRepository
@@ -63,7 +64,7 @@ namespace TrelloApp.ViewModels.CheckVM
             }
         }
 
-        public Checklist GetChecklistByTaskID(int taskID)
+        public List<Checklist> GetChecklistsByTaskID(int taskID)
         {
             //Сделать isExist тут или в DataContext
             if (taskID < 0)
@@ -73,7 +74,7 @@ namespace TrelloApp.ViewModels.CheckVM
 
             try
             {
-                return _dbContext.GetChecklistByTaskID(taskID);
+                return _dbContext.GetChecklistsByTaskID(taskID);
             }
             catch (Exception ex)
             {

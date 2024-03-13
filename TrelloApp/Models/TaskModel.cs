@@ -9,10 +9,10 @@ namespace TrelloApp.Models
         public int UserID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<CheckBoxModel> CheckBoxes { get; set; }
+        public List<ChecklistModel> CheckBoxes { get; set; }
 
         
-        public TaskModel(int userId, string title, string description, List<CheckBoxModel> checkBoxes)
+        public TaskModel(int userId, string title, string description, List<ChecklistModel> checkBoxes)
         {
             UserID = userId;
             Title = title;
@@ -23,7 +23,7 @@ namespace TrelloApp.Models
         
         public TaskModel()
         {
-            CheckBoxes = new List<CheckBoxModel>();
+            CheckBoxes = new List<ChecklistModel>();
         }
     }
 }

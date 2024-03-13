@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.CheckVM;
@@ -68,7 +70,7 @@ namespace TrelloApp.ViewModels.TaskVM
         {
             try
             {
-                Checklist taskChecklist = _checklistRepository.GetChecklistByTaskID(taskID);
+                List<Checklist> taskChecklists = _checklistRepository.GetChecklistsByTaskID(taskID);
             }
             catch (Exception ex)
             {

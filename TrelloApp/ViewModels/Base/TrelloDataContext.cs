@@ -117,7 +117,7 @@ namespace TrelloApp.ViewModels.Base
 
             SaveChanges();
         }
-        public Checklist GetChecklistByTaskID(int taskID) => _context.Checklist.FirstOrDefault(ch => ch.TaskID == taskID);
+        public List<Checklist> GetChecklistsByTaskID(int taskID) => _context.Checklist.Where(ch => ch.TaskID == taskID).ToList();
 
         public void SaveChanges() => _context.SubmitChanges();
     }
