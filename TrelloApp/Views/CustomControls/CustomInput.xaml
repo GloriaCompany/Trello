@@ -25,20 +25,21 @@
                             BorderBrush="White" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             CornerRadius="15">
-                            <Grid>
+                            <Grid Margin="12.5,7,0,0">
                                 <ScrollViewer x:Name="PART_ContentHost" />
                                 <TextBlock IsHitTestVisible="False" 
                                        Text="{Binding Placeholder, RelativeSource={RelativeSource TemplatedParent}}" 
                                        Foreground="Gray" 
                                        FontStyle="Italic" 
-                                       Opacity="0.6" 
-                                       Margin="12.5,7,0,0"
+                                       Opacity="0.6"
                                        Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToVisibilityConverter}}"/>
-                                <TextBox Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}"
-                                     Background="Transparent"
-                                     Foreground="{TemplateBinding Foreground}"
-                                     BorderThickness="0"
-                                     Margin="12.5,7,0,0"/>
+                                <TextBlock IsHitTestVisible="False"
+                                           Text="{Binding Placeholder, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Foreground="Gray"
+                                           FontStyle="Italic"
+                                           Opacity="0.6"
+                                           Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToVisibilityConverter}}">
+                                </TextBlock>
                             </Grid>
                         </Border>
                     </ControlTemplate>

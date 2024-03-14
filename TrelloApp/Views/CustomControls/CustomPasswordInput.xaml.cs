@@ -12,6 +12,7 @@ namespace TrelloApp.Views.CustomControls
             DependencyProperty.Register("Password", typeof(string), typeof(CustomPasswordInput), new FrameworkPropertyMetadata(string.Empty));
 
         private UIElement currentInputElement;
+        private TextBlock PlaceholderTextBlock;
 
         public string Placeholder
         {
@@ -28,7 +29,22 @@ namespace TrelloApp.Views.CustomControls
         public CustomPasswordInput()
         {
             InitializeComponent();
+            DataContext = this;
+
+            Loaded += (sender, e) =>
+            {
+                PlaceholderTextBlock = (TextBlock)PasswordBox.Template.FindName("PlaceholderTextBlock", PasswordBox);
+                if (string.IsNullOrEmpty(PasswordBox.Password))
+                {
+                    PlaceholderTextBlock.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    PlaceholderTextBlock.Visibility = Visibility.Collapsed;
+                }
+            };
         }
+
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -40,6 +56,7 @@ namespace TrelloApp.Views.CustomControls
                 PasswordBox.Password = "";
                 TextBox.Focus();
                 currentInputElement = TextBox;
+                PlaceholderTextBlock.Visibility = Visibility.Visible;
             }
             else
             {
@@ -54,14 +71,17 @@ namespace TrelloApp.Views.CustomControls
 
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (currentInputElement == null)
-                currentInputElement = PasswordBox;
+            currentInputElement = PasswordBox;
+            if (string.IsNullOrEmpty(PasswordBox.Password))
+                PlaceholderTextBlock.Visibility = Visibility.Visible;
+            else
+                PlaceholderTextBlock.Visibility = Visibility.Collapsed;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (currentInputElement == null)
-                currentInputElement = TextBox;
+            currentInputElement = TextBox;
+            PlaceholderTextBlock.Visibility = Visibility.Visible;
         }
     }
 }
