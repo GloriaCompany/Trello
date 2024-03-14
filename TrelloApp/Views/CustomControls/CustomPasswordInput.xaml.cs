@@ -11,8 +11,8 @@ namespace TrelloApp.Views.CustomControls
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register("Password", typeof(string), typeof(CustomPasswordInput), new FrameworkPropertyMetadata(string.Empty));
 
-        private UIElement currentInputElement;
         private TextBlock PlaceholderTextBlock;
+        private UIElement currentInputElement;
 
         public string Placeholder
         {
@@ -31,20 +31,25 @@ namespace TrelloApp.Views.CustomControls
             InitializeComponent();
             DataContext = this;
 
+            PasswordBox.Visibility = Visibility.Visible;
+            TextBox.Visibility = Visibility.Collapsed;
+
             Loaded += (sender, e) =>
             {
                 PlaceholderTextBlock = (TextBlock)PasswordBox.Template.FindName("PlaceholderTextBlock", PasswordBox);
-                if (string.IsNullOrEmpty(PasswordBox.Password))
-                {
-                    PlaceholderTextBlock.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    PlaceholderTextBlock.Visibility = Visibility.Collapsed;
-                }
+                UpdatePlaceholderVisibility();
             };
+
+            PasswordBox.PasswordChanged += PasswordBox_TextChanged;
+            PasswordBox.LostFocus += PasswordBox_LostFocus;
         }
 
+        private void UpdatePlaceholderVisibility()
+        {
+            PlaceholderTextBlock.Visibility = (currentInputElement == PasswordBox && string.IsNullOrEmpty(PasswordBox.Password)) ||
+                                               (currentInputElement == TextBox && string.IsNullOrEmpty(TextBox.Text))
+                                               ? Visibility.Visible : Visibility.Collapsed;
+        }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -72,16 +77,26 @@ namespace TrelloApp.Views.CustomControls
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
         {
             currentInputElement = PasswordBox;
-            if (string.IsNullOrEmpty(PasswordBox.Password))
-                PlaceholderTextBlock.Visibility = Visibility.Visible;
-            else
-                PlaceholderTextBlock.Visibility = Visibility.Collapsed;
+            UpdatePlaceholderVisibility();
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             currentInputElement = TextBox;
-            PlaceholderTextBlock.Visibility = Visibility.Visible;
+            UpdatePlaceholderVisibility();
+        }
+
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            UpdatePlaceholderVisibility();
+        }
+
+        private void PasswordBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+            if (PasswordBox.Visibility == Visibility.Visible)
+            {
+                UpdatePlaceholderVisibility();
+            }
         }
     }
 }

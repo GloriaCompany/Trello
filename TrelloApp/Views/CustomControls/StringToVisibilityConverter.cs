@@ -31,5 +31,4 @@ namespace TrelloApp.Views.CustomControls
             return visibility == Visibility.Visible;
         }
     }
-
 }
