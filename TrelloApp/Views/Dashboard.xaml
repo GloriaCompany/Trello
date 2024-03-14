@@ -30,7 +30,7 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Text="Dashboard"
@@ -42,33 +42,84 @@
                    Margin="10,0,0,0"
                    />
         <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    >
+                    HorizontalAlignment="Right">
+            <customControls:CustomComboBox
+                Width="115"
+                Height="35">
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                    ImageSource="/TrelloApp;component/Resources/sun.png">
+                        Світла
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                    ImageSource="/TrelloApp;component/Resources/moon.png">
+                        Темна
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox
+                Width="115"
+                Height="35">
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                    ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                    ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
             <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 
                 Grid.Column="1"
-                CornerRadius="25"
-                Width="200"
-                Style="{StaticResource HoverBorderStyle}">
+                CornerRadius="18"
+                Width="165"
+                Height="35"
+                HorizontalAlignment="Right"
+                >
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#febd69"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock 
-                            Text="Name"
-                            FontSize="14"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left"
-                            Margin="10 0 0 0"
-                            Style="{StaticResource HoverTextBlockStyle}"
-                            />
+                        Text="Name"
+                        FontSize="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left" 
+                        Grid.Column="1"
+                        Margin="10,0,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <customControls:CircleImage
-                        Width="48"
-                        Height="48"
+                        Width="35"
+                        Height="33"
                         Grid.Column="1"
                         HorizontalAlignment="Right"
+                        Margin="-17.5,0,0,0"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                 </Grid>
             </Border>
