@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Windows.Documents;
+using System.Collections.Generic;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 

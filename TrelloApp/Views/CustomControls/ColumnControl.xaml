@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              mc:Ignorable="d" 
-             d:DesignHeight="255" d:DesignWidth="185">
+             d:DesignHeight="260" d:DesignWidth="185">
     <Border
         Background="Transparent"
         BorderBrush="White"
@@ -18,7 +18,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="1"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="185"/>
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>

@@ -17,7 +17,14 @@ namespace TrelloApp.Views.CustomControls
 
         private void ColorButton_Click(object sender, RoutedEventArgs e)
         {
-            Picker.Visibility = Visibility.Visible;
+            if (Picker.Visibility == Visibility.Visible)
+            {
+                Picker.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Picker.Visibility = Visibility.Visible;
+            }
         }
 
         private void Picker_ColorChanged(object sender, RoutedEventArgs e)

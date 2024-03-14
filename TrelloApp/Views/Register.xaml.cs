@@ -11,5 +11,10 @@ namespace TrelloApp.Views
         {
             InitializeComponent();
         }
+
+        private void BtnLogin_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Login());
+        }
     }
 }

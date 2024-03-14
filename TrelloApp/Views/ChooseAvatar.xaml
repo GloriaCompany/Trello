@@ -110,7 +110,7 @@
                     Grid.Row="2"
                     Height="30"
                     Width="175"
-                    Text="Submit"
+                    Text="SUBMIT"
                     Command="{Binding RegisterCommand}"/>
             </Grid>
         </Border>

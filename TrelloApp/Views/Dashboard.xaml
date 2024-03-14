@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="Dashboard" Height="450" Width="800" Background="#1d2125">
+        Title="Dashboard" Background="#1d2125">
     <Page.Resources>
         <Style TargetType="Border" x:Key="HoverBorderStyle">
             <Setter Property="Background" Value="Transparent"/>
@@ -76,8 +76,8 @@
         <WrapPanel
             Grid.Row="1"
             Orientation="Horizontal"
-            ItemWidth="200"
-            ItemHeight="200">
+            ItemWidth="210"
+            ItemHeight="210">
             <Border
                     Style="{StaticResource HoverBorderStyle}"
                     BorderBrush="White" 

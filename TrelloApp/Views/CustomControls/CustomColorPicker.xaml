@@ -9,8 +9,7 @@
     <Grid>
         <Button x:Name="colorButton" 
                 Click="ColorButton_Click"
-                Background="#1d2125"
-                >
+                Background="#1d2125">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" 
@@ -54,10 +53,10 @@
             </Grid>
         </Button>
         <colorPicker:StandardColorPicker 
-            x:Name="Picker" 
-            Width="200" 
-            Height="380" 
-            Visibility="Collapsed" 
-            ColorChanged="Picker_ColorChanged"/>
+                x:Name="Picker" 
+                Width="200" 
+                Height="380" 
+                Visibility="Collapsed" 
+                ColorChanged="Picker_ColorChanged"/>
     </Grid>
 </UserControl>

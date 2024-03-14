@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"  
-        xmlns:local="clr-namespace:TrelloApp.Views"
         mc:Ignorable="d"
         Title="TaskDetails" Height="500" Width="600" Background="#1d2125">
     <Grid>
@@ -13,7 +12,7 @@
                 BorderThickness="1" 
                 CornerRadius="25"
                 Width="400"
-                Height="375" Cursor="None"
+                Height="400"
                 >
             <Grid>
                 <Grid.RowDefinitions>
@@ -25,6 +24,8 @@
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="80"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="45"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
                            Text="Task Name"
@@ -55,22 +56,24 @@
                     Margin="235,0,0,0"
                     ImageSource="/TrelloApp;component/Resources/discard.png"/>
                 <customControls:CustomColorPicker
-                    Grid.Row="2"
                     Width="125"
                     Height="35"
-                    VerticalAlignment="Center"
+                    Grid.Row="2"
                     HorizontalAlignment="Right"
-                    Margin="0,0,15,0"/>
+                    VerticalAlignment="Center"
+                    Margin="0,0,15,0"
+                    />
                 <Border Grid.Row="3" Background="White" Width="400"/>
                 <RichTextBox Grid.Row="4"
                              Background="Transparent"
                              Foreground="White"
-                             Padding="5"
                              BorderThickness="0"
-                             >
-                    <FlowDocument>
+                             Margin="5">
+                    <FlowDocument MaxPageWidth="390"
+                                  MaxPageHeight="150">
                         <Paragraph FontSize="14"
-                                   TextAlignment="Justify">
+                                   TextAlignment="Justify"
+                                   >
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </Paragraph>
                     </FlowDocument>
@@ -87,7 +90,7 @@
                     <customControls:CustomButton
                         Width="130"
                         Margin="5"
-                        Text="Add Task"/>
+                        Text="ADD TASK"/>
                 </StackPanel>
                 <ListView Grid.Row="7"
                           Background="#1d2125"
@@ -133,6 +136,24 @@
                     <customControls:CustomCheckBox Content="Task 3" Foreground="White"/>
                     <customControls:CustomCheckBox Content="Task 4" Foreground="White"/>
                 </ListView>
+                <Border Grid.Row="8" Background="White" Width="400"/>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="9"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <customControls:CustomButton
+                        Width="130"
+                        Height="30"
+                        Margin="5"
+                        Text="DELETE TASK"
+                        />
+                    <customControls:CustomButton
+                        Width="130"
+                        Height="30"
+                        Margin="5"
+                        Text="SAVE CHANGES"
+                        />
+                </StackPanel>
             </Grid>
         </Border>
     </Grid>

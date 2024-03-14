@@ -104,6 +104,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="BtnLogin"
+            Click="BtnLogin_Click"
             />
     </Grid>
 </Page>
