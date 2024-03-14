@@ -31,8 +31,8 @@
                 BorderBrush="White" 
                 BorderThickness="1" 
                 CornerRadius="25"
-                Width="500"
-                Height="425"
+                Width="450"
+                Height="375"
                 Padding="5"
                 >
             <Grid>
