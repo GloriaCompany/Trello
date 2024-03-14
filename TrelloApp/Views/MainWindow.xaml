@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="Trello - Board Name" Height="430" Width="636" Background="#1d2125">
+        Title="Trello - Board Name" Background="#1d2125">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="36"/>
@@ -40,37 +40,37 @@
                 ImageSource="/TrelloApp;component/Resources/discard.png"
                 Visibility="Hidden"/>
         </StackPanel>
-        <customControls:CustomComboBox
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <customControls:CustomComboBox
                 Width="115"
-                Height="35"
-                Margin="-40,0,0,0">
-            <customControls:CustomComboBox.Items>
-                <customControls:CustomComboBoxItem 
+                Height="35">
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
                     ImageSource="/TrelloApp;component/Resources/sun.png">
-                    Світла
-                </customControls:CustomComboBoxItem>
-                <customControls:CustomComboBoxItem 
+                        Світла
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
                     ImageSource="/TrelloApp;component/Resources/moon.png">
-                    Темна
-                </customControls:CustomComboBoxItem>
-            </customControls:CustomComboBox.Items>
-        </customControls:CustomComboBox>
-        <customControls:CustomComboBox
+                        Темна
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox
                 Width="115"
-                Height="35"
-                Margin="190,0,0,0">
-            <customControls:CustomComboBox.Items>
-                <customControls:CustomComboBoxItem 
+                Height="35">
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
                     ImageSource="/TrelloApp;component/Resources/ua.png">
-                    Українська
-                </customControls:CustomComboBoxItem>
-                <customControls:CustomComboBoxItem 
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
                     ImageSource="/TrelloApp;component/Resources/en.png">
-                    English
-                </customControls:CustomComboBoxItem>
-            </customControls:CustomComboBox.Items>
-        </customControls:CustomComboBox>
-        <Border 
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 
                 Grid.Column="1"
@@ -79,92 +79,94 @@
                 Height="35"
                 HorizontalAlignment="Right"
                 >
-            <Border.Style>
-                <Style TargetType="Border">
-                    <Setter Property="Background" Value="Transparent"/>
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#febd69"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Border.Style>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <ListView
-                    Background="Transparent"
-                    BorderThickness="0"
-                    HorizontalAlignment="Left"
-                    Grid.Column="0"
-                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                    ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                    Padding="0"
-                    Margin="-1">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Padding" Value="0"/>
-                            <Setter Property="Margin" Value="0"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="-1"/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#febd69"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView
+                        Background="Transparent"
+                        BorderThickness="0"
+                        HorizontalAlignment="Left"
+                        Grid.Column="0"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        Padding="0"
+                        Margin="-1">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Margin" Value="0"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="-1"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <customControls:CircleImage
+                            Width="35"
+                            Height="33"
+                            ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        <customControls:CircleImage
+                            Width="35"
+                            Height="33"
+                            Margin="-25,0,0,0"
+                            ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        <customControls:CircleImage
+                            Width="35"
+                            Height="33"
+                            Margin="-25,0,0,0"
+                            ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        <customControls:CircleImage
+                            Width="35"
+                            Height="33"
+                            Margin="-25,0,0,0"
+                            ImageSource="/TrelloApp;component/Resources/plus.png"/>
+                    </ListView>
+                    <TextBlock 
+                        Text="Name"
+                        FontSize="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left" 
+                        Grid.Column="1"
+                        Margin="10,0,0,0">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                                        <Setter Property="Foreground" Value="Black"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                     <customControls:CircleImage
                         Width="35"
                         Height="33"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Margin="-17.5,0,0,0"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
-                    <customControls:CircleImage
-                        Width="35"
-                        Height="33"
-                        Margin="-25,0,0,0"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
-                    <customControls:CircleImage
-                        Width="35"
-                        Height="33"
-                        Margin="-25,0,0,0"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
-                    <customControls:CircleImage
-                        Width="35"
-                        Height="33"
-                        Margin="-25,0,0,0"
-                        ImageSource="/TrelloApp;component/Resources/plus.png"/>
-                </ListView>
-                <TextBlock 
-                    Text="Name"
-                    FontSize="10"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left" 
-                    Grid.Column="1"
-                    Margin="10,0,0,0">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="White"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
-                                    <Setter Property="Foreground" Value="Black"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-                <customControls:CircleImage
-                    Width="35"
-                    Height="33"
-                    Grid.Column="1"
-                    HorizontalAlignment="Right"
-                    Margin="-17.5,0,0,0"
-                    ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
-            </Grid>
-        </Border>
+                </Grid>
+            </Border>
+        </StackPanel>
         <WrapPanel Grid.Row="1"
                    ItemWidth="212"
-                   ItemHeight="Auto">
+                   ItemHeight="Auto"
+                   HorizontalAlignment="Center">
             <customControls:ColumnControl
                 Grid.Row="0"
                 Grid.Column="0"
@@ -173,6 +175,21 @@
             <customControls:ColumnControl
                 Grid.Row="0"
                 Grid.Column="1"
+                Margin="10"
+                />
+            <customControls:ColumnControl
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="10"
+                />
+            <customControls:ColumnControl
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="10"
+                />
+            <customControls:ColumnControl
+                Grid.Row="0"
+                Grid.Column="2"
                 Margin="10"
                 />
             <customControls:ColumnControl

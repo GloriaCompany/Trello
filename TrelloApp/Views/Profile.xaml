@@ -11,19 +11,19 @@
                 BorderBrush="White" 
                 BorderThickness="1" 
                 CornerRadius="25"
-                Width="320"
-                Height="455"
+                Width="370"
+                Height="465"
                 Padding="5"
                 >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="15"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="15"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="15"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="15"/>
                     <RowDefinition Height="45"/>
                     <RowDefinition Height="45"/>
@@ -52,9 +52,11 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/submit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        Visibility="Hidden"/>
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/discard.png"/>
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="2"
@@ -82,9 +84,11 @@
                             VerticalAlignment="Top"
                             >
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/submit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        Visibility="Hidden"/>
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/discard.png"/>
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="4"
@@ -108,9 +112,11 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/submit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        Visibility="Hidden"/>
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/discard.png"/>
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="6"
@@ -134,9 +140,11 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/submit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        Visibility="Hidden"/>
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/discard.png"/>
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        Visibility="Hidden"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="8"

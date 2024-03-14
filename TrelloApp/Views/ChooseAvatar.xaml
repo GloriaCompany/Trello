@@ -7,7 +7,7 @@
         xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"  
         xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.UserVM"  
         mc:Ignorable="d"
-        Title="ChooseAvatar" Height="350" Width="400" Background="#1d2125">
+        Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125">
     <Page.DataContext>
         <viewModel:RegisterViewModel>
             <viewModel:RegisterViewModel.UserRepository>
@@ -31,8 +31,8 @@
                 BorderBrush="White" 
                 BorderThickness="1" 
                 CornerRadius="25"
-                Width="300"
-                Height="225"
+                Width="500"
+                Height="425"
                 Padding="5"
                 >
             <Grid>
@@ -53,56 +53,56 @@
                            VerticalAlignment="Top"
                            HorizontalAlignment="Stretch"
                            Margin="15"
-                           Width="225"
+                           Width="300"
                            >
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                        Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                       Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                       Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                        Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                       Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                        Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                       Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                        Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                       Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                     <customControls:CircleImage
-                        Width="35"
-                        Height="35"
+                        Width="50"
+                        Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                 </WrapPanel>

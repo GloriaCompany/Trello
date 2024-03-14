@@ -76,8 +76,8 @@
         <WrapPanel
             Grid.Row="1"
             Orientation="Horizontal"
-            ItemWidth="210"
-            ItemHeight="210">
+            ItemWidth="200"
+            ItemHeight="200">
             <Border
                     Style="{StaticResource HoverBorderStyle}"
                     BorderBrush="White" 
