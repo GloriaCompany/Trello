@@ -31,7 +31,7 @@
                            VerticalAlignment="Top" 
                            HorizontalAlignment="Left" 
                            Grid.Row="2"
-                           FontSize="8"
+                           FontSize="10"
                            Foreground="White"
                            Background="Transparent"
                            Margin="12,15,0,0"
