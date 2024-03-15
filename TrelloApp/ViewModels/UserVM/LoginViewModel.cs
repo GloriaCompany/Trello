@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -45,16 +46,18 @@ namespace TrelloApp.ViewModels.UserVM
         public LoginViewModel()
         {
             _user = new UserModel();
-            _createDatabaseButtonVisibility = Visibility.Hidden; // Початково приховуємо кнопку "CREATE DATABASE"
+            _createDatabaseButtonVisibility = Visibility.Hidden;
             LoginCommand = new RelayCommand(Login, CanLogin);
         }
 
         private bool CanLogin()
         {
-            // Перевірка на ім'я користувача та пароль admin
-            return User != null && !string.IsNullOrEmpty(User.Username) &&
-                   !string.IsNullOrEmpty(User.Password) &&
-                   !(User.Username == "admin" && User.Password == "admin");
+            string adminLogin = ConfigurationManager.AppSettings["AdminLogin"];
+            string adminPassword = ConfigurationManager.AppSettings["AdminPassword"];
+
+            return User != null &&
+                   User.Username == adminLogin &&
+                   User.Password == adminPassword;
         }
 
         private void Login()
@@ -81,15 +84,12 @@ namespace TrelloApp.ViewModels.UserVM
 
         private void InputTextChanged(object sender, TextChangedEventArgs e)
         {
-            // Перевірка, чи введені значення є "admin"
             if (User.Username == "admin" && User.Password == "admin")
             {
-                // Показати кнопку "CREATE DATABASE"
                 CreateDatabaseButtonVisibility = Visibility.Visible;
             }
             else
             {
-                // Сховати кнопку "CREATE DATABASE"
                 CreateDatabaseButtonVisibility = Visibility.Hidden;
             }
         }
