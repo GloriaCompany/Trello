@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
@@ -30,19 +31,32 @@ namespace TrelloApp.ViewModels.UserVM
 
         public ICommand LoginCommand { get; set; }
 
+        private Visibility _createDatabaseButtonVisibility;
+        public Visibility CreateDatabaseButtonVisibility
+        {
+            get { return _createDatabaseButtonVisibility; }
+            set
+            {
+                _createDatabaseButtonVisibility = value;
+                OnPropertyChanged(nameof(CreateDatabaseButtonVisibility));
+            }
+        }
+
         public LoginViewModel()
         {
             _user = new UserModel();
+            _createDatabaseButtonVisibility = Visibility.Hidden; // Початково приховуємо кнопку "CREATE DATABASE"
             LoginCommand = new RelayCommand(Login, CanLogin);
         }
 
         private bool CanLogin()
         {
-            return
-                User != null &&
-                !string.IsNullOrEmpty(User.Username) &&
-                !string.IsNullOrEmpty(User.Password);
+            // Перевірка на ім'я користувача та пароль admin
+            return User != null && !string.IsNullOrEmpty(User.Username) &&
+                   !string.IsNullOrEmpty(User.Password) &&
+                   !(User.Username == "admin" && User.Password == "admin");
         }
+
         private void Login()
         {
             try
@@ -51,6 +65,7 @@ namespace TrelloApp.ViewModels.UserVM
 
                 if (existingUser != null && existingUser.Username == User.Username && existingUser.Password == User.Password)
                 {
+                    UserContext.SetCurrentUser(User);
                     SuccessfullyLoggedIn?.Invoke(this, EventArgs.Empty);
                 }
                 else
@@ -61,6 +76,21 @@ namespace TrelloApp.ViewModels.UserVM
             catch (Exception ex)
             {
                 MessageBox.Show($"Помилка: {ex.Message}");
+            }
+        }
+
+        private void InputTextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Перевірка, чи введені значення є "admin"
+            if (User.Username == "admin" && User.Password == "admin")
+            {
+                // Показати кнопку "CREATE DATABASE"
+                CreateDatabaseButtonVisibility = Visibility.Visible;
+            }
+            else
+            {
+                // Сховати кнопку "CREATE DATABASE"
+                CreateDatabaseButtonVisibility = Visibility.Hidden;
             }
         }
     }

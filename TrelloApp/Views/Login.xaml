@@ -94,7 +94,7 @@
             VerticalAlignment="Center"
             x:Name="BtnCreateDatabase"
             Click="BtnCreateDatabase_Click"
-            Visibility="Hidden"
+            Visibility="{Binding CreateDatabaseButtonVisibility}"
             />
     </Grid>
 </Page>
