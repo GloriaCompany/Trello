@@ -42,30 +42,22 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <customControls:CustomComboBox
-                Width="115"
-                Height="35">
+            <customControls:CustomComboBox Width="115" Height="35">
                 <customControls:CustomComboBox.Items>
-                    <customControls:CustomComboBoxItem 
-                    ImageSource="/TrelloApp;component/Resources/sun.png">
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/sun.png">
                         Світла
                     </customControls:CustomComboBoxItem>
-                    <customControls:CustomComboBoxItem 
-                    ImageSource="/TrelloApp;component/Resources/moon.png">
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/moon.png">
                         Темна
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
-            <customControls:CustomComboBox
-                Width="115"
-                Height="35">
+            <customControls:CustomComboBox Width="115" Height="35">
                 <customControls:CustomComboBox.Items>
-                    <customControls:CustomComboBoxItem 
-                    ImageSource="/TrelloApp;component/Resources/ua.png">
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
                         Українська
                     </customControls:CustomComboBoxItem>
-                    <customControls:CustomComboBoxItem 
-                    ImageSource="/TrelloApp;component/Resources/en.png">
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/en.png">
                         English
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>

@@ -98,5 +98,10 @@ namespace TrelloApp.Views.CustomControls
                 UpdatePlaceholderVisibility();
             }
         }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Password = PasswordBox.Password;
+        }
     }
 }

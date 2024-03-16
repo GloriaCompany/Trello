@@ -52,11 +52,15 @@
                            />
             </Grid>
         </Button>
-        <colorPicker:StandardColorPicker 
-                x:Name="Picker" 
-                Width="200" 
-                Height="380" 
-                Visibility="Collapsed" 
-                ColorChanged="Picker_ColorChanged"/>
+        <Popup x:Name="colorPickerPopup" Panel.ZIndex="10" PlacementTarget="{Binding ElementName=colorButton}" Placement="Bottom" StaysOpen="False">
+            <Border BorderBrush="White" Background="#1d2125" BorderThickness="1">
+                <colorPicker:StandardColorPicker 
+                    Width="190" 
+                    Height="370" 
+                    Margin="10"
+                    Foreground="White"
+                    ColorChanged="Picker_ColorChanged"/>
+            </Border>
+        </Popup>
     </Grid>
 </UserControl>

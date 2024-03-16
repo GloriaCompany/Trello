@@ -141,9 +141,9 @@ namespace TrelloDBLayer
 		
 		private string _Avatar;
 		
-		private EntityRef<Board> _Board;
+		private EntitySet<Board> _Board;
 		
-		private EntityRef<Task> _Task;
+		private EntitySet<Task> _Task;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -163,12 +163,12 @@ namespace TrelloDBLayer
 		
 		public User()
 		{
-			this._Board = default(EntityRef<Board>);
-			this._Task = default(EntityRef<Task>);
+			this._Board = new EntitySet<Board>(new Action<Board>(this.attach_Board), new Action<Board>(this.detach_Board));
+			this._Task = new EntitySet<Task>(new Action<Task>(this.attach_Task), new Action<Task>(this.detach_Task));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true)]
 		public int UserID
 		{
 			get
@@ -179,10 +179,6 @@ namespace TrelloDBLayer
 			{
 				if ((this._UserID != value))
 				{
-					if ((this._Board.HasLoadedOrAssignedValue || this._Task.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnUserIDChanging(value);
 					this.SendPropertyChanging();
 					this._UserID = value;
@@ -272,71 +268,29 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Board_User", Storage="_Board", ThisKey="UserID", OtherKey="AdminID", IsForeignKey=true)]
-		public Board Board
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Board", Storage="_Board", ThisKey="UserID", OtherKey="AdminID")]
+		public EntitySet<Board> Board
 		{
 			get
 			{
-				return this._Board.Entity;
+				return this._Board;
 			}
 			set
 			{
-				Board previousValue = this._Board.Entity;
-				if (((previousValue != value) 
-							|| (this._Board.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Board.Entity = null;
-						previousValue.User.Remove(this);
-					}
-					this._Board.Entity = value;
-					if ((value != null))
-					{
-						value.User.Add(this);
-						this._UserID = value.AdminID;
-					}
-					else
-					{
-						this._UserID = default(int);
-					}
-					this.SendPropertyChanged("Board");
-				}
+				this._Board.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_User", Storage="_Task", ThisKey="UserID", OtherKey="AssignedUserID", IsForeignKey=true)]
-		public Task Task
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Task", Storage="_Task", ThisKey="UserID", OtherKey="AssignedUserID")]
+		public EntitySet<Task> Task
 		{
 			get
 			{
-				return this._Task.Entity;
+				return this._Task;
 			}
 			set
 			{
-				Task previousValue = this._Task.Entity;
-				if (((previousValue != value) 
-							|| (this._Task.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Task.Entity = null;
-						previousValue.User.Remove(this);
-					}
-					this._Task.Entity = value;
-					if ((value != null))
-					{
-						value.User.Add(this);
-						this._UserID = value.AssignedUserID;
-					}
-					else
-					{
-						this._UserID = default(int);
-					}
-					this.SendPropertyChanged("Task");
-				}
+				this._Task.Assign(value);
 			}
 		}
 		
@@ -359,6 +313,30 @@ namespace TrelloDBLayer
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_Board(Board entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Board(Board entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
+		
+		private void attach_Task(Task entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Task(Task entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
@@ -373,9 +351,9 @@ namespace TrelloDBLayer
 		
 		private int _AdminID;
 		
-		private EntitySet<User> _User;
+		private EntitySet<Column> _Column;
 		
-		private EntityRef<Column> _Column;
+		private EntityRef<User> _User;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -391,12 +369,12 @@ namespace TrelloDBLayer
 		
 		public Board()
 		{
-			this._User = new EntitySet<User>(new Action<User>(this.attach_User), new Action<User>(this.detach_User));
-			this._Column = default(EntityRef<Column>);
+			this._Column = new EntitySet<Column>(new Action<Column>(this.attach_Column), new Action<Column>(this.detach_Column));
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BoardID", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BoardID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true)]
 		public int BoardID
 		{
 			get
@@ -407,10 +385,6 @@ namespace TrelloDBLayer
 			{
 				if ((this._BoardID != value))
 				{
-					if (this._Column.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnBoardIDChanging(value);
 					this.SendPropertyChanging();
 					this._BoardID = value;
@@ -451,6 +425,10 @@ namespace TrelloDBLayer
 			{
 				if ((this._AdminID != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnAdminIDChanging(value);
 					this.SendPropertyChanging();
 					this._AdminID = value;
@@ -460,49 +438,49 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Board_User", Storage="_User", ThisKey="AdminID", OtherKey="UserID")]
-		public EntitySet<User> User
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Board_Column", Storage="_Column", ThisKey="BoardID", OtherKey="BoardID")]
+		public EntitySet<Column> Column
 		{
 			get
 			{
-				return this._User;
+				return this._Column;
 			}
 			set
 			{
-				this._User.Assign(value);
+				this._Column.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Column_Board", Storage="_Column", ThisKey="BoardID", OtherKey="BoardID", IsForeignKey=true)]
-		public Column Column
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Board", Storage="_User", ThisKey="AdminID", OtherKey="UserID", IsForeignKey=true)]
+		public User User
 		{
 			get
 			{
-				return this._Column.Entity;
+				return this._User.Entity;
 			}
 			set
 			{
-				Column previousValue = this._Column.Entity;
+				User previousValue = this._User.Entity;
 				if (((previousValue != value) 
-							|| (this._Column.HasLoadedOrAssignedValue == false)))
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Column.Entity = null;
+						this._User.Entity = null;
 						previousValue.Board.Remove(this);
 					}
-					this._Column.Entity = value;
+					this._User.Entity = value;
 					if ((value != null))
 					{
 						value.Board.Add(this);
-						this._BoardID = value.BoardID;
+						this._AdminID = value.UserID;
 					}
 					else
 					{
-						this._BoardID = default(int);
+						this._AdminID = default(int);
 					}
-					this.SendPropertyChanged("Column");
+					this.SendPropertyChanged("User");
 				}
 			}
 		}
@@ -527,13 +505,13 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		private void attach_User(User entity)
+		private void attach_Column(Column entity)
 		{
 			this.SendPropertyChanging();
 			entity.Board = this;
 		}
 		
-		private void detach_User(User entity)
+		private void detach_Column(Column entity)
 		{
 			this.SendPropertyChanging();
 			entity.Board = null;
@@ -556,9 +534,9 @@ namespace TrelloDBLayer
 		
 		private string _Color;
 		
-		private EntitySet<Board> _Board;
+		private EntitySet<Task> _Task;
 		
-		private EntityRef<Task> _Task;
+		private EntityRef<Board> _Board;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -578,12 +556,12 @@ namespace TrelloDBLayer
 		
 		public Column()
 		{
-			this._Board = new EntitySet<Board>(new Action<Board>(this.attach_Board), new Action<Board>(this.detach_Board));
-			this._Task = default(EntityRef<Task>);
+			this._Task = new EntitySet<Task>(new Action<Task>(this.attach_Task), new Action<Task>(this.detach_Task));
+			this._Board = default(EntityRef<Board>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColumnID", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ColumnID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true)]
 		public int ColumnID
 		{
 			get
@@ -594,10 +572,6 @@ namespace TrelloDBLayer
 			{
 				if ((this._ColumnID != value))
 				{
-					if (this._Task.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnColumnIDChanging(value);
 					this.SendPropertyChanging();
 					this._ColumnID = value;
@@ -618,6 +592,10 @@ namespace TrelloDBLayer
 			{
 				if ((this._BoardID != value))
 				{
+					if (this._Board.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnBoardIDChanging(value);
 					this.SendPropertyChanging();
 					this._BoardID = value;
@@ -687,49 +665,49 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Column_Board", Storage="_Board", ThisKey="BoardID", OtherKey="BoardID")]
-		public EntitySet<Board> Board
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Column_Task", Storage="_Task", ThisKey="ColumnID", OtherKey="ColumnID")]
+		public EntitySet<Task> Task
 		{
 			get
 			{
-				return this._Board;
+				return this._Task;
 			}
 			set
 			{
-				this._Board.Assign(value);
+				this._Task.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_Column", Storage="_Task", ThisKey="ColumnID", OtherKey="ColumnID", IsForeignKey=true)]
-		public Task Task
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Board_Column", Storage="_Board", ThisKey="BoardID", OtherKey="BoardID", IsForeignKey=true)]
+		public Board Board
 		{
 			get
 			{
-				return this._Task.Entity;
+				return this._Board.Entity;
 			}
 			set
 			{
-				Task previousValue = this._Task.Entity;
+				Board previousValue = this._Board.Entity;
 				if (((previousValue != value) 
-							|| (this._Task.HasLoadedOrAssignedValue == false)))
+							|| (this._Board.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Task.Entity = null;
+						this._Board.Entity = null;
 						previousValue.Column.Remove(this);
 					}
-					this._Task.Entity = value;
+					this._Board.Entity = value;
 					if ((value != null))
 					{
 						value.Column.Add(this);
-						this._ColumnID = value.ColumnID;
+						this._BoardID = value.BoardID;
 					}
 					else
 					{
-						this._ColumnID = default(int);
+						this._BoardID = default(int);
 					}
-					this.SendPropertyChanged("Task");
+					this.SendPropertyChanged("Board");
 				}
 			}
 		}
@@ -754,13 +732,13 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		private void attach_Board(Board entity)
+		private void attach_Task(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.Column = this;
 		}
 		
-		private void detach_Board(Board entity)
+		private void detach_Task(Task entity)
 		{
 			this.SendPropertyChanging();
 			entity.Column = null;
@@ -846,11 +824,11 @@ namespace TrelloDBLayer
 		
 		private int _AssignedUserID;
 		
-		private EntitySet<User> _User;
+		private EntitySet<Checklist> _Checklist;
 		
-		private EntitySet<Column> _Column;
+		private EntityRef<User> _User;
 		
-		private EntityRef<Checklist> _Checklist;
+		private EntityRef<Column> _Column;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -870,13 +848,13 @@ namespace TrelloDBLayer
 		
 		public Task()
 		{
-			this._User = new EntitySet<User>(new Action<User>(this.attach_User), new Action<User>(this.detach_User));
-			this._Column = new EntitySet<Column>(new Action<Column>(this.attach_Column), new Action<Column>(this.detach_Column));
-			this._Checklist = default(EntityRef<Checklist>);
+			this._Checklist = new EntitySet<Checklist>(new Action<Checklist>(this.attach_Checklist), new Action<Checklist>(this.detach_Checklist));
+			this._User = default(EntityRef<User>);
+			this._Column = default(EntityRef<Column>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaskID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true)]
 		public int TaskID
 		{
 			get
@@ -887,10 +865,6 @@ namespace TrelloDBLayer
 			{
 				if ((this._TaskID != value))
 				{
-					if (this._Checklist.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnTaskIDChanging(value);
 					this.SendPropertyChanging();
 					this._TaskID = value;
@@ -911,6 +885,10 @@ namespace TrelloDBLayer
 			{
 				if ((this._ColumnID != value))
 				{
+					if (this._Column.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnColumnIDChanging(value);
 					this.SendPropertyChanging();
 					this._ColumnID = value;
@@ -971,6 +949,10 @@ namespace TrelloDBLayer
 			{
 				if ((this._AssignedUserID != value))
 				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnAssignedUserIDChanging(value);
 					this.SendPropertyChanging();
 					this._AssignedUserID = value;
@@ -980,62 +962,83 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_User", Storage="_User", ThisKey="AssignedUserID", OtherKey="UserID")]
-		public EntitySet<User> User
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_Checklist", Storage="_Checklist", ThisKey="TaskID", OtherKey="TaskID")]
+		public EntitySet<Checklist> Checklist
 		{
 			get
 			{
-				return this._User;
+				return this._Checklist;
 			}
 			set
 			{
-				this._User.Assign(value);
+				this._Checklist.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_Column", Storage="_Column", ThisKey="ColumnID", OtherKey="ColumnID")]
-		public EntitySet<Column> Column
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Task", Storage="_User", ThisKey="AssignedUserID", OtherKey="UserID", IsForeignKey=true)]
+		public User User
 		{
 			get
 			{
-				return this._Column;
+				return this._User.Entity;
 			}
 			set
 			{
-				this._Column.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Checklist_Task", Storage="_Checklist", ThisKey="TaskID", OtherKey="TaskID", IsForeignKey=true)]
-		public Checklist Checklist
-		{
-			get
-			{
-				return this._Checklist.Entity;
-			}
-			set
-			{
-				Checklist previousValue = this._Checklist.Entity;
+				User previousValue = this._User.Entity;
 				if (((previousValue != value) 
-							|| (this._Checklist.HasLoadedOrAssignedValue == false)))
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Checklist.Entity = null;
+						this._User.Entity = null;
 						previousValue.Task.Remove(this);
 					}
-					this._Checklist.Entity = value;
+					this._User.Entity = value;
 					if ((value != null))
 					{
 						value.Task.Add(this);
-						this._TaskID = value.TaskID;
+						this._AssignedUserID = value.UserID;
 					}
 					else
 					{
-						this._TaskID = default(int);
+						this._AssignedUserID = default(int);
 					}
-					this.SendPropertyChanged("Checklist");
+					this.SendPropertyChanged("User");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Column_Task", Storage="_Column", ThisKey="ColumnID", OtherKey="ColumnID", IsForeignKey=true)]
+		public Column Column
+		{
+			get
+			{
+				return this._Column.Entity;
+			}
+			set
+			{
+				Column previousValue = this._Column.Entity;
+				if (((previousValue != value) 
+							|| (this._Column.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Column.Entity = null;
+						previousValue.Task.Remove(this);
+					}
+					this._Column.Entity = value;
+					if ((value != null))
+					{
+						value.Task.Add(this);
+						this._ColumnID = value.ColumnID;
+					}
+					else
+					{
+						this._ColumnID = default(int);
+					}
+					this.SendPropertyChanged("Column");
 				}
 			}
 		}
@@ -1060,25 +1063,13 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		private void attach_User(User entity)
+		private void attach_Checklist(Checklist entity)
 		{
 			this.SendPropertyChanging();
 			entity.Task = this;
 		}
 		
-		private void detach_User(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = null;
-		}
-		
-		private void attach_Column(Column entity)
-		{
-			this.SendPropertyChanging();
-			entity.Task = this;
-		}
-		
-		private void detach_Column(Column entity)
+		private void detach_Checklist(Checklist entity)
 		{
 			this.SendPropertyChanging();
 			entity.Task = null;
@@ -1099,7 +1090,7 @@ namespace TrelloDBLayer
 		
 		private bool _IsCompleted;
 		
-		private EntitySet<Task> _Task;
+		private EntityRef<Task> _Task;
 		
     #region Определения метода расширяемости
     partial void OnLoaded();
@@ -1117,11 +1108,11 @@ namespace TrelloDBLayer
 		
 		public Checklist()
 		{
-			this._Task = new EntitySet<Task>(new Action<Task>(this.attach_Task), new Action<Task>(this.detach_Task));
+			this._Task = default(EntityRef<Task>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChecklistID", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChecklistID", AutoSync=AutoSync.OnInsert, IsPrimaryKey=true)]
 		public int ChecklistID
 		{
 			get
@@ -1152,6 +1143,10 @@ namespace TrelloDBLayer
 			{
 				if ((this._TaskID != value))
 				{
+					if (this._Task.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnTaskIDChanging(value);
 					this.SendPropertyChanging();
 					this._TaskID = value;
@@ -1201,16 +1196,37 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Checklist_Task", Storage="_Task", ThisKey="TaskID", OtherKey="TaskID")]
-		public EntitySet<Task> Task
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Task_Checklist", Storage="_Task", ThisKey="TaskID", OtherKey="TaskID", IsForeignKey=true)]
+		public Task Task
 		{
 			get
 			{
-				return this._Task;
+				return this._Task.Entity;
 			}
 			set
 			{
-				this._Task.Assign(value);
+				Task previousValue = this._Task.Entity;
+				if (((previousValue != value) 
+							|| (this._Task.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Task.Entity = null;
+						previousValue.Checklist.Remove(this);
+					}
+					this._Task.Entity = value;
+					if ((value != null))
+					{
+						value.Checklist.Add(this);
+						this._TaskID = value.TaskID;
+					}
+					else
+					{
+						this._TaskID = default(int);
+					}
+					this.SendPropertyChanged("Task");
+				}
 			}
 		}
 		
@@ -1232,18 +1248,6 @@ namespace TrelloDBLayer
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Task(Task entity)
-		{
-			this.SendPropertyChanging();
-			entity.Checklist = this;
-		}
-		
-		private void detach_Task(Task entity)
-		{
-			this.SendPropertyChanging();
-			entity.Checklist = null;
 		}
 	}
 }

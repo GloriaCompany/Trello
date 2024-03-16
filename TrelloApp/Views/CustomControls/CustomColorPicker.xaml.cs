@@ -17,13 +17,13 @@ namespace TrelloApp.Views.CustomControls
 
         private void ColorButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Picker.Visibility == Visibility.Visible)
+            if (colorPickerPopup.IsOpen)
             {
-                Picker.Visibility = Visibility.Collapsed;
+                colorPickerPopup.IsOpen = false;
             }
             else
             {
-                Picker.Visibility = Visibility.Visible;
+                colorPickerPopup.IsOpen = true;
             }
         }
 

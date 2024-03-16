@@ -20,71 +20,71 @@
         <elementListCompartment Id="4e7b8f68-c538-4216-a490-cb783360f800" absoluteBounds="5.64, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="06556f03-45ea-43dc-bea3-3de48273861e" absoluteBounds="3.125, 2.5, 2, 1.3862939453125">
+    <classShape Id="06556f03-45ea-43dc-bea3-3de48273861e" absoluteBounds="3.125, 2.875, 2, 1.3862939453125">
       <DataClassMoniker Name="/TrelloDataClassesDataContext/BoardMember" />
       <nestedChildShapes>
-        <elementListCompartment Id="558a6659-e22a-4582-bf22-f7bf2c17c30a" absoluteBounds="3.14, 2.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="558a6659-e22a-4582-bf22-f7bf2c17c30a" absoluteBounds="3.14, 3.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2d53ba58-a091-43fe-8156-bd44baa06db3" absoluteBounds="5.625, 2.5, 2, 1.7708968098958326">
+    <classShape Id="2d53ba58-a091-43fe-8156-bd44baa06db3" absoluteBounds="5.625, 2.875, 2, 1.7708968098958326">
       <DataClassMoniker Name="/TrelloDataClassesDataContext/Task" />
       <nestedChildShapes>
-        <elementListCompartment Id="198c2e13-2e64-42e1-be7b-0847aae541f1" absoluteBounds="5.64, 2.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="198c2e13-2e64-42e1-be7b-0847aae541f1" absoluteBounds="5.64, 3.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1e1bba75-7d6a-418b-a4df-92e912627438" absoluteBounds="0.5, 2.875, 2, 1.5785953776041666">
+    <classShape Id="1e1bba75-7d6a-418b-a4df-92e912627438" absoluteBounds="0.5, 3.125, 2, 1.5785953776041666">
       <DataClassMoniker Name="/TrelloDataClassesDataContext/Checklist" />
       <nestedChildShapes>
-        <elementListCompartment Id="7e5439b9-c9bf-4281-8c37-ed7295175bab" absoluteBounds="0.5149999999999999, 3.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7e5439b9-c9bf-4281-8c37-ed7295175bab" absoluteBounds="0.5149999999999999, 3.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.125 : 2.5); (2.82824226107883 : 2.39121896852009 : JumpStart); (2.67175773892117 : 2.3338572033549 : JumpEnd); (2.5 : 2.27089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TrelloDataClassesDataContext/BoardMember/BoardMember_User" />
+    <associationConnector edgePoints="[(2.5 : 1.19314697265625); (3.125 : 1.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TrelloDataClassesDataContext/User/User_Board" />
       <nodes>
+        <classShapeMoniker Id="0a25931a-7c48-4b53-b2c7-d9a2a85fe4b5" />
+        <classShapeMoniker Id="3489d8b0-820c-4731-9aac-1b2fbb6ddc2d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 2.27089680989583); (3.125 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TrelloDataClassesDataContext/User/User_BoardMember" />
+      <nodes>
+        <classShapeMoniker Id="0a25931a-7c48-4b53-b2c7-d9a2a85fe4b5" />
         <classShapeMoniker Id="06556f03-45ea-43dc-bea3-3de48273861e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 1.73202189127604); (2.875 : 1.73202189127604); (2.875 : 2.3021467344587); (4.07291916666667 : 2.3021467344587 : JumpStart); (4.23958583333333 : 2.3021467344587 : JumpEnd); (5.19791646953672 : 2.3021467344587); (5.19791646953672 : 2.68595842237137); (6.625 : 2.68595842237137); (6.625 : 2.875)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TrelloDataClassesDataContext/User/User_Task" />
+      <nodes>
         <classShapeMoniker Id="0a25931a-7c48-4b53-b2c7-d9a2a85fe4b5" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.125 : 1.19314697265625); (2.5 : 1.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TrelloDataClassesDataContext/Board/Board_User" />
-      <nodes>
-        <classShapeMoniker Id="3489d8b0-820c-4731-9aac-1b2fbb6ddc2d" />
-        <classShapeMoniker Id="0a25931a-7c48-4b53-b2c7-d9a2a85fe4b5" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.625 : 1.19314697265625); (5.125 : 1.19314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/TrelloDataClassesDataContext/Column/Column_Board" />
-      <nodes>
-        <classShapeMoniker Id="452cfa13-8cf4-4b8b-9025-216c659b3ac1" />
-        <classShapeMoniker Id="3489d8b0-820c-4731-9aac-1b2fbb6ddc2d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(6.625 : 2.5); (6.625 : 2.27089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/TrelloDataClassesDataContext/Task/Task_Column" />
-      <nodes>
         <classShapeMoniker Id="2d53ba58-a091-43fe-8156-bd44baa06db3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 1.19314697265625); (5.625 : 1.19314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TrelloDataClassesDataContext/Board/Board_Column" />
+      <nodes>
+        <classShapeMoniker Id="3489d8b0-820c-4731-9aac-1b2fbb6ddc2d" />
         <classShapeMoniker Id="452cfa13-8cf4-4b8b-9025-216c659b3ac1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.625 : 3.38544840494792); (5.375 : 3.38544840494792); (5.375 : 2.25); (4.23958583333333 : 2.25 : JumpStart); (4.07291916666667 : 2.25 : JumpEnd); (2.75 : 2.25); (2.75 : 2.625); (1.468748 : 2.625); (1.468748 : 2.27089680989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/TrelloDataClassesDataContext/Task/Task_User" />
+    <associationConnector edgePoints="[(7.1875 : 2.27089680989583); (7.1875 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TrelloDataClassesDataContext/Column/Column_Task" />
       <nodes>
+        <classShapeMoniker Id="452cfa13-8cf4-4b8b-9025-216c659b3ac1" />
         <classShapeMoniker Id="2d53ba58-a091-43fe-8156-bd44baa06db3" />
-        <classShapeMoniker Id="0a25931a-7c48-4b53-b2c7-d9a2a85fe4b5" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.5 : 4.10984537760417); (5.625 : 4.10984537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TrelloDataClassesDataContext/Checklist/Checklist_Task" />
+    <associationConnector edgePoints="[(5.625 : 4.48484537760417); (2.5 : 4.48484537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TrelloDataClassesDataContext/Task/Task_Checklist" />
       <nodes>
+        <classShapeMoniker Id="2d53ba58-a091-43fe-8156-bd44baa06db3" />
         <classShapeMoniker Id="1e1bba75-7d6a-418b-a4df-92e912627438" />
-        <classShapeMoniker Id="2d53ba58-a091-43fe-8156-bd44baa06db3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.1562525 : 2.5); (4.1562525 : 1.8862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TrelloDataClassesDataContext/BoardMember/BoardMember_Board" />
+    <associationConnector edgePoints="[(4.1562525 : 1.8862939453125); (4.1562525 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TrelloDataClassesDataContext/Board/Board_BoardMember" />
       <nodes>
-        <classShapeMoniker Id="06556f03-45ea-43dc-bea3-3de48273861e" />
         <classShapeMoniker Id="3489d8b0-820c-4731-9aac-1b2fbb6ddc2d" />
+        <classShapeMoniker Id="06556f03-45ea-43dc-bea3-3de48273861e" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
