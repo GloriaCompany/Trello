@@ -357,5 +357,8 @@
   <ItemGroup>
     <Resource Include="Resources\eye.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\move-column.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -103,6 +103,14 @@
                         </Style>
                     </Button.Style>
                 </Button>
+                <customControls:ChangesButton
+                    ImageSource="/TrelloApp;component/Resources/move-column.png"
+                    Grid.Row="4"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Width="20"
+                    Margin="5,5,15,5"
+                    />
             </Grid>
         </Border>
     </Border>

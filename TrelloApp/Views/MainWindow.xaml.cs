@@ -11,5 +11,10 @@ namespace TrelloApp
         {
             InitializeComponent();
         }
+
+        private void TeamUsersListBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            UsersPopup.IsOpen = !UsersPopup.IsOpen;
+        }
     }
 }
