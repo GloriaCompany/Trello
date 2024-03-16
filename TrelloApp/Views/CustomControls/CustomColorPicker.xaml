@@ -52,8 +52,14 @@
                            />
             </Grid>
         </Button>
-        <Popup x:Name="colorPickerPopup" Panel.ZIndex="10" PlacementTarget="{Binding ElementName=colorButton}" Placement="Bottom" StaysOpen="False">
-            <Border BorderBrush="White" Background="#1d2125" BorderThickness="1">
+        <Popup x:Name="colorPickerPopup" 
+               Panel.ZIndex="10" 
+               PlacementTarget="{Binding ElementName=colorButton}" 
+               Placement="Bottom" 
+               StaysOpen="False">
+            <Border BorderBrush="White" 
+                    Background="#1d2125" 
+                    BorderThickness="1">
                 <colorPicker:StandardColorPicker 
                     Width="190" 
                     Height="370" 

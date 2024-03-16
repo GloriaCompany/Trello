@@ -48,11 +48,11 @@
                 Height="35">
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
-                    ImageSource="/TrelloApp;component/Resources/sun.png">
+                        ImageSource="/TrelloApp;component/Resources/sun.png">
                         Світла
                     </customControls:CustomComboBoxItem>
                     <customControls:CustomComboBoxItem 
-                    ImageSource="/TrelloApp;component/Resources/moon.png">
+                        ImageSource="/TrelloApp;component/Resources/moon.png">
                         Темна
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
@@ -62,11 +62,11 @@
                 Height="35">
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
-                    ImageSource="/TrelloApp;component/Resources/ua.png">
+                        ImageSource="/TrelloApp;component/Resources/ua.png">
                         Українська
                     </customControls:CustomComboBoxItem>
                     <customControls:CustomComboBoxItem 
-                    ImageSource="/TrelloApp;component/Resources/en.png">
+                        ImageSource="/TrelloApp;component/Resources/en.png">
                         English
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>

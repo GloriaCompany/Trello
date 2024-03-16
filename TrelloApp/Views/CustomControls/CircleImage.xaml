@@ -20,8 +20,12 @@
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
-        <Popup x:Name="popup" PlacementTarget="{Binding ElementName=border}" StaysOpen="False">
-            <ItemsControl ItemsSource="{Binding Buttons}" Background="#1d2125" Width="100">
+        <Popup x:Name="popup" 
+               PlacementTarget="{Binding ElementName=border}" 
+               StaysOpen="False">
+            <ItemsControl ItemsSource="{Binding Buttons}" 
+                          Background="#1d2125" 
+                          Width="100">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <customControls:CustomButton Content="{Binding}" />

@@ -162,7 +162,7 @@
                         HorizontalAlignment="Right"
                         Margin="-17.5,0,0,0"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
-                    <!-- Пример, как должен выглядеть попап
+                    <!-- Пример, как должен выглядеть попап для списка юзеров комманды
                     <Popup x:Name="UsersPopup" IsOpen="False" StaysOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=PlusButton}">
                         <Border BorderBrush="White" BorderThickness="1">
                             <StackPanel Orientation="Vertical" Background="#1d2125" Width="195">
@@ -183,18 +183,45 @@
                             </StackPanel>
                         </Border>
                     </Popup>-->
-                    <Popup x:Name="UsersPopup" IsOpen="False" StaysOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=PlusButton}">
+                    <Popup x:Name="UsersPopup" 
+                           IsOpen="False" 
+                           StaysOpen="False" 
+                           Placement="Bottom" 
+                           PlacementTarget="{Binding ElementName=PlusButton}">
                         <Border BorderBrush="White" BorderThickness="1">
                             <ItemsControl ItemsSource="{Binding TeamUsers}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                            <customControls:CircleImage Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="30" Height="30" ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                                        <StackPanel x:Name="UserPanel" 
+                                                    Orientation="Horizontal" 
+                                                    VerticalAlignment="Center" 
+                                                    Background="Transparent">
+                                            <customControls:CircleImage Margin="5" 
+                                                                        VerticalAlignment="Center" 
+                                                                        HorizontalAlignment="Left" 
+                                                                        Width="30" 
+                                                                        Height="30" 
+                                                                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
                                             <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="2,0,0,0">
-                                                <TextBlock Text="Username" Foreground="White" FontSize="10" VerticalAlignment="Stretch"/>
-                                                <TextBlock Text="Job" Foreground="White" FontSize="10" VerticalAlignment="Stretch"/>
+                                                <TextBlock x:Name="UsernameText" 
+                                                           Text="Username" 
+                                                           Foreground="White" 
+                                                           FontSize="10" 
+                                                           VerticalAlignment="Stretch"/>
+                                                <TextBlock x:Name="JobText" 
+                                                           Text="Job" 
+                                                           Foreground="White" 
+                                                           FontSize="10" 
+                                                           VerticalAlignment="Stretch"/>
                                             </StackPanel>
                                         </StackPanel>
+                                        <DataTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="UsernameText" Property="Foreground" Value="#1d2125"/>
+                                                <Setter TargetName="JobText" Property="Foreground" Value="#1d2125"/>
+                                                <Setter TargetName="UserPanel" Property="Background" Value="#febd69"/>
+                                            </Trigger>
+                                        </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
