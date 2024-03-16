@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
@@ -30,19 +32,34 @@ namespace TrelloApp.ViewModels.UserVM
 
         public ICommand LoginCommand { get; set; }
 
+        private Visibility _createDatabaseButtonVisibility;
+        public Visibility CreateDatabaseButtonVisibility
+        {
+            get { return _createDatabaseButtonVisibility; }
+            set
+            {
+                _createDatabaseButtonVisibility = value;
+                OnPropertyChanged(nameof(CreateDatabaseButtonVisibility));
+            }
+        }
+
         public LoginViewModel()
         {
             _user = new UserModel();
+            _createDatabaseButtonVisibility = Visibility.Hidden;
             LoginCommand = new RelayCommand(Login, CanLogin);
         }
 
         private bool CanLogin()
         {
-            return
-                User != null &&
-                !string.IsNullOrEmpty(User.Username) &&
-                !string.IsNullOrEmpty(User.Password);
+            string adminLogin = ConfigurationManager.AppSettings["AdminLogin"];
+            string adminPassword = ConfigurationManager.AppSettings["AdminPassword"];
+
+            return User != null &&
+                   User.Username == adminLogin &&
+                   User.Password == adminPassword;
         }
+
         private void Login()
         {
             try
@@ -51,6 +68,7 @@ namespace TrelloApp.ViewModels.UserVM
 
                 if (existingUser != null && existingUser.Username == User.Username && existingUser.Password == User.Password)
                 {
+                    UserContext.SetCurrentUser(User);
                     SuccessfullyLoggedIn?.Invoke(this, EventArgs.Empty);
                 }
                 else
@@ -61,6 +79,18 @@ namespace TrelloApp.ViewModels.UserVM
             catch (Exception ex)
             {
                 MessageBox.Show($"Помилка: {ex.Message}");
+            }
+        }
+
+        private void InputTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (User.Username == "admin" && User.Password == "admin")
+            {
+                CreateDatabaseButtonVisibility = Visibility.Visible;
+            }
+            else
+            {
+                CreateDatabaseButtonVisibility = Visibility.Hidden;
             }
         }
     }
