@@ -42,7 +42,6 @@ namespace TrelloApp.Models
                 return _error;
             }
         }
-
         public string Error => _error;
         #endregion
 
