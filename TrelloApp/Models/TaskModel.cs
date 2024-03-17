@@ -20,10 +20,43 @@ namespace TrelloApp.Models
             CheckBoxes = checkBoxes;
         }
 
-        
-        public TaskModel()
+        #region Валідація
+        public string Error => null;
+
+        public string this[string columnName]
         {
-            CheckBoxes = new List<ChecklistModel>();
+            get
+            {
+                string error = null;
+
+                if (columnName == nameof(Title))
+                {
+                    if (string.IsNullOrWhiteSpace(Title))
+                        error = "Назва завдання є обов'язковою";
+                    else if (Title.Length > 100)
+                        error = "Максимальна довжина назви - 100 символів";
+                }
+                else if (columnName == nameof(Description))
+                {
+                    if (string.IsNullOrWhiteSpace(Description))
+                        error = "Опис завдання є обов'язковим";
+                    else if (Description.Length > 500)
+                        error = "Максимальна довжина опису - 500 символів";
+                }
+                else if (columnName == nameof(UserID))
+                {
+                    if (UserID <= 0)
+                        error = "Ідентифікатор користувача повинен бути більше 0";
+                }
+                else if (columnName == nameof(CheckBoxes))
+                {
+                    if (CheckBoxes == null || CheckBoxes.Count == 0)
+                        error = "Список чекбоксів не може бути порожнім";
+                }
+
+                return error;
+            }
         }
+        #endregion
     }
 }
