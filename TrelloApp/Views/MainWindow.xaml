@@ -42,17 +42,17 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <customControls:CustomComboBox>
+            <customControls:CustomComboBox SelectedIndex="1">
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/sun.png">
-                        Світла
+                        Light
                     </customControls:CustomComboBoxItem>
                     <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/moon.png">
-                        Темна
+                        Dark
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
-            <customControls:CustomComboBox>
+            <customControls:CustomComboBox SelectedIndex="1">
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
                         Українська

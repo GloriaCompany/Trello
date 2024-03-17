@@ -117,7 +117,7 @@
                                             BorderThickness="1" 
                                             BorderBrush="White"/>
                                     <ScrollViewer Background="{TemplateBinding Background}" 
-                                                  Margin="4,6,4,6" 
+                                                  Margin="5,5,0,5" 
                                                   SnapsToDevicePixels="True">
                                         <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
                                     </ScrollViewer>
