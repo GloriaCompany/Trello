@@ -161,22 +161,28 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type customControls:CustomComboBoxItem}">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="1" 
-                                CornerRadius="5"
-                                >
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="7"
+                                Margin="0,0,5,0">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding ImageSource, RelativeSource={RelativeSource TemplatedParent}}" 
-                                       Width="15" 
-                                       Height="15"
-                                       />
-                                <TextBlock Text="{TemplateBinding Content}" 
-                                           Margin="7.5,0,0,0" 
-                                           FontSize="10"
-                                           />
+                                <Image Source="{Binding ImageSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Width="15"
+                                    Height="15"/>
+                                <TextBlock Text="{TemplateBinding Content}"
+                                   Margin="7.5,0,0,0"
+                                   FontSize="10"/>
                             </StackPanel>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#febd69"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
