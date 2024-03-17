@@ -92,22 +92,31 @@
                 <Border Grid.Row="3" Background="White"/>
                 <Button Grid.Row="4" 
                         BorderBrush="Transparent"
+                        Foreground="White"
                         FontSize="14"
                         Background="#1d2125"
                         Content="+ Add Task"
                         Width="85"
-                        Height="25"
-                        >
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Foreground" Value="White"/>
-                            <Style.Triggers>
+                        Height="25">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter 
+                                    x:Name="contentPresenter"
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Setter TargetName="border" Property="Background" Value="#febd69"/>
+                                    <Setter TargetName="contentPresenter" Property="TextBlock.Foreground" Value="Black"/>
                                 </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
                 <customControls:ChangesButton
                     ImageSource="/TrelloApp;component/Resources/move-column.png"
