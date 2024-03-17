@@ -39,7 +39,8 @@
                         Height="50"
                         HorizontalAlignment="Center"
                         Margin="25,0,0,0"
-                        ImageSource="{Binding User.Avatar, Mode=TwoWay}"/>
+                        ImageSource="{Binding User.Avatar, Mode=TwoWay}"
+                        />
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
@@ -50,13 +51,16 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="1"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            >
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"
+                        />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"
+                        />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="2"
@@ -85,10 +89,12 @@
                             >
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"
+                        />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"
+                        />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="4"
@@ -100,7 +106,8 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Placeholder="Email"/>
+                        Placeholder="Email"
+                        />
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
@@ -133,18 +140,22 @@
                         Width="15"
                         Height="15"
                         Margin="5,0,0,0"
-                        ImageSource="/TrelloApp;component/Resources/edit.png"/>
+                        ImageSource="/TrelloApp;component/Resources/edit.png"
+                        />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="7"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            >
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"
+                        />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"
+                        />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="8"
@@ -165,17 +176,20 @@
                     Grid.Row="9"
                     Text="LOGOUT"
                     Height="30"
-                    Width="175"/>
+                    Width="175"
+                    />
                 <customControls:CustomButton
                     Grid.Row="10"
                     Text="DELETE ACCOUNT"
                     Height="30"
-                    Width="175"/>
+                    Width="175"
+                    />
                 <customControls:CustomButton
                     Grid.Row="11"
                     Text="LEAVE TEAM"
                     Height="30"
-                    Width="175"/>
+                    Width="175"
+                    />
             </Grid>
         </Border>
     </Grid>

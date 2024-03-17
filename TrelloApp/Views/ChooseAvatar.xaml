@@ -59,59 +59,70 @@
                         Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                        Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                        Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                         Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                        Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                         Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                        Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                         Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                        Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                     <customControls:CircleImage
                         Width="50"
                         Height="50"
                         Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                 </WrapPanel>
                 <customControls:CustomButton
                     Grid.Row="2"
                     Height="30"
                     Width="175"
                     Text="SUBMIT"
-                    Command="{Binding RegisterCommand}"/>
+                    Command="{Binding RegisterCommand}"
+                    />
             </Grid>
         </Border>
     </Grid>

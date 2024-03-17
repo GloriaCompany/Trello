@@ -9,16 +9,19 @@
     <Grid>
         <Button x:Name="colorButton" 
                 Click="ColorButton_Click"
-                Background="#1d2125">
+                Background="#1d2125"
+                >
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" 
                             Background="{TemplateBinding Background}" 
                             BorderBrush="White" 
                             BorderThickness="1" 
-                            CornerRadius="15">
+                            CornerRadius="15"
+                            >
                         <ContentPresenter HorizontalAlignment="Center" 
-                                          VerticalAlignment="Center" />
+                                          VerticalAlignment="Center" 
+                                          />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -59,13 +62,15 @@
                StaysOpen="False">
             <Border BorderBrush="White" 
                     Background="#1d2125" 
-                    BorderThickness="1">
+                    BorderThickness="1"
+                    >
                 <colorPicker:StandardColorPicker 
                     Width="190" 
                     Height="370" 
                     Margin="10"
                     Foreground="White"
-                    ColorChanged="Picker_ColorChanged"/>
+                    ColorChanged="Picker_ColorChanged"
+                    />
             </Border>
         </Popup>
     </Grid>

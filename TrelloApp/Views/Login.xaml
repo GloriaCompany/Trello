@@ -43,7 +43,8 @@
                HorizontalAlignment="Center" 
                VerticalAlignment="Center" 
                Foreground="White" 
-               FontSize="14"/>
+               FontSize="14"
+               />
         <customControls:CustomInput
             Grid.Row="2"
             Width="250"

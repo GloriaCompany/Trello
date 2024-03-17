@@ -33,23 +33,28 @@
                 Background="#99ccff">
             <Image Source="/TrelloApp;component/Resources/window-minimize.png" 
                    Width="20" 
-                   Height="20"/>
+                   Height="20"
+                   />
         </Button>
         <Button Grid.Column="1" 
                 Click="MaximizeButtonClick" 
                 Style="{StaticResource RoundButtonStyle}"
-                Background="#99ff99">
+                Background="#99ff99"
+                >
             <Image Source="/TrelloApp;component/Resources/window-maximize.png" 
                    Width="20" 
-                   Height="20"/>
+                   Height="20"
+                   />
         </Button>
         <Button Grid.Column="2" 
                 Click="CloseButtonClick" 
                 Style="{StaticResource RoundButtonStyle}" 
-                Background="#ff9999">
+                Background="#ff9999"
+                >
             <Image Source="/TrelloApp;component/Resources/window-close.png" 
                    Width="20" 
-                   Height="20"/>
+                   Height="20"
+                   />
         </Button>
     </Grid>
 </UserControl>

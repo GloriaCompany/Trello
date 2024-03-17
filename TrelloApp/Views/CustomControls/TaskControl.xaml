@@ -25,8 +25,12 @@
                 <Border Grid.Row="0" 
                         Background="SkyBlue"
                         CornerRadius="13.5,13.5,0,0"
-                        HorizontalAlignment="Stretch"/>
-                <Border Grid.Row="1" Background="White" Width="195"/>
+                        HorizontalAlignment="Stretch"
+                        />
+                <Border Grid.Row="1" 
+                        Background="White"
+                        Width="195"
+                        />
                 <TextBlock Text="Task Name" 
                            VerticalAlignment="Top" 
                            HorizontalAlignment="Left" 

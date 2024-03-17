@@ -10,7 +10,8 @@
         Background="Transparent"
         BorderBrush="White"
         BorderThickness="1"
-        CornerRadius="25">
+        CornerRadius="25"
+        >
         <Border
             Background="#1d2125"
             CornerRadius="25">
@@ -34,17 +35,20 @@
                            Foreground="White"
                            Background="Transparent"
                            HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center"
+                        />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/edit.png"
                         Width="17.5"
                         Height="17.5"
                         Margin="5,0,0,0"
                         Grid.Column="1"
-                        HorizontalAlignment="Center"/>
+                        HorizontalAlignment="Center"
+                        />
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
-                                HorizontalAlignment="Right">
+                                HorizontalAlignment="Right"
+                                >
                         <customControls:ChangesButton
                             ImageSource="/TrelloApp;component/Resources/submit.png"
                             Width="17.5"
@@ -77,7 +81,8 @@
                     </ListView.Template>
                     <StackPanel Orientation="Vertical"
                                 HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch">
+                                VerticalAlignment="Stretch"
+                                >
                         <customControls:TaskControl/>
                         <customControls:TaskControl/>
                         <customControls:TaskControl/>
@@ -91,7 +96,8 @@
                         Background="#1d2125"
                         Content="+ Add Task"
                         Width="85"
-                        Height="25">
+                        Height="25"
+                        >
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Foreground" Value="White"/>

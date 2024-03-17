@@ -40,21 +40,24 @@
                     Height="35"
                     ImageSource="/TrelloApp;component/Resources/plus.png"
                     HorizontalAlignment="Left"
-                    Margin="15,0,0,0"/>
+                    Margin="15,0,0,0"
+                    />
                 <customControls:ChangesButton
                     Grid.Row="2"
                     Width="20"
                     Height="20"
                     HorizontalAlignment="Left"
                     Margin="55,0,0,0"
-                    ImageSource="/TrelloApp;component/Resources/discard.png"/>
+                    ImageSource="/TrelloApp;component/Resources/discard.png"
+                    />
                 <customControls:ChangesButton
                     Grid.Row="2"
                     Width="20"
                     Height="20"
                     HorizontalAlignment="Left"
                     Margin="235,0,0,0"
-                    ImageSource="/TrelloApp;component/Resources/discard.png"/>
+                    ImageSource="/TrelloApp;component/Resources/discard.png"
+                    />
                 <customControls:CustomColorPicker
                     Width="125"
                     Height="35"
@@ -68,9 +71,11 @@
                              Background="Transparent"
                              Foreground="White"
                              BorderThickness="0"
-                             Margin="5">
+                             Margin="5"
+                             >
                     <FlowDocument MaxPageWidth="390"
-                                  MaxPageHeight="150">
+                                  MaxPageHeight="150"
+                                  >
                         <Paragraph FontSize="14"
                                    TextAlignment="Justify"
                                    >
@@ -82,20 +87,24 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="6"
                             Width="400"
-                            HorizontalAlignment="Center">
+                            HorizontalAlignment="Center"
+                            >
                     <customControls:CustomInput
                         Width="250"
                         Margin="5"
-                        Placeholder="Task Name"/>
+                        Placeholder="Task Name"
+                        />
                     <customControls:CustomButton
                         Width="130"
                         Margin="5"
-                        Text="ADD TASK"/>
+                        Text="ADD TASK"
+                        />
                 </StackPanel>
                 <ListView Grid.Row="7"
                           Background="#1d2125"
                           Padding="5"
-                          BorderThickness="0">
+                          BorderThickness="0"
+                          >
                     <ListView.Resources>
                         <Style TargetType="ScrollViewer">
                             <Setter Property="Template">
@@ -127,7 +136,8 @@
                                     Width="20"
                                     Height="20"
                                     HorizontalAlignment="Right"
-                                    ImageSource="/TrelloApp;component/Resources/discard.png"/>
+                                    ImageSource="/TrelloApp;component/Resources/discard.png"
+                                    />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -140,7 +150,8 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="9"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            >
                     <customControls:CustomButton
                         Width="130"
                         Height="30"

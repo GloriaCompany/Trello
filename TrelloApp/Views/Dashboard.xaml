@@ -42,7 +42,8 @@
                    Margin="10,0,0,0"
                    />
         <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right"
+                    >
             <customControls:CustomComboBox>
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
@@ -98,7 +99,8 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left" 
                         Grid.Column="1"
-                        Margin="10,0,0,0">
+                        Margin="10,0,0,0"
+                        >
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Foreground" Value="White"/>
@@ -116,7 +118,8 @@
                         Grid.Column="1"
                         HorizontalAlignment="Right"
                         Margin="-17.5,0,0,0"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
                 </Grid>
             </Border>
         </StackPanel>
@@ -124,74 +127,81 @@
             Grid.Row="1"
             Orientation="Horizontal"
             ItemWidth="200"
-            ItemHeight="200">
+            ItemHeight="200"
+            >
             <Border
-                    Style="{StaticResource HoverBorderStyle}"
-                    BorderBrush="White" 
-                    BorderThickness="1" 
-                    CornerRadius="25"
-                    Margin="10">
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="White" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
+                >
                 <customControls:CircleImage
                     Width="48"
                     Height="48"
                     HorizontalAlignment="Center"
-                    ImageSource="/TrelloApp;component/Resources/plus.png"/>
+                    ImageSource="/TrelloApp;component/Resources/plus.png"
+                    />
             </Border>
             <Border
-                    Style="{StaticResource HoverBorderStyle}"
-                    BorderBrush="White" 
-                    BorderThickness="1" 
-                    CornerRadius="25"
-                    Margin="10"
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="White" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
                 >
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Text="Board Name"
                     FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"/>
+                    Style="{StaticResource HoverTextBlockStyle}"
+                    />
             </Border>
             <Border
-                    Style="{StaticResource HoverBorderStyle}"
-                    BorderBrush="White" 
-                    BorderThickness="1" 
-                    CornerRadius="25"
-                    Margin="10"
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="White" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
                 >
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Text="Board Name"
                     FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"/>
+                    Style="{StaticResource HoverTextBlockStyle}"
+                    />
             </Border>
             <Border
-                    Style="{StaticResource HoverBorderStyle}"
-                    BorderBrush="White" 
-                    BorderThickness="1" 
-                    CornerRadius="25"
-                    Margin="10"
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="White" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
                 >
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Text="Board Name"
                     FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"/>
+                    Style="{StaticResource HoverTextBlockStyle}"
+                    />
             </Border>
             <Border
-                    Style="{StaticResource HoverBorderStyle}"
-                    BorderBrush="White" 
-                    BorderThickness="1" 
-                    CornerRadius="25"
-                    Margin="10"
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="White" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
                 >
                 <TextBlock
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Text="Board Name"
                     FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"/>
+                    Style="{StaticResource HoverTextBlockStyle}"
+                    />
             </Border>
         </WrapPanel>
     </Grid>
