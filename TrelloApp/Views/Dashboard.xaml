@@ -43,9 +43,7 @@
                    />
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <customControls:CustomComboBox
-                Width="115"
-                Height="35">
+            <customControls:CustomComboBox>
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
                         ImageSource="/TrelloApp;component/Resources/sun.png">
@@ -57,9 +55,7 @@
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
-            <customControls:CustomComboBox
-                Width="115"
-                Height="35">
+            <customControls:CustomComboBox>
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
                         ImageSource="/TrelloApp;component/Resources/ua.png">
@@ -76,7 +72,7 @@
                 BorderThickness="1" 
                 Grid.Column="1"
                 CornerRadius="18"
-                Width="165"
+                Width="205"
                 Height="35"
                 HorizontalAlignment="Right"
                 >

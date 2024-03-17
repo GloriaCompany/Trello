@@ -33,7 +33,9 @@
                         </StackPanel>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="CheckMark" 
+                                        Property="Visibility" 
+                                        Value="Visible"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -41,10 +43,9 @@
             </Setter>
         </Style>
 
-        <!--Custom Combo Box-->
         <Style TargetType="{x:Type customControls:CustomComboBox}">
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Background" Value="#1d2125"/>
+            <Setter Property="BorderBrush" Value="#1d2125"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -54,7 +55,7 @@
                                 BorderBrush="White" 
                                 BorderThickness="1" 
                                 CornerRadius="15"
-                                Width="115"
+                                Width="125"
                                 Height="35"
                                 HorizontalAlignment="Right"
                                 >
@@ -92,35 +93,73 @@
                                             </Grid>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="ToggleButton.IsChecked" Value="True">
-                                                    <Setter TargetName="Arrow" Property="Data" Value="M 0 4 L 4 0 L 8 4 Z"/>
+                                                    <Setter TargetName="Arrow" 
+                                                            Property="Data" 
+                                                            Value="M 0 4 L 4 0 L 8 4 Z"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
                                     </ToggleButton.Template>
                                 </ToggleButton>
                             </Border>
-                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
-                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}">
-                                    <Border x:Name="DropDownBorder" Background="White" BorderThickness="1" BorderBrush="Black"/>
-                                    <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
-                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                            <Popup Name="Popup" 
+                                   Placement="Bottom" 
+                                   IsOpen="{TemplateBinding IsDropDownOpen}" 
+                                   AllowsTransparency="True" 
+                                   Focusable="False" 
+                                   PopupAnimation="Slide">
+                                <Grid Name="DropDown" 
+                                      Background="{TemplateBinding Background}" 
+                                      SnapsToDevicePixels="True" 
+                                      MinWidth="{TemplateBinding ActualWidth}">
+                                    <Border x:Name="DropDownBorder" 
+                                            Background="{TemplateBinding Background}" 
+                                            BorderThickness="1" 
+                                            BorderBrush="White"/>
+                                    <ScrollViewer Background="{TemplateBinding Background}" 
+                                                  Margin="4,6,4,6" 
+                                                  SnapsToDevicePixels="True">
+                                        <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
                                     </ScrollViewer>
                                 </Grid>
                             </Popup>
+                            <StackPanel Orientation="Horizontal" 
+                                        Margin="10,0,0,0">
+                                <Image Source="{Binding SelectedItem.ImageSource, RelativeSource={RelativeSource TemplatedParent}}" 
+                                       Width="20" 
+                                       Height="20"/>
+                                <TextBlock Text="{Binding SelectedItem.Content, RelativeSource={RelativeSource TemplatedParent}}" 
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Left"
+                                           Margin="7.5,0,0,0" 
+                                           Foreground="White" 
+                                           FontSize="10"/>
+                            </StackPanel>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
+
         <Style TargetType="{x:Type customControls:CustomComboBoxItem}">
+            <Setter Property="Background" Value="#1d2125"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="3"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type customControls:CustomComboBoxItem}">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" CornerRadius="5">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="1" 
+                                CornerRadius="5">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding ImageSource, RelativeSource={RelativeSource TemplatedParent}}" Width="15" Height="15"/>
-                                <TextBlock Text="{TemplateBinding Content}" Margin="5,0,0,0" FontSize="10"/>
+                                <Image Source="{Binding ImageSource, RelativeSource={RelativeSource TemplatedParent}}" 
+                                       Width="15" 
+                                       Height="15"/>
+                                <TextBlock Text="{TemplateBinding Content}" 
+                                           Margin="7.5,0,0,0" 
+                                           FontSize="10"/>
                             </StackPanel>
                         </Border>
                     </ControlTemplate>
