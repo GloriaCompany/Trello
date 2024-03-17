@@ -1,29 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using TrelloDBLayer;
 
 namespace TrelloApp.Models
 {
     public class ColumnModel
     {
-
         public int ColumnID { get; set; }
+        public string ColumnName { get; set; }
+        public List<TaskModel> Tasks { get; set; }
 
-
-        private string _columnName;
-        public string ColumnName
+        public ColumnModel(int columnId, string columnname, List<TaskModel> tasks)
         {
-            get => _columnName;
-            set
+            ColumnID = columnId;
+            ColumnName = columnname;
+            Tasks = tasks;
+        }
+
+        #region Валідація
+        private string _error;
+
+        public string this[string columnName]
+        {
+            get
             {
-
-                if (string.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException("Назва стовпця не може бути порожньою або нульовою.");
-
-                _columnName = value;
+                _error = null;
+                if (columnName == nameof(ColumnName))
+                {
+                    if (string.IsNullOrWhiteSpace(ColumnName))
+                        _error = "Назва колонки є обов'язковою для заповнення";
+                }
+                return _error;
             }
         }
 
-
-        public List<TaskModel> Tasks { get; set; }
+        public string Error => _error;
+        #endregion
     }
 }
