@@ -118,9 +118,10 @@
                 </WrapPanel>
                 <customControls:CustomButton
                     Grid.Row="2"
-                    Height="30"
-                    Width="175"
+                    Height="35"
+                    Width="180"
                     Text="SUBMIT"
+                    VerticalAlignment="Top"
                     Command="{Binding RegisterCommand}"
                     />
             </Grid>

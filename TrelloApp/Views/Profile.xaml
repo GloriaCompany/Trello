@@ -5,19 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="Profile" Height="550" Width="450" Background="#1d2125">
+        Title="Profile" Height="580" Width="450" Background="#1d2125">
     <Grid>
         <Border 
                 BorderBrush="White" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Width="370"
-                Height="465"
+                Height="505"
                 Padding="5"
                 >
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="70"/>
                     <RowDefinition Height="15"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="15"/>
@@ -26,9 +26,9 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="15"/>
                     <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
-                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="55"/>
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
@@ -175,19 +175,19 @@
                 <customControls:CustomButton
                     Grid.Row="9"
                     Text="LOGOUT"
-                    Height="30"
+                    Height="35"
                     Width="175"
                     />
                 <customControls:CustomButton
                     Grid.Row="10"
                     Text="DELETE ACCOUNT"
-                    Height="30"
+                    Height="35"
                     Width="175"
                     />
                 <customControls:CustomButton
                     Grid.Row="11"
                     Text="LEAVE TEAM"
-                    Height="30"
+                    Height="35"
                     Width="175"
                     />
             </Grid>

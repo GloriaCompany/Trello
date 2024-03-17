@@ -12,20 +12,20 @@
                 BorderThickness="1" 
                 CornerRadius="25"
                 Width="400"
-                Height="400"
+                Height="425"
                 >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="1"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="150"/>
                     <RowDefinition Height="1"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="45"/>
                     <RowDefinition Height="80"/>
                     <RowDefinition Height="1"/>
-                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="55"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
                            Text="Task Name"
@@ -91,11 +91,13 @@
                             >
                     <customControls:CustomInput
                         Width="250"
+                        Height="35"
                         Margin="5"
                         Placeholder="Task Name"
                         />
                     <customControls:CustomButton
                         Width="130"
+                        Height="35"
                         Margin="5"
                         Text="ADD TASK"
                         />
@@ -154,13 +156,13 @@
                             >
                     <customControls:CustomButton
                         Width="130"
-                        Height="30"
+                        Height="35"
                         Margin="5"
                         Text="DELETE TASK"
                         />
                     <customControls:CustomButton
                         Width="130"
-                        Height="30"
+                        Height="35"
                         Margin="5"
                         Text="SAVE CHANGES"
                         />
