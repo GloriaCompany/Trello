@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace TrelloApp.Views.CustomControls
@@ -101,7 +102,8 @@ namespace TrelloApp.Views.CustomControls
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = PasswordBox.Password;
+            //StackOverflowException при биндинге на пароль пользователя
+            //Password = PasswordBox.Password;
         }
     }
 }
