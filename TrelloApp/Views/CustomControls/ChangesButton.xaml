@@ -1,20 +1,33 @@
 ﻿<Button x:Class="TrelloApp.Views.CustomControls.ChangesButton"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TrelloApp.Views.CustomControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="50"
-             VerticalAlignment="Stretch" 
-             HorizontalAlignment="Stretch"
-             Background="Transparent"
-             Foreground="White"
-             BorderThickness="0"
-             Padding="2">
-    <Image Source="{Binding ImageSource, 
-                    RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ChangesButton}}}"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Center"
-           />
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:TrelloApp.Views.CustomControls"
+        mc:Ignorable="d" 
+        d:DesignHeight="50" d:DesignWidth="50"
+        VerticalAlignment="Stretch" 
+        HorizontalAlignment="Stretch"
+        Background="Transparent"
+        Foreground="White"
+        BorderThickness="0"
+        Padding="2">
+    <Button.Template>
+        <ControlTemplate TargetType="{x:Type Button}">
+            <Image Source="{Binding ImageSource, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:ChangesButton}}}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Opacity" Value="1"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </ControlTemplate>
+    </Button.Template>
 </Button>

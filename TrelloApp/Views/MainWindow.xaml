@@ -139,15 +139,28 @@
                             ImageSource="/TrelloApp;component/Resources/plus.png"
                             />
                     </ListView>
-                    <customControls:ChangesButton
-                        Grid.Column="1"
+                    <Button
+                        BorderBrush="Transparent"
+                        FontSize="10"
+                        Content="+ 5"
                         Width="20"
                         Height="20"
-                        Content="+5"
-                        FontSize="10"
-                        x:Name="TeamUsersListBtn"
-                        Click="TeamUsersListBtn_Click"
-                        />
+                        Grid.Column="1"
+                        BorderThickness="0"
+                        Margin="5,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#1d2125"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="Background" Value="LightBlue"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                     <TextBlock 
                         Text="Name"
                         FontSize="10"
@@ -264,6 +277,7 @@
                    ItemWidth="207"
                    ItemHeight="Auto"
                    HorizontalAlignment="Center"
+                   Margin="0,7.5,0,0"
                    >
             <customControls:ColumnControl Margin="10"/>
             <customControls:ColumnControl Margin="10"/>

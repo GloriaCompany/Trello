@@ -73,7 +73,7 @@
                 BorderThickness="1" 
                 Grid.Column="1"
                 CornerRadius="18"
-                Width="205"
+                Width="215"
                 Height="35"
                 HorizontalAlignment="Right"
                 >
