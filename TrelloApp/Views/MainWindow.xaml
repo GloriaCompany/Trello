@@ -277,6 +277,7 @@
                    ItemWidth="207"
                    ItemHeight="Auto"
                    HorizontalAlignment="Center"
+                   Margin="0,7.5,0,0"
                    >
             <customControls:ColumnControl Margin="10"/>
             <customControls:ColumnControl Margin="10"/>
