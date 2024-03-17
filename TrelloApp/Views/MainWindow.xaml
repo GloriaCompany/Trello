@@ -261,7 +261,7 @@
             </Border>
         </StackPanel>
         <WrapPanel Grid.Row="1"
-                   ItemWidth="212"
+                   ItemWidth="207"
                    ItemHeight="Auto"
                    HorizontalAlignment="Center"
                    >
