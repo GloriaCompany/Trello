@@ -33,14 +33,24 @@
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Dashboard"
-                   Grid.Row="0"
-                   FontSize="14"
-                   Foreground="White"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   Margin="10,0,0,0"
-                   />
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Grid.Row="0">
+            <Image 
+                Source="/Resources/app_logo_night.png"
+                Width="75"
+                Height="20"
+                Grid.Row="0"
+                VerticalAlignment="Center"
+                Margin="10,0,10,0"
+                />
+            <TextBlock Text="Dashboard"
+                       Grid.Row="0"
+                       FontSize="14"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       />
+        </StackPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     >

@@ -51,12 +51,22 @@
                     ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                     />
                 <customControls:ChangesButton
+                    ImageSource="/TrelloApp;component/Resources/change_place.png"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Width="16"
+                    Margin="5,0,30,7.5"
+                    Click="ChangePlaceButton_Click"
+                    />
+                <customControls:ChangesButton
                     ImageSource="/TrelloApp;component/Resources/change-column.png"
                     Grid.Row="2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Width="17.5"
+                    Width="16"
                     Margin="5,0,7.5,7.5"
+                    Click="ChangeColumnButton_Click"
                     />
             </Grid>
         </Border>

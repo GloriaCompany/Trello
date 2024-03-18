@@ -347,8 +347,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\app-logo.ico" />
-    <Resource Include="Resources\logo-night.png" />
-    <Resource Include="Resources\logo-day.png" />
     <Resource Include="Resources\arrow.png" />
   </ItemGroup>
   <ItemGroup>
@@ -359,6 +357,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\move-column.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\app_logo_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\app_logo_night.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\change_place.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\move_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\move_left.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

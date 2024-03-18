@@ -20,12 +20,18 @@
         </viewModel:RegisterViewModel>
     </Page.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Image 
-            Source="/Resources/logo-night.png"
+            Source="/Resources/app_logo_night.png"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Width="80"
-            Height="80"
+            VerticalAlignment="Bottom"
+            Width="125"
+            Height="35"
+            Grid.Row="0"
+            Margin="15"
             />
         <Border 
                 BorderBrush="White" 
@@ -34,6 +40,9 @@
                 Width="450"
                 Height="375"
                 Padding="5"
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
                 >
             <Grid>
                 <Grid.RowDefinitions>
@@ -62,13 +71,7 @@
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                         />
                     <customControls:CircleImage
-                       Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                       Width="50"
+                        Width="50"
                         Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
@@ -80,7 +83,7 @@
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                         />
                     <customControls:CircleImage
-                       Width="50"
+                        Width="50"
                         Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
@@ -92,7 +95,7 @@
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                         />
                     <customControls:CircleImage
-                       Width="50"
+                        Width="50"
                         Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
@@ -104,7 +107,13 @@
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                         />
                     <customControls:CircleImage
-                       Width="50"
+                        Width="50"
+                        Height="50"
+                        Margin="5"
+                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        />
+                    <customControls:CircleImage
+                        Width="50"
                         Height="50"
                         Margin="5"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"

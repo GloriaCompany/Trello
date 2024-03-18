@@ -73,6 +73,26 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap app_logo_day {
+            get {
+                object obj = ResourceManager.GetObject("app_logo_day", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap app_logo_night {
+            get {
+                object obj = ResourceManager.GetObject("app_logo_night", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap arrow {
             get {
                 object obj = ResourceManager.GetObject("arrow", resourceCulture);
@@ -86,6 +106,16 @@ namespace TrelloApp.Views.ResourcesTrello {
         public static System.Drawing.Bitmap change_column {
             get {
                 object obj = ResourceManager.GetObject("change_column", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap change_place {
+            get {
+                object obj = ResourceManager.GetObject("change_place", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,26 +163,6 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap logo_day {
-            get {
-                object obj = ResourceManager.GetObject("logo_day", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap logo_night {
-            get {
-                object obj = ResourceManager.GetObject("logo_night", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap moon {
             get {
                 object obj = ResourceManager.GetObject("moon", resourceCulture);
@@ -166,6 +176,26 @@ namespace TrelloApp.Views.ResourcesTrello {
         public static System.Drawing.Bitmap move_column {
             get {
                 object obj = ResourceManager.GetObject("move_column", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap move_left {
+            get {
+                object obj = ResourceManager.GetObject("move_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap move_right {
+            get {
+                object obj = ResourceManager.GetObject("move_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

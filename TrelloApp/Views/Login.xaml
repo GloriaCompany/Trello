@@ -30,13 +30,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Image 
-            Source="/Resources/logo-night.png"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Width="80"
-            Height="80"
-            Grid.Row="0"
-            />
+               Source="/Resources/app_logo_night.png"
+               Width="75"
+               Height="20"
+               Grid.Row="0"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               />
         <Label Content="Авторизація / Login" 
                Grid.Row="1" 
                Grid.Column="0" 
