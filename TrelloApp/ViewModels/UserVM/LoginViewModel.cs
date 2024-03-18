@@ -81,17 +81,5 @@ namespace TrelloApp.ViewModels.UserVM
                 MessageBox.Show($"Помилка: {ex.Message}");
             }
         }
-
-        private void InputTextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (User.Username == "admin" && User.Password == "admin")
-            {
-                CreateDatabaseButtonVisibility = Visibility.Visible;
-            }
-            else
-            {
-                CreateDatabaseButtonVisibility = Visibility.Hidden;
-            }
-        }
     }
 }
