@@ -285,6 +285,7 @@
         <ScrollViewer Grid.Row="1"
                       HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Hidden"
+                      Margin="0,12.5,0,0"
                       >
               <WrapPanel Grid.Row="1"
                    ItemWidth="207"
