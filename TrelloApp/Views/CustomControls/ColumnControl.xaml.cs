@@ -29,8 +29,8 @@ namespace TrelloApp.Views.CustomControls
         {
             foreach (var taskControl in GetTaskControls())
             {
-                taskControl.ChangePlaceClicked += TaskControl_ChangePlaceClicked;
-                taskControl.ChangeColumnClicked += TaskControl_ChangeColumnClicked;
+                taskControl.ChangePlaceClicked += TaskControl_ChangePlaceClicked; // Подія зміни місця
+                taskControl.ChangeColumnClicked += TaskControl_ChangeColumnClicked; // Подія зміни стовпця
             }
         }
 
@@ -38,6 +38,7 @@ namespace TrelloApp.Views.CustomControls
         {
             var taskControls = new List<TaskControl>();
 
+            // Отримання списку контролів задач
             foreach (var child in ContentStackPanel.Children)
             {
                 if (child is TaskControl taskControl)
@@ -53,41 +54,41 @@ namespace TrelloApp.Views.CustomControls
         {
             if (sender is TaskControl taskControl)
             {
-                MoveTaskControlInSameColumn(taskControl);
+                MoveTaskControlInSameColumn(taskControl); // Переміщення задачі в тому ж самому стовпці
             }
         }
 
         private void MoveTaskControlInSameColumn(TaskControl taskControl)
         {
-            // Определяем текущую колонку
+            // Визначення поточного стовпця
             ColumnControl currentColumn = this;
 
-            // Определяем родительский StackPanel
+            // Визначення батьківського StackPanel
             StackPanel parentPanel = FindParentStackPanel(taskControl);
 
-            // Находим индекс текущего TaskControl в StackPanel
+            // Отримання індексу поточного контролю задачі в StackPanel
             int currentIndex = parentPanel.Children.IndexOf(taskControl);
 
-            // Проверяем, не является ли текущий TaskControl последним в колонке
+            // Перевірка, чи поточний контроль задачі не є останнім у стовпці
             if (currentIndex < parentPanel.Children.Count - 1)
             {
-                // Находим следующий TaskControl
+                // Знаходження наступного контролю задачі
                 TaskControl nextTaskControl = parentPanel.Children[currentIndex + 1] as TaskControl;
 
-                // Удаляем TaskControl из текущего места
+                // Видалення поточного контролю задачі з поточного місця
                 parentPanel.Children.Remove(taskControl);
 
-                // Добавляем TaskControl после следующего TaskControl
+                // Додавання контролю задачі після наступного контролю задачі
                 parentPanel.Children.Insert(currentIndex + 1, taskControl);
             }
             else
             {
-                // Если TaskControl уже находится в конце колонки, перемещаем его в начало колонки
+                // Якщо контроль задачі вже знаходиться в кінці стовпця, перемістіть його на початок стовпця
 
-                // Удаляем TaskControl из текущего места
+                // Видалення поточного контролю задачі з поточного місця
                 parentPanel.Children.Remove(taskControl);
 
-                // Добавляем TaskControl в начало колонки
+                // Додавання контролю задачі на початок стовпця
                 parentPanel.Children.Insert(0, taskControl);
             }
         }
@@ -96,81 +97,81 @@ namespace TrelloApp.Views.CustomControls
         {
             if (sender is TaskControl taskControl)
             {
-                MoveTaskControlToNextColumn(taskControl);
+                MoveTaskControlToNextColumn(taskControl); // Переміщення задачі в наступний стовпець
             }
         }
 
         private void MoveTaskControlToNextColumn(TaskControl taskControl)
         {
-            // Определяем текущую колонку
+            // Визначення поточного стовпця
             ColumnControl currentColumn = this;
 
-            // Определяем родительский WrapPanel
+            // Визначення батьківського WrapPanel
             WrapPanel parentPanel = FindWrapPanel(this);
 
-            // Находим индекс текущего ColumnControl в WrapPanel
+            // Отримання індексу поточного ColumnControl в WrapPanel
             int currentIndex = parentPanel.Children.IndexOf(currentColumn);
 
-            // Проверяем, не является ли текущий ColumnControl последним перед кнопкой "Добавить колонку"
+            // Перевірка, чи поточний ColumnControl не є останнім перед кнопкою "Додати стовпець"
             if (currentIndex < parentPanel.Children.Count - 1)
             {
-                // Находим следующий ColumnControl
+                // Знаходження наступного ColumnControl
                 ColumnControl nextColumn = parentPanel.Children[currentIndex + 1] as ColumnControl;
 
-                // Удаляем TaskControl из текущей колонки
+                // Видалення задачі з поточного стовпця
                 ContentStackPanel.Children.Remove(taskControl);
 
-                // Добавляем TaskControl в следующую колонку
+                // Додавання задачі в наступний стовпець
                 nextColumn.ContentStackPanel.Children.Add(taskControl);
             }
         }
 
         private void MoveLeftButton_Click(object sender, RoutedEventArgs e)
         {
-            // Определяем текущую колонку
+            // Визначення поточного стовпця
             ColumnControl currentColumn = this;
 
-            // Определяем родительский WrapPanel
+            // Визначення батьківського WrapPanel
             WrapPanel parentPanel = FindWrapPanel(this);
 
-            // Находим индекс текущего ColumnControl в WrapPanel
+            // Отримання індексу поточного ColumnControl в WrapPanel
             int currentIndex = parentPanel.Children.IndexOf(currentColumn);
 
-            // Проверяем, не является ли текущая колонка первой
+            // Перевірка, чи поточний стовпець не є першим
             if (currentIndex > 0)
             {
-                // Находим предыдущую колонку
+                // Знаходження попереднього стовпця
                 ColumnControl previousColumn = parentPanel.Children[currentIndex - 1] as ColumnControl;
 
-                // Удаляем текущую колонку из WrapPanel
+                // Видалення поточного стовпця з WrapPanel
                 parentPanel.Children.Remove(currentColumn);
 
-                // Вставляем текущую колонку перед предыдущей
+                // Вставка поточного стовпця перед попереднім
                 parentPanel.Children.Insert(currentIndex - 1, currentColumn);
             }
         }
 
         private void MoveRightButton_Click(object sender, RoutedEventArgs e)
         {
-            // Определяем текущую колонку
+            // Визначення поточного стовпця
             ColumnControl currentColumn = this;
 
-            // Определяем родительский WrapPanel
+            // Визначення батьківського WrapPanel
             WrapPanel parentPanel = FindWrapPanel(this);
 
-            // Находим индекс текущего ColumnControl в WrapPanel
+            // Отримання індексу поточного ColumnControl в WrapPanel
             int currentIndex = parentPanel.Children.IndexOf(currentColumn);
 
-            // Проверяем, не является ли текущая колонка последней
+            // Перевірка, чи поточний стовпець не є останнім
             if (currentIndex < parentPanel.Children.Count - 1)
             {
-                // Находим следующую колонку
+                // Знаходження наступного стовпця
                 ColumnControl nextColumn = parentPanel.Children[currentIndex + 1] as ColumnControl;
 
-                // Удаляем текущую колонку из WrapPanel
+                // Видалення поточного стовпця з WrapPanel
                 parentPanel.Children.Remove(currentColumn);
 
-                // Вставляем текущую колонку после следующей
+                // Вставка поточного стовпця після наступного
                 parentPanel.Children.Insert(currentIndex + 1, currentColumn);
             }
         }
