@@ -23,7 +23,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" 
-                        Background="SkyBlue"
+                        Background="{Binding BorderBackground, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"
                         CornerRadius="13.5,13.5,0,0"
                         HorizontalAlignment="Stretch"
                         />

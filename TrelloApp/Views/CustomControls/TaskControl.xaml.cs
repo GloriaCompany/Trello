@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,6 +16,9 @@ namespace TrelloApp.Views.CustomControls
         public static readonly DependencyProperty TaskNameProperty =
             DependencyProperty.Register("TaskName", typeof(string), typeof(TaskControl), new PropertyMetadata("Task Name"));
 
+        public static readonly DependencyProperty BorderBackgroundProperty =
+            DependencyProperty.Register("BorderBackground", typeof(Brush), typeof(TaskControl), new PropertyMetadata(Brushes.Transparent));
+
         public string AssignedUserAvatar
         {
             get { return (string)GetValue(AssignedUserAvatarProperty); }
@@ -25,6 +29,12 @@ namespace TrelloApp.Views.CustomControls
         {
             get { return (string)GetValue(TaskNameProperty); }
             set { SetValue(TaskNameProperty, value); }
+        }
+
+        public Brush BorderBackground
+        {
+            get { return (Brush)GetValue(BorderBackgroundProperty); }
+            set { SetValue(BorderBackgroundProperty, value); }
         }
 
         public TaskControl()
