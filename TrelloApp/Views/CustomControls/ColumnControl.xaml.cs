@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using TrelloApp.Models;
 
 namespace TrelloApp.Views.CustomControls
 {
@@ -10,10 +12,28 @@ namespace TrelloApp.Views.CustomControls
         public static readonly DependencyProperty EditIconSourceProperty = DependencyProperty.Register(
             "EditIconSource", typeof(string), typeof(ColumnControl), new PropertyMetadata(default(string)));
 
+        public static readonly DependencyProperty TasksProperty =
+            DependencyProperty.Register("Tasks", typeof(ObservableCollection<TaskModel>), typeof(ColumnControl), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty ColumnNameProperty =
+            DependencyProperty.Register("ColumnName", typeof(string), typeof(ColumnControl), new PropertyMetadata("Column Name"));
+
         public string EditIconSource
         {
             get { return (string)GetValue(EditIconSourceProperty); }
             set { SetValue(EditIconSourceProperty, value); }
+        }
+
+        public ObservableCollection<TaskModel> Tasks
+        {
+            get { return (ObservableCollection<TaskModel>)GetValue(TasksProperty); }
+            set { SetValue(TasksProperty, value); }
+        }
+
+        public string ColumnName
+        {
+            get { return (string)GetValue(ColumnNameProperty); }
+            set { SetValue(ColumnNameProperty, value); }
         }
 
         public ColumnControl()

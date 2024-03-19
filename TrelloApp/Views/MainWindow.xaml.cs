@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using TrelloApp.Models;
 
 namespace TrelloApp
 {
@@ -7,9 +9,15 @@ namespace TrelloApp
     /// </summary>
     public partial class MainWindow : Page
     {
+        public ObservableCollection<TaskModel> ColumnTasks { get; set; }
+        public ObservableCollection<ColumnModel> Columns { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            Columns = new ObservableCollection<ColumnModel>();
+            ColumnTasks = new ObservableCollection<TaskModel>();
+            DataContext = this;
         }
 
         private void TeamUsersListBtn_Click(object sender, System.Windows.RoutedEventArgs e)

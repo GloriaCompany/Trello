@@ -3,9 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="clr-namespace:TrelloApp.Models"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
         Title="Trello - Board Name" Background="#1d2125">
+    <Page.Resources>
+        <DataTemplate x:Key="ColumnTemplate" DataType="{x:Type models:ColumnModel}">
+            <customControls:ColumnControl Margin="10"/>
+        </DataTemplate>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -283,36 +289,29 @@
             </Border>
         </StackPanel>
         <ScrollViewer Grid.Row="1"
-                      HorizontalScrollBarVisibility="Disabled"
-                      VerticalScrollBarVisibility="Hidden"
-                      Margin="0,12.5,0,0"
-                      >
-              <WrapPanel Grid.Row="1"
-                   ItemWidth="207"
-                   ItemHeight="Auto"
-                   HorizontalAlignment="Center"
-                   >
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-                    <customControls:ColumnControl Margin="10"/>
-            </WrapPanel>
+              HorizontalScrollBarVisibility="Disabled"
+              VerticalScrollBarVisibility="Hidden"
+              Margin="0,12.5,0,0">
+            <ItemsControl Grid.Row="1"
+                          ItemTemplate="{StaticResource ColumnTemplate}"
+                          ItemsSource="{Binding Columns}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel ItemWidth="207"
+                           ItemHeight="Auto"
+                           HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </ScrollViewer>
         <customControls:CustomButton
                 Text="+ Add Column"
                 Margin="10"
                 Height="35"
-            Width="200"
-            Grid.Row="3"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
+                Width="200"
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 />
     </Grid>
 </Page>

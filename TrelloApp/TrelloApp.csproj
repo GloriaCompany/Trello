@@ -51,6 +51,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -163,6 +164,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Assets.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ResourcesTrello\UserAvatars.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserAvatars.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\TaskDetails.xaml.cs">
       <DependentUpon>TaskDetails.xaml</DependentUpon>
     </Compile>
@@ -188,6 +194,10 @@
     <EmbeddedResource Include="Views\ResourcesTrello\Assets.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Assets.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ResourcesTrello\UserAvatars.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserAvatars.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -372,6 +382,72 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\move_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar19.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar20.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar03.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar04.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar06.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar07.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar08.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar09.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Avatar02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Avatar10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Avatar05.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

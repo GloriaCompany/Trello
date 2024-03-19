@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 
@@ -19,6 +22,17 @@ namespace TrelloApp.ViewModels.UserVM
             }
         }
 
+        private ObservableCollection<BitmapImage> _avatarImages;
+        public ObservableCollection<BitmapImage> AvatarImages
+        {
+            get { return _avatarImages; }
+            set
+            {
+                _avatarImages = value;
+                OnPropertyChanged(nameof(AvatarImages));
+            }
+        }
+
         private IUserRepository _userRepository;
         public IUserRepository UserRepository
         {
@@ -32,7 +46,46 @@ namespace TrelloApp.ViewModels.UserVM
         {
             _user = new UserModel();
             RegisterCommand = new RelayCommand(Register, CanRegister);
+            LoadAvatarImagesFromResources();
         }
+
+        private void LoadAvatarImagesFromResources()
+        {
+            // Получаем доступ к ресурсам
+            var resourceManager = TrelloApp.Views.ResourcesTrello.UserAvatars.ResourceManager;
+
+            AvatarImages = new ObservableCollection<BitmapImage>();
+
+            // Загружаем изображения аватарок
+            for (int i = 1; i <= 21; i++)
+            {
+                // Формируем имя ресурса
+                string resourceName = $"Avatar{i.ToString("D2")}"; // Форматируем номер аватара, чтобы получить его имя
+
+                // Получаем изображение из ресурсов
+                var bitmap = (System.Drawing.Bitmap)resourceManager.GetObject(resourceName);
+                if (bitmap != null)
+                {
+                    // Преобразуем Bitmap в BitmapImage
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
+                        memoryStream.Position = 0;
+
+                        var bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmapImage.StreamSource = memoryStream;
+                        bitmapImage.EndInit();
+
+                        // Добавляем BitmapImage в коллекцию
+                        AvatarImages.Add(bitmapImage);
+                    }
+                }
+            }
+        }
+
+
 
         private bool CanRegister()
         {

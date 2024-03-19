@@ -28,8 +28,8 @@
             Source="/Resources/app_logo_night.png"
             HorizontalAlignment="Center"
             VerticalAlignment="Bottom"
-            Width="125"
-            Height="35"
+            Width="75"
+            Height="20"
             Grid.Row="0"
             Margin="15"
             />
@@ -57,74 +57,32 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            />
-                <WrapPanel Orientation="Horizontal"
-                           Grid.Row="1"
-                           VerticalAlignment="Top"
-                           HorizontalAlignment="Stretch"
-                           Margin="15"
-                           Width="300"
-                           >
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                    <customControls:CircleImage
-                        Width="50"
-                        Height="50"
-                        Margin="5"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                        />
-                </WrapPanel>
+                <ScrollViewer Grid.Row="1"
+                              Margin="15"
+                              Width="300"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              >
+                    <ItemsControl ItemsSource="{Binding AvatarImages}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <customControls:CircleImage
+                                    Width="50"
+                                    Height="50"
+                                    Margin="5"
+                                    ImageSource="{Binding}"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Stretch"
+                                    />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
                 <customControls:CustomButton
                     Grid.Row="2"
                     Height="35"
