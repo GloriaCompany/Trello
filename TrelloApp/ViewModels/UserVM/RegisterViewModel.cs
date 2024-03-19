@@ -51,22 +51,22 @@ namespace TrelloApp.ViewModels.UserVM
 
         private void LoadAvatarImagesFromResources()
         {
-            // Получаем доступ к ресурсам
+            // Отримуємо доступ до ресурсів
             var resourceManager = TrelloApp.Views.ResourcesTrello.UserAvatars.ResourceManager;
 
             AvatarImages = new ObservableCollection<BitmapImage>();
 
-            // Загружаем изображения аватарок
+            // Завантажуємо зображення аватарок
             for (int i = 1; i <= 21; i++)
             {
-                // Формируем имя ресурса
-                string resourceName = $"Avatar{i.ToString("D2")}"; // Форматируем номер аватара, чтобы получить его имя
+                // Формуємо ім'я ресурсу
+                string resourceName = $"Avatar{i.ToString("D2")}"; // Форматуємо номер аватара, щоб отримати його ім'я
 
-                // Получаем изображение из ресурсов
+                // Отримуємо зображення з ресурсів
                 var bitmap = (System.Drawing.Bitmap)resourceManager.GetObject(resourceName);
                 if (bitmap != null)
                 {
-                    // Преобразуем Bitmap в BitmapImage
+                    // Перетворюємо Bitmap в BitmapImage
                     using (var memoryStream = new MemoryStream())
                     {
                         bitmap.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
@@ -78,14 +78,12 @@ namespace TrelloApp.ViewModels.UserVM
                         bitmapImage.StreamSource = memoryStream;
                         bitmapImage.EndInit();
 
-                        // Добавляем BitmapImage в коллекцию
+                        // Додаємо BitmapImage до колекції
                         AvatarImages.Add(bitmapImage);
                     }
                 }
             }
         }
-
-
 
         private bool CanRegister()
         {

@@ -72,14 +72,28 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <customControls:CircleImage
-                                    Width="50"
-                                    Height="50"
-                                    Margin="5"
-                                    ImageSource="{Binding}"
-                                    VerticalAlignment="Top"
-                                    HorizontalAlignment="Stretch"
-                                    />
+        Width="50"
+        Height="50"
+        Margin="5"
+        ImageSource="{Binding}"
+        VerticalAlignment="Top"
+        HorizontalAlignment="Stretch"
+        MouseLeftButtonDown="Avatar_MouseLeftButtonDown"
+        MouseLeftButtonUp="Avatar_MouseLeftButtonUp"
+        >
+                                    <customControls:CircleImage.Style>
+                                        <Style TargetType="customControls:CircleImage">
+                                            <Setter Property="Background" Value="Transparent"/>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#febd69"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </customControls:CircleImage.Style>
+                                </customControls:CircleImage>
                             </DataTemplate>
+
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
