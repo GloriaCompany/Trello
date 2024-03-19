@@ -196,6 +196,24 @@ namespace TrelloApp.Views.CustomControls
             }
         }
 
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            addTaskPopup.IsOpen = true;
+        }
+
+        private void AddConfirmedTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(TaskNameInput.Text))
+            {
+                // Додавання таску до колонки
+                addTaskPopup.IsOpen = false;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a task name.");
+            }
+        }
+
         private WrapPanel FindWrapPanel(FrameworkElement element)
         {
             if (element == null)
