@@ -4,21 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-        xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"  
-        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.UserVM"  
         mc:Ignorable="d"
         Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125">
-    <Page.DataContext>
-        <viewModel:RegisterViewModel>
-            <viewModel:RegisterViewModel.UserRepository>
-                <viewModel:UserRepository>
-                    <viewModel:UserRepository.DbContext>
-                        <viewModelBase:TrelloDataContext/>
-                    </viewModel:UserRepository.DbContext>
-                </viewModel:UserRepository>
-            </viewModel:RegisterViewModel.UserRepository>
-        </viewModel:RegisterViewModel>
-    </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -102,7 +89,7 @@
                     Width="180"
                     Text="SUBMIT"
                     VerticalAlignment="Top"
-                    Command="{Binding RegisterCommand}"
+                    Command="{Binding SelectAvatarCommand}"
                     />
             </Grid>
         </Border>

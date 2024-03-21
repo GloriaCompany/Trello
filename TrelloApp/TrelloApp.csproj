@@ -81,6 +81,7 @@
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserContext.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="ViewModels\Base\DelegateCommand.cs" />
     <Compile Include="ViewModels\Base\ITrelloDataClassesDataContext.cs" />
     <Compile Include="ViewModels\Base\TrelloDataContext.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
@@ -93,10 +94,14 @@
     <Compile Include="ViewModels\BoardVM\DashboardViewModel.cs" />
     <Compile Include="ViewModels\TaskVM\TaskRepository.cs" />
     <Compile Include="ViewModels\TaskVM\TaskViewModel.cs" />
+    <Compile Include="ViewModels\UserVM\ChooseAvatarViewModel.cs" />
     <Compile Include="ViewModels\UserVM\LoginViewModel.cs" />
     <Compile Include="ViewModels\UserVM\ProfileViewModel.cs" />
     <Compile Include="ViewModels\UserVM\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\FolderImageLoader.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\IImageLoader.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\ResourceImageLoader.cs" />
     <Compile Include="ViewModels\UserVM\UserRepository.cs" />
     <Compile Include="Views\ChooseAvatar.xaml.cs">
       <DependentUpon>ChooseAvatar.xaml</DependentUpon>
