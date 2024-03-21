@@ -6,6 +6,16 @@
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
         Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125">
+    <Page.Resources>
+        <Style TargetType="customControls:CircleImage">
+            <Setter Property="Background" Value="Transparent"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#febd69"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
@@ -67,18 +77,7 @@
                                     HorizontalAlignment="Stretch"
                                     MouseLeftButtonDown="Avatar_MouseLeftButtonDown"
                                     MouseLeftButtonUp="Avatar_MouseLeftButtonUp"
-                                    >
-                                    <customControls:CircleImage.Style>
-                                        <Style TargetType="customControls:CircleImage">
-                                            <Setter Property="Background" Value="Transparent"/>
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="#febd69"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </customControls:CircleImage.Style>
-                                </customControls:CircleImage>
+                                    />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
