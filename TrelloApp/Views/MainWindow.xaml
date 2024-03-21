@@ -152,6 +152,7 @@
                             Height="33"
                             Margin="-23,0,0,0"
                             ImageSource="/TrelloApp;component/Resources/plus.png"
+                            x:Name="AddMemberBtn"
                             />
                     </ListView>
                     <Button
@@ -305,7 +306,7 @@
             </ItemsControl>
         </ScrollViewer>
         <customControls:CustomButton
-                Text="+ Add Column"
+                Text="+ ADD COLUMN"
                 Margin="10"
                 Height="35"
                 Width="200"
@@ -313,5 +314,60 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 />
+        <customControls:CustomButton
+                Text="DELETE BOARD"
+                Margin="10"
+                Height="35"
+                Width="200"
+                Grid.Row="3"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                />
+        <Popup x:Name="AddMemberPopup" 
+               IsOpen="False" 
+               StaysOpen="False" 
+               Placement="Bottom" 
+               PlacementTarget="{Binding ElementName=PlusButton}"
+               >
+            <Border BorderBrush="White" 
+                    BorderThickness="1"
+                    >
+                <StackPanel Orientation="Vertical" 
+                            Background="#1d2125" 
+                            Width="195"
+                            >
+                    <customControls:CustomInput Width="185" 
+                                                Height="35" 
+                                                Placeholder="Search Users..." 
+                                                Margin="5"/>
+                    <Button Content="Add Task" 
+                            Width="80" 
+                            Height="30" 
+                            HorizontalAlignment="Center" 
+                            Margin="5"
+                            />
+                    <ItemsControl ItemsSource="{Binding TeamUsers}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <customControls:CircleImage 
+                                        Width="30" 
+                                        Height="30" 
+                                        ImageSource="{Binding AvatarPath}"
+                                        />
+                                    <TextBlock Text="{Binding Username}" Foreground="White" Margin="5"/>
+                                    <customControls:CircleImage
+                                        Width="33"
+                                        Height="33"
+                                        Margin="-23,0,0,0"
+                                        ImageSource="/TrelloApp;component/Resources/plus.png"
+                                        />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </Page>

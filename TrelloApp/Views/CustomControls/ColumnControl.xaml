@@ -137,23 +137,30 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        IsOpen="False"
-                       Grid.Row="5">
+                       Grid.Row="5"
+                       Margin="0,0,20,0">
                     <Border Background="#1d2125" 
                             BorderBrush="White" 
-                            BorderThickness="1" 
-                            CornerRadius="5" 
-                            Width="200" 
-                            Height="50">
-                        <StackPanel Margin="10">
+                            BorderThickness="1"
+                            Width="375" 
+                            Height="60">
+                        <StackPanel Margin="10"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
                             <customControls:CustomInput 
                                 Placeholder="Enter Task Name:" 
                                 x:Name="TaskNameInput"
                                 FontSize="14"
+                                Width="230"
+                                Height="35"
                                 />
                             <customControls:CustomButton
                                 Content="Add Task" 
-                                Click="AddConfirmedTaskButton_Click" 
-                                Margin="0 10 0 0"
+                                Click="AddConfirmedTaskButton_Click"
+                                Width="100"
+                                Margin="15,0,0,0"
+                                Height="35"
                                 />
                         </StackPanel>
                     </Border>

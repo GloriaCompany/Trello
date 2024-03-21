@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 
@@ -11,6 +13,9 @@ namespace TrelloApp.ViewModels.UserVM
 {
     public class RegisterViewModel : ViewModelBase
     {
+        private DispatcherTimer _timer;
+        private HashSet<string> _loadedImagePaths = new HashSet<string>();
+
         private UserModel _user;
         public UserModel User
         {
@@ -47,6 +52,48 @@ namespace TrelloApp.ViewModels.UserVM
             _user = new UserModel();
             RegisterCommand = new RelayCommand(Register, CanRegister);
             LoadAvatarImagesFromResources();
+            _timer = new DispatcherTimer()
+            {
+                Interval = TimeSpan.FromSeconds(5)
+            };
+            _timer.Interval = TimeSpan.FromSeconds(5);
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Перевіряємо наявність нових файлів у папці UserAvatars та додаємо їх до колекції AvatarImages
+            UpdateAvatars();
+        }
+
+        private void UpdateAvatars()
+        {
+            try
+            {
+                // Отримуємо шлях до папки UserAvatars
+                string projectDIrectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+                string avatarsFolderPath = Path.Combine(projectDIrectory, "UserAvatars");
+
+                // Отримуємо список файлів у папці UserAvatars
+                var files = Directory.GetFiles(avatarsFolderPath, "*.png"); // Можна використовувати інші розширення файлів
+
+                // Завантажуємо лише нові зображення та додаємо їх до колекції AvatarImages
+                foreach (var file in files)
+                {
+                    if (!_loadedImagePaths.Contains(file))
+                    {
+                        var bitmapImage = new BitmapImage(new Uri(file));
+                        AvatarImages.Add(bitmapImage);
+                        _loadedImagePaths.Add(file);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Обробка помилки під час завантаження зображень
+                MessageBox.Show($"Помилка завантаження зображень: {ex.Message}", "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LoadAvatarImagesFromResources()

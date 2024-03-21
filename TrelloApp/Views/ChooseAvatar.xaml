@@ -72,15 +72,15 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <customControls:CircleImage
-        Width="50"
-        Height="50"
-        Margin="5"
-        ImageSource="{Binding}"
-        VerticalAlignment="Top"
-        HorizontalAlignment="Stretch"
-        MouseLeftButtonDown="Avatar_MouseLeftButtonDown"
-        MouseLeftButtonUp="Avatar_MouseLeftButtonUp"
-        >
+                                    Width="50"
+                                    Height="50"
+                                    Margin="5"
+                                    ImageSource="{Binding}"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Stretch"
+                                    MouseLeftButtonDown="Avatar_MouseLeftButtonDown"
+                                    MouseLeftButtonUp="Avatar_MouseLeftButtonUp"
+                                    >
                                     <customControls:CircleImage.Style>
                                         <Style TargetType="customControls:CircleImage">
                                             <Setter Property="Background" Value="Transparent"/>
@@ -93,7 +93,6 @@
                                     </customControls:CircleImage.Style>
                                 </customControls:CircleImage>
                             </DataTemplate>
-
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
