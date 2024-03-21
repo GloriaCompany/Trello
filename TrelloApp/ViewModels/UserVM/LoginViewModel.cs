@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Configuration;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;

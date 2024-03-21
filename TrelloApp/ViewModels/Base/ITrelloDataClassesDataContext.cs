@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TrelloApp.Models;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.Base
@@ -12,26 +13,26 @@ namespace TrelloApp.ViewModels.Base
         IQueryable<Task> Tasks { get; }
         IQueryable<Checklist> Checklists { get; }
 
-        void AddUser(User user);
+        void AddUser(UserModel user);
         User GetUserByID(int userID);
-        void UpdateUser(User user);
+        void UpdateUser(UserModel user);
 
-        void AddBoard(Board board);
+        void AddBoard(BoardModel board);
         void DelBoard(int boardID);
-        void UpdateBoard(Board board);
+        void UpdateBoard(BoardModel board);
         List<Board> GetBoardsByUserID(int userID);
 
-        void AddColumn(Column column);
+        void AddColumn(ColumnModel column);
         void DelColumn(int columnID);
-        void UpdateColumn(Column column);
+        void UpdateColumn(ColumnModel column);
         List<Column> GetColumnsByBoardID(int boardID);
 
-        void AddTask(Task task);
+        void AddTask(TaskModel task);
         void DelTask(int taskID);
-        void UpdateTask(Task task);
+        void UpdateTask(TaskModel task);
         List<Task> GetTasksByColumnID(int columnID);
 
-        void AddChecklist(Checklist checklist);
+        void AddChecklist(ChecklistModel checklist);
         void DelChecklist(int checklistID);
         List<Checklist> GetChecklistsByTaskID(int taskID);
 

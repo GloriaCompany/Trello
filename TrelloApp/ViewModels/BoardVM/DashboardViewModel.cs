@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
@@ -23,8 +24,19 @@ namespace TrelloApp.ViewModels
             }
         }
 
-        private User _user;
-        public User User
+        private List<BoardModel> _boards;
+        public List<BoardModel> Boards
+        {
+            get { return _boards; }
+            set
+            {
+                _boards = value;
+                OnPropertyChanged(nameof(Boards));
+            }
+        }
+
+        private UserModel _user;
+        public UserModel User
         {
             get { return _user; }
             set
@@ -75,7 +87,7 @@ namespace TrelloApp.ViewModels
         {
             try
             {
-                User = _userRepository.GetUserByID(userID);
+                User = (UserModel)_userRepository.GetUserByID(userID);
             }
             catch (Exception ex)
             {
@@ -86,7 +98,7 @@ namespace TrelloApp.ViewModels
         private bool CanLoadBoards()
         {
             bool res =
-                Board != null;
+                Boards != null;
 
             ((RelayCommand)LoadBoardsCommand).RaiseCanExecuteChanged();
 
@@ -96,8 +108,13 @@ namespace TrelloApp.ViewModels
         {
             try
             {
-                //Board, BoardModel? Need Fix
-                List<Board> userBoards = _boardRepository.GetBoardsByUserID(userID);
+                List<Board> dbBoards = _boardRepository.GetBoardsByUserID(userID);
+                Boards = dbBoards.Select(dbBoard => new BoardModel
+                {
+                    BoardID = dbBoard.BoardID,
+                    Title = dbBoard.Title,
+                    AdminID = dbBoard.AdminID
+                }).ToList();
             }
             catch (Exception ex)
             {
@@ -118,8 +135,7 @@ namespace TrelloApp.ViewModels
         {
             try
             {
-                Board newBoard = new Board();
-                _boardRepository.AddBoard(newBoard);
+                _boardRepository.AddBoard(Board);
             }
             catch (Exception ex)
             {

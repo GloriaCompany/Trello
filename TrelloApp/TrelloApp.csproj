@@ -77,7 +77,6 @@
     <Compile Include="Models\BoardModel.cs" />
     <Compile Include="Models\ChecklistModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
-    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserContext.cs" />
     <Compile Include="Models\UserModel.cs" />

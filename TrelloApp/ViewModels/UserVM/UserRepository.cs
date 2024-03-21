@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
@@ -7,9 +8,9 @@ namespace TrelloApp.ViewModels.UserVM
 {
     public interface IUserRepository
     {
-        void AddUser(User user);
+        void AddUser(UserModel user);
         User GetUserByID(int userID);
-        void UpdateUser(User user);
+        void UpdateUser(UserModel user);
     }
 
     internal class UserRepository : IUserRepository
@@ -27,7 +28,7 @@ namespace TrelloApp.ViewModels.UserVM
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void AddUser(User user)
+        public void AddUser(UserModel user)
         {
             if (user == null)
             {
@@ -57,7 +58,7 @@ namespace TrelloApp.ViewModels.UserVM
             }
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UserModel user)
         {
             if (user == null)
             {

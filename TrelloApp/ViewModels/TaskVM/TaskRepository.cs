@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
@@ -7,9 +8,9 @@ namespace TrelloApp.ViewModels.TaskVM
 {
     public interface ITaskRepository
     {
-        void AddTask(Task task);
+        void AddTask(TaskModel task);
         void DelTask(int taskID);
-        void UpdateTask(Task task);
+        void UpdateTask(TaskModel task);
         List<Task> GetTasksByColumnID(int columnID);
     }
 
@@ -28,7 +29,7 @@ namespace TrelloApp.ViewModels.TaskVM
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void AddTask(Task task)
+        public void AddTask(TaskModel task)
         {
             if (task == null)
             {
@@ -48,7 +49,6 @@ namespace TrelloApp.ViewModels.TaskVM
 
         public void DelTask(int taskID)
         {
-            //Сделать isExist тут или в DataContext
             if (taskID < 0)
             {
                 throw new ArgumentNullException(nameof(taskID));
@@ -65,7 +65,7 @@ namespace TrelloApp.ViewModels.TaskVM
             }
         }
 
-        public void UpdateTask(Task task)
+        public void UpdateTask(TaskModel task)
         {
             if (task == null)
             {
