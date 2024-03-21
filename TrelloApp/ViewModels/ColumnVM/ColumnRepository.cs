@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
@@ -7,9 +8,9 @@ namespace TrelloApp.ViewModels.ColumnVM
 {
     public interface IColumnRepository
     {
-        void AddColumn(Column column);
+        void AddColumn(ColumnModel column);
         void DelColumn(int columnID);
-        void UpdateColumn(Column column);
+        void UpdateColumn(ColumnModel column);
         List<Column> GetColumnsByBoardID(int boardID);
     }
 
@@ -28,7 +29,7 @@ namespace TrelloApp.ViewModels.ColumnVM
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void AddColumn(Column column)
+        public void AddColumn(ColumnModel column)
         {
             if (column == null)
             {
@@ -48,7 +49,6 @@ namespace TrelloApp.ViewModels.ColumnVM
 
         public void DelColumn(int columnID)
         {
-            //Сделать isExist тут или в DataContext
             if (columnID < 0)
             {
                 throw new ArgumentNullException(nameof(columnID));
@@ -65,7 +65,7 @@ namespace TrelloApp.ViewModels.ColumnVM
             }
         }
 
-        public void UpdateColumn(Column column)
+        public void UpdateColumn(ColumnModel column)
         {
             if (column == null)
             {
@@ -85,7 +85,6 @@ namespace TrelloApp.ViewModels.ColumnVM
 
         public List<Column> GetColumnsByBoardID(int boardID)
         {
-            //Сделать isExist тут или в DataContext
             if (boardID < 0)
             {
                 throw new ArgumentNullException(nameof(boardID));

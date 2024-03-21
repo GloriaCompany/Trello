@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
@@ -13,8 +14,8 @@ namespace TrelloApp.ViewModels
 {
     public class BoardViewModel : ViewModelBase
     {
-        private User _user;
-        public User User
+        private UserModel _user;
+        public UserModel User
         {
             get { return _user; }
             set
@@ -35,14 +36,25 @@ namespace TrelloApp.ViewModels
             }
         }
 
-        private Column _column;
-        public Column Column
+        private ColumnModel _column;
+        public ColumnModel Column
         {
             get { return _column; }
             set
             {
                 _column = value;
                 OnPropertyChanged(nameof(Column));
+            }
+        }
+
+        private List<ColumnModel> _columns;
+        public List<ColumnModel> Columns
+        {
+            get { return _columns; }
+            set
+            {
+                _columns = value;
+                OnPropertyChanged(nameof(Columns));
             }
         }
 
@@ -74,10 +86,9 @@ namespace TrelloApp.ViewModels
         public ICommand DelColumnCommand { get; set; }
         public ICommand UpdateColumnCommand { get; set; }
 
-        public BoardViewModel(UserModel currentUser, BoardModel currentBoard)
+        public BoardViewModel(UserModel currentUser)
         {
             _user = currentUser;
-            _board = currentBoard;
             UpdateBoardCommand = new RelayCommand(UpdateBoard, CanUpdateBoard);
             LoadUserCommand = new RelayCommand(() => LoadUser(_user.UserID), CanLoadUser);
             LoadColumnsCommand = new RelayCommand(() => LoadColumns(_user.UserID), CanLoadColumns);
@@ -128,7 +139,7 @@ namespace TrelloApp.ViewModels
         {
             try
             {
-                User = _userRepository.GetUserByID(userID);
+                User = (UserModel)_userRepository.GetUserByID(userID);
             }
             catch (Exception ex)
             {
@@ -149,7 +160,14 @@ namespace TrelloApp.ViewModels
         {
             try
             {
-                List<Column> borderColumns = _columnRepository.GetColumnsByBoardID(boardID);
+                List<Column> dbColumns = _columnRepository.GetColumnsByBoardID(boardID);
+                Columns = dbColumns.Select(dbColumn => new ColumnModel
+                {
+                    ColumnID = dbColumn.ColumnID,
+                    Title = dbColumn.Title,
+                    OrderIndex = dbColumn.OrderIndex,
+                    Color = dbColumn.Color
+                }).ToList();
             }
             catch (Exception ex)
             {
@@ -162,7 +180,7 @@ namespace TrelloApp.ViewModels
             bool res =
                 Column != null;
 
-            ((RelayCommand)UpdateBoardCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)AddColumnCommand).RaiseCanExecuteChanged();
 
             return res;
         }
@@ -170,8 +188,7 @@ namespace TrelloApp.ViewModels
         {
             try
             {
-                Column newColumn = new Column();
-                _columnRepository.AddColumn(newColumn);
+                _columnRepository.AddColumn(Column);
             }
             catch (Exception ex)
             {
@@ -184,7 +201,7 @@ namespace TrelloApp.ViewModels
             bool res =
                 Column != null;
 
-            ((RelayCommand)UpdateBoardCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)DelColumnCommand).RaiseCanExecuteChanged();
 
             return res;
         }
@@ -205,7 +222,7 @@ namespace TrelloApp.ViewModels
             bool res =
                 Column != null;
 
-            ((RelayCommand)UpdateBoardCommand).RaiseCanExecuteChanged();
+            ((RelayCommand)UpdateColumnCommand).RaiseCanExecuteChanged();
 
             return res;
         }
@@ -213,7 +230,7 @@ namespace TrelloApp.ViewModels
         {
             try
             {
-                if (!CanUpdateBoard())
+                if (!CanUpdateColumn())
                 {
                     MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
                     return;
@@ -221,7 +238,7 @@ namespace TrelloApp.ViewModels
 
                 _columnRepository.UpdateColumn(Column);
 
-                MessageBox.Show("Дані дошки змінено.");
+                MessageBox.Show("Дані колонки змінено.");
             }
             catch (Exception ex)
             {

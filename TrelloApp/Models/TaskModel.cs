@@ -1,25 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel;
+using TrelloDBLayer;
 
 namespace TrelloApp.Models
 {
-    public class TaskModel
+    public class TaskModel : Task, IDataErrorInfo
     {
-        public int? TaskID { get; set; }
-        public int UserID { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public List<ChecklistModel> CheckBoxes { get; set; }
-
-        public TaskModel(int userId, string title, string description, List<ChecklistModel> checkBoxes)
-        {
-            UserID = userId;
-            Title = title;
-            Description = description;
-            CheckBoxes = checkBoxes;
-        }
-
-        #region Валідація
-        public string Error => null;
+        private string _error;
 
         public string this[string columnName]
         {
@@ -41,20 +27,10 @@ namespace TrelloApp.Models
                     else if (Description.Length > 500)
                         error = "Максимальна довжина опису - 500 символів";
                 }
-                else if (columnName == nameof(UserID))
-                {
-                    if (UserID <= 0)
-                        error = "Ідентифікатор користувача повинен бути більше 0";
-                }
-                else if (columnName == nameof(CheckBoxes))
-                {
-                    if (CheckBoxes == null || CheckBoxes.Count == 0)
-                        error = "Список чекбоксів не може бути порожнім";
-                }
 
                 return error;
             }
         }
-        #endregion
+        public string Error => _error;
     }
 }

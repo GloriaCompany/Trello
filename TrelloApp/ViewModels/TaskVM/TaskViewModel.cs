@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
+using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.CheckVM;
 using TrelloDBLayer;
@@ -11,8 +12,8 @@ namespace TrelloApp.ViewModels.TaskVM
 {
     public class TaskViewModel : ViewModelBase
     {
-        private Task _task;
-        public Task Task
+        private TaskModel _task;
+        public TaskModel Task
         {
             get { return _task; }
             set
@@ -22,14 +23,14 @@ namespace TrelloApp.ViewModels.TaskVM
             }
         }
 
-        private Checklist _checklist; //ChecklistModel
-        public Checklist Checklist
+        private List<ChecklistModel> _checklists;
+        public List<ChecklistModel> Checklists
         {
-            get { return _checklist; }
+            get { return _checklists; }
             set
             {
-                _checklist = value;
-                OnPropertyChanged(nameof(Checklist));
+                _checklists = value;
+                OnPropertyChanged(nameof(Checklists));
             }
         }
 
@@ -50,9 +51,8 @@ namespace TrelloApp.ViewModels.TaskVM
         public ICommand UpdateTaskCommand { get; set; }
         public ICommand LoadChecklistsCommand { get; set; }
 
-        public TaskViewModel(Task currentTask)
+        public TaskViewModel()
         {
-            _task = currentTask;
             UpdateTaskCommand = new RelayCommand(UpdateTask, CanUpdateTask);
             LoadChecklistsCommand = new RelayCommand(() => LoadChecklists(_task.TaskID), CanLoadChecklists);
         }
@@ -60,7 +60,7 @@ namespace TrelloApp.ViewModels.TaskVM
         private bool CanLoadChecklists()
         {
             bool res =
-                Checklist != null;
+                Checklists != null;
 
             ((RelayCommand)LoadChecklistsCommand).RaiseCanExecuteChanged();
 
@@ -70,7 +70,14 @@ namespace TrelloApp.ViewModels.TaskVM
         {
             try
             {
-                List<Checklist> taskChecklists = _checklistRepository.GetChecklistsByTaskID(taskID);
+                List<Checklist> dbChecklists = _checklistRepository.GetChecklistsByTaskID(taskID);
+                Checklists = dbChecklists.Select(dbChecklist => new ChecklistModel
+                {
+                    ChecklistID = dbChecklist.ChecklistID,
+                    IsCompleted = dbChecklist.IsCompleted,
+                    TaskID = dbChecklist.TaskID,
+                    TaskDescription = dbChecklist.TaskDescription
+                }).ToList();
             }
             catch (Exception ex)
             {
@@ -100,7 +107,7 @@ namespace TrelloApp.ViewModels.TaskVM
 
                 _taskRepository.UpdateTask(Task);
 
-                MessageBox.Show("Дані дошки змінено.");
+                MessageBox.Show("Дані таску змінено.");
             }
             catch (Exception ex)
             {

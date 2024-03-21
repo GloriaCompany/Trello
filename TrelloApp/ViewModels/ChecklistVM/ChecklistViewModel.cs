@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.CheckVM;
-using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.ChecklistVM
 {
     public class ChecklistViewModel : ViewModelBase
     {
-        private Checklist _checklist;
-        public Checklist Checklist
+        private ChecklistModel _checklist;
+        public ChecklistModel Checklist
         {
             get { return _checklist; }
             set
@@ -29,7 +29,7 @@ namespace TrelloApp.ViewModels.ChecklistVM
 
         public ICommand LoadChecksCommand { get; set; }
 
-        public ChecklistViewModel(Checklist currentChecklist)
+        public ChecklistViewModel(ChecklistModel currentChecklist)
         {
             _checklist = currentChecklist;
             LoadChecksCommand = new RelayCommand(() => LoadChecks(_checklist.ChecklistID), CanLoadChecks);
@@ -38,7 +38,6 @@ namespace TrelloApp.ViewModels.ChecklistVM
         private bool CanLoadChecks()
         {
             bool res = true;
-            // ?Check != null;
 
             ((RelayCommand)LoadChecksCommand).RaiseCanExecuteChanged();
 

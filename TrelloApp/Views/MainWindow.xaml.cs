@@ -1,8 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Input;
 using TrelloApp.Models;
-using TrelloApp.ViewModels;
 
 namespace TrelloApp
 {

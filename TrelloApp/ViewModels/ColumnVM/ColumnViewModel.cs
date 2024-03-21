@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
@@ -33,6 +34,17 @@ namespace TrelloApp.ViewModels.ColumnVM
             }
         }
 
+        private List<TaskModel> _tasks;
+        public List<TaskModel> Tasks
+        {
+            get { return _tasks; }
+            set
+            {
+                _tasks = value;
+                OnPropertyChanged(nameof(Tasks));
+            }
+        }
+
         private IColumnRepository _columnRepository;
         public IColumnRepository ColumnRepository
         {
@@ -48,11 +60,16 @@ namespace TrelloApp.ViewModels.ColumnVM
         }
 
         public ICommand LoadTasksCommand { get; set; }
+        public ICommand AddTaskCommand { get; set; }
+        public ICommand DelTaskCommand { get; set; }
+        public ICommand UpdateTaskCommand { get; set; }
 
-        public ColumnViewModel(ColumnModel currentColumn)
+        public ColumnViewModel()
         {
-            _column = currentColumn;
-            LoadTasksCommand = new RelayCommand(() => LoadTasks(_column.ColumnID), CanLoadTasks);
+            LoadTasksCommand = new RelayCommand(() => LoadTasks(Column.ColumnID), CanLoadTasks);
+            AddTaskCommand = new RelayCommand(AddTask, CanAddTask);
+            DelTaskCommand = new RelayCommand(() => DelTask(Task.TaskID), CanDelTask);
+            UpdateTaskCommand = new RelayCommand(UpdateTask, CanUpdateTask);
         }
 
         private bool CanLoadTasks()
@@ -68,7 +85,85 @@ namespace TrelloApp.ViewModels.ColumnVM
         {
             try
             {
-                List<Task> columnTasks = _taskRepository.GetTasksByColumnID(columnID);
+                List<Task> dbTasks = _taskRepository.GetTasksByColumnID(columnID);
+                Tasks = dbTasks.Select(dbTask => new TaskModel
+                {
+                    TaskID = dbTask.TaskID,
+                    Title = dbTask.Title,
+                    Description = dbTask.Description,
+                    AssignedUserID = dbTask.AssignedUserID
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool CanAddTask()
+        {
+            bool res =
+                Column != null;
+
+            ((RelayCommand)AddTaskCommand).RaiseCanExecuteChanged();
+
+            return res;
+        }
+
+        private void AddTask()
+        {
+            try
+            {
+                _taskRepository.AddTask(Task);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private bool CanDelTask()
+        {
+            bool res =
+                Task != null;
+
+            ((RelayCommand)DelTaskCommand).RaiseCanExecuteChanged();
+
+            return res;
+        }
+        private void DelTask(int taskID)
+        {
+            try
+            {
+                _taskRepository.DelTask(taskID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private bool CanUpdateTask()
+        {
+            bool res =
+                Task != null;
+
+            ((RelayCommand)UpdateTaskCommand).RaiseCanExecuteChanged();
+
+            return res;
+        }
+        private void UpdateTask()
+        {
+            try
+            {
+                if (!CanUpdateTask())
+                {
+                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
+                    return;
+                }
+
+                _taskRepository.UpdateTask(Task);
+
+                MessageBox.Show("Дані таску змінено.");
             }
             catch (Exception ex)
             {

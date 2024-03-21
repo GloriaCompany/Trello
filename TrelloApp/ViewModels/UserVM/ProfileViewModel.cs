@@ -3,14 +3,13 @@ using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
-using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.UserVM
 {
     public class ProfileViewModel : ViewModelBase
     {
-        private User _user;
-        public User User
+        private UserModel _user;
+        public UserModel User
         {
             get { return _user; }
             set
@@ -30,11 +29,10 @@ namespace TrelloApp.ViewModels.UserVM
         public ICommand LoadUserCommand { get; set; }
         public ICommand ProfileUpdateCommand { get; set; }
 
-        public ProfileViewModel(UserModel currentUser)
+        public ProfileViewModel()
         {
-            _user = currentUser;
-            ProfileUpdateCommand = new RelayCommand(() => LoadUser(_user.UserID), CanLoadUser);
-            ProfileUpdateCommand = new RelayCommand(UpdateProfile, CanUpdateProfile);
+            ProfileUpdateCommand = new RelayCommand(() => LoadUser(User.UserID), CanLoadUser);
+            ProfileUpdateCommand = new RelayCommand(UpdateUser, CanUpdateUser);
         }
 
         private bool CanLoadUser()
@@ -50,7 +48,7 @@ namespace TrelloApp.ViewModels.UserVM
         {
             try
             {
-                User = _userRepository.GetUserByID(userID);
+                User = (UserModel)_userRepository.GetUserByID(userID);
             }
             catch (Exception ex)
             {
@@ -58,7 +56,7 @@ namespace TrelloApp.ViewModels.UserVM
             }
         }
 
-        private bool CanUpdateProfile()
+        private bool CanUpdateUser()
         {
             bool res =
                 !string.IsNullOrEmpty(User.Username) ||
@@ -70,11 +68,11 @@ namespace TrelloApp.ViewModels.UserVM
 
             return res;
         }
-        private void UpdateProfile()
+        private void UpdateUser()
         {
             try
             {
-                if (!CanUpdateProfile())
+                if (!CanUpdateUser())
                 {
                     MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
                     return;
