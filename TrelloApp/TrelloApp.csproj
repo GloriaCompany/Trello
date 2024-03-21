@@ -293,17 +293,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ResourcesTrello\Languages\EN.xaml">
+    <Page Include="Views\ResourcesTrello\Languages\English.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ResourcesTrello\Languages\UA.xaml">
+    <Page Include="Views\ResourcesTrello\Languages\Українська.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ResourcesTrello\Themes\DarkThene.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\ResourcesTrello\Themes\DarkTheme.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ResourcesTrello\Themes\LightTheme.xaml">
       <Generator>MSBuild:Compile</Generator>

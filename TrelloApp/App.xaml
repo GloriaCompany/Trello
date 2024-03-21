@@ -4,8 +4,16 @@
              xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              StartupUri="Views\Navigator.xaml">
     <Application.Resources>
-        <!--Custom Check Box-->
-        <Style TargetType="{x:Type customControls:CustomCheckBox}">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/ResourcesTrello/Themes/LightTheme.xaml"/>
+                <ResourceDictionary Source="/Views/ResourcesTrello/Themes/DarkTheme.xaml"/>
+                <ResourceDictionary Source="/Views/ResourcesTrello/Languages/English.xaml"/>
+                <ResourceDictionary Source="/Views/ResourcesTrello/Languages/Українська.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--Custom Check Box-->
+            <Style TargetType="{x:Type customControls:CustomCheckBox}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type customControls:CustomCheckBox}">
@@ -46,8 +54,8 @@
             </Setter>
         </Style>
 
-        <!--Custom Combo Box-->
-        <Style TargetType="{x:Type customControls:CustomComboBox}">
+            <!--Custom Combo Box-->
+            <Style TargetType="{x:Type customControls:CustomComboBox}">
             <Setter Property="Background" Value="#1d2125"/>
             <Setter Property="BorderBrush" Value="#1d2125"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -154,7 +162,7 @@
             </Setter>
         </Style>
 
-        <Style TargetType="{x:Type customControls:CustomComboBoxItem}">
+            <Style TargetType="{x:Type customControls:CustomComboBoxItem}">
             <Setter Property="Background" Value="#1d2125"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="3"/>
@@ -187,5 +195,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -6,7 +6,7 @@
         xmlns:models="clr-namespace:TrelloApp.Models"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="Trello - Board Name" Background="#1d2125">
+        Background="{DynamicResource ThemeMainColor}">
     <Page.Resources>
         <DataTemplate x:Key="ColumnTemplate" DataType="{x:Type models:ColumnModel}">
             <customControls:ColumnControl Margin="10"/>
@@ -62,7 +62,10 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <customControls:CustomComboBox SelectedIndex="1">
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="ThemesComboBox"
+                                           SelectionChanged="ThemesComboBox_SelectionChanged"
+                                           >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/sun.png">
                         Light
@@ -72,7 +75,10 @@
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
-            <customControls:CustomComboBox SelectedIndex="1">
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="LanguagesComboBox"
+                                           SelectionChanged="LanguagesComboBox_SelectionChanged"
+                                           >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
                         Українська
@@ -315,7 +321,7 @@
                 VerticalAlignment="Center"
                 />
         <customControls:CustomButton
-                Text="DELETE BOARD"
+                Text="{DynamicResource DeleteBoardButtonString}"
                 Margin="10"
                 Height="35"
                 Width="200"
