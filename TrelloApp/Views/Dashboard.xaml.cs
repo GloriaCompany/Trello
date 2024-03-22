@@ -68,7 +68,9 @@ namespace TrelloApp.Views
             var resources = Application.Current.Resources;
 
             // Задаємо завантаження ресурсів в залежності від обраного елемента
-            if (selectedItem != null && selectedItem.Content.ToString() == "Light")
+            if (selectedItem != null 
+                && selectedItem.Content.ToString() == "Light"
+                || selectedItem.Content.ToString() == "Світла")
             {
                 // Завантажуємо світлу тему
                 resources.MergedDictionaries.Add(new ResourceDictionary
@@ -77,7 +79,9 @@ namespace TrelloApp.Views
                     UriKind.Relative)
                 });
             }
-            else if (selectedItem != null && selectedItem.Content.ToString() == "Dark")
+            else if (selectedItem != null 
+                  && selectedItem.Content.ToString() == "Dark"
+                  || selectedItem.Content.ToString() == "Темна")
             {
                 // Завантажуємо темну тему
                 resources.MergedDictionaries.Add(new ResourceDictionary
