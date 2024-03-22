@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Trello"
-        Source="/Views/Dashboard.xaml"
+        Source="/Views/Login.xaml"
         Icon="/TrelloApp;component/Resources/app-logo.ico"
         Background="#1d2125"
         WindowStartupLocation="CenterScreen"
