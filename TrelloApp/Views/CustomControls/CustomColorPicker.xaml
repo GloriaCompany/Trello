@@ -9,13 +9,13 @@
     <Grid>
         <Button x:Name="colorButton" 
                 Click="ColorButton_Click"
-                Background="#1d2125"
+                Background="{DynamicResource ThemeMainColor}"
                 >
             <Button.Template>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border" 
                             Background="{TemplateBinding Background}" 
-                            BorderBrush="White" 
+                            BorderBrush="{DynamicResource ThemeBorderColor}" 
                             BorderThickness="1" 
                             CornerRadius="15"
                             >
@@ -25,11 +25,15 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#febd69"/>
-                            <Setter Property="Foreground" Value="#1d2125"/>
+                            <Setter TargetName="border" 
+                                    Property="Background" 
+                                    Value="{DynamicResource ThemeHoverColor}"/>
+                            <Setter Property="Foreground" 
+                                    Value="{DynamicResource ThemeHoverTextColor}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="False">
-                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="Foreground" 
+                                    Value="{DynamicResource ThemeTextColor}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -51,7 +55,7 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            TextAlignment="Center"
-                           Foreground="White"
+                           Foreground="{DynamicResource ThemeTextColor}"
                            />
             </Grid>
         </Button>
@@ -60,15 +64,15 @@
                PlacementTarget="{Binding ElementName=colorButton}" 
                Placement="Bottom" 
                StaysOpen="False">
-            <Border BorderBrush="White" 
-                    Background="#1d2125" 
+            <Border BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    Background="{DynamicResource ThemeMainColor}" 
                     BorderThickness="1"
                     >
                 <colorPicker:StandardColorPicker 
                     Width="190" 
                     Height="370" 
                     Margin="10"
-                    Foreground="White"
+                    Foreground="{DynamicResource ThemeTextColor}"
                     ColorChanged="Picker_ColorChanged"
                     />
             </Border>

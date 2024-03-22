@@ -27,7 +27,7 @@
                     Height="35"
                     >
             <Image 
-                Source="/Resources/app_logo_night.png"
+                Source="{DynamicResource LogoPath}"
                 Width="75"
                 Height="20"
                 Grid.Row="0"
@@ -37,7 +37,7 @@
             <customControls:CustomInput
                 Width="185"
                 Height="35"
-                Placeholder="Board Name"
+                Placeholder="{DynamicResource BoardNameInputPlaceholderString}"
                 />
             <customControls:ChangesButton
                 Width="17.5"
@@ -67,11 +67,13 @@
                                            SelectionChanged="ThemesComboBox_SelectionChanged"
                                            >
                 <customControls:CustomComboBox.Items>
-                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/sun.png">
-                        Light
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
                     </customControls:CustomComboBoxItem>
-                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/moon.png">
-                        Dark
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
@@ -89,7 +91,7 @@
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
             <Border 
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 Grid.Column="1"
                 CornerRadius="18"
@@ -102,7 +104,7 @@
                         <Setter Property="Background" Value="Transparent"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#febd69"/>
+                                <Setter Property="Background" Value="{DynamicResource ThemeHoverColor}"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -172,11 +174,11 @@
                         Margin="5,0,0,0">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="Background" Value="#1d2125"/>
+                                <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
+                                <Setter Property="Background" Value="{DynamicResource ThemeMainColor}"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource ThemeHoverTextColor}"/>
                                         <Setter Property="Background" Value="LightBlue"/>
                                     </Trigger>
                                 </Style.Triggers>
@@ -193,10 +195,10 @@
                         >
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
-                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource ThemeHoverTextColor}"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -237,7 +239,9 @@
                            Placement="Bottom" 
                            PlacementTarget="{Binding ElementName=PlusButton}"
                            >
-                        <Border BorderBrush="White" BorderThickness="1">
+                        <Border BorderBrush="{DynamicResource ThemeBorderColor}" 
+                                BorderThickness="1"
+                                >
                             <ItemsControl ItemsSource="{Binding TeamUsers}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -259,13 +263,13 @@
                                                         >
                                                 <TextBlock x:Name="UsernameText" 
                                                            Text="Username" 
-                                                           Foreground="White" 
+                                                           Foreground="{DynamicResource ThemeTextColor}" 
                                                            FontSize="10" 
                                                            VerticalAlignment="Stretch"
                                                            />
                                                 <TextBlock x:Name="JobText" 
                                                            Text="Job" 
-                                                           Foreground="White" 
+                                                           Foreground="{DynamicResource ThemeTextColor}" 
                                                            FontSize="10" 
                                                            VerticalAlignment="Stretch"
                                                            />
@@ -275,15 +279,15 @@
                                             <Trigger Property="IsMouseOver" Value="True">
                                                 <Setter TargetName="UsernameText" 
                                                         Property="Foreground" 
-                                                        Value="#1d2125"
+                                                        Value="{DynamicResource ThemeMainColor}"
                                                         />
                                                 <Setter TargetName="JobText" 
                                                         Property="Foreground" 
-                                                        Value="#1d2125"
+                                                        Value="{DynamicResource ThemeMainColor}"
                                                         />
                                                 <Setter TargetName="UserPanel" 
                                                         Property="Background" 
-                                                        Value="#febd69"
+                                                        Value="{DynamicResource ThemeHoverColor}"
                                                         />
                                             </Trigger>
                                         </DataTemplate.Triggers>
@@ -312,7 +316,8 @@
             </ItemsControl>
         </ScrollViewer>
         <customControls:CustomButton
-                Text="+ ADD COLUMN"
+                Text="{DynamicResource AddColumnBtnString}"
+                Foreground="{DynamicResource ThemeTextColor}"
                 Margin="10"
                 Height="35"
                 Width="200"
@@ -322,6 +327,7 @@
                 />
         <customControls:CustomButton
                 Text="{DynamicResource DeleteBoardButtonString}"
+                Foreground="{DynamicResource ThemeTextColor}"
                 Margin="10"
                 Height="35"
                 Width="200"
@@ -335,18 +341,18 @@
                Placement="Bottom" 
                PlacementTarget="{Binding ElementName=PlusButton}"
                >
-            <Border BorderBrush="White" 
+            <Border BorderBrush="{DynamicResource ThemeBorderColor}" 
                     BorderThickness="1"
                     >
                 <StackPanel Orientation="Vertical" 
-                            Background="#1d2125" 
+                            Background="{DynamicResource ThemeMainColor}" 
                             Width="195"
                             >
                     <customControls:CustomInput Width="185" 
                                                 Height="35" 
-                                                Placeholder="Search Users..." 
+                                                Placeholder="{DynamicResource SearchUsersInputPlaceholderString}" 
                                                 Margin="5"/>
-                    <Button Content="Add Task" 
+                    <Button Content="{DynamicResource AddTaskPopupBtnString}" 
                             Width="80" 
                             Height="30" 
                             HorizontalAlignment="Center" 
@@ -361,7 +367,10 @@
                                         Height="30" 
                                         ImageSource="{Binding AvatarPath}"
                                         />
-                                    <TextBlock Text="{Binding Username}" Foreground="White" Margin="5"/>
+                                    <TextBlock Text="{Binding Username}" 
+                                               Foreground="{DynamicResource ThemeTextColor}" 
+                                               Margin="5"
+                                               />
                                     <customControls:CircleImage
                                         Width="33"
                                         Height="33"

@@ -1,6 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
     <SolidColorBrush x:Key="ThemeMainColor">#ffffff</SolidColorBrush>
     <SolidColorBrush x:Key="ThemeHoverColor">#febd69</SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeHoverTextColor">#000000</SolidColorBrush>
     <SolidColorBrush x:Key="ThemeTextColor">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeBorderColor">#1e1e1f</SolidColorBrush>
+
+    <ImageSource x:Key="LogoPath">/TrelloApp;component/Resources/app_logo_day.png</ImageSource>
 </ResourceDictionary>

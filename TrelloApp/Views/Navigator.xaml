@@ -7,7 +7,7 @@
         Title="Trello"
         Source="/Views/MainWindow.xaml"
         Icon="/TrelloApp;component/Resources/app-logo.ico"
-        Background="#1d2125"
+        Background="{DynamicResource ThemeMainColor}"
         WindowStartupLocation="CenterScreen"
         MinWidth="1000"
         MinHeight="727.5">

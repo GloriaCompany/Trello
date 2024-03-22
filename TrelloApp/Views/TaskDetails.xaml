@@ -5,10 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"  
         mc:Ignorable="d"
-        Title="TaskDetails" Height="500" Width="600" Background="#1d2125">
+        Title="TaskDetails"
+        Background="{DynamicResource ThemeMainColor}">
     <Grid>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top">
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="ThemesComboBox"
+                                           SelectionChanged="ThemesComboBox_SelectionChanged"
+                                           >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="LanguagesComboBox"
+                                           SelectionChanged="LanguagesComboBox_SelectionChanged"
+                                           >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+        </StackPanel>
         <Border 
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Width="400"
@@ -29,11 +62,13 @@
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
                            Text="Task Name"
-                           Foreground="White"
+                           Foreground="{DynamicResource ThemeTextColor}"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="14"/>
-                <Border Grid.Row="1" Background="White" Width="400"/>
+                <Border Grid.Row="1" 
+                        Background="{DynamicResource ThemeBorderColor}" 
+                        Width="400"/>
                 <customControls:CircleImage
                     Grid.Row="2"
                     Width="35"
@@ -66,10 +101,13 @@
                     VerticalAlignment="Center"
                     Margin="0,0,15,0"
                     />
-                <Border Grid.Row="3" Background="White" Width="400"/>
+                <Border Grid.Row="3" 
+                        Background="{DynamicResource ThemeBorderColor}" 
+                        Width="400"
+                        />
                 <RichTextBox Grid.Row="4"
                              Background="Transparent"
-                             Foreground="White"
+                             Foreground="{DynamicResource ThemeTextColor}"
                              BorderThickness="0"
                              Margin="5"
                              >
@@ -83,27 +121,28 @@
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
-                <Border Grid.Row="5" Background="White" Width="400"/>
+                <Border Grid.Row="5" Background="{DynamicResource ThemeBorderColor}" Width="400"/>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="6"
                             Width="400"
                             HorizontalAlignment="Center"
                             >
                     <customControls:CustomInput
-                        Width="250"
+                        Width="220"
                         Height="35"
                         Margin="5"
-                        Placeholder="Task Name"
+                        Placeholder="{DynamicResource TaskNameInputPlaceholderString}"
                         />
                     <customControls:CustomButton
-                        Width="130"
+                        Width="160"
                         Height="35"
                         Margin="5"
-                        Text="ADD TASK"
+                        Foreground="{DynamicResource ThemeTextColor}"
+                        Text="{DynamicResource AddTaskBtnString}"
                         />
                 </StackPanel>
                 <ListView Grid.Row="7"
-                          Background="#1d2125"
+                          Background="{DynamicResource ThemeMainColor}"
                           Padding="5"
                           BorderThickness="0"
                           >
@@ -129,7 +168,7 @@
                                     Grid.Column="0"
                                     Height="28"
                                     Content="{Binding Content}"
-                                    Foreground="White"
+                                    Foreground="{DynamicResource ThemeBorderColor}"
                                     IsChecked="{Binding IsChecked}"
                                     HorizontalAlignment="Stretch"
                                     />
@@ -143,10 +182,10 @@
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <customControls:CustomCheckBox Content="Task 1" Foreground="White" IsChecked="True"/>
-                    <customControls:CustomCheckBox Content="Task 2" Foreground="White"/>
-                    <customControls:CustomCheckBox Content="Task 3" Foreground="White"/>
-                    <customControls:CustomCheckBox Content="Task 4" Foreground="White"/>
+                    <customControls:CustomCheckBox Content="Task 1" Foreground="{DynamicResource ThemeBorderColor}" IsChecked="True"/>
+                    <customControls:CustomCheckBox Content="Task 2" Foreground="{DynamicResource ThemeBorderColor}"/>
+                    <customControls:CustomCheckBox Content="Task 3" Foreground="{DynamicResource ThemeBorderColor}"/>
+                    <customControls:CustomCheckBox Content="Task 4" Foreground="{DynamicResource ThemeBorderColor}"/>
                 </ListView>
                 <Border Grid.Row="8" Background="White" Width="400"/>
                 <StackPanel Orientation="Horizontal"
@@ -155,16 +194,18 @@
                             VerticalAlignment="Center"
                             >
                     <customControls:CustomButton
-                        Width="130"
+                        Width="160"
                         Height="35"
                         Margin="5"
-                        Text="DELETE TASK"
+                        Foreground="{DynamicResource ThemeTextColor}"
+                        Text="{DynamicResource DeleteTaskBtnString}"
                         />
                     <customControls:CustomButton
-                        Width="130"
+                        Width="160"
                         Height="35"
                         Margin="5"
-                        Text="SAVE CHANGES"
+                        Foreground="{DynamicResource ThemeTextColor}"
+                        Text="{DynamicResource SaveChangesBtnString}"
                         />
                 </StackPanel>
             </Grid>

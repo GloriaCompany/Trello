@@ -2,4 +2,25 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="DeleteBoardButtonString">DELETE BOARD</system:String>
+    <system:String x:Key="AddBoardButtonString">ADD BOARD</system:String>
+    <system:String x:Key="DashboardNameString">Dashboard</system:String>
+    <system:String x:Key="AddBoardInputString">Board Name</system:String>
+    <system:String x:Key="DarkThemeNameString">Dark</system:String>
+    <system:String x:Key="LightThemeNameString">Light</system:String>
+    <system:String x:Key="AddColumnBtnString">ADD COLUMN</system:String>
+    <system:String x:Key="AddTaskPopupBtnString">ADD TASK</system:String>
+    <system:String x:Key="AddTaskBtnString">+ ADD TASK</system:String>
+    <system:String x:Key="BoardNameInputPlaceholderString">Board Name</system:String>
+    <system:String x:Key="SearchUsersInputPlaceholderString">Search Users...</system:String>
+
+    <system:String x:Key="UsernameInputPlaceholderString">Username</system:String>
+    <system:String x:Key="EmailInputPlaceholderString">Email</system:String>
+    <system:String x:Key="PasswordInputPlaceholderString">Password</system:String>
+    <system:String x:Key="LogoutBtnString">LOGOUT</system:String>
+    <system:String x:Key="DeleteAccountBtnString">DELETE ACCOUNT</system:String>
+    <system:String x:Key="LeaveTeamBtnString">LEAVE TEAM</system:String>
+
+    <system:String x:Key="TaskNameInputPlaceholderString">Task Name</system:String>
+    <system:String x:Key="DeleteTaskBtnString">ADD TASK</system:String>
+    <system:String x:Key="SaveChangesBtnString">SAVE CHANGES</system:String>
 </ResourceDictionary>

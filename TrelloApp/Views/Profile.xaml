@@ -5,10 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="Profile" Height="580" Width="450" Background="#1d2125">
+        Title="Profile" Height="680" Width="450" 
+      Background="{DynamicResource ThemeMainColor}">
     <Grid>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top">
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="ThemesComboBox"
+                                           SelectionChanged="ThemesComboBox_SelectionChanged"
+                                           >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="LanguagesComboBox"
+                                           SelectionChanged="LanguagesComboBox_SelectionChanged"
+                                           >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+        </StackPanel>
         <Border 
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Width="370"
@@ -73,7 +106,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Text="{Binding User.Username, Mode=TwoWay}"
-                        Placeholder="Username"
+                        Placeholder="{DynamicResource UsernameInputPlaceholderString}"
                         />
                     <customControls:ChangesButton
                         Width="15"
@@ -106,7 +139,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Placeholder="Email"
+                        Placeholder="{DynamicResource EmailInputPlaceholderString}"
                         />
                     <customControls:ChangesButton
                         Width="15"
@@ -135,7 +168,7 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Placeholder="Password"/>
+                        Placeholder="{DynamicResource PasswordInputPlaceholderString}"/>
                     <customControls:ChangesButton
                         Width="15"
                         Height="15"
@@ -163,7 +196,7 @@
                             HorizontalAlignment="Center"
                             >
                     <TextBlock Text="Current Role"
-                           Foreground="White"
+                           Foreground="{DynamicResource ThemeTextColor}"
                            FontSize="12"
                            />
                 </StackPanel>
@@ -174,19 +207,19 @@
                 -->
                 <customControls:CustomButton
                     Grid.Row="9"
-                    Text="LOGOUT"
+                    Text="{DynamicResource LogoutBtnString}"
                     Height="35"
                     Width="175"
                     />
                 <customControls:CustomButton
                     Grid.Row="10"
-                    Text="DELETE ACCOUNT"
+                    Text="{DynamicResource DeleteAccountBtnString}"
                     Height="35"
                     Width="175"
                     />
                 <customControls:CustomButton
                     Grid.Row="11"
-                    Text="LEAVE TEAM"
+                    Text="{DynamicResource LeaveTeamBtnString}"
                     Height="35"
                     Width="175"
                     />

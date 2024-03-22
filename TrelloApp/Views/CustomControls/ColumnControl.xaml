@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              mc:Ignorable="d"
-             d:DesignHeight="260" d:DesignWidth="185">
+             d:DesignHeight="260" d:DesignWidth="185"
+             PreviewMouseDown="UserControl_PreviewMouseDown">
     <Border Background="Transparent"
-            BorderBrush="White"
+            BorderBrush="{DynamicResource ThemeBorderColor}"
             BorderThickness="1"
             CornerRadius="25">
-        <Border Background="#1d2125"
+        <Border Background="{DynamicResource ThemeMainColor}"
                 CornerRadius="25">
             <Grid>
                 <Grid.RowDefinitions>
@@ -28,7 +29,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding ColumnName, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}" 
                                FontSize="14"
-                               Foreground="White"
+                               Foreground="{DynamicResource ThemeTextColor}"
                                Background="Transparent"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"/>
@@ -89,14 +90,14 @@
                             />-->
                     </StackPanel>
                 </ListView>
-                <Border Grid.Row="1" Background="White"/>
-                <Border Grid.Row="3" Background="White"/>
+                <Border Grid.Row="1" Background="{DynamicResource ThemeBorderColor}"/>
+                <Border Grid.Row="3" Background="{DynamicResource ThemeBorderColor}"/>
                 <Button Grid.Row="4" 
                         BorderBrush="Transparent"
-                        Foreground="White"
-                        FontSize="14"
+                        Foreground="{DynamicResource ThemeTextColor}"
+                        FontSize="8"
                         Background="#1d2125"
-                        Content="+ Add Task"
+                        Content="{DynamicResource AddTaskBtnString}"
                         Width="85"
                         Height="25"
                         Click="AddTaskButton_Click">
@@ -112,8 +113,12 @@
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter TargetName="border" Property="Background" Value="#febd69"/>
-                                    <Setter TargetName="contentPresenter" Property="TextBlock.Foreground" Value="Black"/>
+                                    <Setter TargetName="border" 
+                                            Property="Background" 
+                                            Value="{DynamicResource ThemeHoverColor}"/>
+                                    <Setter TargetName="contentPresenter" 
+                                            Property="TextBlock.Foreground" 
+                                            Value="{DynamicResource ThemeHoverTextColor}"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -139,8 +144,8 @@
                        IsOpen="False"
                        Grid.Row="5"
                        Margin="0,0,20,0">
-                    <Border Background="#1d2125" 
-                            BorderBrush="White" 
+                    <Border Background="{DynamicResource ThemeMainColor}" 
+                            BorderBrush="{DynamicResource ThemeBorderColor}" 
                             BorderThickness="1"
                             Width="375" 
                             Height="60">
@@ -149,14 +154,14 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Center">
                             <customControls:CustomInput 
-                                Placeholder="Enter Task Name:" 
+                                Placeholder="Enter Task Name..." 
                                 x:Name="TaskNameInput"
                                 FontSize="14"
                                 Width="230"
                                 Height="35"
                                 />
                             <customControls:CustomButton
-                                Content="Add Task" 
+                                Content="ADD TASK" 
                                 Click="AddConfirmedTaskButton_Click"
                                 Width="100"
                                 Margin="15,0,0,0"

@@ -9,7 +9,7 @@
         VerticalAlignment="Stretch" 
         HorizontalAlignment="Stretch"
         Background="Transparent"
-        Foreground="White"
+        Foreground="{DynamicResource ThemeTextColor}"
         BorderThickness="0"
         Padding="2">
     <Button.Template>

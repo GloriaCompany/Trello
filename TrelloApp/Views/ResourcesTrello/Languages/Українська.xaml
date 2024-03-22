@@ -2,4 +2,25 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="DeleteBoardButtonString">ВИДАЛИТИ ДОШКУ</system:String>
+    <system:String x:Key="AddBoardButtonString">ДОДАТИ</system:String>
+    <system:String x:Key="DashboardNameString">Швидка панель</system:String>
+    <system:String x:Key="AddBoardInputString">Назва дошки</system:String>
+    <system:String x:Key="DarkThemeNameString">Темна</system:String>
+    <system:String x:Key="LightThemeNameString">Світла</system:String>
+    <system:String x:Key="AddColumnBtnString">ДОДАТИ КОЛОНКУ</system:String>
+    <system:String x:Key="AddTaskPopupBtnString">ДОДАТИ ЗАВДАННЯ</system:String>
+    <system:String x:Key="AddTaskBtnString">+ ДОДАТИ ЗАВДАННЯ</system:String>
+    <system:String x:Key="BoardNameInputPlaceholderString">Назва дошки</system:String>
+    <system:String x:Key="SearchUsersInputPlaceholderString">Знайти користувачів...</system:String>
+    
+    <system:String x:Key="UsernameInputPlaceholderString">Ім'я користувача</system:String>
+    <system:String x:Key="EmailInputPlaceholderString">Електронна пошта</system:String>
+    <system:String x:Key="PasswordInputPlaceholderString">Пароль</system:String>
+    <system:String x:Key="LogoutBtnString">ВИЙТИ</system:String>
+    <system:String x:Key="DeleteAccountBtnString">ВИДАЛИТИ АКАУНТ</system:String>
+    <system:String x:Key="LeaveTeamBtnString">ВИЙТИ З КОМАНДИ</system:String>
+
+    <system:String x:Key="TaskNameInputPlaceholderString">Назва завдання</system:String>
+    <system:String x:Key="DeleteTaskBtnString">ВИДАЛИТИ ЗАВДАННЯ</system:String>
+    <system:String x:Key="SaveChangesBtnString">ЗБЕРЕГТИ ЗМІНИ</system:String>
 </ResourceDictionary>

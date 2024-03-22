@@ -5,25 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="Dashboard" Background="#1d2125">
+        Title="Dashboard" 
+        Background="{DynamicResource ThemeMainColor}">
     <Page.Resources>
         <Style TargetType="Border" x:Key="HoverBorderStyle">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderColor}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="CornerRadius" Value="25"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#febd69"/>
-                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="Background" Value="{DynamicResource ThemeHoverColor}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource ThemeHoverTextColor}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock" x:Key="HoverTextBlockStyle">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
-                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Foreground" Value="{DynamicResource ThemeHoverTextColor}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -37,36 +38,42 @@
                     HorizontalAlignment="Left"
                     Grid.Row="0">
             <Image 
-                Source="/Resources/app_logo_night.png"
+                Source="{DynamicResource LogoPath}"
                 Width="75"
                 Height="20"
                 Grid.Row="0"
                 VerticalAlignment="Center"
                 Margin="10,0,10,0"
                 />
-            <TextBlock Text="Dashboard"
+            <TextBlock Text="{DynamicResource DashboardNameString}"
                        Grid.Row="0"
                        FontSize="14"
-                       Foreground="White"
+                       Foreground="{DynamicResource ThemeTextColor}"
                        VerticalAlignment="Center"
                        />
         </StackPanel>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     >
-            <customControls:CustomComboBox>
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="ThemesComboBox"
+                                           SelectionChanged="ThemesComboBox_SelectionChanged"
+                                           >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
-                        ImageSource="/TrelloApp;component/Resources/sun.png">
-                        Світла
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
                     </customControls:CustomComboBoxItem>
                     <customControls:CustomComboBoxItem 
-                        ImageSource="/TrelloApp;component/Resources/moon.png">
-                        Темна
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
-            <customControls:CustomComboBox>
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="LanguagesComboBox"
+                                           SelectionChanged="LanguagesComboBox_SelectionChanged"
+                                           >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
                         ImageSource="/TrelloApp;component/Resources/ua.png">
@@ -79,7 +86,7 @@
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
             <Border 
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 Grid.Column="1"
                 CornerRadius="18"
@@ -92,7 +99,7 @@
                         <Setter Property="Background" Value="Transparent"/>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#febd69"/>
+                                <Setter Property="Background" Value="{DynamicResource ThemeHoverColor}"/>
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -113,10 +120,10 @@
                         >
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
-                                        <Setter Property="Foreground" Value="Black"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource ThemeHoverTextColor}"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -141,21 +148,31 @@
             >
             <Border
                 Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Margin="10"
+                x:Name="AddBoardBorder"
                 >
-                <customControls:CircleImage
-                    Width="48"
-                    Height="48"
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    Width="50"
+                    Height="50"
                     HorizontalAlignment="Center"
-                    ImageSource="/TrelloApp;component/Resources/plus.png"
-                    />
+                    VerticalAlignment="Center"
+                    >
+                    <customControls:ChangesButton
+                        ImageSource="/Resources/plus.png"
+                        x:Name="AddBoardBtn"
+                        Click="AddBoardBtn_Click"
+                        />
+                </Border>
             </Border>
             <Border
                 Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Margin="10"
@@ -170,7 +187,7 @@
             </Border>
             <Border
                 Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Margin="10"
@@ -185,7 +202,7 @@
             </Border>
             <Border
                 Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Margin="10"
@@ -200,7 +217,22 @@
             </Border>
             <Border
                 Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="White" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
+                >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="Board Name"
+                    FontSize="14"
+                    Style="{StaticResource HoverTextBlockStyle}"
+                    />
+            </Border>
+            <Border
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
                 BorderThickness="1" 
                 CornerRadius="25"
                 Margin="10"
@@ -214,5 +246,39 @@
                     />
             </Border>
         </WrapPanel>
+        <Popup x:Name="addBoardPopup" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               IsOpen="False"
+               Grid.Row="5"
+               Margin="0,0,0,0"
+               Placement="Bottom"
+               PlacementTarget="{Binding ElementName=AddBoardBorder}">
+            <Border Background="{DynamicResource ThemeMainColor}" 
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1"
+                    Width="375" 
+                    Height="60">
+                <StackPanel Margin="10"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                    <customControls:CustomInput 
+                                Placeholder="{DynamicResource BoardNameInputPlaceholderString}" 
+                                x:Name="BoardNameInput"
+                                FontSize="14"
+                                Width="230"
+                                Height="35"
+                                />
+                    <customControls:CustomButton
+                                Content="{DynamicResource AddBoardButtonString}" 
+                                Click="AddConfirmedBoardButton_Click"
+                                Width="100"
+                                Margin="15,0,0,0"
+                                Height="35"
+                                />
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </Page>

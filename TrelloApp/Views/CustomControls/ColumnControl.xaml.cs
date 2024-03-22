@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using TrelloApp.Models;
 
 namespace TrelloApp.Views.CustomControls
@@ -234,6 +236,31 @@ namespace TrelloApp.Views.CustomControls
                 return element.Parent as StackPanel;
 
             return FindParentStackPanel(element.Parent as FrameworkElement);
+        }
+
+        private void UserControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!IsMouseOverPopup(e))
+            {
+                addTaskPopup.IsOpen = false;
+            }
+        }
+
+        private bool IsMouseOverPopup(MouseButtonEventArgs e)
+        {
+            if (addTaskPopup.IsOpen)
+            {
+                Point point = e.GetPosition(null);
+                DependencyObject dependencyObject = VisualTreeHelper.HitTest(Application.Current.MainWindow, point)?.VisualHit;
+
+                while (dependencyObject != null && dependencyObject != addTaskPopup)
+                {
+                    dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+                }
+
+                return dependencyObject != null;
+            }
+            return false;
         }
     }
 }

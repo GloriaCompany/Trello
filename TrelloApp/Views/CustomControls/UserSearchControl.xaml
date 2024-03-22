@@ -6,16 +6,16 @@
           xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
           mc:Ignorable="d" 
           d:DesignHeight="50" d:DesignWidth="400"
-          Background="#1d2125" 
-          BorderBrush="White" 
+          Background="{DynamicResource ThemeMainColor}" 
+          BorderBrush="{DynamicResource ThemeBorderColor}" 
           BorderThickness="1"
           Padding="10">
     <ComboBox.Template>
         <ControlTemplate TargetType="ComboBox">
             <Grid>
                 <TextBox x:Name="PART_EditableTextBox" 
-                         Background="#1d2125" 
-                         Foreground="White" 
+                         Background="{DynamicResource ThemeMainColor}" 
+                         Foreground="{DynamicResource ThemeTextColor}" 
                          BorderThickness="0" 
                          Padding="5"
                          >
@@ -23,8 +23,8 @@
                         <ControlTemplate TargetType="TextBox">
                             <Grid>
                                 <TextBox x:Name="text" 
-                                         Background="#1d2125" 
-                                         Foreground="White" 
+                                         Background="{DynamicResource ThemeMainColor}" 
+                                         Foreground="{DynamicResource ThemeTextColor}" 
                                          BorderThickness="0" 
                                          Text="{TemplateBinding Text}" 
                                          Padding="5"
@@ -47,8 +47,8 @@
                        Placement="Bottom"
                        >
                     <Border x:Name="DropDownBorder" 
-                            Background="#1d2125" 
-                            BorderBrush="White" 
+                            Background="{DynamicResource ThemeMainColor}" 
+                            BorderBrush="{DynamicResource ThemeBorderColor}" 
                             BorderThickness="1" 
                             CornerRadius="5"
                             >
@@ -74,8 +74,8 @@
                                             Height="20"
                                             />
                 <ListView Grid.Column="1">
-                    <TextBlock Text="{Binding Nickname}" Foreground="White"/>
-                    <TextBlock Text="{Binding Position}" Foreground="White"/>
+                    <TextBlock Text="{Binding Nickname}" Foreground="{DynamicResource ThemeTextColor}"/>
+                    <TextBlock Text="{Binding Position}" Foreground="{DynamicResource ThemeTextColor}"/>
                 </ListView>
                 <Image Grid.Column="2" 
                        Source="/Resources/plus.png" 
