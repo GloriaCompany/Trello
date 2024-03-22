@@ -3,6 +3,7 @@ using System.Windows;
 using System;
 using System.Windows.Controls;
 using TrelloApp.Views.CustomControls;
+using System.Linq;
 
 namespace TrelloApp.Views
 {
@@ -18,34 +19,32 @@ namespace TrelloApp.Views
 
         private void ThemesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Отримуємо обрану тему в комбобоксі
             var selectedItem = (sender as CustomComboBox)?.SelectedItem as CustomComboBoxItem;
-
-            // Отримуємо поточні ресурси додатку
-            var resources = Application.Current.Resources;
-
-            // Задаємо завантаження ресурсів в залежності від обраного елемента
-            if (selectedItem != null
-                && selectedItem.Content.ToString() == "Light"
-                || selectedItem.Content.ToString() == "Світла")
+            if (selectedItem != null)
             {
-                // Завантажуємо світлу тему
-                resources.MergedDictionaries.Add(new ResourceDictionary
+                var resources = Application.Current.Resources;
+                // Видаляємо попередні ресурси теми
+                var themeResources = resources.MergedDictionaries.Where(d => d.Source != null && d.Source.ToString().Contains("/Views/ResourcesTrello/Themes/")).ToList();
+                foreach (var themeResource in themeResources)
                 {
-                    Source = new Uri("/Views/ResourcesTrello/Themes/LightTheme.xaml",
-                    UriKind.Relative)
-                });
-            }
-            else if (selectedItem != null
-                  && selectedItem.Content.ToString() == "Dark"
-                  || selectedItem.Content.ToString() == "Темна")
-            {
-                // Завантажуємо темну тему
-                resources.MergedDictionaries.Add(new ResourceDictionary
+                    resources.MergedDictionaries.Remove(themeResource);
+                }
+
+                var themeName = selectedItem.Content.ToString();
+                if (themeName == "Light" || themeName == "Світла")
                 {
-                    Source = new Uri("/Views/ResourcesTrello/Themes/DarkTheme.xaml",
-                    UriKind.Relative)
-                });
+                    resources.MergedDictionaries.Add(new ResourceDictionary
+                    {
+                        Source = new Uri("/Views/ResourcesTrello/Themes/LightTheme.xaml", UriKind.Relative)
+                    });
+                }
+                else if (themeName == "Dark" || themeName == "Темна")
+                {
+                    resources.MergedDictionaries.Add(new ResourceDictionary
+                    {
+                        Source = new Uri("/Views/ResourcesTrello/Themes/DarkTheme.xaml", UriKind.Relative)
+                    });
+                }
             }
         }
 
@@ -54,6 +53,14 @@ namespace TrelloApp.Views
             var selectedItem = (sender as CustomComboBox)?.SelectedItem as CustomComboBoxItem;
             if (selectedItem != null)
             {
+                var resources = Application.Current.Resources;
+                // Видаляємо попередні ресурси мови
+                var languageResources = resources.MergedDictionaries.Where(d => d.Source != null && d.Source.ToString().Contains("/Views/ResourcesTrello/Languages/")).ToList();
+                foreach (var resource in languageResources)
+                {
+                    resources.MergedDictionaries.Remove(resource);
+                }
+
                 var cultureName = selectedItem.Content.ToString();
                 var culture = new CultureInfo(cultureName == "UA" ? "uk-UA" : "en-US");
 
@@ -63,10 +70,9 @@ namespace TrelloApp.Views
                 // Завантаження ресурсів мови
                 var languageResource = new ResourceDictionary
                 {
-                    Source = new Uri(languageResourcePath,
-                    UriKind.RelativeOrAbsolute)
+                    Source = new Uri(languageResourcePath, UriKind.RelativeOrAbsolute)
                 };
-                Application.Current.Resources.MergedDictionaries.Add(languageResource);
+                resources.MergedDictionaries.Add(languageResource);
             }
         }
     }
