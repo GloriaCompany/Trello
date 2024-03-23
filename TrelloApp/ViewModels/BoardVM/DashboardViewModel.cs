@@ -65,9 +65,9 @@ namespace TrelloApp.ViewModels
         public ICommand AddBoardCommand { get; set; }
         public ICommand DelBoardCommand { get; set; }
 
-        public DashboardViewModel(UserModel currentUser)
+        public DashboardViewModel()
         {
-            _user = currentUser;
+            _user = UserContext.CurrentUser;
             LoadUserCommand = new RelayCommand(() => LoadUser(_user.UserID), CanLoadUser);
             LoadBoardsCommand = new RelayCommand(() => LoadBoards(_user.UserID), CanLoadBoards);
             AddBoardCommand = new RelayCommand(AddBoard, CanAddBoard);
