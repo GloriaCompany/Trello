@@ -159,7 +159,7 @@
                             Width="33"
                             Height="33"
                             Margin="-23,0,0,0"
-                            ImageSource="/TrelloApp;component/Resources/plus.png"
+                            ImageSource="{DynamicResource AddIconPath}"
                             x:Name="AddMemberBtn"
                             />
                     </ListView>

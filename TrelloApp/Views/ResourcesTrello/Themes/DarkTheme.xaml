@@ -8,4 +8,13 @@
     <SolidColorBrush x:Key="ThemeBorderColor">#ffffff</SolidColorBrush>
 
     <ImageSource x:Key="LogoPath">/TrelloApp;component/Resources/app_logo_night.png</ImageSource>
+    <ImageSource x:Key="ChangeColumnIconPath">/TrelloApp;component/Resources/change_column_night.png</ImageSource>
+    <ImageSource x:Key="ChangePlaceIconPath">/TrelloApp;component/Resources/change_place.png</ImageSource>
+    <ImageSource x:Key="EditIconPath">/TrelloApp;component/Resources/edit.png</ImageSource>
+    <ImageSource x:Key="EyeIconPath">/TrelloApp;component/Resources/eye.png</ImageSource>
+    <ImageSource x:Key="MoveColumnIconPath">/TrelloApp;component/Resources/move-column.png</ImageSource>
+    <ImageSource x:Key="MoveColumnLeftIconPath">/TrelloApp;component/Resources/move_left.png</ImageSource>
+    <ImageSource x:Key="MoveColumnRightIconPath">/TrelloApp;component/Resources/move_right.png</ImageSource>
+    <ImageSource x:Key="AddIconPath">/TrelloApp;component/Resources/plus.png</ImageSource>
+    <ImageSource x:Key="SearchIconPath">/TrelloApp;component/Resources/search.png</ImageSource>
 </ResourceDictionary>

@@ -33,7 +33,7 @@
                                Background="Transparent"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"/>
-                    <customControls:ChangesButton ImageSource="/TrelloApp;component/Resources/edit.png"
+                    <customControls:ChangesButton ImageSource="{DynamicResource EditIconPath}"
                                                   Width="17.5"
                                                   Height="17.5"
                                                   Margin="5,0,0,0"
@@ -124,14 +124,14 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <customControls:ChangesButton ImageSource="/TrelloApp;component/Resources/move_left.png"
+                <customControls:ChangesButton ImageSource="{DynamicResource MoveColumnLeftIconPath}"
                                               Grid.Row="4"
                                               HorizontalAlignment="Left"
                                               VerticalAlignment="Center"
                                               Width="18"
                                               Margin="15,5,5,5"
                                               Click="MoveLeftButton_Click"/>
-                <customControls:ChangesButton ImageSource="/TrelloApp;component/Resources/move_right.png"
+                <customControls:ChangesButton ImageSource="{DynamicResource MoveColumnRightIconPath}"
                                               Grid.Row="4"
                                               HorizontalAlignment="Right"
                                               VerticalAlignment="Center"

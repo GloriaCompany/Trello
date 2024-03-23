@@ -93,9 +93,9 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap arrow {
+        public static System.Drawing.Bitmap change_column_day {
             get {
-                object obj = ResourceManager.GetObject("arrow", resourceCulture);
+                object obj = ResourceManager.GetObject("change_column_day", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap change_column {
+        public static System.Drawing.Bitmap change_column_night {
             get {
-                object obj = ResourceManager.GetObject("change_column", resourceCulture);
+                object obj = ResourceManager.GetObject("change_column_night", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,19 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap change_place {
+        public static System.Drawing.Bitmap change_place_day {
             get {
-                object obj = ResourceManager.GetObject("change_place", resourceCulture);
+                object obj = ResourceManager.GetObject("change_place_day", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap change_place_night {
+            get {
+                object obj = ResourceManager.GetObject("change_place_night", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +143,19 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap edit {
+        public static System.Drawing.Bitmap edit_day {
             get {
-                object obj = ResourceManager.GetObject("edit", resourceCulture);
+                object obj = ResourceManager.GetObject("edit_day", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap edit_night {
+            get {
+                object obj = ResourceManager.GetObject("edit_night", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +173,19 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap eye {
+        public static System.Drawing.Bitmap eye_day {
             get {
-                object obj = ResourceManager.GetObject("eye", resourceCulture);
+                object obj = ResourceManager.GetObject("eye_day", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap eye_night {
+            get {
+                object obj = ResourceManager.GetObject("eye_night", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +203,9 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap move_column {
+        public static System.Drawing.Bitmap move_column_day {
             get {
-                object obj = ResourceManager.GetObject("move_column", resourceCulture);
+                object obj = ResourceManager.GetObject("move_column_day", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +213,9 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap move_left {
+        public static System.Drawing.Bitmap move_column_night {
             get {
-                object obj = ResourceManager.GetObject("move_left", resourceCulture);
+                object obj = ResourceManager.GetObject("move_column_night", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +223,9 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap move_right {
+        public static System.Drawing.Bitmap move_left_day {
             get {
-                object obj = ResourceManager.GetObject("move_right", resourceCulture);
+                object obj = ResourceManager.GetObject("move_left_day", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +233,9 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap plus {
+        public static System.Drawing.Bitmap move_left_night {
             get {
-                object obj = ResourceManager.GetObject("plus", resourceCulture);
+                object obj = ResourceManager.GetObject("move_left_night", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +243,59 @@ namespace TrelloApp.Views.ResourcesTrello {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap search {
+        public static System.Drawing.Bitmap move_right_day {
             get {
-                object obj = ResourceManager.GetObject("search", resourceCulture);
+                object obj = ResourceManager.GetObject("move_right_day", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap move_right_night {
+            get {
+                object obj = ResourceManager.GetObject("move_right_night", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plus_day {
+            get {
+                object obj = ResourceManager.GetObject("plus_day", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap plus_night {
+            get {
+                object obj = ResourceManager.GetObject("plus_night", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap search_day {
+            get {
+                object obj = ResourceManager.GetObject("search_day", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap search_night {
+            get {
+                object obj = ResourceManager.GetObject("search_night", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

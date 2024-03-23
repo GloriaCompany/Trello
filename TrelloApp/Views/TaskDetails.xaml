@@ -73,7 +73,7 @@
                     Grid.Row="2"
                     Width="35"
                     Height="35"
-                    ImageSource="/TrelloApp;component/Resources/plus.png"
+                    ImageSource="{DynamicResource AddIconPath}"
                     HorizontalAlignment="Left"
                     Margin="15,0,0,0"
                     />

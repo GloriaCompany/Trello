@@ -8,4 +8,13 @@
     <SolidColorBrush x:Key="ThemeBorderColor">#1e1e1f</SolidColorBrush>
 
     <ImageSource x:Key="LogoPath">/TrelloApp;component/Resources/app_logo_day.png</ImageSource>
+    <ImageSource x:Key="ChangeColumnIconPath">/TrelloApp;component/Resources/change_column_day.png</ImageSource>
+    <ImageSource x:Key="ChangePlaceIconPath">/TrelloApp;component/Resources/change_place_day.png</ImageSource>
+    <ImageSource x:Key="EditIconPath">/TrelloApp;component/Resources/edit_day.png</ImageSource>
+    <ImageSource x:Key="EyeIconPath">/TrelloApp;component/Resources/eye_day.png</ImageSource>
+    <ImageSource x:Key="MoveColumnIconPath">/TrelloApp;component/Resources/move_column_day.png</ImageSource>
+    <ImageSource x:Key="MoveColumnLeftIconPath">/TrelloApp;component/Resources/move_left_day.png</ImageSource>
+    <ImageSource x:Key="MoveColumnRightIconPath">/TrelloApp;component/Resources/move_right_day.png</ImageSource>
+    <ImageSource x:Key="AddIconPath">/TrelloApp;component/Resources/plus_day.png</ImageSource>
+    <ImageSource x:Key="SearchIconPath">/TrelloApp;component/Resources/search_day.png</ImageSource>
 </ResourceDictionary>

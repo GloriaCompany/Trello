@@ -164,7 +164,7 @@
                     VerticalAlignment="Center"
                     >
                     <customControls:ChangesButton
-                        ImageSource="/Resources/plus.png"
+                        ImageSource="{DynamicResource AddIconPath}"
                         x:Name="AddBoardBtn"
                         Click="AddBoardBtn_Click"
                         />

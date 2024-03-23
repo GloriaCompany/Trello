@@ -50,7 +50,7 @@
                            ImageSource="{Binding AssignedUserAvatar, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"
                            />
                 <customControls:ChangesButton
-                    ImageSource="/TrelloApp;component/Resources/change_place.png"
+                    ImageSource="{DynamicResource ChangePlaceIconPath}"
                     Grid.Row="2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
@@ -59,7 +59,7 @@
                     Click="ChangePlaceButton_Click"
                     />
                 <customControls:ChangesButton
-                    ImageSource="/TrelloApp;component/Resources/change-column.png"
+                    ImageSource="{DynamicResource ChangeColumnIconPath}"
                     Grid.Row="2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"

@@ -127,43 +127,67 @@
   <data name="app_logo_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\app_logo_night.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\Resources\arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="change_column_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\change_column_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="change_column" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\Resources\change-column.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="change_column_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\change_column_night.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="change_place" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="change_place_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\change_place_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="change_place_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\change_place.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="discard" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\discard.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="edit_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\edit_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="en" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\en.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="eye" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="eye_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\eye_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eye_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\eye.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="moon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\moon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="move_column" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="move_column_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\move_column_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="move_column_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\move-column.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="move_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="move_left_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\move_left_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="move_left_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\move_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="move_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="move_right_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\move_right_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="move_right_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\move_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="plus_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\plus_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="search_day" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\search_day.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="search_night" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="submit" type="System.Resources.ResXFileRef, System.Windows.Forms">

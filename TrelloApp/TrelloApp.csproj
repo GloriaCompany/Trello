@@ -105,6 +105,11 @@
     <Compile Include="Views\ChooseAvatar.xaml.cs">
       <DependentUpon>ChooseAvatar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ResourcesTrello\Assets.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Assets.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Utils\ComboBoxUtils.cs" />
     <Compile Include="Views\CustomControls\ChangesButton.xaml.cs">
       <DependentUpon>ChangesButton.xaml</DependentUpon>
@@ -136,9 +141,6 @@
     <Compile Include="Views\CustomControls\CustomPasswordInput.xaml.cs">
       <DependentUpon>CustomPasswordInput.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomControls\CustomWindowButtons.xaml.cs">
-      <DependentUpon>CustomWindowButtons.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CustomControls\StringToVisibilityConverter.cs" />
     <Compile Include="Views\CustomControls\TaskControl.xaml.cs">
       <DependentUpon>TaskControl.xaml</DependentUpon>
@@ -163,11 +165,6 @@
     </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ResourcesTrello\Assets.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Assets.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\ResourcesTrello\UserAvatars.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -255,10 +252,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CustomControls\CustomPasswordInput.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CustomControls\CustomWindowButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -365,7 +358,7 @@
     <Resource Include="Resources\arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\change-column.png" />
+    <Resource Include="Resources\change_column_night.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\eye.png" />
@@ -454,10 +447,36 @@
   <ItemGroup>
     <Resource Include="Resources\Avatar05.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\edit_day.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="UserAvatars\TestAvatar1.png" />
     <Resource Include="UserAvatars\TestAvatar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move_column_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move_left_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move_right_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\change_column_day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\change_place_day.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

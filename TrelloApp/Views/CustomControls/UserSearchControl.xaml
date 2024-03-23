@@ -36,7 +36,7 @@
                                         BorderThickness="0" 
                                         Margin="0,0,10,0"
                                         >
-                                    <customControls:ChangesButton ImageSource="/TrelloApp;component/Resources/search.png"/>
+                                    <customControls:ChangesButton ImageSource="{DynamicResource SearchIconPath}"/>
                                 </Button>
                             </Grid>
                         </ControlTemplate>
@@ -78,7 +78,7 @@
                     <TextBlock Text="{Binding Position}" Foreground="{DynamicResource ThemeTextColor}"/>
                 </ListView>
                 <Image Grid.Column="2" 
-                       Source="/Resources/plus.png" 
+                       Source="{DynamicResource AddIconPath}" 
                        Width="20" 
                        Height="20"
                        />
