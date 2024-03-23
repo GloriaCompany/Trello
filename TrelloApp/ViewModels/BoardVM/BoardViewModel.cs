@@ -86,9 +86,9 @@ namespace TrelloApp.ViewModels
         public ICommand DelColumnCommand { get; set; }
         public ICommand UpdateColumnCommand { get; set; }
 
-        public BoardViewModel(UserModel currentUser)
+        public BoardViewModel()
         {
-            _user = currentUser;
+            _user = UserContext.CurrentUser;
             UpdateBoardCommand = new RelayCommand(UpdateBoard, CanUpdateBoard);
             LoadUserCommand = new RelayCommand(() => LoadUser(_user.UserID), CanLoadUser);
             LoadColumnsCommand = new RelayCommand(() => LoadColumns(_user.UserID), CanLoadColumns);
