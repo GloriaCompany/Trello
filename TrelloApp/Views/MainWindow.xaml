@@ -43,7 +43,7 @@
                 Width="17.5"
                 Height="17.5"
                 Margin="5,0,0,0"
-                ImageSource="/TrelloApp;component/Resources/edit.png"
+                ImageSource="{DynamicResource EditIconPath}"
                 />
             <customControls:ChangesButton
                 Width="17.5"

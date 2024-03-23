@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="Profile" Height="680" Width="450" 
+        Title="Profile"
       Background="{DynamicResource ThemeMainColor}">
     <Grid>
         <StackPanel Orientation="Horizontal"
@@ -163,7 +163,7 @@
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             >
-                    <customControls:CustomInput
+                    <customControls:CustomPasswordInput
                         Width="250"
                         Height="35"
                         HorizontalAlignment="Center"

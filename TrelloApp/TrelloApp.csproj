@@ -448,35 +448,35 @@
     <Resource Include="Resources\Avatar05.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\edit_day.png" />
+    <Resource Include="Resources\edit_day.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UserAvatars\TestAvatar1.png" />
     <Resource Include="UserAvatars\TestAvatar2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\eye_day.png" />
+    <Resource Include="Resources\eye_day.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\move_column_day.png" />
+    <Resource Include="Resources\move_column_day.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\move_left_day.png" />
+    <Resource Include="Resources\move_left_day.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\move_right_day.png" />
+    <Resource Include="Resources\move_right_day.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\plus_day.png" />
+    <Resource Include="Resources\plus_day.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\search_day.png" />
+    <Resource Include="Resources\search_day.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\change_column_day.png" />
+    <Resource Include="Resources\change_column_day.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\change_place_day.png" />
+    <Resource Include="Resources\change_place_day.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

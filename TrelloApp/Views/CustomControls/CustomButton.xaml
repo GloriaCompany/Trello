@@ -30,7 +30,7 @@
                             Value="{DynamicResource ThemeHoverTextColor}"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
