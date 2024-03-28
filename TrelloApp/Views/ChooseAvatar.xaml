@@ -76,7 +76,6 @@
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Stretch"
                                     MouseLeftButtonDown="Avatar_MouseLeftButtonDown"
-                                    MouseLeftButtonUp="Avatar_MouseLeftButtonUp"
                                     />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

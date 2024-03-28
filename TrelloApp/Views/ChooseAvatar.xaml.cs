@@ -8,7 +8,7 @@ using TrelloApp.Views.CustomControls;
 namespace TrelloApp.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ChooseAvatar.xaml
+    /// Interaction logic for ChooseAvatar.xaml
     /// </summary>
     public partial class ChooseAvatar : Page
     {
@@ -16,9 +16,9 @@ namespace TrelloApp.Views
 
         public ChooseAvatar()
         {
-            var viewModel = new ChooseAvatarViewModel(new ResourceImageLoader(), new FolderImageLoader());
-            DataContext = viewModel;
             InitializeComponent();
+            var viewModel = new ChooseAvatarViewModel(new AvatarRepository(new ResourceImageLoader(), new FolderImageLoader()));
+            DataContext = viewModel;
         }
 
         // Обробник події натискання кнопки миші на аватарці.
@@ -38,11 +38,6 @@ namespace TrelloApp.Views
             {
                 _selectedAvatar.Background = Brushes.AliceBlue;
             }
-        }
-
-        private void Avatar_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            // ...
         }
     }
 }

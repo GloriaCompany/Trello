@@ -98,7 +98,9 @@
     <Compile Include="ViewModels\UserVM\ProfileViewModel.cs" />
     <Compile Include="ViewModels\UserVM\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\AvatarRepository.cs" />
     <Compile Include="ViewModels\UserVM\UserAvatarsLoading\FolderImageLoader.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\IAvatarRepository.cs" />
     <Compile Include="ViewModels\UserVM\UserAvatarsLoading\IImageLoader.cs" />
     <Compile Include="ViewModels\UserVM\UserAvatarsLoading\ResourceImageLoader.cs" />
     <Compile Include="ViewModels\UserVM\UserRepository.cs" />

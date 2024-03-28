@@ -14,46 +14,28 @@ namespace TrelloApp.ViewModels.UserVM
         public BitmapImage SelectedAvatar { get; set; }
         // Команда для вибору аватара.
         public DelegateCommand SelectAvatarCommand { get; set; }
+        // Репозиторій для методології завантаження зображень
+        private readonly IAvatarRepository _avatarRepository;
 
         // Конструктор, що ініціалізує ViewModel.
-        public ChooseAvatarViewModel(IImageLoader resourceImageLoader, IImageLoader folderImageLoader)
+        public ChooseAvatarViewModel(IAvatarRepository avatarRepository)
         {
+            _avatarRepository = avatarRepository;
             AvatarImages = new ObservableCollection<BitmapImage>();
             SelectAvatarCommand = new DelegateCommand(SelectAvatar, parameter => true);
-            LoadAvatarImages(resourceImageLoader, folderImageLoader);
+            LoadAvatarImages();
         }
 
         // Метод для завантаження зображень аватарів.
-        private void LoadAvatarImages(IImageLoader resourceImageLoader, IImageLoader folderImageLoader)
+        private void LoadAvatarImages()
         {
             try
             {
-                AvatarImages = new ObservableCollection<BitmapImage>();
-
-                // Завантаження зображень з різних джерел: ресурсів та папки.
-                var resourceImages = resourceImageLoader.LoadImages();
-                var folderImages = folderImageLoader.LoadImages();
-
-                // Додавання завантажених зображень у колекцію AvatarImages.
-                if (resourceImages != null)
-                {
-                    foreach (var image in resourceImages)
-                    {
-                        AvatarImages.Add(image);
-                    }
-                }
-
-                if (folderImages != null)
-                {
-                    foreach (var image in folderImages)
-                    {
-                        AvatarImages.Add(image);
-                    }
-                }
+                AvatarImages = _avatarRepository.GetAvatarImages();
             }
             catch (Exception ex)
             {
-                // Обробка винятку у випадку помилки завантаження зображень.
+                // Обработка исключения при ошибке загрузки изображений
                 Console.WriteLine($"Error loading avatar images: {ex.Message}");
             }
         }
