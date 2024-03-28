@@ -73,6 +73,7 @@
                         HorizontalAlignment="Center"
                         Margin="25,0,0,0"
                         ImageSource="{Binding User.Avatar, Mode=TwoWay}"
+                        IsPopupEnabled="False"
                         />
                     <customControls:ChangesButton
                         Width="15"

@@ -20,6 +20,8 @@ namespace TrelloApp.Views.CustomControls
             DependencyProperty.Register("Buttons", typeof(ObservableCollection<string>), typeof(CircleImage), new PropertyMetadata(new ObservableCollection<string>()));
         public static readonly DependencyProperty ImageSourceProperty =
             DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(CircleImage), new PropertyMetadata(null, ImageSourceChanged));
+        public static readonly DependencyProperty IsPopupEnabledProperty =
+            DependencyProperty.Register("IsPopupEnabled", typeof(bool), typeof(CircleImage), new PropertyMetadata(true));
 
         public ImageSource ImageSource
         {
@@ -31,6 +33,12 @@ namespace TrelloApp.Views.CustomControls
         {
             get { return (ObservableCollection<string>)GetValue(ButtonsProperty); }
             set { SetValue(ButtonsProperty, value); }
+        }
+
+        public bool IsPopupEnabled
+        {
+            get { return (bool)GetValue(IsPopupEnabledProperty); }
+            set { SetValue(IsPopupEnabledProperty, value); }
         }
 
         private static void ImageSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -46,7 +54,10 @@ namespace TrelloApp.Views.CustomControls
 
         private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            popup.IsOpen = !popup.IsOpen;
+            if (IsPopupEnabled)
+            {
+                popup.IsOpen = !popup.IsOpen;
+            }
         }
     }
 }

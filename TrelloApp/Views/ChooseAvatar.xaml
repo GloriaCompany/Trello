@@ -75,6 +75,7 @@
                                     ImageSource="{Binding}"
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Stretch"
+                                    IsPopupEnabled="False"
                                     MouseLeftButtonDown="Avatar_MouseLeftButtonDown"
                                     />
                             </DataTemplate>

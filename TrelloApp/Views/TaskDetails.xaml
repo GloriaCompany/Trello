@@ -76,6 +76,7 @@
                     ImageSource="{DynamicResource AddIconPath}"
                     HorizontalAlignment="Left"
                     Margin="15,0,0,0"
+                    IsPopupEnabled="False"
                     />
                 <customControls:ChangesButton
                     Grid.Row="2"

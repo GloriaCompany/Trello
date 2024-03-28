@@ -136,6 +136,7 @@
                         HorizontalAlignment="Right"
                         Margin="-17.5,0,0,0"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        IsPopupEnabled="False"
                         />
                 </Grid>
             </Border>
