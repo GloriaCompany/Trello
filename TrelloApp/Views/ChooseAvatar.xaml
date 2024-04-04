@@ -88,7 +88,9 @@
                     Width="180"
                     Text="SUBMIT"
                     VerticalAlignment="Top"
+                    x:Name="BtnSubmitAvatar"
                     Command="{Binding SelectAvatarCommand}"
+                    Click="BtnSubmitAvatar_Click"
                     />
             </Grid>
         </Border>

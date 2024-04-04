@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.UserVM
 {
@@ -38,6 +39,7 @@ namespace TrelloApp.ViewModels.UserVM
         {
             bool res =
                 User != null &&
+                User.Error == null &&
                 User.Password == User.ConfirmPassword;
 
             ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
@@ -55,7 +57,15 @@ namespace TrelloApp.ViewModels.UserVM
                     return;
                 }
 
-                _userRepository.AddUser(User);
+                var newUser = new User()
+                {
+                    Username = User.Username,
+                    Email = User.Email,
+                    Password = User.Password,
+                    Avatar = null
+                };
+                _userRepository.AddUser(newUser);
+                UserContext.SetCurrentUser(newUser);
 
                 MessageBox.Show("Користувача зареєстровано.");
             }

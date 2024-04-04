@@ -27,7 +27,7 @@ namespace TrelloDBLayer.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SQL5107.site4now.net;Initial Catalog=db_aa5374_trello;Persist Securit" +
-            "y Info=True;User ID=db_aa5374_trello_admin;Password=TQA75yGrU4x4r06")]
+            "y Info=True;User ID=db_aa5374_trello_admin")]
         public string db_aa5374_trelloConnectionString {
             get {
                 return ((string)(this["db_aa5374_trelloConnectionString"]));

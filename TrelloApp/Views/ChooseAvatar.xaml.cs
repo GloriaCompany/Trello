@@ -39,5 +39,10 @@ namespace TrelloApp.Views
                 _selectedAvatar.Background = Brushes.AliceBlue;
             }
         }
+
+        private void BtnSubmitAvatar_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Login());
+        }
     }
 }

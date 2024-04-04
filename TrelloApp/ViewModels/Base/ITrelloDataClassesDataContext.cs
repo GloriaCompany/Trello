@@ -13,9 +13,9 @@ namespace TrelloApp.ViewModels.Base
         IQueryable<Task> Tasks { get; }
         IQueryable<Checklist> Checklists { get; }
 
-        void AddUser(UserModel user);
+        void AddUser(User user);
         User GetUserByID(int userID);
-        void UpdateUser(UserModel user);
+        void UpdateUser(User user);
 
         void AddBoard(BoardModel board);
         void DelBoard(int boardID);

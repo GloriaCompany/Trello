@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Class="TrelloDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=SQL5107.site4now.net;Initial Catalog=db_aa5374_trello;Persist Security Info=True;User ID=db_aa5374_trello_admin" SettingsObjectName="TrelloDBLayer.Properties.Settings" SettingsPropertyName="db_aa5374_trelloConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="" Member="User">
     <Type Name="User">
       <Column Name="UserID" AutoSync="OnInsert" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Username" Type="System.String" CanBeNull="false" />
       <Column Name="Email" Type="System.String" CanBeNull="false" />
       <Column Name="Password" Type="System.String" CanBeNull="false" />
-      <Column Name="Avatar" Type="System.String" CanBeNull="false" />
+      <Column Name="Avatar" Type="System.String" CanBeNull="true" />
       <Association Name="User_Board" Member="Board" ThisKey="UserID" OtherKey="AdminID" Type="Board" />
       <Association Name="User_BoardMember" Member="BoardMember" ThisKey="UserID" OtherKey="UserID" Type="BoardMember" />
       <Association Name="User_Task" Member="Task" ThisKey="UserID" OtherKey="AssignedUserID" Type="Task" />
@@ -37,7 +36,6 @@
     <Type Name="BoardMember">
       <Column Name="BoardID" Type="System.Int32" CanBeNull="false" />
       <Column Name="UserID" Type="System.Int32" CanBeNull="false" />
-      <Column Name="IsAdmin" Type="System.Boolean" CanBeNull="false" />
       <Association Name="User_BoardMember" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
       <Association Name="Board_BoardMember" Member="Board" ThisKey="BoardID" OtherKey="BoardID" Type="Board" IsForeignKey="true" />
     </Type>

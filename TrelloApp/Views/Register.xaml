@@ -54,7 +54,7 @@
             VerticalAlignment="Center"
             x:Name="InputUsername"
             Placeholder="Username"
-            Text="{Binding User.Username, Mode=TwoWay}"
+            Text="{Binding User.Username, Mode=TwoWay, ValidatesOnDataErrors=True}"
             />
         <customControls:CustomInput
             Grid.Row="3"
@@ -64,7 +64,7 @@
             VerticalAlignment="Center"
             x:Name="InputEmail"
             Placeholder="E-mail"
-            Text="{Binding User.Email, Mode=TwoWay}"
+            Text="{Binding User.Email, Mode=TwoWay, ValidatesOnDataErrors=True}"
             />
         <customControls:CustomPasswordInput
             Grid.Row="4"
@@ -74,7 +74,7 @@
             VerticalAlignment="Center"
             x:Name="InputPassword"
             Placeholder="Password"
-            Password="{Binding User.Password, Mode=TwoWay}"
+            Password="{Binding User.Password, Mode=TwoWay, ValidatesOnDataErrors=True}"
             />
         <customControls:CustomPasswordInput
             Grid.Row="5"
@@ -84,7 +84,7 @@
             VerticalAlignment="Center"
             x:Name="InputConfirmPassword"
             Placeholder="Confirm Password"
-            Password="{Binding User.ConfirmPassword, Mode=TwoWay}"
+            Password="{Binding User.ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=True}"
             />
         <customControls:CustomButton 
             Text="CONTINUE" 
@@ -94,7 +94,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="BtnRegister"
-            Command="{Binding RegisterCommand}"
+            Click="BtnRegister_Click"
             />
         <customControls:CustomButton 
             Text="LOGIN" 

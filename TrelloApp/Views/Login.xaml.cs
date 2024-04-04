@@ -42,7 +42,7 @@ namespace TrelloApp.Views
 
         private void BtnCreateDatabase_Click(object sender, RoutedEventArgs e)
         {
-            var db = new TrelloDataClassesDataContext();
+            var db = new TrelloDataClassesDataContext(ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString);
             if (!db.DatabaseExists()) db.CreateDatabase();
             else MessageBox.Show("База даних вже створена. Ви можете продовжувати роботу.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
         }

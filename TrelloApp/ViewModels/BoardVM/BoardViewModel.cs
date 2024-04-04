@@ -14,8 +14,8 @@ namespace TrelloApp.ViewModels
 {
     public class BoardViewModel : ViewModelBase
     {
-        private UserModel _user;
-        public UserModel User
+        private User _user;
+        public User User
         {
             get { return _user; }
             set

@@ -35,8 +35,8 @@ namespace TrelloApp.ViewModels
             }
         }
 
-        private UserModel _user;
-        public UserModel User
+        private User _user;
+        public User User
         {
             get { return _user; }
             set
@@ -87,7 +87,7 @@ namespace TrelloApp.ViewModels
         {
             try
             {
-                User = (UserModel)_userRepository.GetUserByID(userID);
+                User = _userRepository.GetUserByID(userID);
             }
             catch (Exception ex)
             {

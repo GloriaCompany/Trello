@@ -13,6 +13,7 @@ namespace TrelloApp.Views.CustomControls
 
         private TextBlock PlaceholderTextBlock;
         private UIElement currentInputElement;
+        private bool isUpdatingPassword = false;
 
         public string Placeholder
         {
@@ -46,19 +47,22 @@ namespace TrelloApp.Views.CustomControls
 
         private void UpdatePlaceholderVisibility()
         {
-            PlaceholderTextBlock.Visibility = (currentInputElement == PasswordBox && string.IsNullOrEmpty(PasswordBox.Password)) ||
-                                               (currentInputElement == TextBox && string.IsNullOrEmpty(TextBox.Text))
-                                               ? Visibility.Visible : Visibility.Collapsed;
+            if (PlaceholderTextBlock != null)
+            {
+                PlaceholderTextBlock.Visibility = (currentInputElement == PasswordBox && string.IsNullOrEmpty(PasswordBox.Password)) ||
+                                                   (currentInputElement == TextBox && string.IsNullOrEmpty(TextBox.Text))
+                                                   ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
             if (PasswordBox.Visibility == Visibility.Visible)
             {
+                Password = PasswordBox.Password;
                 PasswordBox.Visibility = Visibility.Collapsed;
                 TextBox.Visibility = Visibility.Visible;
-                TextBox.Text = PasswordBox.Password;
-                PasswordBox.Password = "";
+                TextBox.Text = Password;
                 TextBox.Focus();
                 currentInputElement = TextBox;
                 PlaceholderTextBlock.Visibility = Visibility.Visible;
@@ -67,8 +71,8 @@ namespace TrelloApp.Views.CustomControls
             {
                 PasswordBox.Visibility = Visibility.Visible;
                 TextBox.Visibility = Visibility.Collapsed;
-                PasswordBox.Password = TextBox.Text;
-                TextBox.Text = "";
+                UpdatePassword(Password);
+                Password = "";
                 PasswordBox.Focus();
                 currentInputElement = PasswordBox;
             }
@@ -101,8 +105,21 @@ namespace TrelloApp.Views.CustomControls
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            //StackOverflowException при биндинге на пароль пользователя
-            //Password = PasswordBox.Password;
+            if (!isUpdatingPassword)
+            {
+                Password = PasswordBox.Password;
+                if (PasswordBox.Visibility == Visibility.Visible)
+                {
+                    UpdatePlaceholderVisibility();
+                }
+            }
+        }
+
+        private void UpdatePassword(string newPassword)
+        {
+            isUpdatingPassword = true;
+            PasswordBox.Password = newPassword;
+            isUpdatingPassword = false;
         }
     }
 }

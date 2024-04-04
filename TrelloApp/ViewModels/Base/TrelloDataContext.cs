@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using TrelloApp.Models;
 using TrelloDBLayer;
@@ -11,7 +12,8 @@ namespace TrelloApp.ViewModels.Base
 
         public TrelloDataContext()
         {
-            _context = new TrelloDataClassesDataContext();
+            string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString;
+            _context = new TrelloDataClassesDataContext(connectionString);
         }
 
         public IQueryable<User> Users => _context.User;
@@ -20,13 +22,13 @@ namespace TrelloApp.ViewModels.Base
         public IQueryable<Task> Tasks => _context.Task;
         public IQueryable<Checklist> Checklists => _context.Checklist;
 
-        public void AddUser(UserModel user)
+        public void AddUser(User user)
         {
             _context.User.InsertOnSubmit(user);
             SaveChanges();
         }
         public User GetUserByID(int userID) => _context.User.FirstOrDefault(u => u.UserID == userID);
-        public void UpdateUser(UserModel user)
+        public void UpdateUser(User user)
         {
             var existingUser = _context.User.FirstOrDefault(u => u.UserID == user.UserID);
 

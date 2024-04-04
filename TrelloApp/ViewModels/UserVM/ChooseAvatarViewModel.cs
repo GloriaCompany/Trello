@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.UserVM
 {

@@ -16,5 +16,10 @@ namespace TrelloApp.Views
         {
             NavigationService.Navigate(new Login());
         }
+
+        private void BtnRegister_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ChooseAvatar());
+        }
     }
 }

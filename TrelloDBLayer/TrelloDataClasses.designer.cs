@@ -46,12 +46,6 @@ namespace TrelloDBLayer
     partial void DeleteChecklist(Checklist instance);
     #endregion
 		
-		public TrelloDataClassesDataContext() : 
-				base(global::TrelloDBLayer.Properties.Settings.Default.db_aa5374_trelloConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
-		
 		public TrelloDataClassesDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
@@ -248,7 +242,7 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar")]
 		public string Avatar
 		{
 			get
@@ -753,8 +747,6 @@ namespace TrelloDBLayer
 		
 		private int _UserID;
 		
-		private bool _IsAdmin;
-		
 		public BoardMember()
 		{
 		}
@@ -787,22 +779,6 @@ namespace TrelloDBLayer
 				if ((this._UserID != value))
 				{
 					this._UserID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAdmin")]
-		public bool IsAdmin
-		{
-			get
-			{
-				return this._IsAdmin;
-			}
-			set
-			{
-				if ((this._IsAdmin != value))
-				{
-					this._IsAdmin = value;
 				}
 			}
 		}
