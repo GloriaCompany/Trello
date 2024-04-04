@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace TrelloApp.Views.CustomControls
@@ -9,7 +10,7 @@ namespace TrelloApp.Views.CustomControls
             DependencyProperty.Register("Placeholder", typeof(string), typeof(CustomPasswordInput), new FrameworkPropertyMetadata(string.Empty));
 
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(CustomPasswordInput), new FrameworkPropertyMetadata(string.Empty));
+            DependencyProperty.Register("Password", typeof(string), typeof(CustomPasswordInput), new FrameworkPropertyMetadata(string.Empty, PasswordPropertyChanged));
 
         private TextBlock PlaceholderTextBlock;
         private UIElement currentInputElement;
@@ -35,14 +36,25 @@ namespace TrelloApp.Views.CustomControls
             PasswordBox.Visibility = Visibility.Visible;
             TextBox.Visibility = Visibility.Collapsed;
 
-            Loaded += (sender, e) =>
-            {
-                PlaceholderTextBlock = (TextBlock)PasswordBox.Template.FindName("PlaceholderTextBlock", PasswordBox);
-                UpdatePlaceholderVisibility();
-            };
+            Loaded += CustomPasswordInput_Loaded;
 
-            PasswordBox.PasswordChanged += PasswordBox_TextChanged;
+            PasswordBox.PasswordChanged += PasswordBox_PasswordChanged;
             PasswordBox.LostFocus += PasswordBox_LostFocus;
+        }
+
+        private void CustomPasswordInput_Loaded(object sender, RoutedEventArgs e)
+        {
+            PlaceholderTextBlock = (TextBlock)PasswordBox.Template.FindName("PlaceholderTextBlock", PasswordBox);
+            UpdatePlaceholderVisibility();
+        }
+
+        private static void PasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as CustomPasswordInput;
+            if (control != null)
+            {
+                control.UpdatePassword(e.NewValue as string);
+            }
         }
 
         private void UpdatePlaceholderVisibility()
@@ -65,14 +77,17 @@ namespace TrelloApp.Views.CustomControls
                 TextBox.Text = Password;
                 TextBox.Focus();
                 currentInputElement = TextBox;
-                PlaceholderTextBlock.Visibility = Visibility.Visible;
+
+                if (PlaceholderTextBlock != null)
+                {
+                    PlaceholderTextBlock.Visibility = Visibility.Visible;
+                }
             }
             else
             {
                 PasswordBox.Visibility = Visibility.Visible;
                 TextBox.Visibility = Visibility.Collapsed;
-                UpdatePassword(Password);
-                Password = "";
+                PasswordBox.Password = Password;
                 PasswordBox.Focus();
                 currentInputElement = PasswordBox;
             }
@@ -95,22 +110,21 @@ namespace TrelloApp.Views.CustomControls
             UpdatePlaceholderVisibility();
         }
 
-        private void PasswordBox_TextChanged(object sender, RoutedEventArgs e)
-        {
-            if (PasswordBox.Visibility == Visibility.Visible)
-            {
-                UpdatePlaceholderVisibility();
-            }
-        }
-
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (!isUpdatingPassword)
             {
-                Password = PasswordBox.Password;
                 if (PasswordBox.Visibility == Visibility.Visible)
                 {
+                    Password = PasswordBox.Password;
                     UpdatePlaceholderVisibility();
+                }
+                else
+                {
+                    int cursorPosition = TextBox.SelectionStart;
+                    TextBox.Text = PasswordBox.Password;
+                    cursorPosition = Math.Min(cursorPosition, TextBox.Text.Length);
+                    TextBox.SelectionStart = cursorPosition;
                 }
             }
         }
