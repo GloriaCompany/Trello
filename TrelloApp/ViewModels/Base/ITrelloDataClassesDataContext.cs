@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using TrelloApp.Models;
 using TrelloDBLayer;
 
@@ -15,6 +16,7 @@ namespace TrelloApp.ViewModels.Base
 
         void AddUser(User user);
         User GetUserByID(int userID);
+        bool AuthenticateUser(string username, SecureString password);
         void UpdateUser(User user);
 
         void AddBoard(BoardModel board);

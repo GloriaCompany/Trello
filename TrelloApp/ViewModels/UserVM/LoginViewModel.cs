@@ -1,83 +1,92 @@
-﻿using System;
+﻿using Jewelry.ViewModel;
+using System;
 using System.Configuration;
+using System.Security;
+using System.Security.Principal;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.UserVM
 {
     public class LoginViewModel : ViewModelBase
     {
-        private UserModel _user;
-        public UserModel User
-        {
-            get { return _user; }
-            set
-            {
-                _user = value;
-                OnPropertyChanged(nameof(User));
-            }
-        }
-
-        private IUserRepository _userRepository;
-        public IUserRepository UserRepository
-        {
-            get { return _userRepository; }
-            set { _userRepository = value; }
-        }
-
-        public event EventHandler SuccessfullyLoggedIn;
-
-        public ICommand LoginCommand { get; set; }
+        //Fields
+        private string _username;
+        private SecureString _password;
+        private string _errorMessage;
 
         private Visibility _createDatabaseButtonVisibility;
-        public Visibility CreateDatabaseButtonVisibility
+
+        private IUserRepository _userRepository;
+
+        //Properties
+        public string Username
         {
-            get { return _createDatabaseButtonVisibility; }
+            get => _username;
             set
             {
-                _createDatabaseButtonVisibility = value;
-                OnPropertyChanged(nameof(CreateDatabaseButtonVisibility));
+                _username = value;
+                OnPropertyChanged(nameof(Username));
             }
         }
+        public SecureString Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
+        //Events
+        public event EventHandler SuccessfullyLoggedIn;
+
+        //Commands
+        public ICommand LoginCommand { get; set; }
+
 
         public LoginViewModel()
         {
-            _user = new UserModel();
-            _createDatabaseButtonVisibility = Visibility.Hidden;
-            LoginCommand = new RelayCommand(Login, CanLogin);
+            _userRepository = new UserRepository();
+
+            LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         }
 
-        private bool CanLogin()
+        //Checks
+        private bool CanExecuteLoginCommand(object obj)
         {
-            string adminLogin = ConfigurationManager.AppSettings["AdminLogin"];
-            string adminPassword = ConfigurationManager.AppSettings["AdminPassword"];
-
-            return User != null &&
-                   User.Username == adminLogin &&
-                   User.Password == adminPassword;
+            return !string.IsNullOrWhiteSpace(Username) && Username.Length >= 3 &&
+                   Password != null && Password.Length >= 3;
         }
 
-        private void Login()
+
+        //Executes
+        private void ExecuteLoginCommand(object obj)
         {
-            try
+            var isValidUser = _userRepository.AuthenticateUser(Username, Password);
+
+            if (isValidUser)
             {
-                var existingUser = _userRepository.GetUserByID(User.UserID);
-
-                if (existingUser != null && existingUser.Username == User.Username && existingUser.Password == User.Password)
-                {
-                    UserContext.SetCurrentUser(User);
-                    SuccessfullyLoggedIn?.Invoke(this, EventArgs.Empty);
-                }
-                else
-                {
-                    MessageBox.Show("Помилка: Невірне ім'я користувача або пароль.");
-                }
+                Thread.CurrentPrincipal = new GenericPrincipal(
+                    new GenericIdentity(Username), null);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Помилка: {ex.Message}");
+                ErrorMessage = "Invalid Username or Password";
             }
         }
     }

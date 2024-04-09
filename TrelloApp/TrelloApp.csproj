@@ -78,6 +78,7 @@
     <Compile Include="Models\ChecklistModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="ViewModels\Base\ViewModelCommand.cs" />
     <Compile Include="ViewModels\UserVM\UserContext.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="ViewModels\Base\DelegateCommand.cs" />

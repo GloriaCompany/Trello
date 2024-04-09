@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Security;
 using TrelloApp.Models;
 using TrelloDBLayer;
 
@@ -28,6 +29,7 @@ namespace TrelloApp.ViewModels.Base
             SaveChanges();
         }
         public User GetUserByID(int userID) => _context.User.FirstOrDefault(u => u.UserID == userID);
+        public bool AuthenticateUser(string username, SecureString password) => _context.User.FirstOrDefault(u => u.Username == username && u.Password == password.ToString()) != null;
         public void UpdateUser(User user)
         {
             var existingUser = _context.User.FirstOrDefault(u => u.UserID == user.UserID);
@@ -39,6 +41,7 @@ namespace TrelloApp.ViewModels.Base
 
             SaveChanges();
         }
+
 
         public void AddBoard(BoardModel board)
         {

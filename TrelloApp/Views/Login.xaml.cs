@@ -9,10 +9,13 @@ namespace TrelloApp.Views
 {
     public partial class Login : Page
     {
+        Visibility btnDatabaseVisibility = Visibility.Hidden;
+
         public Login()
         {
             InitializeComponent();
             DataContext = this;
+            BtnCreateDatabase.Visibility = btnDatabaseVisibility;
         }
 
         private void ViewModel_LoginSuccess(object sender, EventArgs e)
@@ -32,7 +35,7 @@ namespace TrelloApp.Views
             if (InputLogin.Text == ConfigurationManager.AppSettings["AdminLogin"].ToString() &&
                 InputPassword.Password == ConfigurationManager.AppSettings["AdminPassword"].ToString())
             {
-                BtnCreateDatabase.Visibility = Visibility.Visible;
+                btnDatabaseVisibility = Visibility.Visible;
             }
             else
             {

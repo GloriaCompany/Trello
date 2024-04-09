@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Security;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
@@ -9,6 +12,7 @@ namespace TrelloApp.ViewModels.UserVM
     {
         void AddUser(User user);
         User GetUserByID(int userID);
+        bool AuthenticateUser(string username, SecureString password);
         void UpdateUser(User user);
     }
 
@@ -55,6 +59,12 @@ namespace TrelloApp.ViewModels.UserVM
             {
                 throw new Exception("Failed to get user.", ex);
             }
+        }
+
+        public bool AuthenticateUser(string username, SecureString password)
+        {
+            bool validUser = _dbContext.Users.FirstOrDefault(u => u.Username == username && u.Password == password.ToString()) != null;
+            return validUser;
         }
 
         public void UpdateUser(User user)
