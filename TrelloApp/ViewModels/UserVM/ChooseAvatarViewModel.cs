@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
-using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.UserVM
 {
@@ -21,11 +18,17 @@ namespace TrelloApp.ViewModels.UserVM
         private readonly IAvatarRepository _avatarRepository;
 
         // Конструктор, що ініціалізує ViewModel.
-        public ChooseAvatarViewModel(IAvatarRepository avatarRepository)
+        public ChooseAvatarViewModel(IAvatarRepository avatarRepository, IUserRepository repository)
         {
             _avatarRepository = avatarRepository;
+
             AvatarImages = new ObservableCollection<BitmapImage>();
-            SelectAvatarCommand = new DelegateCommand(SelectAvatar, parameter => true);
+
+            SelectAvatarCommand = new DelegateCommand((bmp) => {
+                repository.LoggedUser.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
+                repository.AddUser(repository.LoggedUser);
+            }, parameter => true);
+
             LoadAvatarImages();
         }
 
@@ -44,9 +47,9 @@ namespace TrelloApp.ViewModels.UserVM
         }
 
         // Метод для вибору аватара.
-        private void SelectAvatar(object parameter)
+        /*private void SelectAvatar(object parameter)
         {
             SelectedAvatar = parameter as BitmapImage;
-        }
+        }*/
     }
 }

@@ -7,18 +7,7 @@
         xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.UserVM"
         xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"
         mc:Ignorable="d"
-        Title="Register" Height="525" Width="400" Background="#1d2125">
-    <Page.DataContext>
-        <viewModel:RegisterViewModel>
-            <viewModel:RegisterViewModel.UserRepository>
-                <viewModel:UserRepository>
-                    <viewModel:UserRepository.DbContext>
-                        <viewModelBase:TrelloDataContext/>
-                    </viewModel:UserRepository.DbContext>
-                </viewModel:UserRepository>
-            </viewModel:RegisterViewModel.UserRepository>
-        </viewModel:RegisterViewModel>
-    </Page.DataContext>
+        Title="Register" Height="525" Width="400" Background="#1d2125">    
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -66,17 +55,17 @@
             Placeholder="E-mail"
             Text="{Binding User.Email, Mode=TwoWay, ValidatesOnDataErrors=True}"
             />
-        <customControls:CustomPasswordInput
+        <customControls:CustomInput
             Grid.Row="4"
             Width="250"
             Height="35"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            x:Name="InputPassword"
+            x:Name="InputPassword"            
             Placeholder="Password"
-            Password="{Binding User.Password, Mode=TwoWay, ValidatesOnDataErrors=True}"
+            Text="{Binding User.Password, Mode=TwoWay, ValidatesOnDataErrors=True}"
             />
-        <customControls:CustomPasswordInput
+        <customControls:CustomInput
             Grid.Row="5"
             Width="250"
             Height="35"
@@ -84,7 +73,7 @@
             VerticalAlignment="Center"
             x:Name="InputConfirmPassword"
             Placeholder="Confirm Password"
-            Password="{Binding User.ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=True}"
+            Text="{Binding User.ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=True}"
             />
         <customControls:CustomButton 
             Text="CONTINUE" 
@@ -95,6 +84,7 @@
             VerticalAlignment="Center"
             x:Name="BtnRegister"
             Click="BtnRegister_Click"
+            Command="{Binding RegisterCommand}"
             />
         <customControls:CustomButton 
             Text="LOGIN" 

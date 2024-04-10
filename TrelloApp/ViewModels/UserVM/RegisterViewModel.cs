@@ -24,13 +24,13 @@ namespace TrelloApp.ViewModels.UserVM
         public IUserRepository UserRepository
         {
             get { return _userRepository; }
-            set { _userRepository = value; }
         }
 
         public ICommand RegisterCommand { get; set; }
 
-        public RegisterViewModel()
+        public RegisterViewModel(IUserRepository userRepository)
         {
+            _userRepository = userRepository;
             _user = new UserModel();
             RegisterCommand = new RelayCommand(Register, CanRegister);
         }
@@ -64,8 +64,8 @@ namespace TrelloApp.ViewModels.UserVM
                     Password = User.Password,
                     Avatar = null
                 };
-                _userRepository.AddUser(newUser);
-                UserContext.SetCurrentUser(newUser);
+
+                _userRepository.LoggedUser = newUser;
 
                 MessageBox.Show("Користувача зареєстровано.");
             }

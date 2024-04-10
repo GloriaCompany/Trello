@@ -1,6 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TrelloApp.ViewModels;
+using TrelloApp.ViewModels.BoardVM;
+using TrelloApp.ViewModels.UserVM;
 using TrelloApp.Views.Utils;
 
 namespace TrelloApp.Views
@@ -13,7 +16,12 @@ namespace TrelloApp.Views
         public Dashboard()
         {
             InitializeComponent();
-            this.PreviewMouseDown += Dashboard_PreviewMouseDown;
+
+            DataContext = new DashboardViewModel(
+                FindResource("UserRepository") as IUserRepository,
+                FindResource("BoardRepository") as IBoardRepository
+            );
+            PreviewMouseDown += Dashboard_PreviewMouseDown;
         }
 
         private void AddBoardBtn_Click(object sender, System.Windows.RoutedEventArgs e)

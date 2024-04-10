@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Class="TrelloDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="" Member="User">
     <Type Name="User">
-      <Column Name="UserID" AutoSync="OnInsert" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Username" Type="System.String" CanBeNull="false" />
       <Column Name="Email" Type="System.String" CanBeNull="false" />
       <Column Name="Password" Type="System.String" CanBeNull="false" />
@@ -13,7 +13,7 @@
   </Table>
   <Table Name="" Member="Board">
     <Type Name="Board">
-      <Column Name="BoardID" AutoSync="OnInsert" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BoardID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Title" Type="System.String" CanBeNull="false" />
       <Column Name="AdminID" Type="System.Int32" CanBeNull="false" />
       <Association Name="Board_Column" Member="Column" ThisKey="BoardID" OtherKey="BoardID" Type="Column" />
@@ -23,7 +23,7 @@
   </Table>
   <Table Name="" Member="Column">
     <Type Name="Column">
-      <Column Name="ColumnID" AutoSync="OnInsert" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ColumnID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="BoardID" Type="System.Int32" CanBeNull="false" />
       <Column Name="Title" Type="System.String" CanBeNull="false" />
       <Column Name="OrderIndex" Type="System.String" CanBeNull="false" />
@@ -42,7 +42,7 @@
   </Table>
   <Table Name="" Member="Task">
     <Type Name="Task">
-      <Column Name="TaskID" AutoSync="OnInsert" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TaskID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ColumnID" Type="System.Int32" CanBeNull="false" />
       <Column Name="Title" Type="System.String" CanBeNull="false" />
       <Column Name="Description" Type="System.String" CanBeNull="false" />
@@ -54,7 +54,7 @@
   </Table>
   <Table Name="" Member="Checklist">
     <Type Name="Checklist">
-      <Column Name="ChecklistID" AutoSync="OnInsert" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ChecklistID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TaskID" Type="System.Int32" CanBeNull="false" />
       <Column Name="TaskDescription" Type="System.String" CanBeNull="false" />
       <Column Name="IsCompleted" Type="System.Boolean" CanBeNull="false" />

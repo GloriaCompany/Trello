@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.BoardVM"
+        xmlns:helpers="clr-namespace:TrelloApp.Helpers"
         mc:Ignorable="d"
         Title="Dashboard" 
-        Background="{DynamicResource ThemeMainColor}">
+        Background="{DynamicResource ThemeMainColor}"
+        d:DataContext="{d:DesignInstance viewModel:DashboardViewModel}">
     <Page.Resources>
         <Style TargetType="Border" x:Key="HoverBorderStyle">
             <Setter Property="Background" Value="Transparent"/>
@@ -28,6 +31,49 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <DataTemplate x:Key="BoardPlaceholder">
+            <Border
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
+                x:Name="AddBoardBorder"
+                >
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    Width="50"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    >
+                    <customControls:ChangesButton
+                        ImageSource="{DynamicResource AddIconPath}"
+                        x:Name="AddBoardBtn"
+                        Click="AddBoardBtn_Click"
+                        />
+                </Border>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="RealBoard">
+            <Border
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
+                >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="Board Name"
+                    FontSize="14"
+                    Style="{StaticResource HoverTextBlockStyle}"
+                    />
+            </Border>
+        </DataTemplate>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -55,6 +101,7 @@
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     >
+            <Button Command="{Binding LoadBoardsCommand}" Content="Load ..."/>
             <customControls:CustomComboBox SelectedIndex="1"
                                            x:Name="ThemesComboBox"
                                            SelectionChanged="ThemesComboBox_SelectionChanged"
@@ -111,7 +158,7 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock 
-                        Text="Name"
+                        Text="{Binding User.Username}"
                         FontSize="10"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left" 
@@ -141,8 +188,23 @@
                 </Grid>
             </Border>
         </StackPanel>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Boards}">
+            <ItemsControl.ItemTemplateSelector>
+                <helpers:BoardDataTemplateSelector/>
+            </ItemsControl.ItemTemplateSelector>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel  
+                        Grid.Row="1" 
+                        Orientation="Horizontal"
+                        ItemWidth="200"
+                        ItemHeight="200">                       
+                    </WrapPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
         <WrapPanel
-            Grid.Row="1"
+            Grid.Row="1" Visibility="Collapsed"
             Orientation="Horizontal"
             ItemWidth="200"
             ItemHeight="200"

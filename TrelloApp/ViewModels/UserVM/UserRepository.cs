@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Net;
-using System.Security;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
@@ -12,8 +9,10 @@ namespace TrelloApp.ViewModels.UserVM
     {
         void AddUser(User user);
         User GetUserByID(int userID);
-        bool AuthenticateUser(string username, SecureString password);
+        bool AuthenticateUser(string username, String password);
         void UpdateUser(User user);
+
+        User LoggedUser { get; set; }
     }
 
     internal class UserRepository : IUserRepository
@@ -25,7 +24,8 @@ namespace TrelloApp.ViewModels.UserVM
             set { _dbContext = value; }
         }
 
-        public UserRepository() { }
+        public User LoggedUser { get; set; }
+
         public UserRepository(ITrelloDataClassesDataContext dbContext)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
@@ -61,9 +61,11 @@ namespace TrelloApp.ViewModels.UserVM
             }
         }
 
-        public bool AuthenticateUser(string username, SecureString password)
-        {
-            bool validUser = _dbContext.Users.FirstOrDefault(u => u.Username == username && u.Password == password.ToString()) != null;
+        public bool AuthenticateUser(string username, String password)
+        {            
+            var user =  _dbContext.Users.FirstOrDefault(u => u.Username == username && u.Password == password.ToString());
+            LoggedUser = user;
+            bool validUser = user != null;
             return validUser;
         }
 

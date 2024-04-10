@@ -4,14 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.UserVM"
         mc:Ignorable="d"
         Title="Login" Height="430" Width="400" Background="#1d2125">
-    
-    <Page.DataContext>
-        <viewModel:LoginViewModel/>
-    </Page.DataContext>
-    
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -45,22 +39,22 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="InputLogin"
-            Placeholder="Login"
-            Text="{Binding Username, Mode=TwoWay}"
+            Placeholder="Username"
+            Text="{Binding Username}"
             />
         <!--Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
-        <customControls:CustomPasswordInput
+        <customControls:CustomInput 
+            Text="{Binding Password}"
             Grid.Row="3"
             Width="250"
             Height="35"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            x:Name="InputPassword"
             Placeholder="Password"
-            Password="AdminPassword"
+            x:Name="InputPassword"            
             />
         <customControls:CustomButton 
-            Text="LOGIN" 
+            Content="LOGIN" 
             Width="180" 
             Height="35"
             Grid.Row="4"
@@ -68,7 +62,6 @@
             VerticalAlignment="Center"
             x:Name="BtnLogin"
             Command="{Binding LoginCommand}"
-            Click="BtnLogin_Click"
             />
         <customControls:CustomButton 
             Text="REGISTER" 

@@ -5,11 +5,10 @@ using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.BoardVM;
 using TrelloApp.ViewModels.UserVM;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels
+namespace TrelloApp.ViewModels.BoardVM
 {
     public class DashboardViewModel : ViewModelBase
     {
@@ -38,7 +37,7 @@ namespace TrelloApp.ViewModels
         private User _user;
         public User User
         {
-            get { return _user; }
+            get { return _userRepository.LoggedUser; }
             set
             {
                 _user = value;
@@ -47,11 +46,6 @@ namespace TrelloApp.ViewModels
         }
 
         private IUserRepository _userRepository;
-        public IUserRepository UserRepository
-        {
-            get { return _userRepository; }
-            set { _userRepository = value; }
-        }
 
         private IBoardRepository _boardRepository;
         public IBoardRepository BoardRepository
@@ -65,9 +59,13 @@ namespace TrelloApp.ViewModels
         public ICommand AddBoardCommand { get; set; }
         public ICommand DelBoardCommand { get; set; }
 
-        public DashboardViewModel()
+        public DashboardViewModel(IUserRepository userRepository, IBoardRepository boardRepository)
         {
-            _user = UserContext.CurrentUser;
+            _boardRepository = boardRepository;
+            _userRepository = userRepository;
+
+            _user = userRepository.LoggedUser;
+
             LoadUserCommand = new RelayCommand(() => LoadUser(_user.UserID), CanLoadUser);
             LoadBoardsCommand = new RelayCommand(() => LoadBoards(_user.UserID), CanLoadBoards);
             AddBoardCommand = new RelayCommand(AddBoard, CanAddBoard);
@@ -97,24 +95,27 @@ namespace TrelloApp.ViewModels
 
         private bool CanLoadBoards()
         {
-            bool res =
-                Boards != null;
+            return true;
+            //bool res = Boards != null;
 
-            ((RelayCommand)LoadBoardsCommand).RaiseCanExecuteChanged();
+            //((RelayCommand)LoadBoardsCommand).RaiseCanExecuteChanged();
 
-            return res;
+            //return true;
         }
         private void LoadBoards(int userID)
         {
             try
             {
                 List<Board> dbBoards = _boardRepository.GetBoardsByUserID(userID);
+                dbBoards.Insert(0, new Board { Title = "Placeholder" });
+
                 Boards = dbBoards.Select(dbBoard => new BoardModel
                 {
                     BoardID = dbBoard.BoardID,
                     Title = dbBoard.Title,
                     AdminID = dbBoard.AdminID
                 }).ToList();
+                
             }
             catch (Exception ex)
             {
@@ -125,7 +126,7 @@ namespace TrelloApp.ViewModels
         private bool CanAddBoard()
         {
             bool res =
-                Board != null;
+                Board == null;
 
             ((RelayCommand)AddBoardCommand).RaiseCanExecuteChanged();
 

@@ -17,7 +17,10 @@ namespace TrelloApp.Views
         public ChooseAvatar()
         {
             InitializeComponent();
-            var viewModel = new ChooseAvatarViewModel(new AvatarRepository(new ResourceImageLoader(), new FolderImageLoader()));
+            var viewModel = new ChooseAvatarViewModel(
+                FindResource("AvatarRepository") as IAvatarRepository,
+                FindResource("UserRepository") as IUserRepository
+               );
             DataContext = viewModel;
         }
 
