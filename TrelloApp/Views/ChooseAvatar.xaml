@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125">
+        Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125"
+      Loaded="Page_Loaded">
     <Page.Resources>
         <Style TargetType="customControls:CircleImage">
             <Setter Property="Background" Value="Transparent"/>

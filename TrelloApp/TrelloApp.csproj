@@ -75,6 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\BoardDataTemplateSelector.cs" />
+    <Compile Include="Helpers\INavigator.cs" />
     <Compile Include="Models\BoardModel.cs" />
     <Compile Include="Models\ChecklistModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
@@ -201,6 +202,7 @@
     <EmbeddedResource Include="Views\ResourcesTrello\Assets.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Assets.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ResourcesTrello\UserAvatars.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -314,174 +316,70 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\ua.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TrelloDBLayer\TrelloDBLayer.csproj">
       <Project>{16b3a097-40f0-4dc0-9f08-d7bef210806b}</Project>
       <Name>TrelloDBLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\window-close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\window-maximize.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\window-minimize.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\discard.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\submit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\en.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\sun.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\moon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\plus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\userAvatar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\search.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\app-logo.ico" />
-    <Resource Include="Resources\arrow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\change_column_night.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\eye.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\move-column.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\app_logo_day.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\app_logo_night.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\change_place.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\move_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\move_left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar13.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar14.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar15.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar17.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar18.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar19.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar20.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar21.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar03.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar04.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar06.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar07.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar08.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar09.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar10.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar12.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Avatar02.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Avatar10.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Avatar05.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\edit_day.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="UserAvatars\TestAvatar1.png" />
     <Resource Include="UserAvatars\TestAvatar2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\eye_day.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\move_column_day.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\move_left_day.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\move_right_day.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\plus_day.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\search_day.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Resources\app-logo.ico" />
+    <Resource Include="Resources\app_logo_day.png" />
+    <Resource Include="Resources\app_logo_night.png" />
+    <Resource Include="Resources\arrow.png" />
+    <Resource Include="Resources\Avatar01.png" />
+    <Resource Include="Resources\Avatar02.png" />
+    <Resource Include="Resources\Avatar03.png" />
+    <Resource Include="Resources\Avatar04.png" />
+    <Resource Include="Resources\Avatar05.png" />
+    <Resource Include="Resources\Avatar06.png" />
+    <Resource Include="Resources\Avatar07.png" />
+    <Resource Include="Resources\Avatar08.png" />
+    <Resource Include="Resources\Avatar09.png" />
+    <Resource Include="Resources\Avatar10.jpg" />
+    <Resource Include="Resources\Avatar10.png" />
+    <Resource Include="Resources\Avatar11.png" />
+    <Resource Include="Resources\Avatar12.png" />
+    <Resource Include="Resources\Avatar13.png" />
+    <Resource Include="Resources\Avatar14.png" />
+    <Resource Include="Resources\Avatar15.png" />
+    <Resource Include="Resources\Avatar16.png" />
+    <Resource Include="Resources\Avatar17.png" />
+    <Resource Include="Resources\Avatar18.png" />
+    <Resource Include="Resources\Avatar19.png" />
+    <Resource Include="Resources\Avatar20.png" />
+    <Resource Include="Resources\Avatar21.png" />
     <Resource Include="Resources\change_column_day.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Resource Include="Resources\change_column_night.png" />
+    <Resource Include="Resources\change_place.png" />
     <Resource Include="Resources\change_place_day.png" />
+    <Resource Include="Resources\discard.png" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\edit_day.png" />
+    <Resource Include="Resources\en.png" />
+    <Resource Include="Resources\eye.png" />
+    <Resource Include="Resources\eye_day.png" />
+    <Resource Include="Resources\moon.png" />
+    <Resource Include="Resources\move-column.png" />
+    <Resource Include="Resources\move_column_day.png" />
+    <Resource Include="Resources\move_left.png" />
+    <Resource Include="Resources\move_left_day.png" />
+    <Resource Include="Resources\move_right.png" />
+    <Resource Include="Resources\move_right_day.png" />
+    <Resource Include="Resources\plus.png" />
+    <Resource Include="Resources\plus_day.png" />
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\search_day.png" />
+    <Resource Include="Resources\submit.png" />
+    <Resource Include="Resources\sun.png" />
+    <Resource Include="Resources\ua.png" />
+    <Resource Include="Resources\userAvatar.png" />
+    <Resource Include="Resources\window-close.png" />
+    <Resource Include="Resources\window-maximize.png" />
+    <Resource Include="Resources\window-minimize.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

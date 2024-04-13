@@ -6,8 +6,10 @@
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.BoardVM"
         xmlns:helpers="clr-namespace:TrelloApp.Helpers"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="Dashboard" 
+      Loaded="Page_Loaded"
         Background="{DynamicResource ThemeMainColor}"
         d:DataContext="{d:DesignInstance viewModel:DashboardViewModel}">
     <Page.Resources>
@@ -75,6 +77,8 @@
             </Border>
         </DataTemplate>
     </Page.Resources>
+
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>

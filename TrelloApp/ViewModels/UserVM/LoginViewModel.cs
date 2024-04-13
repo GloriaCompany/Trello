@@ -3,7 +3,11 @@ using System.Security.Principal;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.BoardVM;
+using TrelloApp.Views;
 
 namespace TrelloApp.ViewModels.UserVM
 {
@@ -22,6 +26,7 @@ namespace TrelloApp.ViewModels.UserVM
         }
 
         private IUserRepository _userRepository;
+        private INavigator _navigator;
 
         //Properties
         public string Username
@@ -53,15 +58,15 @@ namespace TrelloApp.ViewModels.UserVM
         }
 
         //Events
-        public event EventHandler SuccessfullyLoggedIn;
+        //public event EventHandler SuccessfullyLoggedIn;
 
         //Commands
         public ICommand LoginCommand { get; set; }
 
-        public LoginViewModel(IUserRepository userRepository)
+        public LoginViewModel(IUserRepository userRepository, INavigator navigator)
         {
             _userRepository = userRepository;
-
+            _navigator = navigator;
             LoginCommand = new RelayCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         }
 
@@ -79,7 +84,9 @@ namespace TrelloApp.ViewModels.UserVM
 
             if (isValidUser)
             {
-                SuccessfullyLoggedIn?.Invoke(this, null);
+                //SuccessfullyLoggedIn?.Invoke(this, null);
+                
+                _navigator.GoTo("Dashboard.xaml");
 
                 Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(Username), null);

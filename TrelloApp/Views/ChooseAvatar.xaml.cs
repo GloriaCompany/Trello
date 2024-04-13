@@ -4,6 +4,7 @@ using System.Windows.Media;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 using TrelloApp.ViewModels.UserVM;
 using TrelloApp.Views.CustomControls;
+using System.Data.SqlClient;
 
 namespace TrelloApp.Views
 {
@@ -45,7 +46,12 @@ namespace TrelloApp.Views
 
         private void BtnSubmitAvatar_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Login());
+            //NavigationService.Navigate(new Login());
+        }
+
+        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            
         }
     }
 }

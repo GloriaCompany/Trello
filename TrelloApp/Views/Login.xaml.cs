@@ -15,11 +15,10 @@ namespace TrelloApp.Views
         public Login()
         {
             InitializeComponent();
-            var vm = new LoginViewModel(FindResource("UserRepository") as IUserRepository);
+            var vm = new LoginViewModel(FindResource("UserRepository") as IUserRepository,
+                                        FindResource("Navigation") as INavigator);
             DataContext = vm;
-            vm.SuccessfullyLoggedIn += (a,b)=>{
-                NavigationService.Navigate(new Dashboard());
-            };
+            
             //DataContext = this;
             //BtnCreateDatabase.Visibility = btnDatabaseVisibility;
         }

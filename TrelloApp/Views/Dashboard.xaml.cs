@@ -17,10 +17,12 @@ namespace TrelloApp.Views
         {
             InitializeComponent();
 
-            DataContext = new DashboardViewModel(
-                FindResource("UserRepository") as IUserRepository,
-                FindResource("BoardRepository") as IBoardRepository
-            );
+            DashboardViewModel vm = new DashboardViewModel(
+                            FindResource("UserRepository") as IUserRepository,
+                            FindResource("BoardRepository") as IBoardRepository
+                        );
+            DataContext = vm;
+
             PreviewMouseDown += Dashboard_PreviewMouseDown;
         }
 
@@ -73,6 +75,11 @@ namespace TrelloApp.Views
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            (DataContext as DashboardViewModel).LoadBoardsCommand.Execute(null);
         }
     }
 }
