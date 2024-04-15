@@ -10,7 +10,7 @@ namespace TrelloApp.Helpers
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            return (item as Board).Title == PlaceHolderTitle 
+            return (item as Board).Title == PlaceHolderTitle
                 ? (container as FrameworkElement).FindResource("BoardPlaceholder") as DataTemplate
                 : (container as FrameworkElement).FindResource("RealBoard") as DataTemplate;
         }

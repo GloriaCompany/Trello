@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using TrelloApp.Models;
 using TrelloDBLayer;
 
@@ -15,9 +14,10 @@ namespace TrelloApp.ViewModels.Base
         IQueryable<Checklist> Checklists { get; }
 
         void AddUser(User user);
-        User GetUserByID(int userID);
-        bool AuthenticateUser(string username, SecureString password);
+        void DelUser(int userID);
         void UpdateUser(User user);
+        User GetUserByID(int userID);
+        bool AuthenticateUser(string username, string password);
 
         void AddBoard(BoardModel board);
         void DelBoard(int boardID);

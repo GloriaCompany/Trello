@@ -115,7 +115,7 @@ namespace TrelloApp.ViewModels.BoardVM
                     Title = dbBoard.Title,
                     AdminID = dbBoard.AdminID
                 }).ToList();
-                
+
             }
             catch (Exception ex)
             {

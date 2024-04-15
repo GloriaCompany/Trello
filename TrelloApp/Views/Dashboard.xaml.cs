@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.BoardVM;
 using TrelloApp.ViewModels.UserVM;
 using TrelloApp.Views.Utils;
@@ -61,7 +60,7 @@ namespace TrelloApp.Views
                     .PlacementTarget?
                     .TransformToVisual(this)
                     .TransformBounds(addBoardPopup.PlacementRectangle)
-                    .Contains(point) 
+                    .Contains(point)
                     ?? false;
             }
             return false;

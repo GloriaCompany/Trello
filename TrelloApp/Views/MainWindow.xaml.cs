@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Windows;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using TrelloApp.Models;
-using TrelloApp.Views.CustomControls;
 using TrelloApp.Views.Utils;
 
 namespace TrelloApp

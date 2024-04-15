@@ -7,9 +7,9 @@ namespace TrelloApp.ViewModels.UserVM
 {
     public interface IUserRepository
     {
-        void AddUser(User user);
+        void AddUser(string username, string email, string password, string avatar);
         User GetUserByID(int userID);
-        bool AuthenticateUser(string username, String password);
+        bool AuthenticateUser(string username, string password);
         void UpdateUser(User user);
 
         User LoggedUser { get; set; }
@@ -31,44 +31,21 @@ namespace TrelloApp.ViewModels.UserVM
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void AddUser(User user)
+        public void AddUser(string username, string email, string password, string avatar)
         {
-            if (user == null)
+            var user = new User
             {
-                throw new ArgumentNullException(nameof(user));
-            }
-
-            try
-            {
-                _dbContext.AddUser(user);
-                _dbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to add user.", ex);
-            }
+                Username = username,
+                Email = email,
+                Password = password,
+                Avatar = avatar
+            };
+            _dbContext.AddUser(user);
         }
-
-        public User GetUserByID(int userID)
+        public void DelUser(int userID)
         {
-            try
-            {
-                return _dbContext.Users.FirstOrDefault(u => u.UserID == userID);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to get user.", ex);
-            }
+            _dbContext.DelUser(userID);
         }
-
-        public bool AuthenticateUser(string username, String password)
-        {            
-            var user =  _dbContext.Users.FirstOrDefault(u => u.Username == username && u.Password == password.ToString());
-            LoggedUser = user;
-            bool validUser = user != null;
-            return validUser;
-        }
-
         public void UpdateUser(User user)
         {
             if (user == null)
@@ -85,6 +62,17 @@ namespace TrelloApp.ViewModels.UserVM
             {
                 throw new Exception("Failed to update user.", ex);
             }
+        }
+        public User GetUserByID(int userID)
+        {
+            return _dbContext.Users.FirstOrDefault(u => u.UserID == userID);
+        }
+        public bool AuthenticateUser(string username, string password)
+        {
+            var user = _dbContext.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
+            LoggedUser = user;
+
+            return user != null;
         }
     }
 }

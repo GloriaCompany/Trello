@@ -1,7 +1,5 @@
-﻿using System;
-using System.Windows;
+﻿using Jewelry.ViewModel;
 using System.Windows.Input;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
@@ -9,70 +7,100 @@ namespace TrelloApp.ViewModels.UserVM
 {
     public class RegisterViewModel : ViewModelBase
     {
-        private UserModel _user;
-        public UserModel User
+        //Fields
+        private string _username;
+        private string _email;
+        private string _password;
+        private string _confirmPassword;
+        private string _errorMessage;
+        private IUserRepository _userRepository;
+
+        //Properties
+        public string Username
         {
-            get { return _user; }
+            get => _username;
             set
             {
-                _user = value;
-                OnPropertyChanged(nameof(User));
+                _username = value;
+                OnPropertyChanged(nameof(Username));
             }
         }
-
-        private IUserRepository _userRepository;
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+        public string ConfirmPassword
+        {
+            get => _confirmPassword;
+            set
+            {
+                _confirmPassword = value;
+                OnPropertyChanged(nameof(ConfirmPassword));
+            }
+        }
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
         public IUserRepository UserRepository
         {
-            get { return _userRepository; }
+            get => _userRepository;
         }
 
+        //Commands
         public ICommand RegisterCommand { get; set; }
 
         public RegisterViewModel(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _user = new UserModel();
-            RegisterCommand = new RelayCommand(Register, CanRegister);
+            RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
         }
 
-        private bool CanRegister()
+        //Checks
+        private bool CanExecuteRegisterCommand(object obj)
         {
-            bool res =
-                User != null &&
-                User.Error == null &&
-                User.Password == User.ConfirmPassword;
-
-            ((RelayCommand)RegisterCommand).RaiseCanExecuteChanged();
-
-            return res;
+            return
+                !string.IsNullOrWhiteSpace(Username) &&
+                Username.Length >= 3 &&
+                !string.IsNullOrWhiteSpace(Email) &&
+                Email.Length >= 3 &&
+                !string.IsNullOrWhiteSpace(Password) &&
+                Password.Length >= 3 &&
+                !string.IsNullOrWhiteSpace(ConfirmPassword) &&
+                ConfirmPassword == Password;
         }
 
-        private void Register()
+        //Executes
+        private void ExecuteRegisterCommand(object obj)
         {
-            try
+            var user = new User()
             {
-                if (!CanRegister())
-                {
-                    MessageBox.Show("Паролі мають співпадати. Перевірте правильність введених даних, будь-ласка.");
-                    return;
-                }
+                Username = Username,
+                Email = Email,
+                Password = Password,
+                Avatar = null
+            };
 
-                var newUser = new User()
-                {
-                    Username = User.Username,
-                    Email = User.Email,
-                    Password = User.Password,
-                    Avatar = null
-                };
-
-                _userRepository.LoggedUser = newUser;
-
-                MessageBox.Show("Користувача зареєстровано.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            _userRepository.LoggedUser = user;
         }
     }
 }

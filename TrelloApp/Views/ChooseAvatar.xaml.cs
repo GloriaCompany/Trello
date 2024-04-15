@@ -1,10 +1,9 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 using TrelloApp.Views.CustomControls;
-using System.Data.SqlClient;
 
 namespace TrelloApp.Views
 {
@@ -51,7 +50,7 @@ namespace TrelloApp.Views
 
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            
+
         }
     }
 }

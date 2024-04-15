@@ -1,8 +1,8 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels.UserVM;
 using TrelloDBLayer;
 
@@ -10,24 +10,12 @@ namespace TrelloApp.Views
 {
     public partial class Login : Page
     {
-        //Visibility btnDatabaseVisibility = Visibility.Hidden;
-
         public Login()
         {
             InitializeComponent();
             var vm = new LoginViewModel(FindResource("UserRepository") as IUserRepository,
                                         FindResource("Navigation") as INavigator);
             DataContext = vm;
-            
-            //DataContext = this;
-            //BtnCreateDatabase.Visibility = btnDatabaseVisibility;
-        }
-
-        private void ViewModel_LoginSuccess(object sender, EventArgs e)
-        {
-            //Close();
-            //var mainWindow = new MainWindow();
-            //mainWindow.Show();
         }
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
@@ -42,7 +30,6 @@ namespace TrelloApp.Views
                 InputPassword.Text == ConfigurationManager.AppSettings["AdminPassword"].ToString())
             {
                 BtnCreateDatabase.Visibility = Visibility.Visible;
-                //btnDatabaseVisibility = Visibility.Visible;
             }
             else
             {
@@ -53,8 +40,8 @@ namespace TrelloApp.Views
         private void BtnCreateDatabase_Click(object sender, RoutedEventArgs e)
         {
             var db = new TrelloDataClassesDataContext(ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString);
-            if (db.DatabaseExists()) 
-            { 
+            if (db.DatabaseExists())
+            {
                 db.DeleteDatabase();
                 MessageBox.Show("База даних вже створена. Видаляємо! Можете продовжувати роботу.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

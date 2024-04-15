@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.UserVM;
 
 namespace TrelloApp.Views
@@ -18,7 +17,7 @@ namespace TrelloApp.Views
                 FindResource("UserRepository") as IUserRepository
             );
 
-            DataContext = vm; 
+            DataContext = vm;
         }
 
         private void BtnLogin_Click(object sender, System.Windows.RoutedEventArgs e)

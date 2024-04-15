@@ -1,9 +1,4 @@
-﻿using System.Globalization;
-using System.Windows;
-using System;
-using System.Windows.Controls;
-using TrelloApp.Views.CustomControls;
-using System.Linq;
+﻿using System.Windows.Controls;
 using TrelloApp.Views.Utils;
 
 namespace TrelloApp.Views

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Security.Principal;
-using System.Threading;
-using System.Windows;
+﻿using Jewelry.ViewModel;
 using System.Windows.Input;
-using System.Windows.Navigation;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.BoardVM;
-using TrelloApp.Views;
 
 namespace TrelloApp.ViewModels.UserVM
 {
@@ -15,15 +9,8 @@ namespace TrelloApp.ViewModels.UserVM
     {
         //Fields
         private string _username;
-        private String _password;
+        private string _password;
         private string _errorMessage;
-
-        private Visibility _createDatabaseButtonVisibility;
-        public Visibility CreateDatabaseButtonVisibility
-        {
-            get { return _createDatabaseButtonVisibility; }
-            set { _createDatabaseButtonVisibility = value; OnPropertyChanged(nameof(CreateDatabaseButtonVisibility)); }
-        }
 
         private IUserRepository _userRepository;
         private INavigator _navigator;
@@ -38,7 +25,7 @@ namespace TrelloApp.ViewModels.UserVM
                 OnPropertyChanged(nameof(Username));
             }
         }
-        public String Password
+        public string Password
         {
             get => _password;
             set
@@ -57,9 +44,6 @@ namespace TrelloApp.ViewModels.UserVM
             }
         }
 
-        //Events
-        //public event EventHandler SuccessfullyLoggedIn;
-
         //Commands
         public ICommand LoginCommand { get; set; }
 
@@ -67,29 +51,27 @@ namespace TrelloApp.ViewModels.UserVM
         {
             _userRepository = userRepository;
             _navigator = navigator;
-            LoginCommand = new RelayCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+            LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         }
 
         //Checks
-        private bool CanExecuteLoginCommand()
+        private bool CanExecuteLoginCommand(object obj)
         {
-            return !string.IsNullOrWhiteSpace(Username) && Username.Length >= 3 &&
-                   Password != null && Password.Length >= 3;
+            return
+                !string.IsNullOrWhiteSpace(Username) &&
+                Username.Length >= 3 &&
+                !string.IsNullOrWhiteSpace(Password) &&
+                Password.Length >= 3;
         }
 
         //Executes
-        private void ExecuteLoginCommand()
+        private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = _userRepository.AuthenticateUser(Username, Password);
 
             if (isValidUser)
             {
-                //SuccessfullyLoggedIn?.Invoke(this, null);
-                
                 _navigator.GoTo("Dashboard.xaml");
-
-                Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(Username), null);
             }
             else
             {

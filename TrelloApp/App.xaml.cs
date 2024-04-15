@@ -1,11 +1,11 @@
-﻿using System.Windows;
-using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
-using TrelloApp.ViewModels.UserVM;
-using TrelloApp.ViewModels.BoardVM;
-using System;
+﻿using System;
+using System.Windows;
 using System.Windows.Navigation;
 using TrelloApp.Helpers;
+using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.BoardVM;
+using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 
 namespace TrelloApp
 {
@@ -31,7 +31,7 @@ namespace TrelloApp
 
             Resources.Add("Navigation", this);
         }
-        public void GoTo(string path) 
+        public void GoTo(string path)
         {
             (MainWindow as NavigationWindow).Source = new Uri(path, UriKind.Relative);
         }
