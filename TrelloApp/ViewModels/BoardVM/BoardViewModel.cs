@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using Jewelry.ViewModel;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.BoardVM;
 using TrelloApp.ViewModels.ColumnVM;
@@ -14,71 +11,69 @@ namespace TrelloApp.ViewModels
 {
     public class BoardViewModel : ViewModelBase
     {
+        //Fields
         private User _user;
+        private Board _board;
+        private Column _column;
+        private ObservableCollection<Column> _columns;
+        private IUserRepository _userRepository;
+        private IBoardRepository _boardRepository;
+        private IColumnRepository _columnRepository;
+
+        //Properties
         public User User
         {
-            get { return _user; }
+            get => _user;
             set
             {
                 _user = value;
                 OnPropertyChanged(nameof(User));
             }
         }
-
-        private BoardModel _board;
-        public BoardModel Board
+        public Board Board
         {
-            get { return _board; }
+            get => _board;
             set
             {
                 _board = value;
                 OnPropertyChanged(nameof(Board));
             }
         }
-
-        private ColumnModel _column;
-        public ColumnModel Column
+        public Column Column
         {
-            get { return _column; }
+            get => _column;
             set
             {
                 _column = value;
                 OnPropertyChanged(nameof(Column));
             }
         }
-
-        private List<ColumnModel> _columns;
-        public List<ColumnModel> Columns
+        public ObservableCollection<Column> Columns
         {
-            get { return _columns; }
+            get => _columns;
             set
             {
                 _columns = value;
                 OnPropertyChanged(nameof(Columns));
             }
         }
-
-        private IUserRepository _userRepository;
         public IUserRepository UserRepository
         {
-            get { return _userRepository; }
-            set { _userRepository = value; }
+            get => _userRepository;
+            set => _userRepository = value;
         }
-
-        private IBoardRepository _boardRepository;
         public IBoardRepository BoardRepository
         {
-            get { return _boardRepository; }
-            set { _boardRepository = value; }
+            get => _boardRepository;
+            set => _boardRepository = value;
         }
-
-        private IColumnRepository _columnRepository;
         public IColumnRepository ColumnRepository
         {
-            get { return _columnRepository; }
-            set { _columnRepository = value; }
+            get => _columnRepository;
+            set => _columnRepository = value;
         }
 
+        //Commands
         public ICommand UpdateBoardCommand { get; set; }
         public ICommand LoadUserCommand { get; set; }
         public ICommand LoadColumnsCommand { get; set; }
@@ -89,161 +84,73 @@ namespace TrelloApp.ViewModels
         public BoardViewModel(IUserRepository userRepository)
         {
             _user = userRepository.LoggedUser;
-            UpdateBoardCommand = new RelayCommand(UpdateBoard, CanUpdateBoard);
-            LoadUserCommand = new RelayCommand(() => LoadUser(_user.UserID), CanLoadUser);
-            LoadColumnsCommand = new RelayCommand(() => LoadColumns(_user.UserID), CanLoadColumns);
-            AddColumnCommand = new RelayCommand(AddColumn, CanAddColumn);
-            DelColumnCommand = new RelayCommand(() => DelColumn(Column.ColumnID), CanDelColumn);
-            UpdateColumnCommand = new RelayCommand(UpdateColumn, CanUpdateColumn);
+
+            //Initialize collections
+            Columns = new ObservableCollection<Column>();
+
+            //Initialize commands
+            UpdateBoardCommand = new ViewModelCommand(ExecuteUpdateBoardCommand, CanExecuteUpdateBoardCommand);
+            LoadColumnsCommand = new ViewModelCommand(ExecuteLoadColumns, CanExecuteLoadColumnsCommand);
+            AddColumnCommand = new ViewModelCommand(ExecuteAddColumn, CanExecuteAddColumnCommand);
+            DelColumnCommand = new ViewModelCommand(ExecuteDelColumn, CanExecuteDelColumnCommand);
+            UpdateColumnCommand = new ViewModelCommand(ExecuteUpdateColumn, CanExecuteUpdateColumnCommand);
+
+            //Default view
+            ExecuteLoadColumns(null);
         }
 
-        private bool CanUpdateBoard()
+        //Checks
+        private bool CanExecuteUpdateBoardCommand(object obj)
         {
-            bool res =
+            return 
                 Board != null;
-
-            ((RelayCommand)UpdateBoardCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void UpdateBoard()
+        private bool CanExecuteLoadColumnsCommand(object obj)
         {
-            try
-            {
-                if (!CanUpdateBoard())
-                {
-                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
-                    return;
-                }
-
-                _boardRepository.UpdateBoard(Board);
-
-                MessageBox.Show("Дані дошки змінено.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanLoadUser()
-        {
-            bool res =
-                User != null;
-
-            ((RelayCommand)LoadUserCommand).RaiseCanExecuteChanged();
-
-            return res;
-        }
-        private void LoadUser(int userID)
-        {
-            try
-            {
-                User = (UserModel)_userRepository.GetUserByID(userID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanLoadColumns()
-        {
-            bool res =
+            return
                 Column != null;
-
-            ((RelayCommand)LoadColumnsCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void LoadColumns(int boardID)
+        private bool CanExecuteAddColumnCommand(object obj)
         {
-            try
-            {
-                List<Column> dbColumns = _columnRepository.GetColumnsByBoardID(boardID);
-                Columns = dbColumns.Select(dbColumn => new ColumnModel
-                {
-                    ColumnID = dbColumn.ColumnID,
-                    Title = dbColumn.Title,
-                    OrderIndex = dbColumn.OrderIndex,
-                    Color = dbColumn.Color
-                }).ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanAddColumn()
-        {
-            bool res =
+            return
                 Column != null;
-
-            ((RelayCommand)AddColumnCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void AddColumn()
+        private bool CanExecuteDelColumnCommand(object obj)
         {
-            try
-            {
-                _columnRepository.AddColumn(Column);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanDelColumn()
-        {
-            bool res =
+            return
                 Column != null;
-
-            ((RelayCommand)DelColumnCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void DelColumn(int columnID)
+        private bool CanExecuteUpdateColumnCommand(object obj)
         {
-            try
-            {
-                _columnRepository.DelColumn(columnID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanUpdateColumn()
-        {
-            bool res =
+            return
                 Column != null;
-
-            ((RelayCommand)UpdateColumnCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void UpdateColumn()
+
+        //Executes
+        private void ExecuteUpdateBoardCommand(object obj)
         {
-            try
+            _boardRepository.UpdateBoard(Board);
+        }
+        private void ExecuteLoadColumns(object obj)
+        {
+            Columns.Clear();
+            var columnList = _columnRepository.GetColumnsByBoardID(Board.BoardID);
+            foreach (var column in columnList)
             {
-                if (!CanUpdateColumn())
-                {
-                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
-                    return;
-                }
-
-                _columnRepository.UpdateColumn(Column);
-
-                MessageBox.Show("Дані колонки змінено.");
+                Columns.Add(column);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+        }
+        private void ExecuteAddColumn(object obj)
+        {
+            _columnRepository.AddColumn(Column);
+        }
+        private void ExecuteDelColumn(object obj)
+        {
+            _columnRepository.DelColumn(Column.ColumnID);
+        }
+        private void ExecuteUpdateColumn(object obj)
+        {
+            _columnRepository.UpdateColumn(Column);
         }
     }
 }

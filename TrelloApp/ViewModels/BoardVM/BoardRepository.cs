@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
@@ -8,9 +7,9 @@ namespace TrelloApp.ViewModels.BoardVM
 {
     public interface IBoardRepository
     {
-        void AddBoard(BoardModel board);
+        void AddBoard(Board board);
         void DelBoard(int boardID);
-        void UpdateBoard(BoardModel board);
+        void UpdateBoard(Board board);
         List<Board> GetBoardsByUserID(int userID);
     }
 
@@ -29,7 +28,7 @@ namespace TrelloApp.ViewModels.BoardVM
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void AddBoard(BoardModel board)
+        public void AddBoard(Board board)
         {
             if (board == null)
             {
@@ -66,7 +65,7 @@ namespace TrelloApp.ViewModels.BoardVM
             }
         }
 
-        public void UpdateBoard(BoardModel board)
+        public void UpdateBoard(Board board)
         {
             if (board == null)
             {

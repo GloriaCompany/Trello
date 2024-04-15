@@ -6,10 +6,10 @@
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.BoardVM"
         xmlns:helpers="clr-namespace:TrelloApp.Helpers"
-      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="Dashboard" 
-      Loaded="Page_Loaded"
+        Loaded="Page_Loaded"
         Background="{DynamicResource ThemeMainColor}"
         d:DataContext="{d:DesignInstance viewModel:DashboardViewModel}">
     <Page.Resources>
@@ -84,9 +84,10 @@
             <RowDefinition Height="35"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Left"
-                    Grid.Row="0">
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Left"
+            Grid.Row="0">
             <Image 
                 Source="{DynamicResource LogoPath}"
                 Width="75"
@@ -95,21 +96,24 @@
                 VerticalAlignment="Center"
                 Margin="10,0,10,0"
                 />
-            <TextBlock Text="{DynamicResource DashboardNameString}"
-                       Grid.Row="0"
-                       FontSize="14"
-                       Foreground="{DynamicResource ThemeTextColor}"
-                       VerticalAlignment="Center"
-                       />
+            <TextBlock
+                Text="{DynamicResource DashboardNameString}"
+                Grid.Row="0"
+                FontSize="14"
+                Foreground="{DynamicResource ThemeTextColor}"
+                VerticalAlignment="Center"
+                />
         </StackPanel>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    >
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            >
             <Button Command="{Binding LoadBoardsCommand}" Content="Load ..."/>
-            <customControls:CustomComboBox SelectedIndex="1"
-                                           x:Name="ThemesComboBox"
-                                           SelectionChanged="ThemesComboBox_SelectionChanged"
-                                           >
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="ThemesComboBox"
+                SelectionChanged="ThemesComboBox_SelectionChanged"
+                >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
                         ImageSource="/TrelloApp;component/Resources/sun.png"
@@ -121,10 +125,11 @@
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
-            <customControls:CustomComboBox SelectedIndex="1"
-                                           x:Name="LanguagesComboBox"
-                                           SelectionChanged="LanguagesComboBox_SelectionChanged"
-                                           >
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="LanguagesComboBox"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
                         ImageSource="/TrelloApp;component/Resources/ua.png">
@@ -313,23 +318,26 @@
                     />
             </Border>
         </WrapPanel>
-        <Popup x:Name="addBoardPopup" 
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               IsOpen="False"
-               Grid.Row="5"
-               Margin="0,0,0,0"
-               Placement="Bottom"
-               PlacementTarget="{Binding ElementName=AddBoardBorder}">
-            <Border Background="{DynamicResource ThemeMainColor}" 
-                    BorderBrush="{DynamicResource ThemeBorderColor}" 
-                    BorderThickness="1"
-                    Width="375" 
-                    Height="60">
-                <StackPanel Margin="10"
-                                    Orientation="Horizontal"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center">
+        <Popup
+            x:Name="addBoardPopup" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            IsOpen="False"
+            Grid.Row="5"
+            Margin="0,0,0,0"
+            Placement="Bottom"
+            PlacementTarget="{Binding ElementName=AddBoardBorder}">
+            <Border
+                Background="{DynamicResource ThemeMainColor}" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1"
+                Width="375" 
+                Height="60">
+                <StackPanel
+                    Margin="10"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
                     <customControls:CustomInput 
                                 Placeholder="{DynamicResource BoardNameInputPlaceholderString}" 
                                 x:Name="BoardNameInput"

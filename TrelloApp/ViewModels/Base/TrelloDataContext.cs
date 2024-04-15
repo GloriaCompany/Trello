@@ -46,7 +46,7 @@ namespace TrelloApp.ViewModels.Base
         public bool AuthenticateUser(string username, string password) => _context.User.FirstOrDefault(u => u.Username == username && u.Password == password) != null;
 
 
-        public void AddBoard(BoardModel board)
+        public void AddBoard(Board board)
         {
             _context.Board.InsertOnSubmit(board);
             SaveChanges();
@@ -58,7 +58,7 @@ namespace TrelloApp.ViewModels.Base
 
             SaveChanges();
         }
-        public void UpdateBoard(BoardModel board)
+        public void UpdateBoard(Board board)
         {
             var existingBoard = _context.Board.FirstOrDefault(b => b.BoardID == board.BoardID);
 
@@ -68,7 +68,7 @@ namespace TrelloApp.ViewModels.Base
         }
         public List<Board> GetBoardsByUserID(int userID) => _context.Board.Where(b => b.AdminID == userID).ToList();
 
-        public void AddColumn(ColumnModel column)
+        public void AddColumn(Column column)
         {
             _context.Column.InsertOnSubmit(column);
             SaveChanges();
@@ -80,7 +80,7 @@ namespace TrelloApp.ViewModels.Base
 
             SaveChanges();
         }
-        public void UpdateColumn(ColumnModel column)
+        public void UpdateColumn(Column column)
         {
             var existingColumn = _context.Column.FirstOrDefault(c => c.ColumnID == column.ColumnID);
 

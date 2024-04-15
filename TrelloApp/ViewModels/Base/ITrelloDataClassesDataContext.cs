@@ -19,14 +19,14 @@ namespace TrelloApp.ViewModels.Base
         User GetUserByID(int userID);
         bool AuthenticateUser(string username, string password);
 
-        void AddBoard(BoardModel board);
+        void AddBoard(Board board);
         void DelBoard(int boardID);
-        void UpdateBoard(BoardModel board);
+        void UpdateBoard(Board board);
         List<Board> GetBoardsByUserID(int userID);
 
-        void AddColumn(ColumnModel column);
+        void AddColumn(Column column);
         void DelColumn(int columnID);
-        void UpdateColumn(ColumnModel column);
+        void UpdateColumn(Column column);
         List<Column> GetColumnsByBoardID(int boardID);
 
         void AddTask(TaskModel task);

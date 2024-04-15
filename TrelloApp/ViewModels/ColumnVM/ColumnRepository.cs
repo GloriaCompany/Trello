@@ -8,9 +8,9 @@ namespace TrelloApp.ViewModels.ColumnVM
 {
     public interface IColumnRepository
     {
-        void AddColumn(ColumnModel column);
+        void AddColumn(Column column);
         void DelColumn(int columnID);
-        void UpdateColumn(ColumnModel column);
+        void UpdateColumn(Column column);
         List<Column> GetColumnsByBoardID(int boardID);
     }
 
@@ -29,7 +29,7 @@ namespace TrelloApp.ViewModels.ColumnVM
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void AddColumn(ColumnModel column)
+        public void AddColumn(Column column)
         {
             if (column == null)
             {
@@ -65,7 +65,7 @@ namespace TrelloApp.ViewModels.ColumnVM
             }
         }
 
-        public void UpdateColumn(ColumnModel column)
+        public void UpdateColumn(Column column)
         {
             if (column == null)
             {

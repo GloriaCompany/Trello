@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jewelry.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
@@ -8,84 +9,70 @@ namespace TrelloApp.ViewModels.UserVM
 {
     public class ProfileViewModel : ViewModelBase
     {
+        //Fields
         private UserModel _user;
+        private string _errorMessage;
+
+        private IUserRepository _userRepository;
+
+        //Properties
         public UserModel User
         {
-            get { return _user; }
+            get => _user;
             set
             {
                 _user = value;
                 OnPropertyChanged(nameof(User));
             }
         }
-
-        private IUserRepository _userRepository;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
         public IUserRepository UserRepository
         {
-            get { return _userRepository; }
-            set { _userRepository = value; }
+            get => _userRepository;
+            set => _userRepository = value;
         }
 
+        //Commands
         public ICommand LoadUserCommand { get; set; }
         public ICommand ProfileUpdateCommand { get; set; }
 
         public ProfileViewModel()
         {
-            ProfileUpdateCommand = new RelayCommand(() => LoadUser(User.UserID), CanLoadUser);
-            ProfileUpdateCommand = new RelayCommand(UpdateUser, CanUpdateUser);
+            ProfileUpdateCommand = new ViewModelCommand(ExecuteLoadUserCommand, CanExecuteLoadUserCommand);
+            ProfileUpdateCommand = new ViewModelCommand(ExecuteUpdateUserCommand, CanExecuteUpdateUserCommand);
         }
 
-        private bool CanLoadUser()
+        //Checks
+        private bool CanExecuteLoadUserCommand(object obj)
         {
-            bool res =
+            return
                 User != null;
-
-            ((RelayCommand)LoadUserCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void LoadUser(int userID)
+        private bool CanExecuteUpdateUserCommand(object obj)
         {
-            try
-            {
-                User = (UserModel)_userRepository.GetUserByID(userID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanUpdateUser()
-        {
-            bool res =
+            return
                 !string.IsNullOrEmpty(User.Username) ||
                 !string.IsNullOrEmpty(User.Email) ||
                 !string.IsNullOrEmpty(User.Password) ||
                 !string.IsNullOrEmpty(User.Avatar);
-
-            ((RelayCommand)ProfileUpdateCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void UpdateUser()
+
+        //Executes
+        private void ExecuteLoadUserCommand(object obj)
         {
-            try
-            {
-                if (!CanUpdateUser())
-                {
-                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
-                    return;
-                }
-
-                _userRepository.UpdateUser(User);
-
-                MessageBox.Show("Дані користувача змінено.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            
+        }
+        private void ExecuteUpdateUserCommand(object obj)
+        {
+           
         }
     }
 }

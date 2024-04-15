@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Jewelry.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -12,53 +14,53 @@ namespace TrelloApp.ViewModels.ColumnVM
 {
     public class ColumnViewModel : ViewModelBase
     {
-        private ColumnModel _column;
-        public ColumnModel Column
+        //Fields
+        private Column _column;
+        private Task _task;
+        private ObservableCollection<Task> _tasks;
+        private IColumnRepository _columnRepository;
+        private ITaskRepository _taskRepository;
+
+        //Properties
+        public Column Column
         {
-            get { return _column; }
+            get => _column;
             set
             {
                 _column = value;
                 OnPropertyChanged(nameof(Column));
             }
         }
-
-        private TaskModel _task;
-        public TaskModel Task
+        public Task Task
         {
-            get { return _task; }
+            get => _task;
             set
             {
                 _task = value;
                 OnPropertyChanged(nameof(Task));
             }
         }
-
-        private List<TaskModel> _tasks;
-        public List<TaskModel> Tasks
+        public ObservableCollection<Task> Tasks
         {
-            get { return _tasks; }
+            get => _tasks;
             set
             {
                 _tasks = value;
                 OnPropertyChanged(nameof(Tasks));
             }
         }
-
-        private IColumnRepository _columnRepository;
         public IColumnRepository ColumnRepository
         {
-            get { return _columnRepository; }
-            set { _columnRepository = value; }
+            get => _columnRepository;
+            set => _columnRepository = value;
         }
-
-        private ITaskRepository _taskRepository;
         public ITaskRepository TaskRepository
         {
-            get { return _taskRepository; }
-            set { _taskRepository = value; }
+            get => _taskRepository;
+            set => _taskRepository = value;
         }
 
+        //Commands
         public ICommand LoadTasksCommand { get; set; }
         public ICommand AddTaskCommand { get; set; }
         public ICommand DelTaskCommand { get; set; }
@@ -66,109 +68,50 @@ namespace TrelloApp.ViewModels.ColumnVM
 
         public ColumnViewModel()
         {
-            LoadTasksCommand = new RelayCommand(() => LoadTasks(Column.ColumnID), CanLoadTasks);
-            AddTaskCommand = new RelayCommand(AddTask, CanAddTask);
-            DelTaskCommand = new RelayCommand(() => DelTask(Task.TaskID), CanDelTask);
-            UpdateTaskCommand = new RelayCommand(UpdateTask, CanUpdateTask);
+            LoadTasksCommand = new ViewModelCommand(ExecuteLoadTasksCommand, CanExecuteLoadTasksCommand);
+            AddTaskCommand = new ViewModelCommand(ExecuteAddTaskCommand, CanExecuteAddTaskCommand);
+            DelTaskCommand = new ViewModelCommand(ExecuteDelTaskCommand, CanExecuteDelTaskCommand);
+            UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
         }
 
-        private bool CanLoadTasks()
+        //Checks
+        private bool CanExecuteLoadTasksCommand(object obj)
         {
-            bool res =
-               Task != null;
-
-            ((RelayCommand)LoadTasksCommand).RaiseCanExecuteChanged();
-
-            return res;
+            return
+                Task != null;
         }
-        private void LoadTasks(int columnID)
+        private bool CanExecuteAddTaskCommand(object obj)
         {
-            try
-            {
-                List<Task> dbTasks = _taskRepository.GetTasksByColumnID(columnID);
-                Tasks = dbTasks.Select(dbTask => new TaskModel
-                {
-                    TaskID = dbTask.TaskID,
-                    Title = dbTask.Title,
-                    Description = dbTask.Description,
-                    AssignedUserID = dbTask.AssignedUserID
-                }).ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanAddTask()
-        {
-            bool res =
+            return
                 Column != null;
-
-            ((RelayCommand)AddTaskCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-
-        private void AddTask()
+        private bool CanExecuteDelTaskCommand(object obj)
         {
-            try
-            {
-                _taskRepository.AddTask(Task);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-        private bool CanDelTask()
-        {
-            bool res =
+            return
                 Task != null;
-
-            ((RelayCommand)DelTaskCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void DelTask(int taskID)
+        private bool CanExecuteUpdateTaskCommand(object obj)
         {
-            try
-            {
-                _taskRepository.DelTask(taskID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanUpdateTask()
-        {
-            bool res =
+            return
                 Task != null;
-
-            ((RelayCommand)UpdateTaskCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void UpdateTask()
+
+        //Executes
+        private void ExecuteLoadTasksCommand(object obj)
         {
-            try
-            {
-                if (!CanUpdateTask())
-                {
-                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
-                    return;
-                }
-
-                _taskRepository.UpdateTask(Task);
-
-                MessageBox.Show("Дані таску змінено.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+           
+        }
+        private void ExecuteAddTaskCommand(object obj)
+        {
+           
+        }
+        private void ExecuteDelTaskCommand(object obj)
+        {
+            
+        }
+        private void ExecuteUpdateTaskCommand(object obj)
+        {
+           
         }
     }
 }

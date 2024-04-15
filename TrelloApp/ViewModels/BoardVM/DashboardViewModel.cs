@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Jewelry.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -12,48 +14,48 @@ namespace TrelloApp.ViewModels.BoardVM
 {
     public class DashboardViewModel : ViewModelBase
     {
-        private BoardModel _board;
-        public BoardModel Board
+        //Fields
+        private Board _board;
+        private ObservableCollection<Board> _boards;
+        private User _user;
+        private IUserRepository _userRepository;
+        private IBoardRepository _boardRepository;
+
+        //Properties
+        public Board Board
         {
-            get { return _board; }
+            get => _board;
             set
             {
                 _board = value;
                 OnPropertyChanged(nameof(Board));
             }
         }
-
-        private List<BoardModel> _boards;
-        public List<BoardModel> Boards
+        public ObservableCollection<Board> Boards
         {
-            get { return _boards; }
+            get => _boards;
             set
             {
                 _boards = value;
                 OnPropertyChanged(nameof(Boards));
             }
         }
-
-        private User _user;
         public User User
         {
-            get { return _userRepository.LoggedUser; }
+            get => _user;
             set
             {
                 _user = value;
                 OnPropertyChanged(nameof(User));
             }
         }
-
-        private IUserRepository _userRepository;
-
-        private IBoardRepository _boardRepository;
         public IBoardRepository BoardRepository
         {
             get { return _boardRepository; }
             set { _boardRepository = value; }
         }
 
+        //Commands
         public ICommand LoadUserCommand { get; set; }
         public ICommand LoadBoardsCommand { get; set; }
         public ICommand AddBoardCommand { get; set; }
@@ -63,106 +65,53 @@ namespace TrelloApp.ViewModels.BoardVM
         {
             _boardRepository = boardRepository;
             _userRepository = userRepository;
-
             _user = userRepository.LoggedUser;
 
-            LoadUserCommand = new RelayCommand(() => LoadUser(_user.UserID), CanLoadUser);
-            LoadBoardsCommand = new RelayCommand(() => LoadBoards(_user.UserID), CanLoadBoards);
-            AddBoardCommand = new RelayCommand(AddBoard, CanAddBoard);
-            DelBoardCommand = new RelayCommand(() => DelBoard(Board.BoardID), CanDelBoard);
+            //Initialize collections
+            Boards = new ObservableCollection<Board>();
+
+            //Initialize commands
+            LoadBoardsCommand = new ViewModelCommand(ExecuteLoadBoardsCommand, CanExecuteLoadBoardsCommand);
+            AddBoardCommand = new ViewModelCommand(ExecuteAddBoardCommand, CanExecuteAddBoardCommand);
+            DelBoardCommand = new ViewModelCommand(ExecuteDelBoardCommand, CanExecuteDelBoardCommand);
+
+            //Default view
+            ExecuteLoadBoardsCommand(null);
         }
 
-        private bool CanLoadUser()
-        {
-            bool res =
-                User != null;
-
-            ((RelayCommand)LoadUserCommand).RaiseCanExecuteChanged();
-
-            return res;
-        }
-        private void LoadUser(int userID)
-        {
-            try
-            {
-                User = _userRepository.GetUserByID(userID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanLoadBoards()
+        //Checks
+        private bool CanExecuteLoadBoardsCommand(object obj)
         {
             return true;
-            //bool res = Boards != null;
-
-            //((RelayCommand)LoadBoardsCommand).RaiseCanExecuteChanged();
-
-            //return true;
         }
-        private void LoadBoards(int userID)
+        private bool CanExecuteAddBoardCommand(object obj)
         {
-            try
-            {
-                List<Board> dbBoards = _boardRepository.GetBoardsByUserID(userID);
-                dbBoards.Insert(0, new Board { Title = "Placeholder" });
-
-                Boards = dbBoards.Select(dbBoard => new BoardModel
-                {
-                    BoardID = dbBoard.BoardID,
-                    Title = dbBoard.Title,
-                    AdminID = dbBoard.AdminID
-                }).ToList();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanAddBoard()
-        {
-            bool res =
+            return
                 Board == null;
-
-            ((RelayCommand)AddBoardCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void AddBoard()
+        private bool CanExecuteDelBoardCommand(object obj)
         {
-            try
-            {
-                _boardRepository.AddBoard(Board);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            return
+                 Board != null;
         }
 
-        private bool CanDelBoard()
+        //Executes
+        private void ExecuteLoadBoardsCommand(object obj)
         {
-            bool res =
-                Board != null;
-
-            ((RelayCommand)DelBoardCommand).RaiseCanExecuteChanged();
-
-            return res;
+            Boards.Clear();
+            var boardList = _boardRepository.GetBoardsByUserID(User.UserID);
+            foreach (var board in boardList)
+            {
+                Boards.Add(board);
+            }
         }
-        private void DelBoard(int boardID)
+        private void ExecuteAddBoardCommand(object obj)
         {
-            try
-            {
-                _boardRepository.DelBoard(boardID);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            _boardRepository.AddBoard(Board);
+        }
+        private void ExecuteDelBoardCommand(object obj)
+        {
+            _boardRepository.DelBoard(Board.BoardID);
         }
     }
 }
