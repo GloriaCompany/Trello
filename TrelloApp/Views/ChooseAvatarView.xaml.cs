@@ -8,13 +8,13 @@ using TrelloApp.Views.CustomControls;
 namespace TrelloApp.Views
 {
     /// <summary>
-    /// Interaction logic for ChooseAvatar.xaml
+    /// Interaction logic for ChooseAvatarView.xaml
     /// </summary>
-    public partial class ChooseAvatar : Page
+    public partial class ChooseAvatarView : Page
     {
         private CircleImage _selectedAvatar;
 
-        public ChooseAvatar()
+        public ChooseAvatarView()
         {
             InitializeComponent();
             var viewModel = new ChooseAvatarViewModel(

@@ -3,12 +3,9 @@ using TrelloApp.Views.Utils;
 
 namespace TrelloApp.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для TaskDetails.xaml
-    /// </summary>
-    public partial class TaskDetails : Page
+    public partial class TaskView : Page
     {
-        public TaskDetails()
+        public TaskView()
         {
             InitializeComponent();
         }

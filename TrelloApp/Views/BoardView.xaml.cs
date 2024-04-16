@@ -6,14 +6,14 @@ using TrelloApp.Views.Utils;
 namespace TrelloApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BoardView.xaml
     /// </summary>
-    public partial class MainWindow : Page
+    public partial class BoardView : Page
     {
         public ObservableCollection<TaskModel> ColumnTasks { get; set; }
         public ObservableCollection<ColumnModel> Columns { get; set; }
 
-        public MainWindow()
+        public BoardView()
         {
             InitializeComponent();
             Columns = new ObservableCollection<ColumnModel>();

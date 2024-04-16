@@ -1,17 +1,16 @@
-﻿<Page x:Class="TrelloApp.Views.Dashboard"
+﻿<Page x:Class="TrelloApp.Views.DashboardView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.BoardVM"
+        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels"
         xmlns:helpers="clr-namespace:TrelloApp.Helpers"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="Dashboard" 
         Loaded="Page_Loaded"
         Background="{DynamicResource ThemeMainColor}"
-        d:DataContext="{d:DesignInstance viewModel:DashboardViewModel}"
         d:Width="1000" d:Height="500">
     <Page.Resources>
         <Style TargetType="Border" x:Key="HoverBorderStyle">

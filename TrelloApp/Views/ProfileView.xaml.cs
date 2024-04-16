@@ -3,12 +3,9 @@ using TrelloApp.Views.Utils;
 
 namespace TrelloApp.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для Profile.xaml
-    /// </summary>
-    public partial class Profile : Page
+    public partial class ProfileView : Page
     {
-        public Profile()
+        public ProfileView()
         {
             InitializeComponent();
         }

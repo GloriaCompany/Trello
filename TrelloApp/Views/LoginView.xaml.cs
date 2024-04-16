@@ -8,9 +8,9 @@ using TrelloDBLayer;
 
 namespace TrelloApp.Views
 {
-    public partial class Login : Page
+    public partial class LoginView : Page
     {
-        public Login()
+        public LoginView()
         {
             InitializeComponent();
             var vm = new LoginViewModel(FindResource("UserRepository") as IUserRepository,
@@ -20,7 +20,7 @@ namespace TrelloApp.Views
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Register());
+            NavigationService.Navigate(new RegisterView());
         }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)

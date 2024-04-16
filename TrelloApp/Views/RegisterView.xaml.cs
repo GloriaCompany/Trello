@@ -3,12 +3,9 @@ using TrelloApp.ViewModels.UserVM;
 
 namespace TrelloApp.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для Register.xaml
-    /// </summary>
-    public partial class Register : Page
+    public partial class RegisterView : Page
     {
-        public Register()
+        public RegisterView()
         {
             InitializeComponent();
 
@@ -22,12 +19,12 @@ namespace TrelloApp.Views
 
         private void BtnLogin_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Login());
+            NavigationService.Navigate(new LoginView());
         }
 
         private void BtnRegister_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ChooseAvatar());
+            NavigationService.Navigate(new ChooseAvatarView());
         }
     }
 }

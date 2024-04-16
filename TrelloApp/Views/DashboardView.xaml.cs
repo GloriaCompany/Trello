@@ -8,11 +8,11 @@ using TrelloApp.Views.Utils;
 namespace TrelloApp.Views
 {
     /// <summary>
-    /// Логика взаимодействия для Dashboard.xaml
+    /// Логика взаимодействия для DashboardView.xaml
     /// </summary>
-    public partial class Dashboard : Page
+    public partial class DashboardView : Page
     {
-        public Dashboard()
+        public DashboardView()
         {
             InitializeComponent();
 
