@@ -45,6 +45,7 @@ namespace TrelloApp.ViewModels.UserVM
             _avatarRepository = avatarRepository;
             _userRepository = userRepository;
 
+            //Initialize collections
             AvatarImages = new ObservableCollection<BitmapImage>();
 
             //SelectAvatarCommand = new DelegateCommand((bmp) => {
@@ -52,8 +53,10 @@ namespace TrelloApp.ViewModels.UserVM
             //    userRepository.AddUser(userRepository.LoggedUser);
             //}, parameter => true);
 
+            //Initialize commands
             SelectAvatarCommand = new ViewModelCommand(ExecuteSelectedAvatarCommand, CanExecuteSelectedAvatarCommand);
 
+            //Default view
             LoadAvatarImages();
         }
 
@@ -74,7 +77,7 @@ namespace TrelloApp.ViewModels.UserVM
                 Avatar = _userRepository.LoggedUser.Avatar
             };
 
-            _userRepository.AddUser(user.Username, user.Email, user.Password, user.Avatar);
+            _userRepository.AddUser(user);
         }
 
         private void LoadAvatarImages()

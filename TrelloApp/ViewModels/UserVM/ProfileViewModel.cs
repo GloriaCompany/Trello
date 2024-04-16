@@ -1,6 +1,4 @@
 ﻿using Jewelry.ViewModel;
-using System;
-using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
@@ -68,11 +66,11 @@ namespace TrelloApp.ViewModels.UserVM
         //Executes
         private void ExecuteLoadUserCommand(object obj)
         {
-            
+
         }
         private void ExecuteUpdateUserCommand(object obj)
         {
-           
+
         }
     }
 }

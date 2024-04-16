@@ -7,7 +7,7 @@ namespace TrelloApp.ViewModels.UserVM
 {
     public interface IUserRepository
     {
-        void AddUser(string username, string email, string password, string avatar);
+        void AddUser(User user);
         User GetUserByID(int userID);
         bool AuthenticateUser(string username, string password);
         void UpdateUser(User user);
@@ -31,15 +31,8 @@ namespace TrelloApp.ViewModels.UserVM
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public void AddUser(string username, string email, string password, string avatar)
+        public void AddUser(User user)
         {
-            var user = new User
-            {
-                Username = username,
-                Email = email,
-                Password = password,
-                Avatar = avatar
-            };
             _dbContext.AddUser(user);
         }
         public void DelUser(int userID)

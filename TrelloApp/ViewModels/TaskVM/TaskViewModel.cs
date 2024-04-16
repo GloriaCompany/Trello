@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using Jewelry.ViewModel;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.CheckVM;
 using TrelloDBLayer;
@@ -12,106 +9,83 @@ namespace TrelloApp.ViewModels.TaskVM
 {
     public class TaskViewModel : ViewModelBase
     {
-        private TaskModel _task;
-        public TaskModel Task
+        //Fields
+        private Task _task;
+        private ObservableCollection<Checklist> _checklists;
+        private ITaskRepository _taskRepository;
+        private IChecklistRepository _checklistRepository;
+
+        //Properties
+        public Task Task
         {
-            get { return _task; }
+            get => _task;
             set
             {
                 _task = value;
                 OnPropertyChanged(nameof(Task));
             }
         }
-
-        private List<ChecklistModel> _checklists;
-        public List<ChecklistModel> Checklists
+        public ObservableCollection<Checklist> Checklists
         {
-            get { return _checklists; }
+            get => _checklists;
             set
             {
                 _checklists = value;
                 OnPropertyChanged(nameof(Checklists));
             }
         }
-
-        private ITaskRepository _taskRepository;
         public ITaskRepository TaskRepository
         {
-            get { return _taskRepository; }
-            set { _taskRepository = value; }
+            get => _taskRepository;
+            set => _taskRepository = value;
         }
-
-        private IChecklistRepository _checklistRepository;
         public IChecklistRepository ChecklistRepository
         {
-            get { return _checklistRepository; }
-            set { _checklistRepository = value; }
+            get => _checklistRepository;
+            set => _checklistRepository = value;
         }
 
+        //Commands
         public ICommand UpdateTaskCommand { get; set; }
         public ICommand LoadChecklistsCommand { get; set; }
 
         public TaskViewModel()
         {
-            UpdateTaskCommand = new RelayCommand(UpdateTask, CanUpdateTask);
-            LoadChecklistsCommand = new RelayCommand(() => LoadChecklists(_task.TaskID), CanLoadChecklists);
+            //Initialize collecntions
+            Checklists = new ObservableCollection<Checklist>();
+
+            //Initialize commands
+            UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
+            LoadChecklistsCommand = new ViewModelCommand(ExecuteLoadChecklistsCommand, CanExecuteLoadChecklistsCommand);
+
+            //Default view
+            ExecuteLoadChecklistsCommand(null);
         }
 
-        private bool CanLoadChecklists()
+        //Checks
+        private bool CanExecuteUpdateTaskCommand(object obj)
         {
-            bool res =
+            return
                 Checklists != null;
-
-            ((RelayCommand)LoadChecklistsCommand).RaiseCanExecuteChanged();
-
-            return res;
         }
-        private void LoadChecklists(int taskID)
+        private bool CanExecuteLoadChecklistsCommand(object obj)
         {
-            try
-            {
-                List<Checklist> dbChecklists = _checklistRepository.GetChecklistsByTaskID(taskID);
-                Checklists = dbChecklists.Select(dbChecklist => new ChecklistModel
-                {
-                    ChecklistID = dbChecklist.ChecklistID,
-                    IsCompleted = dbChecklist.IsCompleted,
-                    TaskID = dbChecklist.TaskID,
-                    TaskDescription = dbChecklist.TaskDescription
-                }).ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private bool CanUpdateTask()
-        {
-            bool res =
+            return
                 Task != null;
-
-            ((RelayCommand)UpdateTaskCommand).RaiseCanExecuteChanged();
-
-            return res;
-
         }
-        private void UpdateTask()
+
+        //Executes
+        private void ExecuteUpdateTaskCommand(object obj)
         {
-            try
+            _taskRepository.UpdateTask(Task);
+        }
+        private void ExecuteLoadChecklistsCommand(object obj)
+        {
+            Checklists.Clear();
+            var checkList = _checklistRepository.GetChecklistsByTaskID(Task.TaskID);
+            foreach (var check in checkList)
             {
-                if (!CanUpdateTask())
-                {
-                    MessageBox.Show("Перевірте правильність введених даних, будь-ласка.");
-                    return;
-                }
-
-                _taskRepository.UpdateTask(Task);
-
-                MessageBox.Show("Дані таску змінено.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Checklists.Add(check);
             }
         }
     }

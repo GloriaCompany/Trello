@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 

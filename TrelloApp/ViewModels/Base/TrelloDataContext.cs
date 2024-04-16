@@ -91,7 +91,7 @@ namespace TrelloApp.ViewModels.Base
         }
         public List<Column> GetColumnsByBoardID(int boardID) => _context.Column.Where(c => c.BoardID == boardID).ToList();
 
-        public void AddTask(TaskModel task)
+        public void AddTask(Task task)
         {
             _context.Task.InsertOnSubmit(task);
             SaveChanges();
@@ -103,7 +103,7 @@ namespace TrelloApp.ViewModels.Base
 
             SaveChanges();
         }
-        public void UpdateTask(TaskModel task)
+        public void UpdateTask(Task task)
         {
             var existingTask = _context.Task.FirstOrDefault(t => t.TaskID == t.TaskID);
 

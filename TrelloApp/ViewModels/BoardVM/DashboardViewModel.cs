@@ -1,11 +1,6 @@
 ﻿using Jewelry.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows;
 using System.Windows.Input;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.UserVM;
 using TrelloDBLayer;

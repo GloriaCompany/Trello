@@ -11,7 +11,8 @@
         Title="Dashboard" 
         Loaded="Page_Loaded"
         Background="{DynamicResource ThemeMainColor}"
-        d:DataContext="{d:DesignInstance viewModel:DashboardViewModel}">
+        d:DataContext="{d:DesignInstance viewModel:DashboardViewModel}"
+        d:Width="1000" d:Height="500">
     <Page.Resources>
         <Style TargetType="Border" x:Key="HoverBorderStyle">
             <Setter Property="Background" Value="Transparent"/>
@@ -108,7 +109,6 @@
             Orientation="Horizontal"
             HorizontalAlignment="Right"
             >
-            <Button Command="{Binding LoadBoardsCommand}" Content="Load ..."/>
             <customControls:CustomComboBox
                 SelectedIndex="1"
                 x:Name="ThemesComboBox"

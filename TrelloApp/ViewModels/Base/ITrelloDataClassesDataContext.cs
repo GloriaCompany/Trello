@@ -29,9 +29,9 @@ namespace TrelloApp.ViewModels.Base
         void UpdateColumn(Column column);
         List<Column> GetColumnsByBoardID(int boardID);
 
-        void AddTask(TaskModel task);
+        void AddTask(Task task);
         void DelTask(int taskID);
-        void UpdateTask(TaskModel task);
+        void UpdateTask(Task task);
         List<Task> GetTasksByColumnID(int columnID);
 
         void AddChecklist(ChecklistModel checklist);

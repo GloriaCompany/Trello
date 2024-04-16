@@ -102,7 +102,7 @@ namespace TrelloApp.ViewModels
         //Checks
         private bool CanExecuteUpdateBoardCommand(object obj)
         {
-            return 
+            return
                 Board != null;
         }
         private bool CanExecuteLoadColumnsCommand(object obj)

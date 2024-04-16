@@ -6,7 +6,8 @@
         xmlns:models="clr-namespace:TrelloApp.Models"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         mc:Ignorable="d"
-        Background="{DynamicResource ThemeMainColor}">
+        Background="{DynamicResource ThemeMainColor}"
+        d:Width="1000" d:Height="500">
     <Page.Resources>
         <DataTemplate x:Key="ColumnTemplate" DataType="{x:Type models:ColumnModel}">
             <customControls:ColumnControl Margin="10"/>

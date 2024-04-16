@@ -1,58 +1,51 @@
-﻿using System;
-using System.Windows;
+﻿using Jewelry.ViewModel;
 using System.Windows.Input;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.CheckVM;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels.ChecklistVM
 {
     public class ChecklistViewModel : ViewModelBase
     {
-        private ChecklistModel _checklist;
-        public ChecklistModel Checklist
+        //Fields
+        private Checklist _checklist;
+        private IChecklistRepository _checklistRepository;
+
+        //Properties
+        public Checklist Checklist
         {
-            get { return _checklist; }
+            get => _checklist;
             set
             {
                 _checklist = value;
                 OnPropertyChanged(nameof(Checklist));
             }
         }
-
-        private IChecklistRepository _checklistRepository;
         public IChecklistRepository ChecklistRepository
         {
-            get { return _checklistRepository; }
-            set { _checklistRepository = value; }
+            get => _checklistRepository;
+            set => _checklistRepository = value;
         }
 
+        //Commands
         public ICommand LoadChecksCommand { get; set; }
 
-        public ChecklistViewModel(ChecklistModel currentChecklist)
+        public ChecklistViewModel()
         {
-            _checklist = currentChecklist;
-            LoadChecksCommand = new RelayCommand(() => LoadChecks(_checklist.ChecklistID), CanLoadChecks);
+            LoadChecksCommand = new ViewModelCommand(ExecuteLoadChecksCommand, CanExecuteLoadChecksCommand);
         }
 
-        private bool CanLoadChecks()
+        //Checks
+        private bool CanExecuteLoadChecksCommand(object obj)
         {
-            bool res = true;
-
-            ((RelayCommand)LoadChecksCommand).RaiseCanExecuteChanged();
-
-            return res;
+            return true;
         }
-        public void LoadChecks(int chelistID)
+
+        //Executes
+        public void ExecuteLoadChecksCommand(object obj)
         {
-            try
-            {
-                //Load checks
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+
         }
     }
 }

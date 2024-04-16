@@ -1,11 +1,6 @@
 ﻿using Jewelry.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows;
 using System.Windows.Input;
-using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.TaskVM;
 using TrelloDBLayer;
@@ -68,10 +63,17 @@ namespace TrelloApp.ViewModels.ColumnVM
 
         public ColumnViewModel()
         {
+            //Initialize collections
+            Tasks = new ObservableCollection<Task>();
+
+            //Initialize commands
             LoadTasksCommand = new ViewModelCommand(ExecuteLoadTasksCommand, CanExecuteLoadTasksCommand);
             AddTaskCommand = new ViewModelCommand(ExecuteAddTaskCommand, CanExecuteAddTaskCommand);
             DelTaskCommand = new ViewModelCommand(ExecuteDelTaskCommand, CanExecuteDelTaskCommand);
             UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
+
+            //Default view
+            ExecuteLoadTasksCommand(null);
         }
 
         //Checks
@@ -99,19 +101,24 @@ namespace TrelloApp.ViewModels.ColumnVM
         //Executes
         private void ExecuteLoadTasksCommand(object obj)
         {
-           
+            Tasks.Clear();
+            var taskList = _taskRepository.GetTasksByColumnID(Column.ColumnID);
+            foreach (var task in taskList)
+            {
+                Tasks.Add(task);
+            }
         }
         private void ExecuteAddTaskCommand(object obj)
         {
-           
+            _taskRepository.AddTask(Task);
         }
         private void ExecuteDelTaskCommand(object obj)
         {
-            
+            _taskRepository.DelTask(Task.TaskID);
         }
         private void ExecuteUpdateTaskCommand(object obj)
         {
-           
+            _taskRepository.UpdateTask(Task);
         }
     }
 }

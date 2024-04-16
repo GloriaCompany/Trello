@@ -43,6 +43,8 @@ namespace TrelloApp.ViewModels.UserVM
         {
             _userRepository = userRepository;
             _user = new UserModel();
+
+            //Initialize commands
             RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
         }
 
