@@ -1,5 +1,4 @@
-﻿using Jewelry.ViewModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.BoardVM;

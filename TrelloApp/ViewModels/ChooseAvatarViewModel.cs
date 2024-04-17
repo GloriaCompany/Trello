@@ -1,12 +1,12 @@
-﻿using Jewelry.ViewModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.UserVM;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.UserVM
+namespace TrelloApp.ViewModels
 {
     public class ChooseAvatarViewModel : ViewModelBase
     {

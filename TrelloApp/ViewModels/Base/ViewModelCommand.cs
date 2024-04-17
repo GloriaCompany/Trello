@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Jewelry.ViewModel
+namespace TrelloApp.ViewModels.Base
 {
     internal class ViewModelCommand : ICommand
     {

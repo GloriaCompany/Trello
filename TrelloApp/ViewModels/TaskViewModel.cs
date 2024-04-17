@@ -1,11 +1,11 @@
-﻿using Jewelry.ViewModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.CheckVM;
+using TrelloApp.ViewModels.TaskVM;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.TaskVM
+namespace TrelloApp.ViewModels
 {
     public class TaskViewModel : ViewModelBase
     {

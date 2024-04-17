@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using TrelloApp.Helpers;
+using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.UserVM;
 using TrelloDBLayer;
 

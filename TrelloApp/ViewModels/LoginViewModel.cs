@@ -1,9 +1,9 @@
-﻿using Jewelry.ViewModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.UserVM;
 
-namespace TrelloApp.ViewModels.UserVM
+namespace TrelloApp.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
@@ -71,7 +71,7 @@ namespace TrelloApp.ViewModels.UserVM
 
             if (isValidUser)
             {
-                _navigator.GoTo("Dashboard.xaml");
+                _navigator.GoTo("DashboardView.xaml");
             }
             else
             {

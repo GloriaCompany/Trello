@@ -1,9 +1,10 @@
-﻿using Jewelry.ViewModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.UserVM;
+using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.UserVM
+namespace TrelloApp.ViewModels
 {
     public class RegisterViewModel : ViewModelBase
     {
@@ -60,7 +61,7 @@ namespace TrelloApp.ViewModels.UserVM
         //Executes
         private void ExecuteRegisterCommand(object obj)
         {
-            _userRepository.LoggedUser = User;
+
         }
     }
 }

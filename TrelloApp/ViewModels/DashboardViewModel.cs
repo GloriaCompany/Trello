@@ -1,11 +1,11 @@
-﻿using Jewelry.ViewModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.BoardVM;
 using TrelloApp.ViewModels.UserVM;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.BoardVM
+namespace TrelloApp.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {
@@ -95,6 +95,14 @@ namespace TrelloApp.ViewModels.BoardVM
         {
             Boards.Clear();
             var boardList = _boardRepository.GetBoardsByUserID(User.UserID);
+            boardList.Insert(0, new Board { Title = "Placeholder" });
+
+            /*For testing*/
+            //for (int i = 1; i < 20; i++)
+            //{
+            //    boardList.Add(new Board { Title = "Title" + i.ToString()});
+            //}
+
             foreach (var board in boardList)
             {
                 Boards.Add(board);

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.BoardVM;
 using TrelloApp.ViewModels.UserVM;
 using TrelloApp.Views.Utils;
@@ -25,16 +26,17 @@ namespace TrelloApp.Views
             PreviewMouseDown += Dashboard_PreviewMouseDown;
         }
 
-        private void AddBoardBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void AddBoardBtn_Click(object sender, RoutedEventArgs e)
         {
             addBoardPopup.IsOpen = true;
         }
 
-        private void AddConfirmedBoardButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void AddConfirmedBoardButton_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(BoardNameInput.Text))
             {
                 // Додавання дошки
+                (DataContext as DashboardViewModel).AddBoardCommand.Execute(null);
                 addBoardPopup.IsOpen = false;
             }
             else

@@ -1,9 +1,9 @@
-﻿using Jewelry.ViewModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
+using TrelloApp.ViewModels.UserVM;
 
-namespace TrelloApp.ViewModels.UserVM
+namespace TrelloApp.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {

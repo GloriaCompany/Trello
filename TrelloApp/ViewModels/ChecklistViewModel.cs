@@ -1,10 +1,9 @@
-﻿using Jewelry.ViewModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.CheckVM;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.ChecklistVM
+namespace TrelloApp.ViewModels
 {
     public class ChecklistViewModel : ViewModelBase
     {

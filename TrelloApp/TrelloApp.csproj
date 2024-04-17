@@ -84,10 +84,10 @@
     <Compile Include="Models\ChecklistModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="ViewModels\Base\CurrentData.cs" />
     <Compile Include="ViewModels\Base\ViewModelCommand.cs" />
     <Compile Include="ViewModels\BoardVM\BoardDataTemplateSelector.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="ViewModels\Base\DelegateCommand.cs" />
     <Compile Include="ViewModels\Base\ITrelloDataClassesDataContext.cs" />
     <Compile Include="ViewModels\Base\TrelloDataContext.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
@@ -104,7 +104,6 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\UserVM\UserAvatarsLoading\AvatarRepository.cs" />
     <Compile Include="ViewModels\UserVM\UserAvatarsLoading\FolderImageLoader.cs" />
     <Compile Include="ViewModels\UserVM\UserAvatarsLoading\IAvatarRepository.cs" />
@@ -384,5 +383,6 @@
     <Resource Include="Resources\window-maximize.png" />
     <Resource Include="Resources\window-minimize.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

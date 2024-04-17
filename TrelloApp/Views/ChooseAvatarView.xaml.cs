@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.UserVM;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 using TrelloApp.Views.CustomControls;
