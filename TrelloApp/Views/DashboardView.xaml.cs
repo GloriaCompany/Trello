@@ -2,15 +2,11 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using TrelloApp.ViewModels;
-using TrelloApp.ViewModels.BoardVM;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloApp.Views.Utils;
 
 namespace TrelloApp.Views
 {
-    /// <summary>
-    /// Логика взаимодействия для DashboardView.xaml
-    /// </summary>
     public partial class DashboardView : Page
     {
         public DashboardView()

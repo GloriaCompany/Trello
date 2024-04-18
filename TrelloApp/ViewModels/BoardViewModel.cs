@@ -1,9 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.BoardVM;
-using TrelloApp.ViewModels.ColumnVM;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
@@ -14,10 +12,12 @@ namespace TrelloApp.ViewModels
         private User _user;
         private Board _board;
         private Column _column;
-        private ObservableCollection<Column> _columns;
+
         private IUserRepository _userRepository;
         private IBoardRepository _boardRepository;
         private IColumnRepository _columnRepository;
+
+        private ObservableCollection<Column> _columns;
 
         //Properties
         public User User
@@ -56,65 +56,59 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(Columns));
             }
         }
-        public IUserRepository UserRepository
-        {
-            get => _userRepository;
-            set => _userRepository = value;
-        }
-        public IBoardRepository BoardRepository
-        {
-            get => _boardRepository;
-            set => _boardRepository = value;
-        }
-        public IColumnRepository ColumnRepository
-        {
-            get => _columnRepository;
-            set => _columnRepository = value;
-        }
 
         //Commands
-        public ICommand UpdateBoardCommand { get; set; }
         public ICommand LoadUserCommand { get; set; }
         public ICommand LoadColumnsCommand { get; set; }
+        public ICommand UpdateBoardCommand { get; set; }
+        public ICommand DelBoardCommand { get; set; }
         public ICommand AddColumnCommand { get; set; }
-        public ICommand DelColumnCommand { get; set; }
         public ICommand UpdateColumnCommand { get; set; }
 
-        public BoardViewModel(IUserRepository userRepository)
+        public BoardViewModel(IUserRepository userRepository, IBoardRepository boardRepository)
         {
-            _user = userRepository.LoggedUser;
+            _userRepository = userRepository;
+            _boardRepository = boardRepository;
+
+            User = _userRepository.CurrentUser;
+            Board = _boardRepository.CurrentBoard;
 
             //Initialize collections
             Columns = new ObservableCollection<Column>();
 
             //Initialize commands
+            LoadUserCommand = new ViewModelCommand(ExecuteLoadUserCommand, CanExecuteLoadUserCommand);
+            LoadColumnsCommand = new ViewModelCommand(ExecuteLoadColumnsCommand, CanExecuteLoadColumnsCommand);
             UpdateBoardCommand = new ViewModelCommand(ExecuteUpdateBoardCommand, CanExecuteUpdateBoardCommand);
-            LoadColumnsCommand = new ViewModelCommand(ExecuteLoadColumns, CanExecuteLoadColumnsCommand);
-            AddColumnCommand = new ViewModelCommand(ExecuteAddColumn, CanExecuteAddColumnCommand);
-            DelColumnCommand = new ViewModelCommand(ExecuteDelColumn, CanExecuteDelColumnCommand);
-            UpdateColumnCommand = new ViewModelCommand(ExecuteUpdateColumn, CanExecuteUpdateColumnCommand);
+            DelBoardCommand = new ViewModelCommand(ExecuteDelBoardCommand, CanExecuteDelBoardCommand);
+            AddColumnCommand = new ViewModelCommand(ExecuteAddColumnCommand, CanExecuteAddColumnCommand);
+            UpdateColumnCommand = new ViewModelCommand(ExecuteUpdateColumnCommand, CanExecuteUpdateColumnCommand);
 
             //Default view
-            ExecuteLoadColumns(null);
+            ExecuteLoadUserCommand(null);
+            ExecuteLoadColumnsCommand(null);
         }
 
         //Checks
+        private bool CanExecuteLoadUserCommand(object obj)
+        {
+            return true;
+        }
+        private bool CanExecuteLoadColumnsCommand(object obj)
+        {
+            return true;
+        }
         private bool CanExecuteUpdateBoardCommand(object obj)
         {
             return
                 Board != null;
         }
-        private bool CanExecuteLoadColumnsCommand(object obj)
+        private bool CanExecuteDelBoardCommand(object obj)
         {
             return
                 Column != null;
         }
         private bool CanExecuteAddColumnCommand(object obj)
-        {
-            return
-                Column != null;
-        }
-        private bool CanExecuteDelColumnCommand(object obj)
         {
             return
                 Column != null;
@@ -126,11 +120,11 @@ namespace TrelloApp.ViewModels
         }
 
         //Executes
-        private void ExecuteUpdateBoardCommand(object obj)
+        private void ExecuteLoadUserCommand(object obj)
         {
-            _boardRepository.UpdateBoard(Board);
+            User = _userRepository.CurrentUser;
         }
-        private void ExecuteLoadColumns(object obj)
+        private void ExecuteLoadColumnsCommand(object obj)
         {
             Columns.Clear();
             var columnList = _columnRepository.GetColumnsByBoardID(Board.BoardID);
@@ -139,15 +133,19 @@ namespace TrelloApp.ViewModels
                 Columns.Add(column);
             }
         }
-        private void ExecuteAddColumn(object obj)
+        private void ExecuteUpdateBoardCommand(object obj)
         {
-            _columnRepository.AddColumn(Column);
+            _boardRepository.UpdateBoard(Board);
         }
-        private void ExecuteDelColumn(object obj)
+        private void ExecuteDelBoardCommand(object obj)
         {
             _columnRepository.DelColumn(Column.ColumnID);
         }
-        private void ExecuteUpdateColumn(object obj)
+        private void ExecuteAddColumnCommand(object obj)
+        {
+            _columnRepository.AddColumn(Column);
+        }
+        private void ExecuteUpdateColumnCommand(object obj)
         {
             _columnRepository.UpdateColumn(Column);
         }

@@ -1,8 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.CheckVM;
-using TrelloApp.ViewModels.TaskVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
@@ -11,9 +10,13 @@ namespace TrelloApp.ViewModels
     {
         //Fields
         private Task _task;
-        private ObservableCollection<Checklist> _checklists;
+
+        private IColumnRepository _columnRepository;
         private ITaskRepository _taskRepository;
+        private IUserRepository _userRepository;
         private IChecklistRepository _checklistRepository;
+
+        private ObservableCollection<Checklist> _checklists;
 
         //Properties
         public Task Task
@@ -34,27 +37,25 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(Checklists));
             }
         }
-        public ITaskRepository TaskRepository
-        {
-            get => _taskRepository;
-            set => _taskRepository = value;
-        }
-        public IChecklistRepository ChecklistRepository
-        {
-            get => _checklistRepository;
-            set => _checklistRepository = value;
-        }
 
         //Commands
+        public ICommand DelTaskCommand { get; set; }
         public ICommand UpdateTaskCommand { get; set; }
         public ICommand LoadChecklistsCommand { get; set; }
 
-        public TaskViewModel()
+        public TaskViewModel(IColumnRepository columnRepository, ITaskRepository taskRepository, IUserRepository userRepository)
         {
+            _columnRepository = columnRepository;
+            _taskRepository = taskRepository;
+            _userRepository = userRepository;
+
+            Task = _taskRepository.CurrentTask;
+
             //Initialize collecntions
             Checklists = new ObservableCollection<Checklist>();
 
             //Initialize commands
+            DelTaskCommand = new ViewModelCommand(ExecuteDelTaskCommand, CanExecuteDelTaskCommand);
             UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
             LoadChecklistsCommand = new ViewModelCommand(ExecuteLoadChecklistsCommand, CanExecuteLoadChecklistsCommand);
 
@@ -63,6 +64,11 @@ namespace TrelloApp.ViewModels
         }
 
         //Checks
+        private bool CanExecuteDelTaskCommand(object obj)
+        {
+            return
+                Task != null;
+        }
         private bool CanExecuteUpdateTaskCommand(object obj)
         {
             return
@@ -75,6 +81,10 @@ namespace TrelloApp.ViewModels
         }
 
         //Executes
+        private void ExecuteDelTaskCommand(object obj)
+        {
+            _taskRepository.DelTask(Task.TaskID);
+        }
         private void ExecuteUpdateTaskCommand(object obj)
         {
             _taskRepository.UpdateTask(Task);

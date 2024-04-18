@@ -1,24 +1,19 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using TrelloApp.Models;
+﻿using System.Windows.Controls;
+using TrelloApp.ViewModels;
+using TrelloApp.ViewModels.Repository;
 using TrelloApp.Views.Utils;
 
 namespace TrelloApp
 {
-    /// <summary>
-    /// Interaction logic for BoardView.xaml
-    /// </summary>
     public partial class BoardView : Page
     {
-        public ObservableCollection<TaskModel> ColumnTasks { get; set; }
-        public ObservableCollection<ColumnModel> Columns { get; set; }
-
         public BoardView()
         {
             InitializeComponent();
-            Columns = new ObservableCollection<ColumnModel>();
-            ColumnTasks = new ObservableCollection<TaskModel>();
-            DataContext = this;
+            var viewModel = new BoardViewModel(
+                FindResource("UserRepository") as IUserRepository,
+                FindResource("BoardRepository") as IBoardRepository);
+            DataContext = viewModel;
         }
 
         private void TeamUsersListBtn_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -34,6 +29,21 @@ namespace TrelloApp
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
+        }
+
+        private void BtnChangeBoardTitle_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            (DataContext as BoardViewModel).UpdateBoardCommand.Execute(null);
+        }
+
+        private void BtnAddColumn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            (DataContext as BoardViewModel).AddColumnCommand.Execute(null);
+        }
+
+        private void BtnDelBoard_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            (DataContext as BoardViewModel).DelBoardCommand.Execute(null);
         }
     }
 }

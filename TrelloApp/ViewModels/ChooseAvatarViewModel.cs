@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 using TrelloDBLayer;
 
@@ -48,33 +48,28 @@ namespace TrelloApp.ViewModels
             //Initialize collections
             AvatarImages = new ObservableCollection<BitmapImage>();
 
-            //SelectAvatarCommand = new DelegateCommand((bmp) => {
-            //    userRepository.LoggedUser.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
-            //    userRepository.AddUser(userRepository.LoggedUser);
-            //}, parameter => true);
-
             //Initialize commands
-            SelectAvatarCommand = new ViewModelCommand(ExecuteSelectedAvatarCommand, CanExecuteSelectedAvatarCommand);
+            SelectAvatarCommand = new ViewModelCommand(ExecuteSelectAvatarCommand, CanExecuteSelectAvatarCommand);
 
             //Default view
             LoadAvatarImages();
         }
 
-        private bool CanExecuteSelectedAvatarCommand(object obj)
+        private bool CanExecuteSelectAvatarCommand(object obj)
         {
             //return SelectedAvatar != null;
             return true;
         }
 
-        private void ExecuteSelectedAvatarCommand(object obj)
+        private void ExecuteSelectAvatarCommand(object obj)
         {
-            _userRepository.LoggedUser.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
+            _userRepository.CurrentUser.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
             var user = new User()
             {
-                Username = _userRepository.LoggedUser.Username,
-                Password = _userRepository.LoggedUser.Password,
-                Email = _userRepository.LoggedUser.Email,
-                Avatar = _userRepository.LoggedUser.Avatar
+                Username = _userRepository.CurrentUser.Username,
+                Password = _userRepository.CurrentUser.Password,
+                Email = _userRepository.CurrentUser.Email,
+                Avatar = _userRepository.CurrentUser.Avatar
             };
 
             _userRepository.AddUser(user);

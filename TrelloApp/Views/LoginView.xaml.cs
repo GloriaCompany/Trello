@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
 
 namespace TrelloApp.Views

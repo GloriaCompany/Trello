@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.ColumnVM
+namespace TrelloApp.ViewModels.Repository
 {
     public interface IColumnRepository
     {
@@ -11,9 +11,11 @@ namespace TrelloApp.ViewModels.ColumnVM
         void DelColumn(int columnID);
         void UpdateColumn(Column column);
         List<Column> GetColumnsByBoardID(int boardID);
+
+        Column CurrentColumn { get; set; }
     }
 
-    internal class ColumnRepository : IColumnRepository
+    public class ColumnRepository : IColumnRepository
     {
         private ITrelloDataClassesDataContext _dbContext;
         public ITrelloDataClassesDataContext DbContext
@@ -21,6 +23,8 @@ namespace TrelloApp.ViewModels.ColumnVM
             get { return _dbContext; }
             set { _dbContext = value; }
         }
+
+        public Column CurrentColumn { get; set; }
 
         public ColumnRepository() { }
         public ColumnRepository(ITrelloDataClassesDataContext dbContext)

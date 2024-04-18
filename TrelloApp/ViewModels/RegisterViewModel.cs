@@ -1,8 +1,7 @@
 ﻿using System.Windows.Input;
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.UserVM;
-using TrelloDBLayer;
+using TrelloApp.ViewModels.Repository;
 
 namespace TrelloApp.ViewModels
 {
@@ -61,7 +60,7 @@ namespace TrelloApp.ViewModels
         //Executes
         private void ExecuteRegisterCommand(object obj)
         {
-
+            _userRepository.CurrentUser = User;
         }
     }
 }

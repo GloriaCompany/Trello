@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.BoardVM
+namespace TrelloApp.ViewModels.Repository
 {
     public interface IBoardRepository
     {
@@ -11,9 +11,11 @@ namespace TrelloApp.ViewModels.BoardVM
         void DelBoard(int boardID);
         void UpdateBoard(Board board);
         List<Board> GetBoardsByUserID(int userID);
+
+        Board CurrentBoard { get; set; }
     }
 
-    internal class BoardRepository : IBoardRepository
+    public class BoardRepository : IBoardRepository
     {
         private ITrelloDataClassesDataContext _dbContext;
         public ITrelloDataClassesDataContext DbContext
@@ -21,6 +23,8 @@ namespace TrelloApp.ViewModels.BoardVM
             get { return _dbContext; }
             set { _dbContext = value; }
         }
+
+        public Board CurrentBoard { get; set; }
 
         public BoardRepository() { }
         public BoardRepository(ITrelloDataClassesDataContext dbContext)

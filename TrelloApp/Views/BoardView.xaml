@@ -1,13 +1,14 @@
 ﻿<Page x:Class="TrelloApp.BoardView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:models="clr-namespace:TrelloApp.Models"
-        xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-        mc:Ignorable="d"
-        Background="{DynamicResource ThemeMainColor}"
-        d:Width="1000" d:Height="500">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="clr-namespace:TrelloApp.Models"
+      xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BoardViewModel}"
+      mc:Ignorable="d"
+      Background="{DynamicResource ThemeMainColor}"
+      d:Width="1000" d:Height="500">
     <Page.Resources>
         <DataTemplate x:Key="ColumnTemplate" DataType="{x:Type models:ColumnModel}">
             <customControls:ColumnControl Margin="10"/>
@@ -19,14 +20,15 @@
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Width="Auto"
-                    Height="35"
-                    >
+        <StackPanel
+            Orientation="Horizontal"
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Width="Auto"
+            Height="35"
+            >
             <Image 
                 Source="{DynamicResource LogoPath}"
                 Width="75"
@@ -38,13 +40,15 @@
             <customControls:CustomInput
                 Width="185"
                 Height="35"
+                Text="{Binding Board.Title}"
                 Placeholder="{DynamicResource BoardNameInputPlaceholderString}"
                 />
             <customControls:ChangesButton
+                x:Name="BtnChangeBoardTitle"
                 Width="17.5"
                 Height="17.5"
                 Margin="5,0,0,0"
-                ImageSource="{DynamicResource EditIconPath}"
+                ImageSource="{DynamicResource EditIconPath}" Click="BtnChangeBoardTitle_Click"
                 />
             <customControls:ChangesButton
                 Width="17.5"
@@ -61,12 +65,14 @@
                 Visibility="Hidden"
                 />
         </StackPanel>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <customControls:CustomComboBox SelectedIndex="1"
-                                           x:Name="ThemesComboBox"
-                                           SelectionChanged="ThemesComboBox_SelectionChanged"
-                                           >
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right">
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="ThemesComboBox"
+                SelectionChanged="ThemesComboBox_SelectionChanged"
+                >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
                         ImageSource="/TrelloApp;component/Resources/sun.png"
@@ -78,10 +84,11 @@
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
-            <customControls:CustomComboBox SelectedIndex="1"
-                                           x:Name="LanguagesComboBox"
-                                           SelectionChanged="LanguagesComboBox_SelectionChanged"
-                                           >
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="LanguagesComboBox"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
                         Українська
@@ -187,7 +194,7 @@
                         </Button.Style>
                     </Button>
                     <TextBlock 
-                        Text="Name"
+                        Text="{Binding User.Username}"
                         FontSize="10"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left" 
@@ -235,62 +242,72 @@
                             </StackPanel>
                         </Border>
                     </Popup>-->
-                    <Popup x:Name="UsersPopup" 
-                           IsOpen="False" 
-                           StaysOpen="False" 
-                           Placement="Bottom" 
-                           PlacementTarget="{Binding ElementName=PlusButton}"
-                           >
-                        <Border BorderBrush="{DynamicResource ThemeBorderColor}" 
-                                BorderThickness="1"
-                                >
+                    <Popup
+                        x:Name="UsersPopup" 
+                        IsOpen="False" 
+                        StaysOpen="False" 
+                        Placement="Bottom" 
+                        PlacementTarget="{Binding ElementName=PlusButton}"
+                        >
+                        <Border
+                            BorderBrush="{DynamicResource ThemeBorderColor}" 
+                            BorderThickness="1"
+                            >
                             <ItemsControl ItemsSource="{Binding TeamUsers}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel x:Name="UserPanel" 
-                                                    Orientation="Horizontal" 
-                                                    VerticalAlignment="Center" 
-                                                    Background="Transparent"
-                                                    >
-                                            <customControls:CircleImage Margin="5" 
-                                                                        VerticalAlignment="Center" 
-                                                                        HorizontalAlignment="Left" 
-                                                                        Width="30" 
-                                                                        Height="30" 
-                                                                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
-                                                                        />
-                                            <StackPanel Orientation="Vertical" 
-                                                        VerticalAlignment="Center" 
-                                                        Margin="2,0,0,0"
-                                                        >
-                                                <TextBlock x:Name="UsernameText" 
-                                                           Text="Username" 
-                                                           Foreground="{DynamicResource ThemeTextColor}" 
-                                                           FontSize="10" 
-                                                           VerticalAlignment="Stretch"
-                                                           />
-                                                <TextBlock x:Name="JobText" 
-                                                           Text="Job" 
-                                                           Foreground="{DynamicResource ThemeTextColor}" 
-                                                           FontSize="10" 
-                                                           VerticalAlignment="Stretch"
-                                                           />
+                                        <StackPanel
+                                            x:Name="UserPanel" 
+                                            Orientation="Horizontal" 
+                                            VerticalAlignment="Center" 
+                                            Background="Transparent"
+                                            >
+                                            <customControls:CircleImage
+                                                Margin="5" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Left" 
+                                                Width="30" 
+                                                Height="30" 
+                                                ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                                                />
+                                            <StackPanel
+                                                Orientation="Vertical" 
+                                                VerticalAlignment="Center" 
+                                                Margin="2,0,0,0"
+                                                >
+                                                <TextBlock
+                                                    x:Name="UsernameText" 
+                                                    Text="Username" 
+                                                    Foreground="{DynamicResource ThemeTextColor}" 
+                                                    FontSize="10" 
+                                                    VerticalAlignment="Stretch"
+                                                    />
+                                                <TextBlock
+                                                    x:Name="JobText" 
+                                                    Text="Job" 
+                                                    Foreground="{DynamicResource ThemeTextColor}" 
+                                                    FontSize="10" 
+                                                    VerticalAlignment="Stretch"
+                                                    />
                                             </StackPanel>
                                         </StackPanel>
                                         <DataTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="UsernameText" 
-                                                        Property="Foreground" 
-                                                        Value="{DynamicResource ThemeMainColor}"
-                                                        />
-                                                <Setter TargetName="JobText" 
-                                                        Property="Foreground" 
-                                                        Value="{DynamicResource ThemeMainColor}"
-                                                        />
-                                                <Setter TargetName="UserPanel" 
-                                                        Property="Background" 
-                                                        Value="{DynamicResource ThemeHoverColor}"
-                                                        />
+                                                <Setter
+                                                    TargetName="UsernameText" 
+                                                    Property="Foreground" 
+                                                    Value="{DynamicResource ThemeMainColor}"
+                                                    />
+                                                <Setter
+                                                    TargetName="JobText" 
+                                                    Property="Foreground" 
+                                                    Value="{DynamicResource ThemeMainColor}"
+                                                    />
+                                                <Setter
+                                                    TargetName="UserPanel" 
+                                                    Property="Background" 
+                                                    Value="{DynamicResource ThemeHoverColor}"
+                                                    />
                                             </Trigger>
                                         </DataTemplate.Triggers>
                                     </DataTemplate>
@@ -301,66 +318,78 @@
                 </Grid>
             </Border>
         </StackPanel>
-        <ScrollViewer Grid.Row="1"
-              HorizontalScrollBarVisibility="Disabled"
-              VerticalScrollBarVisibility="Hidden"
-              Margin="0,12.5,0,0">
-            <ItemsControl Grid.Row="1"
-                          ItemTemplate="{StaticResource ColumnTemplate}"
-                          ItemsSource="{Binding Columns}">
+        <ScrollViewer
+            Grid.Row="1"
+            HorizontalScrollBarVisibility="Disabled"
+            VerticalScrollBarVisibility="Hidden"
+            Margin="0,12.5,0,0">
+            <ItemsControl
+                Grid.Row="1"
+                ItemTemplate="{StaticResource ColumnTemplate}"
+                ItemsSource="{Binding Columns}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel ItemWidth="207"
-                           ItemHeight="Auto"
-                           HorizontalAlignment="Center"/>
+                        <WrapPanel
+                            ItemWidth="207"
+                            ItemHeight="Auto"
+                            HorizontalAlignment="Center"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </ScrollViewer>
         <customControls:CustomButton
-                Text="{DynamicResource AddColumnBtnString}"
-                Foreground="{DynamicResource ThemeTextColor}"
-                Margin="10"
-                Height="35"
-                Width="200"
-                Grid.Row="3"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                />
+            x:Name="BtnAddColumn"
+            Text="{DynamicResource AddColumnBtnString}"
+            Foreground="{DynamicResource ThemeTextColor}"
+            Margin="10"
+            Height="35"
+            Width="200"
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center" Click="BtnAddColumn_Click"
+            />
         <customControls:CustomButton
-                Text="{DynamicResource DeleteBoardButtonString}"
-                Foreground="{DynamicResource ThemeTextColor}"
-                Margin="10"
-                Height="35"
-                Width="200"
-                Grid.Row="3"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                />
-        <Popup x:Name="AddMemberPopup" 
-               IsOpen="False" 
-               StaysOpen="False" 
-               Placement="Bottom" 
-               PlacementTarget="{Binding ElementName=PlusButton}"
-               >
-            <Border BorderBrush="{DynamicResource ThemeBorderColor}" 
-                    BorderThickness="1"
+            x:Name="BtnDelBoard"
+            Text="{DynamicResource DeleteBoardButtonString}"
+            Foreground="{DynamicResource ThemeTextColor}"
+            Margin="10"
+            Height="35"
+            Width="200"
+            Grid.Row="3"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center" Click="BtnDelBoard_Click"
+            />
+        <Popup
+            x:Name="AddMemberPopup" 
+            IsOpen="False" 
+            StaysOpen="False" 
+            Placement="Bottom" 
+            PlacementTarget="{Binding ElementName=PlusButton}"
+            >
+            <Border
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1"
+                >
+                <StackPanel
+                    Orientation="Vertical" 
+                    Background="{DynamicResource ThemeMainColor}" 
+                    Width="195"
                     >
-                <StackPanel Orientation="Vertical" 
-                            Background="{DynamicResource ThemeMainColor}" 
-                            Width="195"
-                            >
-                    <customControls:CustomInput Width="185" 
-                                                Height="35" 
-                                                Placeholder="{DynamicResource SearchUsersInputPlaceholderString}" 
-                                                Margin="5"/>
-                    <Button Content="{DynamicResource AddTaskPopupBtnString}" 
-                            Width="80" 
-                            Height="30" 
-                            HorizontalAlignment="Center" 
-                            Margin="5"
-                            />
-                    <ItemsControl ItemsSource="{Binding TeamUsers}">
+                    <customControls:CustomInput
+                        Width="185" 
+                        Height="35" 
+                        Text="{Binding}"
+                        Placeholder="{DynamicResource SearchUsersInputPlaceholderString}"
+                        Margin="5"/>
+                    <Button
+                        x:Name="BtnAddUserTask"
+                        Content="{DynamicResource AddTaskPopupBtnString}" 
+                        Width="80" 
+                        Height="30" 
+                        HorizontalAlignment="Center" 
+                        Margin="5"
+                        />
+                    <ItemsControl ItemsSource="{Binding BoardUsers}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Margin="5">
@@ -369,10 +398,11 @@
                                         Height="30" 
                                         ImageSource="{Binding AvatarPath}"
                                         />
-                                    <TextBlock Text="{Binding Username}" 
-                                               Foreground="{DynamicResource ThemeTextColor}" 
-                                               Margin="5"
-                                               />
+                                    <TextBlock
+                                        Text="{Binding Username}" 
+                                        Foreground="{DynamicResource ThemeTextColor}" 
+                                        Margin="5"
+                                        />
                                     <customControls:CircleImage
                                         Width="33"
                                         Height="33"

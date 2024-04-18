@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 
 namespace TrelloApp.ViewModels
 {

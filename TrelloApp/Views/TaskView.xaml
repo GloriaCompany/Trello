@@ -1,20 +1,24 @@
 ﻿<Page x:Class="TrelloApp.Views.TaskView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"  
-        mc:Ignorable="d"
-        Title="TaskDetails"
-        Background="{DynamicResource ThemeMainColor}">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:TaskViewModel}"
+      mc:Ignorable="d"
+      Title="TaskDetails"
+      Background="{DynamicResource ThemeMainColor}">
     <Grid>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top">
-            <customControls:CustomComboBox SelectedIndex="1"
-                                           x:Name="ThemesComboBox"
-                                           SelectionChanged="ThemesComboBox_SelectionChanged"
-                                           >
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="ThemesComboBox"
+                SelectionChanged="ThemesComboBox_SelectionChanged"
+                >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem 
                         ImageSource="/TrelloApp;component/Resources/sun.png"
@@ -26,10 +30,11 @@
                     </customControls:CustomComboBoxItem>
                 </customControls:CustomComboBox.Items>
             </customControls:CustomComboBox>
-            <customControls:CustomComboBox SelectedIndex="1"
-                                           x:Name="LanguagesComboBox"
-                                           SelectionChanged="LanguagesComboBox_SelectionChanged"
-                                           >
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="LanguagesComboBox"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                >
                 <customControls:CustomComboBox.Items>
                     <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
                         Українська
@@ -41,12 +46,12 @@
             </customControls:CustomComboBox>
         </StackPanel>
         <Border 
-                BorderBrush="{DynamicResource ThemeBorderColor}" 
-                BorderThickness="1" 
-                CornerRadius="25"
-                Width="400"
-                Height="425"
-                >
+            BorderBrush="{DynamicResource ThemeBorderColor}" 
+            BorderThickness="1" 
+            CornerRadius="25"
+            Width="400"
+            Height="425"
+            >
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
@@ -60,15 +65,17 @@
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="55"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
-                           Text="Task Name"
-                           Foreground="{DynamicResource ThemeTextColor}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="14"/>
-                <Border Grid.Row="1" 
-                        Background="{DynamicResource ThemeBorderColor}" 
-                        Width="400"/>
+                <TextBlock
+                    Grid.Row="0"
+                    Text="{Binding Task.Title}"
+                    Foreground="{DynamicResource ThemeTextColor}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="14"/>
+                <Border
+                    Grid.Row="1" 
+                    Background="{DynamicResource ThemeBorderColor}" 
+                    Width="400"/>
                 <customControls:CircleImage
                     Grid.Row="2"
                     Width="35"
@@ -102,32 +109,37 @@
                     VerticalAlignment="Center"
                     Margin="0,0,15,0"
                     />
-                <Border Grid.Row="3" 
-                        Background="{DynamicResource ThemeBorderColor}" 
-                        Width="400"
-                        />
-                <RichTextBox Grid.Row="4"
-                             Background="Transparent"
-                             Foreground="{DynamicResource ThemeTextColor}"
-                             BorderThickness="0"
-                             Margin="5"
-                             >
-                    <FlowDocument MaxPageWidth="390"
-                                  MaxPageHeight="150"
-                                  >
-                        <Paragraph FontSize="14"
-                                   TextAlignment="Justify"
-                                   >
+                <Border
+                    Grid.Row="3" 
+                    Background="{DynamicResource ThemeBorderColor}" 
+                    Width="400"
+                    />
+                <RichTextBox
+                    Grid.Row="4"
+                    Background="Transparent"
+                    Foreground="{DynamicResource ThemeTextColor}"
+                    BorderThickness="0"
+                    Margin="5"
+                    >
+                    <FlowDocument
+                        MaxPageWidth="390"
+                        MaxPageHeight="150"
+                        >
+                        <Paragraph
+                            FontSize="14"
+                            TextAlignment="Justify"
+                            >
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
                 <Border Grid.Row="5" Background="{DynamicResource ThemeBorderColor}" Width="400"/>
-                <StackPanel Orientation="Horizontal"
-                            Grid.Row="6"
-                            Width="400"
-                            HorizontalAlignment="Center"
-                            >
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="6"
+                    Width="400"
+                    HorizontalAlignment="Center"
+                    >
                     <customControls:CustomInput
                         Width="220"
                         Height="35"
@@ -142,11 +154,12 @@
                         Text="{DynamicResource AddTaskBtnString}"
                         />
                 </StackPanel>
-                <ListView Grid.Row="7"
-                          Background="{DynamicResource ThemeMainColor}"
-                          Padding="5"
-                          BorderThickness="0"
-                          >
+                <ListView
+                    Grid.Row="7"
+                    Background="{DynamicResource ThemeMainColor}"
+                    Padding="5"
+                    BorderThickness="0"
+                    >
                     <ListView.Resources>
                         <Style TargetType="ScrollViewer">
                             <Setter Property="Template">
@@ -189,24 +202,27 @@
                     <customControls:CustomCheckBox Content="Task 4" Foreground="{DynamicResource ThemeBorderColor}"/>
                 </ListView>
                 <Border Grid.Row="8" Background="White" Width="400"/>
-                <StackPanel Orientation="Horizontal"
-                            Grid.Row="9"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            >
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="9"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    >
                     <customControls:CustomButton
+                        x:Name="BtnDelTask"
                         Width="160"
                         Height="35"
                         Margin="5"
                         Foreground="{DynamicResource ThemeTextColor}"
-                        Text="{DynamicResource DeleteTaskBtnString}"
+                        Text="{DynamicResource DeleteTaskBtnString}" Click="BtnDelTask_Click"
                         />
                     <customControls:CustomButton
+                        x:Name="BtnUpdateTask"
                         Width="160"
                         Height="35"
                         Margin="5"
                         Foreground="{DynamicResource ThemeTextColor}"
-                        Text="{DynamicResource SaveChangesBtnString}"
+                        Text="{DynamicResource SaveChangesBtnString}" Click="BtnUpdateTask_Click"
                         />
                 </StackPanel>
             </Grid>

@@ -3,19 +3,20 @@ using System.Linq;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.UserVM
+namespace TrelloApp.ViewModels.Repository
 {
     public interface IUserRepository
     {
         void AddUser(User user);
+        void DelUser(int userID);
         User GetUserByID(int userID);
-        bool AuthenticateUser(string username, string password);
         void UpdateUser(User user);
+        bool AuthenticateUser(string username, string password);
 
-        User LoggedUser { get; set; }
+        User CurrentUser { get; set; }
     }
 
-    internal class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private ITrelloDataClassesDataContext _dbContext;
         public ITrelloDataClassesDataContext DbContext
@@ -24,7 +25,7 @@ namespace TrelloApp.ViewModels.UserVM
             set { _dbContext = value; }
         }
 
-        public User LoggedUser { get; set; }
+        public User CurrentUser { get; set; }
 
         public UserRepository(ITrelloDataClassesDataContext dbContext)
         {
@@ -63,7 +64,7 @@ namespace TrelloApp.ViewModels.UserVM
         public bool AuthenticateUser(string username, string password)
         {
             var user = _dbContext.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
-            LoggedUser = user;
+            CurrentUser = user;
 
             return user != null;
         }

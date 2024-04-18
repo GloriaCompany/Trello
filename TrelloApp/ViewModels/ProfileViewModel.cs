@@ -1,20 +1,21 @@
-﻿using System.Windows.Input;
-using TrelloApp.Models;
+﻿using System;
+using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
     public class ProfileViewModel : ViewModelBase
     {
         //Fields
-        private UserModel _user;
+        private User _user;
         private string _errorMessage;
 
         private IUserRepository _userRepository;
 
         //Properties
-        public UserModel User
+        public User User
         {
             get => _user;
             set
@@ -32,20 +33,22 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }
-        public IUserRepository UserRepository
-        {
-            get => _userRepository;
-            set => _userRepository = value;
-        }
 
         //Commands
         public ICommand LoadUserCommand { get; set; }
-        public ICommand ProfileUpdateCommand { get; set; }
+        public ICommand UpdateUserCommand { get; set; }
+        public ICommand DelUserCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
-        public ProfileViewModel()
+        public ProfileViewModel(IUserRepository userRepository)
         {
-            ProfileUpdateCommand = new ViewModelCommand(ExecuteLoadUserCommand, CanExecuteLoadUserCommand);
-            ProfileUpdateCommand = new ViewModelCommand(ExecuteUpdateUserCommand, CanExecuteUpdateUserCommand);
+            _userRepository = userRepository;
+
+            //Initialize commands
+            LoadUserCommand = new ViewModelCommand(ExecuteLoadUserCommand, CanExecuteLoadUserCommand);
+            UpdateUserCommand = new ViewModelCommand(ExecuteUpdateUserCommand, CanExecuteUpdateUserCommand);
+            DelUserCommand = new ViewModelCommand(ExecuteDelUserCommand, CanExecuteDelUserCommand);
+            LogoutCommand = new ViewModelCommand(ExecuteLogoutCommand, CanExecuteLogoutCommand);
         }
 
         //Checks
@@ -62,15 +65,32 @@ namespace TrelloApp.ViewModels
                 !string.IsNullOrEmpty(User.Password) ||
                 !string.IsNullOrEmpty(User.Avatar);
         }
+        private bool CanExecuteDelUserCommand(object obj)
+        {
+            throw new NotImplementedException();
+        }
+        private bool CanExecuteLogoutCommand(object obj)
+        {
+            return
+                User != null;
+        }
 
         //Executes
         private void ExecuteLoadUserCommand(object obj)
         {
-
+            User = _userRepository.GetUserByID(User.UserID);
         }
         private void ExecuteUpdateUserCommand(object obj)
         {
-
+            _userRepository.UpdateUser(User);
+        }
+        private void ExecuteDelUserCommand(object obj)
+        {
+            _userRepository.DelUser(User.UserID);
+        }
+        private void ExecuteLogoutCommand(object obj)
+        {
+            _userRepository.CurrentUser = null;
         }
     }
 }

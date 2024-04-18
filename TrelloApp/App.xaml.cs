@@ -3,8 +3,7 @@ using System.Windows;
 using System.Windows.Navigation;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.BoardVM;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 
 namespace TrelloApp
@@ -20,11 +19,18 @@ namespace TrelloApp
             base.OnStartup(e);
 
             var dc = new TrelloDataContext();
+
             var userRepository = new UserRepository(dc);
             Resources.Add("UserRepository", userRepository);
 
             var boardRepository = new BoardRepository(dc);
             Resources.Add("BoardRepository", boardRepository);
+
+            var columnRepository = new ColumnRepository(dc);
+            Resources.Add("ColumnRepository", columnRepository);
+
+            var taskRepository = new TaskRepository(dc);
+            Resources.Add("TaskRepository", taskRepository);
 
             var av = new AvatarRepository(new ResourceImageLoader(), new FolderImageLoader());
             Resources.Add("AvatarRepository", av);

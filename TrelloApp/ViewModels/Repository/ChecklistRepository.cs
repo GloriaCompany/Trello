@@ -4,7 +4,7 @@ using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.CheckVM
+namespace TrelloApp.ViewModels.Repository
 {
     public interface IChecklistRepository
     {
@@ -13,7 +13,7 @@ namespace TrelloApp.ViewModels.CheckVM
         List<Checklist> GetChecklistsByTaskID(int taskID);
     }
 
-    internal class ChecklistRepository : IChecklistRepository
+    public class ChecklistRepository : IChecklistRepository
     {
         private ITrelloDataClassesDataContext _dbContext;
         public ITrelloDataClassesDataContext DbContext

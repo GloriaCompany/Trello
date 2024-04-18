@@ -84,7 +84,6 @@
     <Compile Include="Models\ChecklistModel.cs" />
     <Compile Include="Models\ColumnModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
-    <Compile Include="ViewModels\Base\CurrentData.cs" />
     <Compile Include="ViewModels\Base\ViewModelCommand.cs" />
     <Compile Include="ViewModels\BoardVM\BoardDataTemplateSelector.cs" />
     <Compile Include="Models\UserModel.cs" />

@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using System.Windows.Media;
 using TrelloApp.ViewModels;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 using TrelloApp.Views.CustomControls;
 
@@ -20,8 +20,7 @@ namespace TrelloApp.Views
             InitializeComponent();
             var viewModel = new ChooseAvatarViewModel(
                 FindResource("AvatarRepository") as IAvatarRepository,
-                FindResource("UserRepository") as IUserRepository
-               );
+                FindResource("UserRepository") as IUserRepository);
             DataContext = viewModel;
         }
 

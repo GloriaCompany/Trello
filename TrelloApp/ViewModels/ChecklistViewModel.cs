@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.CheckVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels

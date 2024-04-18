@@ -1,8 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.BoardVM;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
@@ -11,8 +10,10 @@ namespace TrelloApp.ViewModels
     {
         //Fields
         private Board _board;
-        private ObservableCollection<Board> _boards;
         private User _user;
+
+        private ObservableCollection<Board> _boards;
+
         private IUserRepository _userRepository;
         private IBoardRepository _boardRepository;
 
@@ -26,15 +27,6 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(Board));
             }
         }
-        public ObservableCollection<Board> Boards
-        {
-            get => _boards;
-            set
-            {
-                _boards = value;
-                OnPropertyChanged(nameof(Boards));
-            }
-        }
         public User User
         {
             get => _user;
@@ -44,37 +36,55 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(User));
             }
         }
-        public IBoardRepository BoardRepository
+        public ObservableCollection<Board> Boards
         {
-            get { return _boardRepository; }
-            set { _boardRepository = value; }
+            get => _boards;
+            set
+            {
+                _boards = value;
+                OnPropertyChanged(nameof(Boards));
+            }
         }
 
         //Commands
         public ICommand LoadUserCommand { get; set; }
+        public ICommand SelectBoardCommand { get; set; }
         public ICommand LoadBoardsCommand { get; set; }
         public ICommand AddBoardCommand { get; set; }
         public ICommand DelBoardCommand { get; set; }
 
         public DashboardViewModel(IUserRepository userRepository, IBoardRepository boardRepository)
         {
+            User = userRepository.CurrentUser;
+
             _boardRepository = boardRepository;
             _userRepository = userRepository;
-            _user = userRepository.LoggedUser;
 
             //Initialize collections
             Boards = new ObservableCollection<Board>();
 
             //Initialize commands
+            SelectBoardCommand = new ViewModelCommand(ExecuteSelectBoardCommand, CanExecuteSelectBoardCommand);
+            LoadUserCommand = new ViewModelCommand(ExecuteLoadUserCommand, CanExecuteLoadUserCommand);
             LoadBoardsCommand = new ViewModelCommand(ExecuteLoadBoardsCommand, CanExecuteLoadBoardsCommand);
             AddBoardCommand = new ViewModelCommand(ExecuteAddBoardCommand, CanExecuteAddBoardCommand);
             DelBoardCommand = new ViewModelCommand(ExecuteDelBoardCommand, CanExecuteDelBoardCommand);
 
             //Default view
+            ExecuteLoadUserCommand(null);
             ExecuteLoadBoardsCommand(null);
         }
 
         //Checks
+        private bool CanExecuteLoadUserCommand(object obj)
+        {
+            return true;
+        }
+        private bool CanExecuteSelectBoardCommand(object obj)
+        {
+            return
+                Board != null;
+        }
         private bool CanExecuteLoadBoardsCommand(object obj)
         {
             return true;
@@ -91,6 +101,14 @@ namespace TrelloApp.ViewModels
         }
 
         //Executes
+        private void ExecuteLoadUserCommand(object obj)
+        {
+            User = _userRepository.CurrentUser;
+        }
+        private void ExecuteSelectBoardCommand(object obj)
+        {
+            _boardRepository.CurrentBoard = Board;
+        }
         private void ExecuteLoadBoardsCommand(object obj)
         {
             Boards.Clear();

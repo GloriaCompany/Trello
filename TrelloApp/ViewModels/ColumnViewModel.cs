@@ -1,8 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
-using TrelloApp.ViewModels.ColumnVM;
-using TrelloApp.ViewModels.TaskVM;
+using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
@@ -12,9 +11,11 @@ namespace TrelloApp.ViewModels
         //Fields
         private Column _column;
         private Task _task;
-        private ObservableCollection<Task> _tasks;
+
         private IColumnRepository _columnRepository;
         private ITaskRepository _taskRepository;
+
+        private ObservableCollection<Task> _tasks;
 
         //Properties
         public Column Column
@@ -44,32 +45,29 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(Tasks));
             }
         }
-        public IColumnRepository ColumnRepository
-        {
-            get => _columnRepository;
-            set => _columnRepository = value;
-        }
-        public ITaskRepository TaskRepository
-        {
-            get => _taskRepository;
-            set => _taskRepository = value;
-        }
 
         //Commands
+        public ICommand UpdateColumnCommand { get; set; }
         public ICommand LoadTasksCommand { get; set; }
+        public ICommand SelectTaskCommand { get; set; }
         public ICommand AddTaskCommand { get; set; }
-        public ICommand DelTaskCommand { get; set; }
         public ICommand UpdateTaskCommand { get; set; }
 
-        public ColumnViewModel()
+        public ColumnViewModel(IColumnRepository columnRepository, ITaskRepository taskRepository)
         {
+            _columnRepository = columnRepository;
+            _taskRepository = taskRepository;
+
+            Column = _columnRepository.CurrentColumn;
+
             //Initialize collections
             Tasks = new ObservableCollection<Task>();
 
             //Initialize commands
+            UpdateColumnCommand = new ViewModelCommand(ExecuteUpdateColumnCommand, CanExecuteUpdateColumnCommand);
             LoadTasksCommand = new ViewModelCommand(ExecuteLoadTasksCommand, CanExecuteLoadTasksCommand);
+            SelectTaskCommand = new ViewModelCommand(ExecuteSelectTaskCommand, CanExecuteSelectTaskCommand);
             AddTaskCommand = new ViewModelCommand(ExecuteAddTaskCommand, CanExecuteAddTaskCommand);
-            DelTaskCommand = new ViewModelCommand(ExecuteDelTaskCommand, CanExecuteDelTaskCommand);
             UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
 
             //Default view
@@ -82,15 +80,20 @@ namespace TrelloApp.ViewModels
             return
                 Task != null;
         }
-        private bool CanExecuteAddTaskCommand(object obj)
+        private bool CanExecuteUpdateColumnCommand(object obj)
         {
             return
                 Column != null;
         }
-        private bool CanExecuteDelTaskCommand(object obj)
+        private bool CanExecuteSelectTaskCommand(object obj)
         {
             return
                 Task != null;
+        }
+        private bool CanExecuteAddTaskCommand(object obj)
+        {
+            return
+                Column != null;
         }
         private bool CanExecuteUpdateTaskCommand(object obj)
         {
@@ -99,6 +102,10 @@ namespace TrelloApp.ViewModels
         }
 
         //Executes
+        private void ExecuteUpdateColumnCommand(object obj)
+        {
+            _columnRepository.UpdateColumn(Column);
+        }
         private void ExecuteLoadTasksCommand(object obj)
         {
             Tasks.Clear();
@@ -108,13 +115,13 @@ namespace TrelloApp.ViewModels
                 Tasks.Add(task);
             }
         }
+        private void ExecuteSelectTaskCommand(object obj)
+        {
+            _taskRepository.CurrentTask = Task;
+        }
         private void ExecuteAddTaskCommand(object obj)
         {
             _taskRepository.AddTask(Task);
-        }
-        private void ExecuteDelTaskCommand(object obj)
-        {
-            _taskRepository.DelTask(Task.TaskID);
         }
         private void ExecuteUpdateTaskCommand(object obj)
         {

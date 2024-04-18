@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 using TrelloApp.ViewModels;
-using TrelloApp.ViewModels.UserVM;
+using TrelloApp.ViewModels.Repository;
 
 namespace TrelloApp.Views
 {

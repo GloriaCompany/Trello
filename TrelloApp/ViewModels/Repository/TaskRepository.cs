@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TrelloApp.ViewModels.Base;
 using TrelloDBLayer;
 
-namespace TrelloApp.ViewModels.TaskVM
+namespace TrelloApp.ViewModels.Repository
 {
     public interface ITaskRepository
     {
@@ -11,9 +11,11 @@ namespace TrelloApp.ViewModels.TaskVM
         void DelTask(int taskID);
         void UpdateTask(Task task);
         List<Task> GetTasksByColumnID(int columnID);
+
+        Task CurrentTask { get; set; }
     }
 
-    internal class TaskRepository : ITaskRepository
+    public class TaskRepository : ITaskRepository
     {
         private ITrelloDataClassesDataContext _dbContext;
         public ITrelloDataClassesDataContext DbContext
@@ -21,6 +23,8 @@ namespace TrelloApp.ViewModels.TaskVM
             get { return _dbContext; }
             set { _dbContext = value; }
         }
+
+        public Task CurrentTask { get; set; }
 
         public TaskRepository() { }
         public TaskRepository(ITrelloDataClassesDataContext dbContext)
