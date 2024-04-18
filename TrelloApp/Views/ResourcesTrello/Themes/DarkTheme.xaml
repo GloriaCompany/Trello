@@ -17,4 +17,6 @@
     <ImageSource x:Key="MoveColumnRightIconPath">/TrelloApp;component/Resources/move_right.png</ImageSource>
     <ImageSource x:Key="AddIconPath">/TrelloApp;component/Resources/plus.png</ImageSource>
     <ImageSource x:Key="SearchIconPath">/TrelloApp;component/Resources/search.png</ImageSource>
+    <ImageSource x:Key="DeleteColumnIconPath">/TrelloApp;component/Resources/delete-night.png</ImageSource>
+    <ImageSource x:Key="AddTaskIconPath">/TrelloApp;component/Resources/create-task-night.png</ImageSource>
 </ResourceDictionary>

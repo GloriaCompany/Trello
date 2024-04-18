@@ -17,4 +17,6 @@
     <ImageSource x:Key="MoveColumnRightIconPath">/TrelloApp;component/Resources/move_right_day.png</ImageSource>
     <ImageSource x:Key="AddIconPath">/TrelloApp;component/Resources/plus_day.png</ImageSource>
     <ImageSource x:Key="SearchIconPath">/TrelloApp;component/Resources/search_day.png</ImageSource>
+    <ImageSource x:Key="DeleteColumnIconPath">/TrelloApp;component/Resources/delete-day.png</ImageSource>
+    <ImageSource x:Key="AddTaskIconPath">/TrelloApp;component/Resources/create-task-day.png</ImageSource>
 </ResourceDictionary>

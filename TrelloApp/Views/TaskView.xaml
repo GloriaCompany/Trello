@@ -76,15 +76,88 @@
                     Grid.Row="1" 
                     Background="{DynamicResource ThemeBorderColor}" 
                     Width="400"/>
-                <customControls:CircleImage
+                <customControls:ChangesButton
                     Grid.Row="2"
                     Width="35"
                     Height="35"
                     ImageSource="{DynamicResource AddIconPath}"
                     HorizontalAlignment="Left"
                     Margin="15,0,0,0"
-                    IsPopupEnabled="False"
+                    Click="ChangesButton_Click"
                     />
+                <Popup
+                        x:Name="UsersPopup" 
+                        IsOpen="False" 
+                        StaysOpen="False" 
+                        Placement="Bottom" 
+                        PlacementTarget="{Binding ElementName=PlusButton}"
+                        >
+                    <Border
+                            BorderBrush="{DynamicResource ThemeBorderColor}" 
+                            BorderThickness="1"
+                            >
+                        <ItemsControl ItemsSource="{Binding TeamUsers}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                            x:Name="UserPanel" 
+                                            Orientation="Horizontal" 
+                                            VerticalAlignment="Center" 
+                                            Background="Transparent"
+                                            >
+                                        <customControls:CircleImage
+                                                Margin="5" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Left" 
+                                                Width="30" 
+                                                Height="30" 
+                                                ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                                                />
+                                        <StackPanel
+                                                Orientation="Vertical" 
+                                                VerticalAlignment="Center" 
+                                                Margin="2,0,0,0"
+                                                >
+                                            <TextBlock
+                                                    x:Name="UsernameText" 
+                                                    Text="Username" 
+                                                    Foreground="{DynamicResource ThemeTextColor}" 
+                                                    FontSize="10" 
+                                                    VerticalAlignment="Stretch"
+                                                    />
+                                            <TextBlock
+                                                    x:Name="JobText" 
+                                                    Text="Job" 
+                                                    Foreground="{DynamicResource ThemeTextColor}" 
+                                                    FontSize="10" 
+                                                    VerticalAlignment="Stretch"
+                                                    />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <DataTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter
+                                                    TargetName="UsernameText" 
+                                                    Property="Foreground" 
+                                                    Value="{DynamicResource ThemeMainColor}"
+                                                    />
+                                            <Setter
+                                                    TargetName="JobText" 
+                                                    Property="Foreground" 
+                                                    Value="{DynamicResource ThemeMainColor}"
+                                                    />
+                                            <Setter
+                                                    TargetName="UserPanel" 
+                                                    Property="Background" 
+                                                    Value="{DynamicResource ThemeHoverColor}"
+                                                    />
+                                        </Trigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>
+                </Popup>
                 <customControls:ChangesButton
                     Grid.Row="2"
                     Width="20"

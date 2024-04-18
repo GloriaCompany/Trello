@@ -37,5 +37,10 @@ namespace TrelloApp.Views
         {
             (DataContext as TaskViewModel).UpdateTaskCommand.Execute(null);
         }
+
+        private void ChangesButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            UsersPopup.IsOpen = !UsersPopup.IsOpen;
+        }
     }
 }
