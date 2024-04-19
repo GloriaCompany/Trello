@@ -20,8 +20,6 @@ namespace TrelloApp.Views
                             FindResource("BoardRepository") as IBoardRepository
                         );
             DataContext = vm;
-
-            PreviewMouseDown += Dashboard_PreviewMouseDown;
         }
 
         private void AddBoardBtn_Click(object sender, RoutedEventArgs e)
@@ -38,14 +36,6 @@ namespace TrelloApp.Views
             else
             {
                 MessageBox.Show("Please enter a board name.");
-            }
-        }
-
-        private void Dashboard_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (!IsMouseOverPopup(e))
-            {
-                addBoardPopup.IsOpen = false;
             }
         }
 

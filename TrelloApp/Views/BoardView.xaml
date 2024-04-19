@@ -42,6 +42,7 @@
                 Height="35"
                 Text="{Binding Board.Title}"
                 Placeholder="{DynamicResource BoardNameInputPlaceholderString}"
+                x:Name="BoardNameInput"
                 />
             <customControls:ChangesButton
                 x:Name="BtnChangeBoardTitle"
@@ -49,14 +50,13 @@
                 Height="17.5"
                 Margin="5,0,0,0"
                 ImageSource="{DynamicResource EditIconPath}"
-                Click="BtnChangeBoardTitle_Click"
                 />
             <customControls:ChangesButton
                 Width="17.5"
                 Height="17.5"
                 Margin="5,0,0,0"
                 ImageSource="/TrelloApp;component/Resources/submit.png"
-                Visibility="Hidden"
+                x:Name="UpdateBoardBtn"
                 Command="{Binding UpdateBoardCommand}"
                 />
             <customControls:ChangesButton
@@ -64,7 +64,7 @@
                 Height="17.5"
                 Margin="5,0,0,0"
                 ImageSource="/TrelloApp;component/Resources/discard.png"
-                Visibility="Hidden"
+                x:Name="CancelUpdateBoardBtn"
                 Command="{Binding CancelUpdateBoardCommand}"
                 />
         </StackPanel>

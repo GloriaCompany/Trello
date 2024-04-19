@@ -33,10 +33,5 @@ namespace TrelloApp
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
         }
-
-        private void BtnChangeBoardTitle_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            //Change Input active
-        }
     }
 }
