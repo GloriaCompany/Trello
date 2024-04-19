@@ -4,17 +4,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ChooseAvatarViewModel}"
+      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:ChooseAvatarViewModel}"
       mc:Ignorable="d"
       Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125">
     <Page.Resources>
         <Style TargetType="customControls:CircleImage">
-            <Setter Property="Background" Value="Transparent"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#febd69"/>
-                </Trigger>
-            </Style.Triggers>
+            <Setter Property="Background" Value="#1d2125"/>
         </Style>
     </Page.Resources>
     <Grid>
@@ -42,7 +38,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 >
-            <Grid>
+            <Grid Background="#1d2125">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition/>
@@ -55,34 +51,37 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
                            />
-                <ScrollViewer Grid.Row="1"
-                              Margin="15"
-                              Width="300"
-                              VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled"
-                              >
-                    <ItemsControl ItemsSource="{Binding AvatarImages}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <customControls:CircleImage
-                                    Width="50"
-                                    Height="50"
-                                    Margin="5"
-                                    ImageSource="{Binding}"
-                                    VerticalAlignment="Top"
-                                    HorizontalAlignment="Stretch"
-                                    IsPopupEnabled="False"
-                                    MouseLeftButtonDown="Avatar_MouseLeftButtonDown"
-                                    />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                <ListBox Grid.Row="1"
+                         Margin="15"
+                         Width="305"
+                         VerticalAlignment="Top"
+                         HorizontalAlignment="Stretch"
+                         VerticalContentAlignment="Top"
+                         HorizontalContentAlignment="Stretch"
+                         ItemsSource="{Binding AvatarImages}"
+                         Background="#1d2125"
+                         BorderThickness="0">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"
+                                       Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                       />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <customControls:CircleImage
+                                        Width="40"
+                                        Height="40"
+                                        Margin="5"
+                                        ImageSource="{Binding}"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Stretch"
+                                        IsPopupEnabled="False"
+                                        MouseLeftButtonDown="Avatar_MouseLeftButtonDown"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
                 <customControls:CustomButton
                     Grid.Row="2"
                     Height="35"

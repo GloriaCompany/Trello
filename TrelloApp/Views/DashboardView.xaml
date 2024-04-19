@@ -211,112 +211,115 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <WrapPanel
-            Grid.Row="1" Visibility="Collapsed"
-            Orientation="Horizontal"
-            ItemWidth="200"
-            ItemHeight="200"
-            >
-            <Border
-                Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="{DynamicResource ThemeBorderColor}" 
-                BorderThickness="1" 
-                CornerRadius="25"
-                Margin="10"
-                x:Name="AddBoardBorder"
+        <ScrollViewer VerticalScrollBarVisibility="Hidden" 
+                      HorizontalScrollBarVisibility="Hidden">
+            <WrapPanel
+                Grid.Row="1" Visibility="Collapsed"
+                Orientation="Horizontal"
+                ItemWidth="200"
+                ItemHeight="200"
                 >
                 <Border
                     Style="{StaticResource HoverBorderStyle}"
                     BorderBrush="{DynamicResource ThemeBorderColor}" 
                     BorderThickness="1" 
-                    Width="50"
-                    Height="50"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
+                    CornerRadius="25"
+                    Margin="10"
+                    x:Name="AddBoardBorder"
                     >
-                    <customControls:ChangesButton
-                        ImageSource="{DynamicResource AddIconPath}"
-                        x:Name="AddBoardBtn"
-                        Click="AddBoardBtn_Click"
+                    <Border
+                        Style="{StaticResource HoverBorderStyle}"
+                        BorderBrush="{DynamicResource ThemeBorderColor}" 
+                        BorderThickness="1" 
+                        Width="50"
+                        Height="50"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        >
+                        <customControls:ChangesButton
+                            ImageSource="{DynamicResource AddIconPath}"
+                            x:Name="AddBoardBtn"
+                            Click="AddBoardBtn_Click"
+                            />
+                    </Border>
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
                         />
                 </Border>
-            </Border>
-            <Border
-                Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="{DynamicResource ThemeBorderColor}" 
-                BorderThickness="1" 
-                CornerRadius="25"
-                Margin="10"
-                >
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Text="Board Name"
-                    FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"
-                    />
-            </Border>
-            <Border
-                Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="{DynamicResource ThemeBorderColor}" 
-                BorderThickness="1" 
-                CornerRadius="25"
-                Margin="10"
-                >
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Text="Board Name"
-                    FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"
-                    />
-            </Border>
-            <Border
-                Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="{DynamicResource ThemeBorderColor}" 
-                BorderThickness="1" 
-                CornerRadius="25"
-                Margin="10"
-                >
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Text="Board Name"
-                    FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"
-                    />
-            </Border>
-            <Border
-                Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="{DynamicResource ThemeBorderColor}" 
-                BorderThickness="1" 
-                CornerRadius="25"
-                Margin="10"
-                >
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Text="Board Name"
-                    FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"
-                    />
-            </Border>
-            <Border
-                Style="{StaticResource HoverBorderStyle}"
-                BorderBrush="{DynamicResource ThemeBorderColor}" 
-                BorderThickness="1" 
-                CornerRadius="25"
-                Margin="10"
-                >
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Text="Board Name"
-                    FontSize="14"
-                    Style="{StaticResource HoverTextBlockStyle}"
-                    />
-            </Border>
-        </WrapPanel>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+            </WrapPanel>
+        </ScrollViewer>
         <Popup
             x:Name="addBoardPopup" 
             HorizontalAlignment="Center"
@@ -325,6 +328,7 @@
             Grid.Row="5"
             Margin="0,0,0,0"
             Placement="Bottom"
+            StaysOpen="True"
             PlacementTarget="{Binding ElementName=AddBoardBorder}">
             <Border
                 Background="{DynamicResource ThemeMainColor}" 
