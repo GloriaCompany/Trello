@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
 using TrelloApp.Views.Utils;
@@ -11,6 +12,7 @@ namespace TrelloApp.Views
         {
             InitializeComponent();
             var viewModel = new ProfileViewModel(
+                FindResource("Navigation") as INavigator,
                 FindResource("UserRepository") as IUserRepository);
             DataContext = viewModel;
         }
@@ -25,29 +27,19 @@ namespace TrelloApp.Views
             ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
         }
 
-        private void BtnChangeAvatar_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            (DataContext as ProfileViewModel).UpdateUserCommand.Execute(null);
-        }
-
         private void BtnChangeUsername_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            (DataContext as ProfileViewModel).UpdateUserCommand.Execute(null);
+            //Change Username input active
         }
 
         private void BtnChangeEmail_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            (DataContext as ProfileViewModel).UpdateUserCommand.Execute(null);
+            //Change Email input active
         }
 
-        private void BtnLogout_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void BtnChangePassword_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            (DataContext as ProfileViewModel).LogoutCommand.Execute(null);
-        }
-
-        private void BtnDelAccount_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            (DataContext as ProfileViewModel).DelUserCommand.Execute(null);
+            //Change password input active
         }
     }
 }

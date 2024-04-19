@@ -81,7 +81,8 @@
                         Height="15"
                         Margin="5,0,0,0"
                         x:Name="BtnChangeAvatar"
-                        ImageSource="{DynamicResource EditIconPath}" Click="BtnChangeAvatar_Click"
+                        ImageSource="{DynamicResource EditIconPath}"
+                        Command="{Binding LoadChooseAvatarView}"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -90,12 +91,9 @@
                             VerticalAlignment="Center"
                             >
                     <customControls:ChangesButton
-                        ImageSource="/TrelloApp;component/Resources/submit.png"
-                        Visibility="Hidden"
-                        />
-                    <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        Command="{Binding SetDefaultUserAvatarCommand}"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -116,7 +114,8 @@
                         Height="15"
                         Margin="5,0,0,0"
                         x:Name="BtnChangeUsername"
-                        ImageSource="{DynamicResource EditIconPath}" Click="BtnChangeUsername_Click"
+                        ImageSource="{DynamicResource EditIconPath}"
+                        Click="BtnChangeUsername_Click"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -127,10 +126,12 @@
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
                         Visibility="Hidden"
+                        Command="{Binding UpdateUserCommand}"
                         />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        Command="{Binding CancelUpdateUserCommand}"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -151,7 +152,8 @@
                         Height="15"
                         Margin="5,0,0,0"
                         x:Name="BtnChangeEmail"
-                        ImageSource="{DynamicResource EditIconPath}" Click="BtnChangeEmail_Click"/>
+                        ImageSource="{DynamicResource EditIconPath}"
+                        Click="BtnChangeEmail_Click"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="5"
@@ -159,10 +161,12 @@
                             VerticalAlignment="Center">
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"
+                        Command="{Binding UpdateUserCommand}"/>
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
-                        Visibility="Hidden"/>
+                        Visibility="Hidden"
+                        Command="{Binding CancelUpdateUserCommand}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="6"
@@ -179,7 +183,8 @@
                         Width="15"
                         Height="15"
                         Margin="5,0,0,0"
-                        ImageSource="{DynamicResource EditIconPath}"
+                        x:Name="BtnChangePassword"
+                        ImageSource="{DynamicResource EditIconPath}" Click="BtnChangePassword_Click"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -190,10 +195,12 @@
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
                         Visibility="Hidden"
+                        Command="{Binding UpdateUserCommand}"
                         />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        Command="{Binding CancelUpdateUserCommand}"
                         />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -216,14 +223,16 @@
                     Text="{DynamicResource LogoutBtnString}"
                     Height="35"
                     Width="175"
-                    x:Name="BtnLogout" Click="BtnLogout_Click"
+                    x:Name="BtnLogout"
+                    Command="{Binding LogoutCommand}"
                     />
                 <customControls:CustomButton
                     Grid.Row="10"
                     Text="{DynamicResource DeleteAccountBtnString}"
                     Height="35"
                     Width="175"
-                    x:Name="BtnDelAccount" Click="BtnDelAccount_Click"
+                    x:Name="BtnDelAccount"
+                    Command="{Binding DelUserCommand}"
                     />
                 <customControls:CustomButton
                     Grid.Row="11"

@@ -48,7 +48,8 @@
                 Width="17.5"
                 Height="17.5"
                 Margin="5,0,0,0"
-                ImageSource="{DynamicResource EditIconPath}" Click="BtnChangeBoardTitle_Click"
+                ImageSource="{DynamicResource EditIconPath}"
+                Click="BtnChangeBoardTitle_Click"
                 />
             <customControls:ChangesButton
                 Width="17.5"
@@ -56,6 +57,7 @@
                 Margin="5,0,0,0"
                 ImageSource="/TrelloApp;component/Resources/submit.png"
                 Visibility="Hidden"
+                Command="{Binding UpdateBoardCommand}"
                 />
             <customControls:ChangesButton
                 Width="17.5"
@@ -63,6 +65,7 @@
                 Margin="5,0,0,0"
                 ImageSource="/TrelloApp;component/Resources/discard.png"
                 Visibility="Hidden"
+                Command="{Binding CancelUpdateBoardCommand}"
                 />
         </StackPanel>
         <StackPanel
@@ -346,7 +349,8 @@
             Width="200"
             Grid.Row="3"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center" Click="BtnAddColumn_Click"
+            VerticalAlignment="Center"
+            Command="{Binding AddColumnCommand}"
             />
         <customControls:CustomButton
             x:Name="BtnDelBoard"
@@ -357,7 +361,8 @@
             Width="200"
             Grid.Row="3"
             HorizontalAlignment="Right"
-            VerticalAlignment="Center" Click="BtnDelBoard_Click"
+            VerticalAlignment="Center"
+            Command="{Binding DelBoardCommand}"
             />
         <Popup
             x:Name="AddMemberPopup" 
@@ -378,7 +383,7 @@
                     <customControls:CustomInput
                         Width="185" 
                         Height="35" 
-                        Text="{Binding}"
+                        Text="Search"
                         Placeholder="{DynamicResource SearchUsersInputPlaceholderString}"
                         Margin="5"/>
                     <Button

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
 using TrelloApp.Views.Utils;
@@ -11,8 +12,10 @@ namespace TrelloApp
         {
             InitializeComponent();
             var viewModel = new BoardViewModel(
+                FindResource("Navigation") as INavigator,
                 FindResource("UserRepository") as IUserRepository,
-                FindResource("BoardRepository") as IBoardRepository);
+                FindResource("BoardRepository") as IBoardRepository,
+                FindResource("ColumnRepository") as IColumnRepository);
             DataContext = viewModel;
         }
 
@@ -33,17 +36,7 @@ namespace TrelloApp
 
         private void BtnChangeBoardTitle_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            (DataContext as BoardViewModel).UpdateBoardCommand.Execute(null);
-        }
-
-        private void BtnAddColumn_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            (DataContext as BoardViewModel).AddColumnCommand.Execute(null);
-        }
-
-        private void BtnDelBoard_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            (DataContext as BoardViewModel).DelBoardCommand.Execute(null);
+            //Change Input active
         }
     }
 }

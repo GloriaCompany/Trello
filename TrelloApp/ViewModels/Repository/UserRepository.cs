@@ -14,6 +14,7 @@ namespace TrelloApp.ViewModels.Repository
         bool AuthenticateUser(string username, string password);
 
         User CurrentUser { get; set; }
+        User SelectedUser { get; set; }
     }
 
     public class UserRepository : IUserRepository
@@ -26,6 +27,7 @@ namespace TrelloApp.ViewModels.Repository
         }
 
         public User CurrentUser { get; set; }
+        public User SelectedUser { get; set; }
 
         public UserRepository(ITrelloDataClassesDataContext dbContext)
         {

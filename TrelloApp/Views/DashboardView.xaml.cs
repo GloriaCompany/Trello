@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
 using TrelloApp.Views.Utils;
@@ -14,6 +15,7 @@ namespace TrelloApp.Views
             InitializeComponent();
 
             DashboardViewModel vm = new DashboardViewModel(
+                            FindResource("Navigation") as INavigator,
                             FindResource("UserRepository") as IUserRepository,
                             FindResource("BoardRepository") as IBoardRepository
                         );
@@ -31,8 +33,6 @@ namespace TrelloApp.Views
         {
             if (!string.IsNullOrWhiteSpace(BoardNameInput.Text))
             {
-                // Додавання дошки
-                (DataContext as DashboardViewModel).AddBoardCommand.Execute(null);
                 addBoardPopup.IsOpen = false;
             }
             else
@@ -72,11 +72,6 @@ namespace TrelloApp.Views
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            (DataContext as DashboardViewModel).LoadBoardsCommand.Execute(null);
         }
     }
 }

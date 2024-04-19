@@ -2,6 +2,7 @@
 using TrelloApp.Models;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.Repository;
+using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
 {
@@ -31,10 +32,6 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }
-        public IUserRepository UserRepository
-        {
-            get => _userRepository;
-        }
 
         //Commands
         public ICommand RegisterCommand { get; set; }
@@ -42,7 +39,7 @@ namespace TrelloApp.ViewModels
         public RegisterViewModel(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _user = new UserModel();
+            User = new UserModel();
 
             //Initialize commands
             RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
@@ -52,15 +49,26 @@ namespace TrelloApp.ViewModels
         private bool CanExecuteRegisterCommand(object obj)
         {
             return
-                User != null &&
-                User.Error == null &&
+                User.Username != null &&
+                User.Email != null &&
+                User.Password != null &&
+                User.ConfirmPassword != null &&
                 User.Password == User.ConfirmPassword;
         }
 
         //Executes
         private void ExecuteRegisterCommand(object obj)
         {
+            User.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
             _userRepository.CurrentUser = User;
+            var user = new User()
+            {
+                Username = User.Username,
+                Email = User.Email,
+                Avatar = User.Avatar,
+                Password = User.Password
+            };
+            _userRepository.AddUser(user);
         }
     }
 }

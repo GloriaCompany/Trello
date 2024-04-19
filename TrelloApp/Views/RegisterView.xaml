@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         xmlns:viewModel="clr-namespace:TrelloApp.ViewModels.UserVM"
-        xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base"
-        mc:Ignorable="d"
+        xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base" xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:RegisterViewModel}"
+      mc:Ignorable="d"
         Title="Register" Height="525" Width="400" Background="#1d2125">    
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>

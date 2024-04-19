@@ -46,13 +46,18 @@ namespace TrelloApp.ViewModels
 
         //Commands
         public ICommand LoginCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
 
         public LoginViewModel(IUserRepository userRepository, INavigator navigator)
         {
             _userRepository = userRepository;
             _navigator = navigator;
+
+            //Initialize commands
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+            RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
         }
+
 
         //Checks
         private bool CanExecuteLoginCommand(object obj)
@@ -62,6 +67,10 @@ namespace TrelloApp.ViewModels
                 Username.Length >= 3 &&
                 !string.IsNullOrWhiteSpace(Password) &&
                 Password.Length >= 3;
+        }
+        private bool CanExecuteRegisterCommand(object obj)
+        {
+            return true;
         }
 
         //Executes
@@ -77,6 +86,10 @@ namespace TrelloApp.ViewModels
             {
                 ErrorMessage = "Invalid Username or Password";
             }
+        }
+        private void ExecuteRegisterCommand(object obj)
+        {
+            _navigator.GoTo("RegisterView.xaml");
         }
     }
 }

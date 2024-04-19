@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
@@ -16,6 +17,7 @@ namespace TrelloApp.ViewModels
 
         private IUserRepository _userRepository;
         private IBoardRepository _boardRepository;
+        private INavigator _navigator;
 
         //Properties
         public Board Board
@@ -53,12 +55,17 @@ namespace TrelloApp.ViewModels
         public ICommand AddBoardCommand { get; set; }
         public ICommand DelBoardCommand { get; set; }
 
-        public DashboardViewModel(IUserRepository userRepository, IBoardRepository boardRepository)
+        public ICommand LoadBoardViewCommand { get; set; }
+        public ICommand LoadProfileViewCommand { get; set; }
+
+        public DashboardViewModel(INavigator navigator, IUserRepository userRepository, IBoardRepository boardRepository)
         {
             User = userRepository.CurrentUser;
+            Board = new Board();
 
             _boardRepository = boardRepository;
             _userRepository = userRepository;
+            _navigator = navigator;
 
             //Initialize collections
             Boards = new ObservableCollection<Board>();
@@ -69,6 +76,9 @@ namespace TrelloApp.ViewModels
             LoadBoardsCommand = new ViewModelCommand(ExecuteLoadBoardsCommand, CanExecuteLoadBoardsCommand);
             AddBoardCommand = new ViewModelCommand(ExecuteAddBoardCommand, CanExecuteAddBoardCommand);
             DelBoardCommand = new ViewModelCommand(ExecuteDelBoardCommand, CanExecuteDelBoardCommand);
+
+            LoadBoardViewCommand = new ViewModelCommand(ExecuteLoadBoardViewCommand, CanExecuteLoadBoardViewCommand);
+            LoadProfileViewCommand = new ViewModelCommand(ExecuteLoadProfileViewCommand, CanExecuteLoadProfileViewCommand);
 
             //Default view
             ExecuteLoadUserCommand(null);
@@ -92,12 +102,22 @@ namespace TrelloApp.ViewModels
         private bool CanExecuteAddBoardCommand(object obj)
         {
             return
-                Board == null;
+                Board.Title != null;
         }
         private bool CanExecuteDelBoardCommand(object obj)
         {
             return
                  Board != null;
+        }
+        private bool CanExecuteLoadBoardViewCommand(object obj)
+        {
+            return
+                Board != null;
+        }
+        private bool CanExecuteLoadProfileViewCommand(object obj)
+        {
+            return
+                User != null;
         }
 
         //Executes
@@ -133,6 +153,14 @@ namespace TrelloApp.ViewModels
         private void ExecuteDelBoardCommand(object obj)
         {
             _boardRepository.DelBoard(Board.BoardID);
+        }
+        private void ExecuteLoadBoardViewCommand(object obj)
+        {
+            _navigator.GoTo("BoardView.xaml");
+        }
+        private void ExecuteLoadProfileViewCommand(object obj)
+        {
+            _navigator.GoTo("ProfileView.xaml");
         }
     }
 }

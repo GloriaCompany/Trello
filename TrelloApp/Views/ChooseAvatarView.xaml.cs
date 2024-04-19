@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
@@ -19,6 +20,7 @@ namespace TrelloApp.Views
         {
             InitializeComponent();
             var viewModel = new ChooseAvatarViewModel(
+                FindResource("Navigation") as INavigator,
                 FindResource("AvatarRepository") as IAvatarRepository,
                 FindResource("UserRepository") as IUserRepository);
             DataContext = viewModel;
@@ -41,16 +43,6 @@ namespace TrelloApp.Views
             {
                 _selectedAvatar.Background = Brushes.AliceBlue;
             }
-        }
-
-        private void BtnSubmitAvatar_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            //NavigationService.Navigate(new Login());
-        }
-
-        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-
         }
     }
 }

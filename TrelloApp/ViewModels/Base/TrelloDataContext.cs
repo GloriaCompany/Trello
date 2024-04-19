@@ -33,7 +33,7 @@ namespace TrelloApp.ViewModels.Base
         }
         public void UpdateUser(User user)
         {
-            var existingUser = _context.User.FirstOrDefault(u => u.UserID == user.UserID);
+            var existingUser = _context.User.FirstOrDefault(u => u.Email == user.Email && u.Username == user.Username);
 
             existingUser.Username = user.Username;
             existingUser.Email = user.Email;

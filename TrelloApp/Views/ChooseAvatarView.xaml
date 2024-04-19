@@ -6,8 +6,7 @@
       xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
       xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ChooseAvatarViewModel}"
       mc:Ignorable="d"
-      Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125"
-      Loaded="Page_Loaded">
+      Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125">
     <Page.Resources>
         <Style TargetType="customControls:CircleImage">
             <Setter Property="Background" Value="Transparent"/>
@@ -92,7 +91,6 @@
                     VerticalAlignment="Top"
                     x:Name="BtnSubmitAvatar"
                     Command="{Binding SelectAvatarCommand}"
-                    Click="BtnSubmitAvatar_Click"
                     />
             </Grid>
         </Border>
