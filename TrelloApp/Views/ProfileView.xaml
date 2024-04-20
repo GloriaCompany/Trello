@@ -46,7 +46,7 @@
                 BorderThickness="1" 
                 CornerRadius="25"
                 Width="370"
-                Height="505"
+                Height="555"
                 Padding="5"
                 >
             <Grid>
@@ -59,7 +59,8 @@
                     <RowDefinition Height="15"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="15"/>
-                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="55"/>
                     <RowDefinition Height="55"/>
                     <RowDefinition Height="55"/>
                 </Grid.RowDefinitions>
@@ -105,6 +106,9 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
+                        IsEnabled="False"
+                        x:Name="UsernameInput"
+                        LostFocus="UsernameInput_LostFocus"
                         Text="{Binding User.Username, Mode=TwoWay}"
                         Placeholder="{DynamicResource UsernameInputPlaceholderString}"
                         />
@@ -125,11 +129,13 @@
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
                         Visibility="Hidden"
+                        x:Name="BtnUpdateUsername"
                         Command="{Binding UpdateUserCommand}"
                         />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        x:Name="BtnCancelUpdateUsername"
                         Command="{Binding CancelUpdateUserCommand}"
                         />
                 </StackPanel>
@@ -143,6 +149,9 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
+                        IsEnabled="False"
+                        x:Name="EmailInput"
+                        LostFocus="EmailInput_LostFocus"
                         Text="{Binding User.Email, Mode=TwoWay}"
                         Placeholder="{DynamicResource EmailInputPlaceholderString}"
                         />
@@ -161,10 +170,12 @@
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
                         Visibility="Hidden"
+                        x:Name="BtnUpdateEmail"
                         Command="{Binding UpdateUserCommand}"/>
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        x:Name="BtnCancelUpdateEmail"
                         Command="{Binding CancelUpdateUserCommand}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -177,6 +188,9 @@
                         Height="35"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
+                        IsEnabled="False"
+                        x:Name="PasswordInput"
+                        LostFocus="PasswordInput_LostFocus"
                         Placeholder="{DynamicResource PasswordInputPlaceholderString}"/>
                     <customControls:ChangesButton
                         Width="15"
@@ -194,11 +208,13 @@
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
                         Visibility="Hidden"
+                        x:Name="BtnUpdatePassword"
                         Command="{Binding UpdateUserCommand}"
                         />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        x:Name="BtnCancelUpdatePassword"
                         Command="{Binding CancelUpdateUserCommand}"
                         />
                 </StackPanel>
@@ -228,6 +244,14 @@
                     Text="{DynamicResource LeaveTeamBtnString}"
                     Height="35"
                     Width="175"
+                    />
+                <customControls:CustomButton
+                    Grid.Row="11"
+                    Text="{DynamicResource GoToDashboardBtnString}"
+                    Height="35"
+                    Width="175"
+                    x:Name="BtnGoToDashboard"
+                    Click="BtnGoToDashboard_Click"
                     />
             </Grid>
         </Border>

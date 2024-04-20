@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
@@ -29,17 +30,55 @@ namespace TrelloApp.Views
 
         private void BtnChangeUsername_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //Change Username input active
+            BtnUpdateUsername.Visibility = Visibility.Visible;
+            BtnCancelUpdateUsername.Visibility = Visibility.Visible;
+            UsernameInput.IsEnabled = true;
+            BtnChangeUsername.IsEnabled = false;
         }
 
         private void BtnChangeEmail_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //Change Email input active
+            BtnUpdateEmail.Visibility = Visibility.Visible;
+            BtnCancelUpdateEmail.Visibility = Visibility.Visible;
+            EmailInput.IsEnabled = true;
+            BtnChangeEmail.IsEnabled = false;
         }
 
         private void BtnChangePassword_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            //Change password input active
+            BtnUpdatePassword.Visibility = Visibility.Visible;
+            BtnCancelUpdatePassword.Visibility = Visibility.Visible;
+            PasswordInput.IsEnabled = true;
+            BtnChangePassword.IsEnabled = false;
+        }
+
+        private void UsernameInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateUsername.Visibility = Visibility.Hidden;
+            BtnCancelUpdateUsername.Visibility = Visibility.Hidden;
+            UsernameInput.IsEnabled = false;
+            BtnChangeUsername.IsEnabled = true;
+        }
+
+        private void EmailInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateEmail.Visibility = Visibility.Hidden;
+            BtnCancelUpdateEmail.Visibility = Visibility.Hidden;
+            EmailInput.IsEnabled = false;
+            BtnChangeEmail.IsEnabled = true;
+        }
+
+        private void PasswordInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            BtnUpdatePassword.Visibility = Visibility.Hidden;
+            BtnCancelUpdatePassword.Visibility = Visibility.Hidden;
+            PasswordInput.IsEnabled = false;
+            BtnChangePassword.IsEnabled = true;
+        }
+
+        private void BtnGoToDashboard_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DashboardView());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
@@ -38,6 +39,22 @@ namespace TrelloApp
         private void CircleImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new ProfileView());
+        }
+
+        private void BtnChangeBoardTitle_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            UpdateBoardBtn.Visibility = Visibility.Visible;
+            CancelUpdateBoardBtn.Visibility = Visibility.Visible;
+            BoardNameInput.IsEnabled = true;
+            BtnChangeBoardTitle.IsEnabled = false;
+        }
+
+        private void BoardNameInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            UpdateBoardBtn.Visibility = Visibility.Hidden;
+            CancelUpdateBoardBtn.Visibility = Visibility.Hidden;
+            BoardNameInput.IsEnabled = false;
+            BtnChangeBoardTitle.IsEnabled = true;
         }
     }
 }

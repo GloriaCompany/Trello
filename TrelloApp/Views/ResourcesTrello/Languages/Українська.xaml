@@ -19,6 +19,7 @@
     <system:String x:Key="LogoutBtnString">ВИЙТИ</system:String>
     <system:String x:Key="DeleteAccountBtnString">ВИДАЛИТИ АКАУНТ</system:String>
     <system:String x:Key="LeaveTeamBtnString">ВИЙТИ З КОМАНДИ</system:String>
+    <system:String x:Key="GoToDashboardBtnString">НА ШВИДКУ ПАНЕЛЬ</system:String>
 
     <system:String x:Key="TaskNameInputPlaceholderString">Назва завдання</system:String>
     <system:String x:Key="DeleteTaskBtnString">ВИДАЛИТИ ЗАВДАННЯ</system:String>
