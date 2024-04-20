@@ -191,6 +191,7 @@
                         IsEnabled="False"
                         x:Name="PasswordInput"
                         LostFocus="PasswordInput_LostFocus"
+                        Text="{Binding User.Password, Mode=TwoWay}"
                         Placeholder="{DynamicResource PasswordInputPlaceholderString}"/>
                     <customControls:ChangesButton
                         Width="15"

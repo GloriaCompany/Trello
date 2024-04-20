@@ -30,6 +30,7 @@ namespace TrelloApp.ViewModels.Base
         public void DelUser(int userID)
         {
             _context.User.DeleteOnSubmit(GetUserByID(userID));
+            SaveChanges();
         }
         public void UpdateUser(User user)
         {
