@@ -223,6 +223,7 @@
                         Margin="-17.5,0,0,0"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                         IsPopupEnabled="False"
+                        MouseDown="CircleImage_MouseDown"
                         />
                     <!-- Пример, как должен выглядеть попап для списка юзеров комманды
                     <Popup x:Name="UsersPopup" IsOpen="False" StaysOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=PlusButton}">

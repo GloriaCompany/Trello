@@ -63,5 +63,10 @@ namespace TrelloApp.Views
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
         }
+
+        private void CircleImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new ProfileView());
+        }
     }
 }

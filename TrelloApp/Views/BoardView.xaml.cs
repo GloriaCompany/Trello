@@ -2,6 +2,7 @@
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
+using TrelloApp.Views;
 using TrelloApp.Views.Utils;
 
 namespace TrelloApp
@@ -32,6 +33,11 @@ namespace TrelloApp
         private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
+        }
+
+        private void CircleImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new ProfileView());
         }
     }
 }

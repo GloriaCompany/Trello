@@ -77,8 +77,6 @@
             </Border>
         </DataTemplate>
     </Page.Resources>
-
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -192,6 +190,7 @@
                         Margin="-17.5,0,0,0"
                         ImageSource="/TrelloApp;component/Resources/userAvatar.png"
                         IsPopupEnabled="False"
+                        MouseDown="CircleImage_MouseDown"
                         />
                 </Grid>
             </Border>
@@ -212,9 +211,10 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
         <ScrollViewer VerticalScrollBarVisibility="Hidden" 
-                      HorizontalScrollBarVisibility="Hidden">
+                      HorizontalScrollBarVisibility="Hidden"
+                      Grid.Row="1">
             <WrapPanel
-                Grid.Row="1" Visibility="Collapsed"
+                Grid.Row="1"
                 Orientation="Horizontal"
                 ItemWidth="200"
                 ItemHeight="200"
