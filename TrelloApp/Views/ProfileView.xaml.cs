@@ -32,7 +32,12 @@ namespace TrelloApp.Views
         {
             BtnUpdateUsername.Visibility = Visibility.Visible;
             BtnCancelUpdateUsername.Visibility = Visibility.Visible;
+            BtnUpdateUsername.IsEnabled = true;
+            BtnCancelUpdateUsername.IsEnabled = true;
+
             UsernameInput.IsEnabled = true;
+            UsernameInput.Focus();
+
             BtnChangeUsername.IsEnabled = false;
         }
 
@@ -40,7 +45,12 @@ namespace TrelloApp.Views
         {
             BtnUpdateEmail.Visibility = Visibility.Visible;
             BtnCancelUpdateEmail.Visibility = Visibility.Visible;
+            BtnUpdateEmail.IsEnabled = true;
+            BtnCancelUpdateEmail.IsEnabled = true;
+
             EmailInput.IsEnabled = true;
+            EmailInput.Focus();
+
             BtnChangeEmail.IsEnabled = false;
         }
 
@@ -48,7 +58,12 @@ namespace TrelloApp.Views
         {
             BtnUpdatePassword.Visibility = Visibility.Visible;
             BtnCancelUpdatePassword.Visibility = Visibility.Visible;
+            BtnUpdatePassword.IsEnabled = true;
+            BtnCancelUpdatePassword.IsEnabled = true;
+
             PasswordInput.IsEnabled = true;
+            PasswordInput.Focus();
+
             BtnChangePassword.IsEnabled = false;
         }
 

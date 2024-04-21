@@ -129,12 +129,14 @@
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
                         Visibility="Hidden"
+                        IsEnabled="False"
                         x:Name="BtnUpdateUsername"
                         Command="{Binding UpdateUserCommand}"
                         />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        IsEnabled="False"
                         x:Name="BtnCancelUpdateUsername"
                         Command="{Binding CancelUpdateUserCommand}"
                         />
@@ -170,11 +172,13 @@
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
                         Visibility="Hidden"
+                        IsEnabled="False"
                         x:Name="BtnUpdateEmail"
                         Command="{Binding UpdateUserCommand}"/>
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        IsEnabled="False"
                         x:Name="BtnCancelUpdateEmail"
                         Command="{Binding CancelUpdateUserCommand}"/>
                 </StackPanel>
@@ -209,12 +213,14 @@
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/submit.png"
                         Visibility="Hidden"
+                        IsEnabled="False"
                         x:Name="BtnUpdatePassword"
                         Command="{Binding UpdateUserCommand}"
                         />
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
+                        IsEnabled="False"
                         x:Name="BtnCancelUpdatePassword"
                         Command="{Binding CancelUpdateUserCommand}"
                         />

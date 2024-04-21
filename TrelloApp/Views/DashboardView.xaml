@@ -195,22 +195,23 @@
                 </Grid>
             </Border>
         </StackPanel>
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Boards}">
-            <ItemsControl.ItemTemplateSelector>
-                <helpers:BoardDataTemplateSelector/>
-            </ItemsControl.ItemTemplateSelector>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel  
-                        Grid.Row="1" 
-                        Orientation="Horizontal"
-                        ItemWidth="200"
-                        ItemHeight="200">                       
-                    </WrapPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
-        <ScrollViewer VerticalScrollBarVisibility="Hidden" 
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Boards}">
+                <ItemsControl.ItemTemplateSelector>
+                    <helpers:BoardDataTemplateSelector/>
+                </ItemsControl.ItemTemplateSelector>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel  
+                    Orientation="Horizontal"
+                    ItemWidth="200"
+                    ItemHeight="200">
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        <!--<ScrollViewer VerticalScrollBarVisibility="Hidden" 
                       HorizontalScrollBarVisibility="Hidden"
                       Grid.Row="1">
             <WrapPanel
@@ -319,7 +320,7 @@
                         />
                 </Border>
             </WrapPanel>
-        </ScrollViewer>
+        </ScrollViewer>-->
         <Popup
             x:Name="addBoardPopup" 
             HorizontalAlignment="Center"

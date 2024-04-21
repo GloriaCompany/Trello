@@ -45,7 +45,12 @@ namespace TrelloApp
         {
             UpdateBoardBtn.Visibility = Visibility.Visible;
             CancelUpdateBoardBtn.Visibility = Visibility.Visible;
+            UpdateBoardBtn.IsEnabled = true;
+            CancelUpdateBoardBtn.IsEnabled = true;
+
             BoardNameInput.IsEnabled = true;
+            BoardNameInput.Focus();
+
             BtnChangeBoardTitle.IsEnabled = false;
         }
 
@@ -53,7 +58,11 @@ namespace TrelloApp
         {
             UpdateBoardBtn.Visibility = Visibility.Hidden;
             CancelUpdateBoardBtn.Visibility = Visibility.Hidden;
+            UpdateBoardBtn.IsEnabled = false;
+            CancelUpdateBoardBtn.IsEnabled = false;
+
             BoardNameInput.IsEnabled = false;
+
             BtnChangeBoardTitle.IsEnabled = true;
         }
     }

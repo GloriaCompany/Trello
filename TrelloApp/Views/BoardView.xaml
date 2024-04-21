@@ -61,6 +61,7 @@
                 ImageSource="/TrelloApp;component/Resources/submit.png"
                 x:Name="UpdateBoardBtn"
                 Visibility="Hidden"
+                IsEnabled="False"
                 Command="{Binding UpdateBoardCommand}"
                 />
             <customControls:ChangesButton
@@ -70,6 +71,7 @@
                 ImageSource="/TrelloApp;component/Resources/discard.png"
                 x:Name="CancelUpdateBoardBtn"
                 Visibility="Hidden"
+                IsEnabled="False"
                 Command="{Binding CancelUpdateBoardCommand}"
                 />
         </StackPanel>
