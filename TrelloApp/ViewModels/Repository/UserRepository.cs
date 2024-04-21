@@ -10,7 +10,7 @@ namespace TrelloApp.ViewModels.Repository
         void AddUser(User user);
         void DelUser(int userID);
         User GetUserByID(int userID);
-        void UpdateUser(User user);
+        void UpdateUser(User user, int userID);
         bool AuthenticateUser(string username, string password);
 
         User CurrentUser { get; set; }
@@ -42,22 +42,10 @@ namespace TrelloApp.ViewModels.Repository
         {
             _dbContext.DelUser(userID);
         }
-        public void UpdateUser(User user)
+        public void UpdateUser(User user, int userID)
         {
-            if (user == null)
-            {
-                throw new ArgumentNullException(nameof(user));
-            }
-
-            try
-            {
-                _dbContext.UpdateUser(user);
-                _dbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Failed to update user.", ex);
-            }
+            _dbContext.UpdateUser(user, userID);
+            _dbContext.SaveChanges();
         }
         public User GetUserByID(int userID)
         {

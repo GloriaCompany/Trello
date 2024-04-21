@@ -101,7 +101,7 @@ namespace TrelloApp.ViewModels
         {
             _userRepository.CurrentUser.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
 
-            _userRepository.UpdateUser(_userRepository.CurrentUser);
+            _userRepository.UpdateUser(_userRepository.CurrentUser, _userRepository.CurrentUser.UserID);
 
             ExecuteLoadLoginViewCommand(null);
         }

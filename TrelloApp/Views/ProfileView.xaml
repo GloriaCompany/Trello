@@ -4,7 +4,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ProfileViewModel}"
+      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:ProfileViewModel}"
       mc:Ignorable="d"
       Title="Profile"
       Background="{DynamicResource ThemeMainColor}">

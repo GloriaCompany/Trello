@@ -32,9 +32,9 @@ namespace TrelloApp.ViewModels.Base
             _context.User.DeleteOnSubmit(GetUserByID(userID));
             SaveChanges();
         }
-        public void UpdateUser(User user)
+        public void UpdateUser(User user, int userID)
         {
-            var existingUser = _context.User.FirstOrDefault(u => u.Email == user.Email && u.Username == user.Username);
+            var existingUser = _context.User.FirstOrDefault(u => u.UserID == user.UserID);
 
             existingUser.Username = user.Username;
             existingUser.Email = user.Email;
