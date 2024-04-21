@@ -15,7 +15,7 @@ namespace TrelloApp.ViewModels.Base
 
         void AddUser(User user);
         void DelUser(int userID);
-        void UpdateUser(User user);
+        void UpdateUser(User user, int userID);
         User GetUserByID(int userID);
         bool AuthenticateUser(string username, string password);
 

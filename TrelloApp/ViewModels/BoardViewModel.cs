@@ -139,7 +139,6 @@ namespace TrelloApp.ViewModels
             return
                 Column != null;
         }
-
         private bool CanExecuteAddColumnCommand(object obj)
         {
             return
@@ -187,7 +186,6 @@ namespace TrelloApp.ViewModels
             _boardRepository.DelBoard(Board.BoardID);
             ExecuteLoadDashboardViewCommand(null);
         }
-
         private void ExecuteAddColumnCommand(object obj)
         {
             _columnRepository.AddColumn(Column);

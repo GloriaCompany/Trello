@@ -151,18 +151,18 @@ namespace TrelloApp.ViewModels
         }
         private void ExecuteUpdateUserCommand(object obj)
         {
-            _userRepository.UpdateUser(User);
+            _userRepository.UpdateUser(User, _userRepository.CurrentUser.UserID);
         }
         private void ExecuteCancelUpdateUserCommand(object obj)
         {
-            OriginalUsername = User.Username;
-            OriginalEmail = User.Email;
-            OriginalPassword = User.Password;
+            User.Username = OriginalUsername;
+            User.Email = OriginalEmail;
+            User.Password = OriginalPassword;
         }
         private void ExecuteSetDefaultUserAvatarCommand(object obj)
         {
             User.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
-            _userRepository.UpdateUser(User);
+            _userRepository.UpdateUser(User, _userRepository.CurrentUser.UserID);
         }
         private void ExecuteDelUserCommand(object obj)
         {
