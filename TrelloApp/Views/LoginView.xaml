@@ -4,19 +4,58 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
-      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
+      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" 
+      d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
       mc:Ignorable="d"
-        Title="Login" Height="430" Width="400" Background="#1d2125">
+      Title="Login"
+      Width="400" 
+      Background="{DynamicResource ThemeMainColor}">
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="ThemesComboBox"
+                SelectionChanged="ThemesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="LanguagesComboBox"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+        </StackPanel>
         <Image 
             Source="/Resources/app_logo_night.png"
             Width="75"
@@ -26,7 +65,7 @@
             HorizontalAlignment="Center"
             />
         <Label 
-            Content="Авторизація / Login" 
+            Content="{DynamicResource LoginViewDescString}" 
             Grid.Row="1" 
             Grid.Column="0" 
             HorizontalAlignment="Center" 
@@ -41,7 +80,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             x:Name="InputLogin"
-            Placeholder="Username"
+            Placeholder="{DynamicResource UsernameInputPlaceholderString}"
             Text="{Binding Username}"
             />
         <!--Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
@@ -52,11 +91,11 @@
             Height="35"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Placeholder="Password"
+            Placeholder="{DynamicResource PasswordInputPlaceholderString}"
             x:Name="InputPassword"            
             />
         <customControls:CustomButton 
-            Content="LOGIN" 
+            Content="{DynamicResource LoginBtnString}" 
             Width="180" 
             Height="35"
             Grid.Row="4"
@@ -66,7 +105,7 @@
             Command="{Binding LoginCommand}"
             />
         <customControls:CustomButton 
-            Text="REGISTER" 
+            Text="{DynamicResource RegisterBtnString}" 
             Width="180" 
             Height="35"
             Grid.Row="5"
@@ -76,7 +115,7 @@
             Command="{Binding RegisterCommand}"
             />
         <customControls:CustomButton 
-            Text="CREATE DATABASE" 
+            Text="{DynamicResource CreateDBBtnString}" 
             Width="180" 
             Height="35"
             Grid.Row="6"
@@ -85,6 +124,14 @@
             x:Name="BtnCreateDatabase"
             Click="BtnCreateDatabase_Click"
             Visibility="{Binding CreateDatabaseButtonVisibility}"
+            />
+        <TextBlock
+            Foreground="Red"
+            Text="{Binding ErrorMessage}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Row="8"
+            FontSize="14"
             />
     </Grid>
 </Page>

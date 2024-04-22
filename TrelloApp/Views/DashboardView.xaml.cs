@@ -68,5 +68,13 @@ namespace TrelloApp.Views
         {
             NavigationService.Navigate(new ProfileView());
         }
+
+        private void addBoardPopup_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (IsMouseOverPopup(e))
+            {
+                addBoardPopup.ReleaseMouseCapture();
+            }
+        }
     }
 }

@@ -10,12 +10,21 @@
     <system:String x:Key="AddColumnBtnString">ADD COLUMN</system:String>
     <system:String x:Key="AddTaskPopupBtnString">ADD TASK</system:String>
     <system:String x:Key="AddTaskBtnString">+ ADD TASK</system:String>
+    <system:String x:Key="LoginBtnString">LOGIN</system:String>
+    <system:String x:Key="RegisterBtnString">REGISTER</system:String>
+    <system:String x:Key="ContinueBtnString">CONTINUE</system:String>
+    <system:String x:Key="SubmitBtnString">SUBMIT</system:String>
+    <system:String x:Key="CreateDBBtnString">CREATE DATABASE</system:String>
     <system:String x:Key="BoardNameInputPlaceholderString">Board Name</system:String>
     <system:String x:Key="SearchUsersInputPlaceholderString">Search Users...</system:String>
+    <system:String x:Key="ChooseAvatarString">Choose Your Avatar</system:String>
+    <system:String x:Key="LoginViewDescString">Login</system:String>
+    <system:String x:Key="RegisterViewDescString">Registration</system:String>
 
     <system:String x:Key="UsernameInputPlaceholderString">Username</system:String>
     <system:String x:Key="EmailInputPlaceholderString">Email</system:String>
     <system:String x:Key="PasswordInputPlaceholderString">Password</system:String>
+    <system:String x:Key="ConfirmPasswordInputPlaceholderString">Confirm Password</system:String>
     <system:String x:Key="LogoutBtnString">LOGOUT</system:String>
     <system:String x:Key="DeleteAccountBtnString">DELETE ACCOUNT</system:String>
     <system:String x:Key="LeaveTeamBtnString">LEAVE TEAM</system:String>

@@ -10,12 +10,20 @@
     <system:String x:Key="AddColumnBtnString">ДОДАТИ КОЛОНКУ</system:String>
     <system:String x:Key="AddTaskPopupBtnString">ДОДАТИ ЗАВДАННЯ</system:String>
     <system:String x:Key="AddTaskBtnString">+ ДОДАТИ ЗАВДАННЯ</system:String>
+    <system:String x:Key="LoginBtnString">УВІЙТИ</system:String>
+    <system:String x:Key="RegisterBtnString">ЗАРЕЄСТРУВАТИСЬ</system:String>
+    <system:String x:Key="ContinueBtnString">ПРОДОВЖИТИ</system:String>
+    <system:String x:Key="SubmitBtnString">ПІДТВЕРДИТИ</system:String>
+    <system:String x:Key="CreateDBBtnString">СТВОРИТИ БАЗУ ДАНИХ</system:String>
     <system:String x:Key="BoardNameInputPlaceholderString">Назва дошки</system:String>
     <system:String x:Key="SearchUsersInputPlaceholderString">Знайти користувачів...</system:String>
+    <system:String x:Key="LoginViewDescString">Авторизація</system:String>
+    <system:String x:Key="RegisterViewDescString">Реєстрація</system:String>
     
     <system:String x:Key="UsernameInputPlaceholderString">Ім'я користувача</system:String>
     <system:String x:Key="EmailInputPlaceholderString">Електронна пошта</system:String>
     <system:String x:Key="PasswordInputPlaceholderString">Пароль</system:String>
+    <system:String x:Key="ConfirmPasswordInputPlaceholderString">Підтвердження паролю</system:String>
     <system:String x:Key="LogoutBtnString">ВИЙТИ</system:String>
     <system:String x:Key="DeleteAccountBtnString">ВИДАЛИТИ АКАУНТ</system:String>
     <system:String x:Key="LeaveTeamBtnString">ВИЙТИ З КОМАНДИ</system:String>

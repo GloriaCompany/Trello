@@ -6,10 +6,10 @@
         xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
         xmlns:viewModel="clr-namespace:TrelloApp.ViewModels"
         xmlns:helpers="clr-namespace:TrelloApp.Helpers"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         d:DataContext="{d:DesignInstance Type=viewModel:DashboardViewModel}"
         mc:Ignorable="d"
         Title="Dashboard"
+        Loaded="Page_Loaded"
         Background="{DynamicResource ThemeMainColor}"
         d:Width="1000" d:Height="500">
     <Page.Resources>
@@ -195,7 +195,9 @@
                 </Grid>
             </Border>
         </StackPanel>
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
             <ItemsControl ItemsSource="{Binding Boards}">
                 <ItemsControl.ItemTemplateSelector>
                     <helpers:BoardDataTemplateSelector/>
@@ -203,9 +205,9 @@
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel  
-                    Orientation="Horizontal"
-                    ItemWidth="200"
-                    ItemHeight="200">
+                            Orientation="Horizontal"
+                            ItemWidth="200"
+                            ItemHeight="200">
                         </WrapPanel>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
@@ -330,6 +332,7 @@
             Margin="0,0,0,0"
             Placement="Bottom"
             StaysOpen="True"
+            PreviewMouseLeftButtonDown="addBoardPopup_PreviewMouseLeftButtonDown"
             PlacementTarget="{Binding ElementName=AddBoardBorder}">
             <Border
                 Background="{DynamicResource ThemeMainColor}" 

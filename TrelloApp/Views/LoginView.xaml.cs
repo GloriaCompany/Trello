@@ -20,11 +20,13 @@ namespace TrelloApp.Views
 
         private void BtnCreateDatabase_Click(object sender, RoutedEventArgs e)
         {
+            // Вынести в вм, как команду и биндить на ErrorMessage
             var db = new TrelloDataClassesDataContext(ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString);
             if (db.DatabaseExists())
             {
                 db.DeleteDatabase();
-                MessageBox.Show("База даних вже створена. Видаляємо! Можете продовжувати роботу.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                // ErrorMessage
+                //MessageBox.Show("База даних вже створена. Видаляємо! Можете продовжувати роботу.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             db.CreateDatabase();
         }

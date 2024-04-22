@@ -24,7 +24,7 @@ namespace TrelloApp.Models
                 {
                     if (string.IsNullOrWhiteSpace(Email))
                         _error = "Поле є обов'язковим для заповнення";
-                    else if (!Email.Contains("@") || !Email.Contains("."))
+                    else if (!Email.Contains("@") || Email.IndexOf('.') == -1 || Email.IndexOf('.') <= Email.IndexOf('@'))
                         _error = "Некоректний формат пошти";
                 }
                 if (columnName == nameof(Password))
@@ -33,6 +33,13 @@ namespace TrelloApp.Models
                         _error = "Поле є обов'язковим для заповнення";
                     else if (Password.Length < 8 || Password.Length > 20)
                         _error = "Мінімальна довжина Паролю - 8 символів, максимальна - 20";
+                }
+                if (columnName == nameof(ConfirmPassword))
+                {
+                    if (string.IsNullOrWhiteSpace(ConfirmPassword))
+                        _error = "Поле є обов'язковим для заповнення";
+                    else if (ConfirmPassword != Password)
+                        _error = "Паролі мають співпадати";
                 }
                 if (columnName == nameof(Avatar))
                 {

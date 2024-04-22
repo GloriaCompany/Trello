@@ -7,10 +7,11 @@
       xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels"
       d:DataContext="{d:DesignInstance Type=viewmodels:ChooseAvatarViewModel}"
       mc:Ignorable="d"
-      Title="ChooseAvatar" Height="650" Width="700" Background="#1d2125">
+      Title="ChooseAvatar"
+      Background="{DynamicResource ThemeMainColor}">
     <Page.Resources>
         <Style TargetType="customControls:CircleImage">
-            <Setter Property="Background" Value="#1d2125"/>
+            <Setter Property="Background" Value="{DynamicResource ThemeMainColor}"/>
         </Style>
     </Page.Resources>
     <Grid>
@@ -18,6 +19,41 @@
             <RowDefinition Height="150"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="ThemesComboBox"
+                SelectionChanged="ThemesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="LanguagesComboBox"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+        </StackPanel>
         <Image 
             Source="/Resources/app_logo_night.png"
             HorizontalAlignment="Center"
@@ -45,7 +81,7 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
-                           Text="Choose Avatar"
+                           Text="{DynamicResource ChooseAvatarString}"
                            Foreground="White"
                            FontSize="14"
                            VerticalAlignment="Center"
@@ -86,7 +122,7 @@
                     Grid.Row="2"
                     Height="35"
                     Width="180"
-                    Text="SUBMIT"
+                    Text="{DynamicResource SubmitBtnString}"
                     VerticalAlignment="Top"
                     x:Name="BtnSubmitAvatar"
                     Command="{Binding SelectAvatarCommand}"
