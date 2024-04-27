@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
+using TrelloApp.Views.Utils;
 
 namespace TrelloApp.Views
 {
@@ -26,6 +27,16 @@ namespace TrelloApp.Views
         private void BtnRegister_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             NavigationService.Navigate(new ChooseAvatarView());
+        }
+
+        private void ThemesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/ResourcesTrello/Themes/", null);
+        }
+
+        private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
         }
     }
 }

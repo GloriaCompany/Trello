@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
+using TrelloApp.Views.Utils;
 using TrelloDBLayer;
 
 namespace TrelloApp.Views
@@ -29,6 +30,16 @@ namespace TrelloApp.Views
                 //MessageBox.Show("База даних вже створена. Видаляємо! Можете продовжувати роботу.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             db.CreateDatabase();
+        }
+
+        private void ThemesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/ResourcesTrello/Themes/", null);
+        }
+
+        private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
         }
     }
 }

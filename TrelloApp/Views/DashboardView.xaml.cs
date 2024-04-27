@@ -5,6 +5,7 @@ using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
 using TrelloApp.Views.Utils;
+using TrelloDBLayer;
 
 namespace TrelloApp.Views
 {
@@ -75,6 +76,17 @@ namespace TrelloApp.Views
             {
                 addBoardPopup.ReleaseMouseCapture();
             }
+        }
+
+        private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.Navigate(new BoardView());
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            (FindResource("BoardRepository") as IBoardRepository).CurrentBoard = ((FrameworkElement)sender).DataContext as Board;
+            NavigationService.Navigate(new BoardView());
         }
     }
 }

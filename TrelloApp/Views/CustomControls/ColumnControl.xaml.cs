@@ -5,7 +5,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using TrelloApp.Helpers;
 using TrelloApp.Models;
+using TrelloApp.ViewModels.Repository;
+using TrelloApp.ViewModels;
+using TrelloDBLayer;
 
 namespace TrelloApp.Views.CustomControls
 {
@@ -26,11 +30,11 @@ namespace TrelloApp.Views.CustomControls
             set { SetValue(EditIconSourceProperty, value); }
         }
 
-        public ObservableCollection<TaskModel> Tasks
+        /*public ObservableCollection<Task> Tasks
         {
-            get { return (ObservableCollection<TaskModel>)GetValue(TasksProperty); }
+            get { return (ObservableCollection<Task>)GetValue(TasksProperty); }
             set { SetValue(TasksProperty, value); }
-        }
+        }*/
 
         public string ColumnName
         {
@@ -44,6 +48,15 @@ namespace TrelloApp.Views.CustomControls
             Loaded += (sender, e) =>
             {
                 SubscribeToTaskControlEvents();
+
+                DataContext.ToString();
+                var viewModel = new ColumnViewModel(
+    FindResource("ColumnRepository") as IColumnRepository,
+    FindResource("TaskRepository") as ITaskRepository);
+                viewModel.Column = DataContext as Column;
+                DataContext = viewModel;
+
+                viewModel.ExecuteLoadTasksCommand(null);
             };
         }
 
@@ -61,7 +74,7 @@ namespace TrelloApp.Views.CustomControls
             var taskControls = new List<TaskControl>();
 
             // Отримання списку контролів задач
-            foreach (var child in ContentStackPanel.Children)
+            foreach (var child in ContentStackPanel.Items)
             {
                 if (child is TaskControl taskControl)
                 {
@@ -76,42 +89,43 @@ namespace TrelloApp.Views.CustomControls
         {
             if (sender is TaskControl taskControl)
             {
-                MoveTaskControlInSameColumn(taskControl); // Переміщення задачі в тому ж самому стовпці
+                MoveTaskControlInSameColumn(sender, taskControl); // Переміщення задачі в тому ж самому стовпці
             }
         }
 
-        private void MoveTaskControlInSameColumn(TaskControl taskControl)
+        private void MoveTaskControlInSameColumn(object sender, TaskControl taskControl)
         {
             // Визначення поточного стовпця
-            ColumnControl currentColumn = this;
+            var currentColumn = (sender as FrameworkElement).DataContext as Column;
 
             // Визначення батьківського StackPanel
-            StackPanel parentPanel = FindParentStackPanel(taskControl);
-
+            ListView parentPanel = FindListControl(taskControl);
+            var list = parentPanel.ItemsSource as IList<Task>;
             // Отримання індексу поточного контролю задачі в StackPanel
-            int currentIndex = parentPanel.Children.IndexOf(taskControl);
+            Task task = taskControl.DataContext as Task;
+            int currentIndex = list.IndexOf(task);
 
             // Перевірка, чи поточний контроль задачі не є останнім у стовпці
-            if (currentIndex < parentPanel.Children.Count - 1)
+            if (currentIndex < list.Count - 1)
             {
                 // Знаходження наступного контролю задачі
-                TaskControl nextTaskControl = parentPanel.Children[currentIndex + 1] as TaskControl;
+                Task nextTaskControl = list[currentIndex + 1] as Task;
 
                 // Видалення поточного контролю задачі з поточного місця
-                parentPanel.Children.Remove(taskControl);
+                list.Remove(task);
 
                 // Додавання контролю задачі після наступного контролю задачі
-                parentPanel.Children.Insert(currentIndex + 1, taskControl);
+                list.Insert(currentIndex + 1, task);
             }
             else
             {
                 // Якщо контроль задачі вже знаходиться в кінці стовпця, перемістіть його на початок стовпця
 
                 // Видалення поточного контролю задачі з поточного місця
-                parentPanel.Children.Remove(taskControl);
+                list.Remove(task);
 
                 // Додавання контролю задачі на початок стовпця
-                parentPanel.Children.Insert(0, taskControl);
+                list.Insert(0, task);
             }
         }
 
@@ -119,32 +133,45 @@ namespace TrelloApp.Views.CustomControls
         {
             if (sender is TaskControl taskControl)
             {
-                MoveTaskControlToNextColumn(taskControl); // Переміщення задачі в наступний стовпець
+                MoveTaskControlToNextColumn(sender, taskControl); // Переміщення задачі в наступний стовпець
             }
         }
 
-        private void MoveTaskControlToNextColumn(TaskControl taskControl)
+        private void MoveTaskControlToNextColumn(object sender, TaskControl taskControl)
         {
             // Визначення поточного стовпця
-            ColumnControl currentColumn = this;
+            //   var currentColumn = (sender as FrameworkElement).DataContext as Column;
 
-            // Визначення батьківського WrapPanel
-            WrapPanel parentPanel = FindWrapPanel(this);
+            // Визначення батьківського StackPanel
+            ListView parentPanel = FindListControl(taskControl);
+            var list = parentPanel.ItemsSource as IList<Task>;
+            // Отримання індексу поточного контролю задачі в StackPanel
+            Task task = taskControl.DataContext as Task;
+            int currentIndex = list.IndexOf(task);
 
-            // Отримання індексу поточного ColumnControl в WrapPanel
-            int currentIndex = parentPanel.Children.IndexOf(currentColumn);
-
-            // Перевірка, чи поточний ColumnControl не є останнім перед кнопкою "Додати стовпець"
-            if (currentIndex < parentPanel.Children.Count - 1)
+            // Перевірка, чи поточний контроль задачі не є останнім у стовпці
+            if (currentIndex < list.Count - 1)
             {
-                // Знаходження наступного ColumnControl
-                ColumnControl nextColumn = parentPanel.Children[currentIndex + 1] as ColumnControl;
+                // Знаходження наступного стовпця
+                //var nextColumn = list[currentIndex + 1];
 
-                // Видалення задачі з поточного стовпця
-                ContentStackPanel.Children.Remove(taskControl);
+                // Видалення поточного контролю задачі з поточного місця
+                list.Remove(task);
 
-                // Додавання задачі в наступний стовпець
-                nextColumn.ContentStackPanel.Children.Add(taskControl);
+                // Додавання контролю задачі після наступного контролю задачі
+                ItemsControl grandParentItemsControl = FindControl(parentPanel);
+                int index = (grandParentItemsControl.ItemsSource as IList<Column>).IndexOf((parentPanel.DataContext as ColumnViewModel).Column);
+                (grandParentItemsControl.ItemsSource as IList<Column>)[index + 1].Task.Insert(0, task);
+            }
+            else
+            {
+                // Якщо контроль задачі вже знаходиться в кінці стовпця, перемістіть його на початок стовпця
+
+                // Видалення поточного контролю задачі з поточного місця
+                list.Remove(task);
+
+                // Додавання контролю задачі на початок стовпця
+                list.Insert(0, task);
             }
         }
 
@@ -154,7 +181,7 @@ namespace TrelloApp.Views.CustomControls
             ColumnControl currentColumn = this;
 
             // Визначення батьківського WrapPanel
-            WrapPanel parentPanel = FindWrapPanel(this);
+            Panel parentPanel = FindWrapPanel(this);
 
             // Отримання індексу поточного ColumnControl в WrapPanel
             int currentIndex = parentPanel.Children.IndexOf(currentColumn);
@@ -175,11 +202,30 @@ namespace TrelloApp.Views.CustomControls
 
         private void MoveRightButton_Click(object sender, RoutedEventArgs e)
         {
+            ItemsControl itemsControl = FindControl/*<ItemsControl>*/(this);
+            var currentColumn = (sender as FrameworkElement).DataContext as Column;
+            var list = itemsControl.ItemsSource as IList<Column>;
+            // Отримання індексу поточного ColumnControl в WrapPanel
+            int currentIndex = list.IndexOf(currentColumn);
+
+            // Перевірка, чи поточний стовпець не є останнім
+            if (currentIndex < list.Count - 1)
+            {
+                // Знаходження наступного стовпця
+                var nextColumn = list[currentIndex + 1];
+
+                // Видалення поточного стовпця з WrapPanel
+                list.Remove(currentColumn);
+
+                // Вставка поточного стовпця після наступного
+                list.Insert(currentIndex + 1, currentColumn);
+            }
+            return;
             // Визначення поточного стовпця
-            ColumnControl currentColumn = this;
+            /*ColumnControl currentColumn = this;
 
             // Визначення батьківського WrapPanel
-            WrapPanel parentPanel = FindWrapPanel(this);
+            Panel parentPanel = FindWrapPanel(this);
 
             // Отримання індексу поточного ColumnControl в WrapPanel
             int currentIndex = parentPanel.Children.IndexOf(currentColumn);
@@ -195,7 +241,7 @@ namespace TrelloApp.Views.CustomControls
 
                 // Вставка поточного стовпця після наступного
                 parentPanel.Children.Insert(currentIndex + 1, currentColumn);
-            }
+            }*/
         }
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
@@ -216,15 +262,34 @@ namespace TrelloApp.Views.CustomControls
             }
         }
 
-        private WrapPanel FindWrapPanel(FrameworkElement element)
+        private ListView FindListControl(DependencyObject element)
         {
             if (element == null)
                 return null;
+            if (VisualTreeHelper.GetParent(element) is ListView)
+                return VisualTreeHelper.GetParent(element) as ListView;
 
-            if (element.Parent is WrapPanel)
-                return element.Parent as WrapPanel;
+            return FindListControl(VisualTreeHelper.GetParent(element));
+        }
 
-            return FindWrapPanel(element.Parent as FrameworkElement);
+        private ItemsControl FindControl(DependencyObject element)
+        {
+            if (element == null)
+                return null;
+            if (VisualTreeHelper.GetParent(element) is ItemsControl)
+                return VisualTreeHelper.GetParent(element) as ItemsControl;
+
+            return FindControl(VisualTreeHelper.GetParent(element));
+        }
+
+        private Panel FindWrapPanel(FrameworkElement element)
+        {
+            if (element == null)
+                return null;
+            if (VisualTreeHelper.GetParent(element) is Panel)
+                return VisualTreeHelper.GetParent(element) as Panel;
+
+            return FindWrapPanel(VisualTreeHelper.GetParent(element) as FrameworkElement);
         }
 
         private StackPanel FindParentStackPanel(FrameworkElement element)
@@ -261,6 +326,11 @@ namespace TrelloApp.Views.CustomControls
                 return dependencyObject != null;
             }
             return false;
+        }
+
+        private void TaskControl_ChangeColumnClicked_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

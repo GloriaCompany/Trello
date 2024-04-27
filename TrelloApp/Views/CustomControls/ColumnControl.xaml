@@ -6,7 +6,8 @@
              xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
              mc:Ignorable="d"
              d:DesignHeight="260" d:DesignWidth="185"
-             PreviewMouseDown="UserControl_PreviewMouseDown">
+             PreviewMouseDown="UserControl_PreviewMouseDown"
+             >
     <Border Background="Transparent"
             BorderBrush="{DynamicResource ThemeBorderColor}"
             BorderThickness="1"
@@ -27,7 +28,9 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="45"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Text="{Binding ColumnName, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}" 
+                    <!--Text="{Binding ColumnName, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"-->
+                    <TextBlock
+                        Text="{Binding ColumnName, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"
                                FontSize="14"
                                Foreground="{DynamicResource ThemeTextColor}"
                                Background="Transparent"
@@ -56,10 +59,13 @@
                                                       Visibility="Hidden"/>
                     </StackPanel>
                 </Grid>
-                <ListView ItemsSource="{Binding Tasks, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"
+                <!--ItemsSource="{Binding Tasks, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"-->
+                <ListView 
                           Grid.Row="2"
                           HorizontalAlignment="Stretch"
-                          VerticalAlignment="Stretch">
+                          VerticalAlignment="Stretch"
+                            ItemsSource="{Binding Tasks}"
+                    x:Name="ContentStackPanel">
                     <ListView.Template>
                         <ControlTemplate>
                             <ScrollViewer VerticalScrollBarVisibility="Hidden"
@@ -68,11 +74,16 @@
                             </ScrollViewer>
                         </ControlTemplate>
                     </ListView.Template>
-                    <StackPanel Orientation="Vertical"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                x:Name="ContentStackPanel">
-                        <!--<customControls:TaskControl
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <customControls:TaskControl
+                                TaskName="{Binding Title}"
+                                DataContext="{Binding}"
+                                ChangeColumnClicked="TaskControl_ChangeColumnClicked"
+                                ChangePlaceClicked="TaskControl_ChangePlaceClicked"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <!--<customControls:TaskControl
                             TaskName="Task 1"
                             AssignedUserAvatar="/TrelloApp;component/Resources/userAvatar.png"
                             />
@@ -88,7 +99,7 @@
                             TaskName="Task 4"
                             AssignedUserAvatar="/TrelloApp;component/Resources/userAvatar.png"
                             />-->
-                    </StackPanel>
+
                 </ListView>
                 <Border Grid.Row="1" Background="{DynamicResource ThemeBorderColor}"/>
                 <Border Grid.Row="3" Background="{DynamicResource ThemeBorderColor}"/>

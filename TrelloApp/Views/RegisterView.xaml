@@ -8,9 +8,8 @@
         xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" 
         d:DataContext="{d:DesignInstance Type=viewmodels:RegisterViewModel}"
         mc:Ignorable="d"
-        Title="Register" 
-        Width="400" 
-        Background="{DynamicResource ThemeMainColor}">    
+        Title="Register"
+        Background="{DynamicResource ThemeMainColor}">
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>
             <RowDefinition Height="65"/>
@@ -59,19 +58,19 @@
             </customControls:CustomComboBox>
         </StackPanel>
         <Image 
-               Source="/Resources/app_logo_night.png"
+               Source="{DynamicResource LogoPath}"
                Width="75"
                Height="20"
                Grid.Row="0"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                />
-        <Label Content="{DynamicResource RegisterViewDescString}" 
+        <Label Content="{DynamicResource RegisterViewDescString}"
+               Foreground="{DynamicResource ThemeTextColor}"
                Grid.Row="1" 
                Grid.Column="0" 
                HorizontalAlignment="Center" 
-               VerticalAlignment="Center" 
-               Foreground="White" 
+               VerticalAlignment="Center"
                FontSize="14"
                />
         <customControls:CustomInput

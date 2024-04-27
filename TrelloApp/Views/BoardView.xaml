@@ -12,7 +12,9 @@
       d:Width="1000" d:Height="500">
     <Page.Resources>
         <DataTemplate x:Key="ColumnTemplate" DataType="{x:Type models:ColumnModel}">
-            <customControls:ColumnControl Margin="10"/>
+            <customControls:ColumnControl Margin="10"
+                                          
+                                          ColumnName="{Binding Title}"/>
         </DataTemplate>
     </Page.Resources>
     <Grid>
@@ -190,7 +192,8 @@
                         Height="20"
                         Grid.Column="1"
                         BorderThickness="0"
-                        Margin="5,0,0,0">
+                        Margin="5,0,0,0"
+                        Click="TeamUsersListBtn_Click">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
@@ -233,14 +236,14 @@
                         IsPopupEnabled="False"
                         MouseDown="CircleImage_MouseDown"
                         />
-                    <!-- Пример, как должен выглядеть попап для списка юзеров комманды
+                    <!-- Пример, как должен выглядеть попап для списка юзеров комманды -->
                     <Popup x:Name="UsersPopup" IsOpen="False" StaysOpen="False" Placement="Bottom" PlacementTarget="{Binding ElementName=PlusButton}">
                         <Border BorderBrush="White" BorderThickness="1">
                             <StackPanel Orientation="Vertical" Background="#1d2125" Width="195">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <customControls:CircleImage Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="30" Height="30" ImageSource="/TrelloApp;component/Resources/userAvatar.png"/>
+                                    <customControls:CircleImage Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="30" Height="30" ImageSource="{Binding User.Avatar}"/>
                                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="2,0,0,0">
-                                        <TextBlock Text="Username" Foreground="White" FontSize="10" VerticalAlignment="Stretch"/>
+                                        <TextBlock Text="{Binding User.Username}" Foreground="White" FontSize="10" VerticalAlignment="Stretch"/>
                                         <TextBlock Text="Job" Foreground="White" FontSize="10" VerticalAlignment="Stretch"/>
                                     </StackPanel>
                                 </StackPanel>
@@ -253,8 +256,8 @@
                                 </StackPanel>
                             </StackPanel>
                         </Border>
-                    </Popup>-->
-                    <Popup
+                    </Popup>
+                    <!--<Popup
                         x:Name="UsersPopup" 
                         IsOpen="False" 
                         StaysOpen="False" 
@@ -326,7 +329,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </Border>
-                    </Popup>
+                    </Popup>-->
                 </Grid>
             </Border>
         </StackPanel>

@@ -22,6 +22,7 @@ namespace TrelloApp.ViewModels
         private INavigator _navigator;
 
         private ObservableCollection<Column> _columns;
+        private ObservableCollection<User> _teamUsers;
 
         //Properties
         public User User
@@ -71,6 +72,15 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(Columns));
             }
         }
+        public ObservableCollection<User> TeamUsers
+        {
+            get => _teamUsers;
+            set
+            {
+                _teamUsers = value;
+                OnPropertyChanged(nameof(TeamUsers));
+            }
+        }
 
         //Commands
         public ICommand LoadUserCommand { get; set; }
@@ -96,6 +106,7 @@ namespace TrelloApp.ViewModels
 
             //Initialize collections
             Columns = new ObservableCollection<Column>();
+            TeamUsers = new ObservableCollection<User>();
 
             //Initialize commands
             LoadUserCommand = new ViewModelCommand(ExecuteLoadUserCommand, CanExecuteLoadUserCommand);
@@ -163,13 +174,18 @@ namespace TrelloApp.ViewModels
         private void ExecuteLoadUserCommand(object obj)
         {
             User = _userRepository.CurrentUser;
+            TeamUsers.Add(_userRepository.CurrentUser);
         }
         private void ExecuteLoadColumnsCommand(object obj)
         {
             Columns.Clear();
             var columnList = _columnRepository.GetColumnsByBoardID(Board.BoardID);
+            Columns.Add(new Column() { BoardID = _boardRepository.CurrentBoard.BoardID, Title = "Test" });
+            Columns.Add(new Column() { BoardID = _boardRepository.CurrentBoard.BoardID, Title = "Test 2" });
+            Columns.Add(new Column() { BoardID = _boardRepository.CurrentBoard.BoardID, Title = "Test 3" });
             foreach (var column in columnList)
             {
+
                 Columns.Add(column);
             }
         }

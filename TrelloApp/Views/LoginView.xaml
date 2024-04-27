@@ -8,7 +8,6 @@
       d:DataContext="{d:DesignInstance Type=viewmodels:LoginViewModel}"
       mc:Ignorable="d"
       Title="Login"
-      Width="400" 
       Background="{DynamicResource ThemeMainColor}">
     <Grid x:Name="PageContainer">
         <Grid.RowDefinitions>
@@ -57,7 +56,7 @@
             </customControls:CustomComboBox>
         </StackPanel>
         <Image 
-            Source="/Resources/app_logo_night.png"
+            Source="{DynamicResource LogoPath}"
             Width="75"
             Height="20"
             Grid.Row="0"
@@ -70,7 +69,7 @@
             Grid.Column="0" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
-            Foreground="White" 
+            Foreground="{DynamicResource ThemeTextColor}" 
             FontSize="14"
             />
         <customControls:CustomInput

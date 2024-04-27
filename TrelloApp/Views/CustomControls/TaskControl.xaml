@@ -31,7 +31,9 @@
                         Background="{DynamicResource ThemeBorderColor}"
                         Width="195"
                         />
-                <TextBlock Text="{Binding TaskName, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}" 
+                <!--Text="{Binding TaskName, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"-->
+                <TextBlock 
+                        Text="{Binding TaskName, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"
                            VerticalAlignment="Top" 
                            HorizontalAlignment="Left" 
                            Grid.Row="2"

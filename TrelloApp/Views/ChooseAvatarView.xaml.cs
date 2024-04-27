@@ -6,6 +6,7 @@ using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
 using TrelloApp.ViewModels.UserVM.UserAvatarsLoading;
 using TrelloApp.Views.CustomControls;
+using TrelloApp.Views.Utils;
 
 namespace TrelloApp.Views
 {
@@ -43,6 +44,16 @@ namespace TrelloApp.Views
             {
                 _selectedAvatar.Background = Brushes.AliceBlue;
             }
+        }
+
+        private void ThemesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, "/Views/ResourcesTrello/Themes/", null);
+        }
+
+        private void LanguagesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxUtils.HandleSelectionChanged(sender, e, null, "/Views/ResourcesTrello/Languages/");
         }
     }
 }

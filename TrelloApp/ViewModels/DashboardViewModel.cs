@@ -136,10 +136,10 @@ namespace TrelloApp.ViewModels
             boardList.Insert(0, new Board { Title = "Placeholder" });
 
             /*For testing*/
-            //for (int i = 1; i < 20; i++)
-            //{
-            //    boardList.Add(new Board { Title = "Title" + i.ToString()});
-            //}
+            for (int i = 1; i < 20; i++)
+            {
+                boardList.Add(new Board { Title = "Title" + i.ToString() });
+            }
 
             foreach (var board in boardList)
             {
@@ -148,14 +148,20 @@ namespace TrelloApp.ViewModels
         }
         private void ExecuteAddBoardCommand(object obj)
         {
+            Board.AdminID = User.UserID;
+            Board.User = User;
             _boardRepository.AddBoard(Board);
+
+            ExecuteLoadBoardsCommand(null);
         }
+
         private void ExecuteDelBoardCommand(object obj)
         {
             _boardRepository.DelBoard(Board.BoardID);
         }
         private void ExecuteLoadBoardViewCommand(object obj)
         {
+            _boardRepository.CurrentBoard = Board;
             _navigator.GoTo("BoardView.xaml");
         }
         private void ExecuteLoadProfileViewCommand(object obj)

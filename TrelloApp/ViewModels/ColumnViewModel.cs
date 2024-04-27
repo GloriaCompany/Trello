@@ -71,7 +71,7 @@ namespace TrelloApp.ViewModels
             UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
 
             //Default view
-            ExecuteLoadTasksCommand(null);
+
         }
 
         //Checks
@@ -106,10 +106,14 @@ namespace TrelloApp.ViewModels
         {
             _columnRepository.UpdateColumn(Column);
         }
-        private void ExecuteLoadTasksCommand(object obj)
+        public void ExecuteLoadTasksCommand(object obj)
         {
             Tasks.Clear();
             var taskList = _taskRepository.GetTasksByColumnID(Column.ColumnID);
+            taskList.Add(new Task() { ColumnID = Column.ColumnID, Title = "Some Task", Description = "Some Desc" });
+            taskList.Add(new Task() { ColumnID = Column.ColumnID, Title = "Some Task 1", Description = "Some Desc" });
+            taskList.Add(new Task() { ColumnID = Column.ColumnID, Title = "Some Task 2", Description = "Some Desc" });
+            taskList.Add(new Task() { ColumnID = Column.ColumnID, Title = "Some Task 3", Description = "Some Desc" });
             foreach (var task in taskList)
             {
                 Tasks.Add(task);
