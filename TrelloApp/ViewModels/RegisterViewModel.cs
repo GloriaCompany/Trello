@@ -60,7 +60,6 @@ namespace TrelloApp.ViewModels
         private void ExecuteRegisterCommand(object obj)
         {
             User.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
-            _userRepository.CurrentUser = User;
             var user = new User()
             {
                 Username = User.Username,

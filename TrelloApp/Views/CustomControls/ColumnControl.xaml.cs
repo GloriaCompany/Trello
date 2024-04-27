@@ -5,10 +5,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using TrelloApp.Helpers;
 using TrelloApp.Models;
-using TrelloApp.ViewModels.Repository;
 using TrelloApp.ViewModels;
+using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
 
 namespace TrelloApp.Views.CustomControls

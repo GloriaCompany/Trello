@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
@@ -152,6 +151,7 @@ namespace TrelloApp.ViewModels
         private void ExecuteUpdateUserCommand(object obj)
         {
             _userRepository.UpdateUser(User, _userRepository.CurrentUser.UserID);
+            MessageBox.Show("Changed");
         }
         private void ExecuteCancelUpdateUserCommand(object obj)
         {

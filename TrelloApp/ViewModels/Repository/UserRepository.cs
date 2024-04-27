@@ -37,6 +37,7 @@ namespace TrelloApp.ViewModels.Repository
         public void AddUser(User user)
         {
             _dbContext.AddUser(user);
+            CurrentUser = _dbContext.Users.FirstOrDefault(u => u.Username == user.Username && u.Email == user.Email);
         }
         public void DelUser(int userID)
         {

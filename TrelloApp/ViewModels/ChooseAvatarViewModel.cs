@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TrelloApp.Helpers;
@@ -99,7 +98,7 @@ namespace TrelloApp.ViewModels
         }
         private void ExecuteSelectAvatarCommand(object obj)
         {
-            _userRepository.CurrentUser.Avatar = "/TrelloApp;component/Resources/userAvatar.png";
+            _userRepository.CurrentUser.Avatar = SelectedAvatar;
 
             _userRepository.UpdateUser(_userRepository.CurrentUser, _userRepository.CurrentUser.UserID);
 
