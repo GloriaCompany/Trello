@@ -232,7 +232,7 @@
                         Grid.Column="3"
                         HorizontalAlignment="Right"
                         Margin="-17.5,0,0,0"
-                        ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                        ImageSource="{Binding User.Avatar}"
                         IsPopupEnabled="False"
                         MouseDown="CircleImage_MouseDown"
                         />

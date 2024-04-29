@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.Repository;
@@ -52,6 +54,7 @@ namespace TrelloApp.ViewModels
         public ICommand SelectTaskCommand { get; set; }
         public ICommand AddTaskCommand { get; set; }
         public ICommand UpdateTaskCommand { get; set; }
+        public ICommand DelTaskCommand { get; set; }
 
         public ColumnViewModel(IColumnRepository columnRepository, ITaskRepository taskRepository)
         {
@@ -69,10 +72,12 @@ namespace TrelloApp.ViewModels
             SelectTaskCommand = new ViewModelCommand(ExecuteSelectTaskCommand, CanExecuteSelectTaskCommand);
             AddTaskCommand = new ViewModelCommand(ExecuteAddTaskCommand, CanExecuteAddTaskCommand);
             UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
+            DelTaskCommand = new ViewModelCommand(ExecuteDelTaskCommand, CanExecuteDelTaskCommand);
 
             //Default view
-
+            ExecuteLoadTasksCommand(null);
         }
+
 
         //Checks
         private bool CanExecuteLoadTasksCommand(object obj)
@@ -100,20 +105,29 @@ namespace TrelloApp.ViewModels
             return
                 Task != null;
         }
+        private bool CanExecuteDelTaskCommand(object obj)
+        {
+            return
+                Task != null;
+        }
 
         //Executes
         private void ExecuteUpdateColumnCommand(object obj)
         {
             _columnRepository.UpdateColumn(Column);
         }
-        public void ExecuteLoadTasksCommand(object obj)
+        private void ExecuteLoadTasksCommand(object obj)
         {
             Tasks.Clear();
-            var taskList = _taskRepository.GetTasksByColumnID(Column.ColumnID);
-            taskList.Add(new Task() { ColumnID = Column.ColumnID, Title = "Some Task", Description = "Some Desc" });
-            taskList.Add(new Task() { ColumnID = Column.ColumnID, Title = "Some Task 1", Description = "Some Desc" });
-            taskList.Add(new Task() { ColumnID = Column.ColumnID, Title = "Some Task 2", Description = "Some Desc" });
-            taskList.Add(new Task() { ColumnID = Column.ColumnID, Title = "Some Task 3", Description = "Some Desc" });
+            //var taskList = _taskRepository.GetTasksByColumnID(Column.ColumnID);
+            var taskList = new List<Task>();
+
+            /*For testing*/
+            for (int i = 1; i < 4; i++)
+            {
+                taskList.Add(new Task { Title = "Title" + i.ToString() });
+            }
+
             foreach (var task in taskList)
             {
                 Tasks.Add(task);
@@ -130,6 +144,10 @@ namespace TrelloApp.ViewModels
         private void ExecuteUpdateTaskCommand(object obj)
         {
             _taskRepository.UpdateTask(Task);
+        }
+        private void ExecuteDelTaskCommand(object obj)
+        {
+            _taskRepository.DelTask(Task.TaskID);
         }
     }
 }

@@ -94,6 +94,7 @@
                          HorizontalAlignment="Stretch"
                          VerticalContentAlignment="Top"
                          HorizontalContentAlignment="Stretch"
+                         SelectedItem="{Binding SelectedAvatar, Mode=TwoWay}"
                          ItemsSource="{Binding AvatarImages}"
                          Background="#1d2125"
                          BorderThickness="0">
