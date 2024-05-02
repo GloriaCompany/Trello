@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.Repository;
 using TrelloDBLayer;
@@ -11,10 +12,10 @@ namespace TrelloApp.ViewModels
         //Fields
         private Task _task;
 
-        private IColumnRepository _columnRepository;
         private ITaskRepository _taskRepository;
         private IUserRepository _userRepository;
         private IChecklistRepository _checklistRepository;
+        private INavigator _navigator;
 
         private ObservableCollection<Checklist> _checklists;
 
@@ -43,13 +44,12 @@ namespace TrelloApp.ViewModels
         public ICommand UpdateTaskCommand { get; set; }
         public ICommand LoadChecklistsCommand { get; set; }
 
-        public TaskViewModel(IColumnRepository columnRepository, ITaskRepository taskRepository, IUserRepository userRepository)
+        public TaskViewModel(INavigator navigator, ITaskRepository taskRepository, IUserRepository userRepository)
         {
-            _columnRepository = columnRepository;
+            Task = _taskRepository.CurrentTask;
+
             _taskRepository = taskRepository;
             _userRepository = userRepository;
-
-            Task = _taskRepository.CurrentTask;
 
             //Initialize collecntions
             Checklists = new ObservableCollection<Checklist>();

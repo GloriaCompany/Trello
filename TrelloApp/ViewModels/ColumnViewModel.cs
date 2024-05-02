@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.Repository;
+using TrelloApp.Views;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
@@ -16,6 +18,7 @@ namespace TrelloApp.ViewModels
 
         private IColumnRepository _columnRepository;
         private ITaskRepository _taskRepository;
+        private INavigator _navigator;
 
         private ObservableCollection<Task> _tasks;
 
@@ -56,12 +59,15 @@ namespace TrelloApp.ViewModels
         public ICommand UpdateTaskCommand { get; set; }
         public ICommand DelTaskCommand { get; set; }
 
-        public ColumnViewModel(IColumnRepository columnRepository, ITaskRepository taskRepository)
+        public ICommand LoadTaskViewCommand { get; set; }
+
+        public ColumnViewModel(INavigator navigator, IColumnRepository columnRepository, ITaskRepository taskRepository)
         {
+            Column = _columnRepository.CurrentColumn;
+
             _columnRepository = columnRepository;
             _taskRepository = taskRepository;
-
-            Column = _columnRepository.CurrentColumn;
+            _navigator = navigator;
 
             //Initialize collections
             Tasks = new ObservableCollection<Task>();
@@ -74,10 +80,11 @@ namespace TrelloApp.ViewModels
             UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
             DelTaskCommand = new ViewModelCommand(ExecuteDelTaskCommand, CanExecuteDelTaskCommand);
 
+            LoadTaskViewCommand = new ViewModelCommand(ExecuteLoadTaskViewCommand, CanExecuteLoadTaskViewCommand);
+
             //Default view
             ExecuteLoadTasksCommand(null);
         }
-
 
         //Checks
         private bool CanExecuteLoadTasksCommand(object obj)
@@ -106,6 +113,11 @@ namespace TrelloApp.ViewModels
                 Task != null;
         }
         private bool CanExecuteDelTaskCommand(object obj)
+        {
+            return
+                Task != null;
+        }
+        private bool CanExecuteLoadTaskViewCommand(object obj)
         {
             return
                 Task != null;
@@ -148,6 +160,11 @@ namespace TrelloApp.ViewModels
         private void ExecuteDelTaskCommand(object obj)
         {
             _taskRepository.DelTask(Task.TaskID);
+        }
+        private void ExecuteLoadTaskViewCommand(object obj)
+        {
+            _taskRepository.CurrentTask = Task;
+            _navigator.GoTo("TaskView.xaml");
         }
     }
 }

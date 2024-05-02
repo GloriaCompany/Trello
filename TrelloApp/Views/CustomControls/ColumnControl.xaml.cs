@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using TrelloApp.Helpers;
 using TrelloApp.Models;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
@@ -50,6 +51,7 @@ namespace TrelloApp.Views.CustomControls
 
                 DataContext.ToString();
                 var viewModel = new ColumnViewModel(
+                    FindResource("Navigation") as INavigator,
                     FindResource("ColumnRepository") as IColumnRepository,
                     FindResource("TaskRepository") as ITaskRepository);
                 viewModel.Column = DataContext as Column;

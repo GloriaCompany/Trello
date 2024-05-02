@@ -90,7 +90,6 @@ namespace TrelloApp.ViewModels
         public ICommand DelBoardCommand { get; set; }
         public ICommand AddColumnCommand { get; set; }
         public ICommand UpdateColumnCommand { get; set; }
-        public ICommand LoadTaskViewCommand { get; set; }
         public ICommand LoadDashboardViewCommand { get; set; }
 
         public BoardViewModel(INavigator navigator, IUserRepository userRepository, IBoardRepository boardRepository, IColumnRepository columnRepository)
@@ -119,7 +118,6 @@ namespace TrelloApp.ViewModels
             AddColumnCommand = new ViewModelCommand(ExecuteAddColumnCommand, CanExecuteAddColumnCommand);
             UpdateColumnCommand = new ViewModelCommand(ExecuteUpdateColumnCommand, CanExecuteUpdateColumnCommand);
 
-            LoadTaskViewCommand = new ViewModelCommand(ExecuteLoadTaskViewCommand, CanExecuteLoadTaskViewCommand);
             LoadDashboardViewCommand = new ViewModelCommand(ExecuteLoadDashboardViewCommand, CanExecuteLoadDashboardViewCommand);
 
             //Default view
@@ -156,11 +154,6 @@ namespace TrelloApp.ViewModels
                 Column != null;
         }
         private bool CanExecuteUpdateColumnCommand(object obj)
-        {
-            return
-                Column != null;
-        }
-        private bool CanExecuteLoadTaskViewCommand(object obj)
         {
             return
                 Column != null;
@@ -209,10 +202,6 @@ namespace TrelloApp.ViewModels
         private void ExecuteUpdateColumnCommand(object obj)
         {
             _columnRepository.UpdateColumn(Column);
-        }
-        private void ExecuteLoadTaskViewCommand(object obj)
-        {
-            _navigator.GoTo("TaskView.xaml");
         }
         private void ExecuteLoadDashboardViewCommand(object obj)
         {

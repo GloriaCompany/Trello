@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TrelloApp.Helpers;
 using TrelloApp.ViewModels;
 using TrelloApp.ViewModels.Repository;
 using TrelloApp.Views.Utils;
@@ -11,7 +12,7 @@ namespace TrelloApp.Views
         {
             InitializeComponent();
             TaskViewModel vm = new TaskViewModel(
-                            FindResource("ColumnRepository") as IColumnRepository,
+                            FindResource("Navigation") as INavigator,
                             FindResource("TaskRepository") as ITaskRepository,
                             FindResource("UserRepository") as IUserRepository
                         );

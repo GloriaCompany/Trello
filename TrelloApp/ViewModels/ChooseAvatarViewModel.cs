@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TrelloApp.Helpers;
@@ -18,7 +19,7 @@ namespace TrelloApp.ViewModels
 
         private User _user;
 
-        private string _selectedAvatar;
+        private BitmapImage _selectedAvatar;
         private ObservableCollection<BitmapImage> _avatarImages;
 
         //Properties
@@ -31,7 +32,7 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(User));
             }
         }
-        public string SelectedAvatar
+        public BitmapImage SelectedAvatar
         {
             get => _selectedAvatar;
             set
@@ -98,7 +99,7 @@ namespace TrelloApp.ViewModels
         }
         private void ExecuteSelectAvatarCommand(object obj)
         {
-            _userRepository.CurrentUser.Avatar = SelectedAvatar;
+            _userRepository.CurrentUser.Avatar = GetUriFromBitmapImage(SelectedAvatar);
 
             _userRepository.UpdateUser(_userRepository.CurrentUser, _userRepository.CurrentUser.UserID);
 
@@ -111,6 +112,25 @@ namespace TrelloApp.ViewModels
         private void LoadAvatarImages()
         {
             AvatarImages = _avatarRepository.GetAvatarImages();
+        }
+
+        private string GetUriFromBitmapImage(BitmapImage bitmapImage)
+        {
+            // File image
+            if (bitmapImage.UriSource != null)
+            {
+                return bitmapImage.UriSource.ToString();
+            }
+
+            // Thread image
+            var temporaryPath = Path.GetTempFileName();
+            using (var fileStream = new FileStream(temporaryPath, FileMode.Create))
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                encoder.Save(fileStream);
+            }
+            return temporaryPath;
         }
     }
 }
