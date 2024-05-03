@@ -33,23 +33,25 @@
                         />
                 <!--Text="{Binding TaskName, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"-->
                 <TextBlock 
-                        Text="{Binding TaskName, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"
-                           VerticalAlignment="Top" 
-                           HorizontalAlignment="Left" 
-                           Grid.Row="2"
-                           FontSize="10"
-                           Foreground="{DynamicResource ThemeTextColor}"
-                           Background="Transparent"
-                           Margin="12,15,0,0"
-                           />
-                <customControls:CircleImage Width="23" 
+                    Text="{Binding TaskName, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Left" 
+                    Grid.Row="2"
+                    FontSize="10"
+                    Foreground="{DynamicResource ThemeTextColor}"
+                    Background="Transparent"
+                    Margin="12,15,0,0"
+                    MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
+                />      
+                <customControls:CircleImage 
+                           Width="23" 
                            Height="23"
                            Grid.Row="0"
                            Grid.RowSpan="3"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Top"
                            Margin="-17.5,0,0,0"
-                           ImageSource="{Binding AssignedUserAvatar, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"
+                           ImageSource="{Binding DataContext.User.Avatar, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                            />
                 <customControls:ChangesButton
                     ImageSource="{DynamicResource ChangePlaceIconPath}"

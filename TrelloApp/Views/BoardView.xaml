@@ -355,7 +355,6 @@
         <customControls:CustomButton
             x:Name="BtnAddColumn"
             Text="{DynamicResource AddColumnBtnString}"
-            Foreground="{DynamicResource ThemeTextColor}"
             Margin="10"
             Height="35"
             Width="200"
@@ -368,7 +367,6 @@
         <customControls:CustomButton
             x:Name="BtnDelBoard"
             Text="{DynamicResource DeleteBoardButtonString}"
-            Foreground="{DynamicResource ThemeTextColor}"
             Margin="10"
             Height="35"
             Width="200"

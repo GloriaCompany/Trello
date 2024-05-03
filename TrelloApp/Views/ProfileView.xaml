@@ -109,8 +109,7 @@
                         VerticalAlignment="Center"
                         IsEnabled="False"
                         x:Name="UsernameInput"
-                        LostFocus="UsernameInput_LostFocus"
-                        Text="{Binding User.Username, Mode=TwoWay}"
+                        Text="{Binding User.Username, Mode=TwoWay, ValidatesOnDataErrors=True}"
                         Placeholder="{DynamicResource UsernameInputPlaceholderString}"
                         />
                     <customControls:ChangesButton
@@ -132,6 +131,7 @@
                         Visibility="Hidden"
                         IsEnabled="False"
                         x:Name="BtnUpdateUsername"
+                        Click="BtnUpdateUsername_Click"
                         Command="{Binding UpdateUserCommand}"
                         />
                     <customControls:ChangesButton
@@ -139,6 +139,7 @@
                         Visibility="Hidden"
                         IsEnabled="False"
                         x:Name="BtnCancelUpdateUsername"
+                        Click="BtnCancelUpdateUsername_Click"
                         Command="{Binding CancelUpdateUserCommand}"
                         />
                 </StackPanel>
@@ -154,8 +155,7 @@
                         VerticalAlignment="Center"
                         IsEnabled="False"
                         x:Name="EmailInput"
-                        LostFocus="EmailInput_LostFocus"
-                        Text="{Binding User.Email, Mode=TwoWay}"
+                        Text="{Binding User.Email, Mode=TwoWay, ValidatesOnDataErrors=True}"
                         Placeholder="{DynamicResource EmailInputPlaceholderString}"
                         />
                     <customControls:ChangesButton
@@ -175,12 +175,14 @@
                         Visibility="Hidden"
                         IsEnabled="False"
                         x:Name="BtnUpdateEmail"
+                        Click="BtnUpdateEmail_Click"
                         Command="{Binding UpdateUserCommand}"/>
                     <customControls:ChangesButton
                         ImageSource="/TrelloApp;component/Resources/discard.png"
                         Visibility="Hidden"
                         IsEnabled="False"
                         x:Name="BtnCancelUpdateEmail"
+                        Click="BtnCancelUpdateEmail_Click"
                         Command="{Binding CancelUpdateUserCommand}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
@@ -195,8 +197,7 @@
                         VerticalAlignment="Center"
                         IsEnabled="False"
                         x:Name="PasswordInput"
-                        LostFocus="PasswordInput_LostFocus"
-                        Text="{Binding User.Password, Mode=TwoWay}"
+                        Text="{Binding User.Password, Mode=TwoWay, ValidatesOnDataErrors=True}"
                         Placeholder="{DynamicResource PasswordInputPlaceholderString}"/>
                     <customControls:ChangesButton
                         Width="15"
@@ -216,6 +217,7 @@
                         Visibility="Hidden"
                         IsEnabled="False"
                         x:Name="BtnUpdatePassword"
+                        Click="BtnUpdatePassword_Click"
                         Command="{Binding UpdateUserCommand}"
                         />
                     <customControls:ChangesButton
@@ -223,6 +225,7 @@
                         Visibility="Hidden"
                         IsEnabled="False"
                         x:Name="BtnCancelUpdatePassword"
+                        Click="BtnCancelUpdatePassword_Click"
                         Command="{Binding CancelUpdateUserCommand}"
                         />
                 </StackPanel>

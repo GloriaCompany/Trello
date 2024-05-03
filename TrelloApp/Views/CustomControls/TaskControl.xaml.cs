@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace TrelloApp.Views.CustomControls
 {
@@ -50,6 +51,15 @@ namespace TrelloApp.Views.CustomControls
         private void ChangeColumnButton_Click(object sender, RoutedEventArgs e)
         {
             ChangeColumnClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var command = (DataContext as ViewModels.ColumnViewModel)?.LoadTaskViewCommand;
+            if (command != null && command.CanExecute(null))
+            {
+                command.Execute(null);
+            }
         }
     }
 }

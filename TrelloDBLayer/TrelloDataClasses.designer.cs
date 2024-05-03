@@ -800,6 +800,8 @@ namespace TrelloDBLayer
 		
 		private int _AssignedUserID;
 		
+		private string _Color;
+		
 		private EntitySet<Checklist> _Checklist;
 		
 		private EntityRef<User> _User;
@@ -820,6 +822,8 @@ namespace TrelloDBLayer
     partial void OnDescriptionChanged();
     partial void OnAssignedUserIDChanging(int value);
     partial void OnAssignedUserIDChanged();
+    partial void OnColorChanging(string value);
+    partial void OnColorChanged();
     #endregion
 		
 		public Task()
@@ -934,6 +938,26 @@ namespace TrelloDBLayer
 					this._AssignedUserID = value;
 					this.SendPropertyChanged("AssignedUserID");
 					this.OnAssignedUserIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Color", CanBeNull=false)]
+		public string Color
+		{
+			get
+			{
+				return this._Color;
+			}
+			set
+			{
+				if ((this._Color != value))
+				{
+					this.OnColorChanging(value);
+					this.SendPropertyChanging();
+					this._Color = value;
+					this.SendPropertyChanged("Color");
+					this.OnColorChanged();
 				}
 			}
 		}

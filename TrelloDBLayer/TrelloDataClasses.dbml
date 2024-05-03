@@ -47,6 +47,7 @@
       <Column Name="Title" Type="System.String" CanBeNull="false" />
       <Column Name="Description" Type="System.String" CanBeNull="false" />
       <Column Name="AssignedUserID" Type="System.Int32" CanBeNull="false" />
+      <Column Member="Color" Type="System.String" CanBeNull="false" />
       <Association Name="Task_Checklist" Member="Checklist" ThisKey="TaskID" OtherKey="TaskID" Type="Checklist" />
       <Association Name="User_Task" Member="User" ThisKey="AssignedUserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
       <Association Name="Column_Task" Member="Column" ThisKey="ColumnID" OtherKey="ColumnID" Type="Column" IsForeignKey="true" />

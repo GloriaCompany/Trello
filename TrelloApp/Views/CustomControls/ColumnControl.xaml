@@ -64,8 +64,8 @@
                           Grid.Row="2"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
-                            ItemsSource="{Binding Tasks}"
-                    x:Name="ContentStackPanel">
+                          ItemsSource="{Binding Tasks}"
+                          x:Name="ContentStackPanel">
                     <ListView.Template>
                         <ControlTemplate>
                             <ScrollViewer VerticalScrollBarVisibility="Hidden"

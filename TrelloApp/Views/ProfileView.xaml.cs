@@ -67,33 +67,45 @@ namespace TrelloApp.Views
             BtnChangePassword.IsEnabled = false;
         }
 
-        private void UsernameInput_LostFocus(object sender, RoutedEventArgs e)
-        {
-            BtnUpdateUsername.Visibility = Visibility.Hidden;
-            BtnCancelUpdateUsername.Visibility = Visibility.Hidden;
-            UsernameInput.IsEnabled = false;
-            BtnChangeUsername.IsEnabled = true;
-        }
-
-        private void EmailInput_LostFocus(object sender, RoutedEventArgs e)
-        {
-            BtnUpdateEmail.Visibility = Visibility.Hidden;
-            BtnCancelUpdateEmail.Visibility = Visibility.Hidden;
-            EmailInput.IsEnabled = false;
-            BtnChangeEmail.IsEnabled = true;
-        }
-
-        private void PasswordInput_LostFocus(object sender, RoutedEventArgs e)
-        {
-            BtnUpdatePassword.Visibility = Visibility.Hidden;
-            BtnCancelUpdatePassword.Visibility = Visibility.Hidden;
-            PasswordInput.IsEnabled = false;
-            BtnChangePassword.IsEnabled = true;
-        }
-
         private void BtnGoToDashboard_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new DashboardView());
+        }
+
+        private void BtnUpdateUsername_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateUsername.Visibility = Visibility.Hidden;
+            BtnCancelUpdateUsername.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnCancelUpdateUsername_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateUsername.Visibility = Visibility.Hidden;
+            BtnCancelUpdateUsername.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnUpdateEmail_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateEmail.Visibility = Visibility.Hidden;
+            BtnCancelUpdateEmail.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnCancelUpdateEmail_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateEmail.Visibility = Visibility.Hidden;
+            BtnCancelUpdateEmail.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnUpdatePassword_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdatePassword.Visibility = Visibility.Hidden;
+            BtnCancelUpdatePassword.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnCancelUpdatePassword_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdatePassword.Visibility = Visibility.Hidden;
+            BtnCancelUpdatePassword.Visibility = Visibility.Hidden;
         }
     }
 }

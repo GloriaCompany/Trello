@@ -80,7 +80,7 @@
                     Grid.Row="2"
                     Width="35"
                     Height="35"
-                    ImageSource="{DynamicResource AddIconPath}"
+                    ImageSource="{Binding Task.User.Avatar}"
                     HorizontalAlignment="Left"
                     Margin="15,0,0,0"
                     Click="ChangesButton_Click"
@@ -181,6 +181,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="0,0,15,0"
+                    SelectedColor="{Binding Task.Color}"
                     />
                 <Border
                     Grid.Row="3" 
@@ -200,9 +201,8 @@
                         >
                         <Paragraph
                             FontSize="14"
-                            TextAlignment="Justify"
-                            >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            TextAlignment="Justify">
+                            <Run Text="{Binding Task.Description}"/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
