@@ -63,8 +63,6 @@ namespace TrelloApp.ViewModels
 
         public ColumnViewModel(INavigator navigator, IColumnRepository columnRepository, ITaskRepository taskRepository)
         {
-            Column = _columnRepository.CurrentColumn;
-
             _columnRepository = columnRepository;
             _taskRepository = taskRepository;
             _navigator = navigator;

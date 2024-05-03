@@ -99,6 +99,7 @@ namespace TrelloApp.ViewModels
             _columnRepository = columnRepository;
             _navigator = navigator;
 
+            Column = new Column();
             User = _userRepository.CurrentUser;
             Board = _boardRepository.CurrentBoard;
             OriginalTitle = Board.Title;
@@ -146,12 +147,12 @@ namespace TrelloApp.ViewModels
         private bool CanExecuteDelBoardCommand(object obj)
         {
             return
-                Column != null;
+                Board != null;
         }
         private bool CanExecuteAddColumnCommand(object obj)
         {
-            return
-                Column != null;
+            return true;
+                //Column.Title != null;
         }
         private bool CanExecuteUpdateColumnCommand(object obj)
         {
@@ -197,6 +198,10 @@ namespace TrelloApp.ViewModels
         }
         private void ExecuteAddColumnCommand(object obj)
         {
+            Column.BoardID = _boardRepository.CurrentBoard.BoardID;
+            Column.OrderIndex = 1;
+            Column.Title = "Test title";
+            Column.Color = "Red";
             _columnRepository.AddColumn(Column);
         }
         private void ExecuteUpdateColumnCommand(object obj)

@@ -66,9 +66,9 @@ namespace TrelloApp
             BtnChangeBoardTitle.IsEnabled = true;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BtnAddColumn_Click(object sender, RoutedEventArgs e)
         {
-
+            /*addColumnPopup.IsOpen = true;*/
         }
     }
 }

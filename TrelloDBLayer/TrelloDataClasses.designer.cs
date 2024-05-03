@@ -524,7 +524,7 @@ namespace TrelloDBLayer
 		
 		private string _Title;
 		
-		private string _OrderIndex;
+		private int _OrderIndex;
 		
 		private string _Color;
 		
@@ -542,7 +542,7 @@ namespace TrelloDBLayer
     partial void OnBoardIDChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
-    partial void OnOrderIndexChanging(string value);
+    partial void OnOrderIndexChanging(int value);
     partial void OnOrderIndexChanged();
     partial void OnColorChanging(string value);
     partial void OnColorChanged();
@@ -619,8 +619,8 @@ namespace TrelloDBLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderIndex", CanBeNull=false)]
-		public string OrderIndex
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderIndex")]
+		public int OrderIndex
 		{
 			get
 			{

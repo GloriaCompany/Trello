@@ -26,7 +26,7 @@
       <Column Name="ColumnID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="BoardID" Type="System.Int32" CanBeNull="false" />
       <Column Name="Title" Type="System.String" CanBeNull="false" />
-      <Column Name="OrderIndex" Type="System.String" CanBeNull="false" />
+      <Column Name="OrderIndex" Type="System.Int32" CanBeNull="false" />
       <Column Name="Color" Type="System.String" CanBeNull="false" />
       <Association Name="Column_Task" Member="Task" ThisKey="ColumnID" OtherKey="ColumnID" Type="Task" />
       <Association Name="Board_Column" Member="Board" ThisKey="BoardID" OtherKey="BoardID" Type="Board" IsForeignKey="true" />

@@ -362,6 +362,7 @@
             Grid.Row="3"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
+            Click="BtnAddColumn_Click"
             Command="{Binding AddColumnCommand}"
             />
         <customControls:CustomButton
