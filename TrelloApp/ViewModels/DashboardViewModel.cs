@@ -148,9 +148,13 @@ namespace TrelloApp.ViewModels
         }
         private void ExecuteAddBoardCommand(object obj)
         {
-            Board.AdminID = User.UserID;
-            Board.User = User;
-            _boardRepository.AddBoard(Board);
+            var _board = new Board()
+            {
+                AdminID = User.UserID,
+                User = User,
+                Title = Board.Title
+            };
+            _boardRepository.AddBoard(_board);
 
             ExecuteLoadBoardsCommand(null);
         }

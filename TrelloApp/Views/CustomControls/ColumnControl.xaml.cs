@@ -52,6 +52,7 @@ namespace TrelloApp.Views.CustomControls
                 DataContext.ToString();
                 var viewModel = new ColumnViewModel(
                     FindResource("Navigation") as INavigator,
+                    FindResource("UserRepository") as IUserRepository,
                     FindResource("ColumnRepository") as IColumnRepository,
                     FindResource("TaskRepository") as ITaskRepository);
                 viewModel.Column = DataContext as Column;
@@ -327,9 +328,9 @@ namespace TrelloApp.Views.CustomControls
             return false;
         }
 
-        private void TaskControl_ChangeColumnClicked_1(object sender, EventArgs e)
+        private void TaskControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            /*Navigator TaskView*/
         }
     }
 }

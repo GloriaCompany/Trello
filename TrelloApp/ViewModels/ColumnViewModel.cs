@@ -5,7 +5,6 @@ using System.Windows.Input;
 using TrelloApp.Helpers;
 using TrelloApp.ViewModels.Base;
 using TrelloApp.ViewModels.Repository;
-using TrelloApp.Views;
 using TrelloDBLayer;
 
 namespace TrelloApp.ViewModels
@@ -15,9 +14,11 @@ namespace TrelloApp.ViewModels
         //Fields
         private Column _column;
         private Task _task;
+        private User _user;
 
         private IColumnRepository _columnRepository;
         private ITaskRepository _taskRepository;
+        private IUserRepository _userRepository;
         private INavigator _navigator;
 
         private ObservableCollection<Task> _tasks;
@@ -41,6 +42,15 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(Task));
             }
         }
+        public User User
+        {
+            get => _user;
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(User));
+            }
+        }
         public ObservableCollection<Task> Tasks
         {
             get => _tasks;
@@ -53,6 +63,7 @@ namespace TrelloApp.ViewModels
 
         //Commands
         public ICommand UpdateColumnCommand { get; set; }
+        public ICommand DelColumnCommand { get; set; }
         public ICommand LoadTasksCommand { get; set; }
         public ICommand SelectTaskCommand { get; set; }
         public ICommand AddTaskCommand { get; set; }
@@ -61,17 +72,22 @@ namespace TrelloApp.ViewModels
 
         public ICommand LoadTaskViewCommand { get; set; }
 
-        public ColumnViewModel(INavigator navigator, IColumnRepository columnRepository, ITaskRepository taskRepository)
+        public ColumnViewModel(INavigator navigator, IUserRepository userRepository, IColumnRepository columnRepository, ITaskRepository taskRepository)
         {
             _columnRepository = columnRepository;
             _taskRepository = taskRepository;
+            _userRepository = userRepository;
             _navigator = navigator;
+
+            Task = new Task();
+            User = _userRepository.CurrentUser;
 
             //Initialize collections
             Tasks = new ObservableCollection<Task>();
 
             //Initialize commands
             UpdateColumnCommand = new ViewModelCommand(ExecuteUpdateColumnCommand, CanExecuteUpdateColumnCommand);
+            DelColumnCommand = new ViewModelCommand(ExecuteDelColumnCommand, CanExecuteDelColumnCommand);
             LoadTasksCommand = new ViewModelCommand(ExecuteLoadTasksCommand, CanExecuteLoadTasksCommand);
             SelectTaskCommand = new ViewModelCommand(ExecuteSelectTaskCommand, CanExecuteSelectTaskCommand);
             AddTaskCommand = new ViewModelCommand(ExecuteAddTaskCommand, CanExecuteAddTaskCommand);
@@ -94,6 +110,11 @@ namespace TrelloApp.ViewModels
         {
             return
                 Column != null;
+        }
+        private bool CanExecuteDelColumnCommand(object obj)
+        {
+            return true; 
+                //Column != null;
         }
         private bool CanExecuteSelectTaskCommand(object obj)
         {
@@ -126,6 +147,10 @@ namespace TrelloApp.ViewModels
         {
             _columnRepository.UpdateColumn(Column);
         }
+        private void ExecuteDelColumnCommand(object obj)
+        {
+            _columnRepository.DelColumn(_columnRepository.CurrentColumn.ColumnID);
+        }
         private void ExecuteLoadTasksCommand(object obj)
         {
             Tasks.Clear();
@@ -149,7 +174,17 @@ namespace TrelloApp.ViewModels
         }
         private void ExecuteAddTaskCommand(object obj)
         {
-            _taskRepository.AddTask(Task);
+            var _task = new Task
+            {
+                Color = "Red",
+                Title = "Title",
+                Column = _columnRepository.CurrentColumn,
+                Checklist = null,
+                ColumnID = _columnRepository.CurrentColumn.ColumnID,
+                User = User,
+                Description = "Description",
+            };
+            _taskRepository.AddTask(_task);
         }
         private void ExecuteUpdateTaskCommand(object obj)
         {

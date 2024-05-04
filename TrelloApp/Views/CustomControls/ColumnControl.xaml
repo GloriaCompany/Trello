@@ -41,7 +41,8 @@
                                                   Height="17.5"
                                                   Margin="5,0,0,0"
                                                   Grid.Column="1"
-                                                  HorizontalAlignment="Center"/>
+                                                  HorizontalAlignment="Center"
+                                                  Command="{Binding UpdateColumnCommand}"/>
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right">
@@ -80,7 +81,7 @@
                                 TaskName="{Binding Title}"
                                 DataContext="{Binding}"
                                 ChangeColumnClicked="TaskControl_ChangeColumnClicked"
-                                ChangePlaceClicked="TaskControl_ChangePlaceClicked"/>
+                                ChangePlaceClicked="TaskControl_ChangePlaceClicked" MouseDown="TaskControl_MouseDown"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <!--<customControls:TaskControl
@@ -114,7 +115,7 @@
                         Width="17.5"
                         Height="17.5"
                         Margin="0,0,10,0"
-                        Command="{Binding Del}"
+                        Command="{Binding DelColumnCommand}"
                         ImageSource="{DynamicResource DeleteColumnIconPath}"
                         />
                     <customControls:ChangesButton
@@ -122,6 +123,7 @@
                         Width="17.5"
                         Height="17.5"
                         Margin="10,0,0,0"
+                        Command="{Binding AddTaskCommand}"
                         ImageSource="{DynamicResource AddTaskIconPath}"/>
                 </StackPanel>
                 <customControls:ChangesButton ImageSource="{DynamicResource MoveColumnLeftIconPath}"

@@ -52,7 +52,6 @@ namespace TrelloApp.ViewModels.Repository
 
         public void DelBoard(int boardID)
         {
-            //Сделать isExist тут или в DataContext
             if (boardID < 0)
             {
                 throw new ArgumentNullException(nameof(boardID));
