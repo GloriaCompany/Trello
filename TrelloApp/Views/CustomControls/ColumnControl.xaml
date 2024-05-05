@@ -78,29 +78,12 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <customControls:TaskControl
-                                TaskName="{Binding Title}"
-                                DataContext="{Binding}"
+                                TaskName="{Binding Task.Title}"
                                 ChangeColumnClicked="TaskControl_ChangeColumnClicked"
-                                ChangePlaceClicked="TaskControl_ChangePlaceClicked" MouseDown="TaskControl_MouseDown"/>
+                                ChangePlaceClicked="TaskControl_ChangePlaceClicked"
+                                MouseDown="TaskControl_MouseDown"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <!--<customControls:TaskControl
-                            TaskName="Task 1"
-                            AssignedUserAvatar="/TrelloApp;component/Resources/userAvatar.png"
-                            />
-                        <customControls:TaskControl
-                            TaskName="Task 2"
-                            AssignedUserAvatar="/TrelloApp;component/Resources/userAvatar.png"
-                            />
-                        <customControls:TaskControl
-                            TaskName="Task 3"
-                            AssignedUserAvatar="/TrelloApp;component/Resources/userAvatar.png"
-                            />
-                        <customControls:TaskControl
-                            TaskName="Task 4"
-                            AssignedUserAvatar="/TrelloApp;component/Resources/userAvatar.png"
-                            />-->
-
                 </ListView>
                 <Border Grid.Row="1" Background="{DynamicResource ThemeBorderColor}"/>
                 <Border Grid.Row="3" Background="{DynamicResource ThemeBorderColor}"/>

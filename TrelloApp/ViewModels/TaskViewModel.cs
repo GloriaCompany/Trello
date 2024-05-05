@@ -46,10 +46,10 @@ namespace TrelloApp.ViewModels
 
         public TaskViewModel(INavigator navigator, ITaskRepository taskRepository, IUserRepository userRepository)
         {
-            Task = _taskRepository.CurrentTask;
-
             _taskRepository = taskRepository;
             _userRepository = userRepository;
+
+            Task = _taskRepository.CurrentTask;
 
             //Initialize collecntions
             Checklists = new ObservableCollection<Checklist>();
@@ -60,7 +60,7 @@ namespace TrelloApp.ViewModels
             LoadChecklistsCommand = new ViewModelCommand(ExecuteLoadChecklistsCommand, CanExecuteLoadChecklistsCommand);
 
             //Default view
-            ExecuteLoadChecklistsCommand(null);
+            //ExecuteLoadChecklistsCommand(null);
         }
 
         //Checks

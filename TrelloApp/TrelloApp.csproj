@@ -383,16 +383,16 @@
     <Resource Include="Resources\window-minimize.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delete-night.png" />
+    <Resource Include="Resources\delete-night.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\create-task-day.png" />
+    <Resource Include="Resources\create-task-day.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\create-task-night.png" />
+    <Resource Include="Resources\create-task-night.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delete-day.png" />
+    <Resource Include="Resources\delete-day.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

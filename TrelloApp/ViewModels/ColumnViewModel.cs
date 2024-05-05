@@ -178,13 +178,14 @@ namespace TrelloApp.ViewModels
             {
                 Color = "Red",
                 Title = "Title",
-                Column = _columnRepository.CurrentColumn,
+                Column = Column,
                 Checklist = null,
-                ColumnID = _columnRepository.CurrentColumn.ColumnID,
+                ColumnID = Column.ColumnID,
                 User = User,
                 Description = "Description",
             };
             _taskRepository.AddTask(_task);
+            ExecuteLoadTasksCommand(null);
         }
         private void ExecuteUpdateTaskCommand(object obj)
         {

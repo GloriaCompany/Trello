@@ -3,6 +3,10 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using TrelloApp.Helpers;
+using TrelloApp.ViewModels.Repository;
+using TrelloApp.ViewModels;
+using TrelloDBLayer;
 
 namespace TrelloApp.Views.CustomControls
 {
@@ -19,6 +23,22 @@ namespace TrelloApp.Views.CustomControls
 
         public static readonly DependencyProperty BorderBackgroundProperty =
             DependencyProperty.Register("BorderBackground", typeof(Brush), typeof(TaskControl), new PropertyMetadata(Brushes.Transparent));
+
+        public TaskControl()
+        {
+            InitializeComponent();
+            Loaded += (sender, e) =>
+            {
+                DataContext.ToString();
+                var viewModel = new ColumnViewModel(
+                    FindResource("Navigation") as INavigator,
+                    FindResource("UserRepository") as IUserRepository,
+                    FindResource("ColumnRepository") as IColumnRepository,
+                    FindResource("TaskRepository") as ITaskRepository);
+                viewModel.Task = DataContext as Task;
+                DataContext = viewModel;
+            };
+        }
 
         public string AssignedUserAvatar
         {
@@ -38,11 +58,6 @@ namespace TrelloApp.Views.CustomControls
             set { SetValue(BorderBackgroundProperty, value); }
         }
 
-        public TaskControl()
-        {
-            InitializeComponent();
-        }
-
         private void ChangePlaceButton_Click(object sender, RoutedEventArgs e)
         {
             ChangePlaceClicked?.Invoke(this, EventArgs.Empty);
@@ -55,10 +70,14 @@ namespace TrelloApp.Views.CustomControls
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var command = (DataContext as ViewModels.ColumnViewModel)?.LoadTaskViewCommand;
-            if (command != null && command.CanExecute(null))
+            var viewModel = DataContext as ColumnViewModel;
+            if (viewModel != null)
             {
-                command.Execute(null);
+                var command = viewModel.LoadTaskViewCommand;
+                if (command != null && command.CanExecute(null))
+                {
+                    command.Execute(null);
+                }
             }
         }
     }
