@@ -136,10 +136,10 @@ namespace TrelloApp.ViewModels
             boardList.Insert(0, new Board { Title = "Placeholder" });
 
             /*For testing*/
-            for (int i = 1; i < 20; i++)
+            /*for (int i = 1; i < 20; i++)
             {
                 boardList.Add(new Board { Title = "Title" + i.ToString() });
-            }
+            }*/
 
             foreach (var board in boardList)
             {

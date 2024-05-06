@@ -80,7 +80,7 @@
                     Grid.Row="2"
                     Width="35"
                     Height="35"
-                    ImageSource="{Binding Task.User.Avatar}"
+                    ImageSource="{Binding User.Avatar}"
                     HorizontalAlignment="Left"
                     Margin="15,0,0,0"
                     Click="ChangesButton_Click"
@@ -181,7 +181,7 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="0,0,15,0"
-                    SelectedColor="{Binding Task.Color}"
+                    SelectedColor="{Binding Task.Color, Mode=TwoWay}"
                     />
                 <Border
                     Grid.Row="3" 
@@ -295,7 +295,8 @@
                         Height="35"
                         Margin="5"
                         Foreground="{DynamicResource ThemeTextColor}"
-                        Text="{DynamicResource SaveChangesBtnString}" Click="BtnUpdateTask_Click"
+                        Text="{DynamicResource SaveChangesBtnString}"
+                        Command="{Binding UpdateTaskCommand}"
                         />
                 </StackPanel>
             </Grid>

@@ -49,13 +49,12 @@ namespace TrelloApp.Views.CustomControls
             {
                 SubscribeToTaskControlEvents();
 
-                DataContext.ToString();
                 var viewModel = new ColumnViewModel(
                     FindResource("Navigation") as INavigator,
+                    (DataContext is ColumnViewModel) ? (DataContext as ColumnViewModel).Column : DataContext as Column,
                     FindResource("UserRepository") as IUserRepository,
                     FindResource("ColumnRepository") as IColumnRepository,
                     FindResource("TaskRepository") as ITaskRepository);
-                viewModel.Column = DataContext as Column;
                 DataContext = viewModel;
             };
         }

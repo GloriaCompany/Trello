@@ -71,8 +71,9 @@ namespace TrelloApp.ViewModels
         public ICommand DelTaskCommand { get; set; }
 
         public ICommand LoadTaskViewCommand { get; set; }
+        public ICommand LoadBoardViewCommand { get; set; }
 
-        public ColumnViewModel(INavigator navigator, IUserRepository userRepository, IColumnRepository columnRepository, ITaskRepository taskRepository)
+        public ColumnViewModel(INavigator navigator, Column currentColumn, IUserRepository userRepository, IColumnRepository columnRepository, ITaskRepository taskRepository)
         {
             _columnRepository = columnRepository;
             _taskRepository = taskRepository;
@@ -80,6 +81,7 @@ namespace TrelloApp.ViewModels
             _navigator = navigator;
 
             Task = new Task();
+            Column = currentColumn;
             User = _userRepository.CurrentUser;
 
             //Initialize collections
@@ -95,6 +97,7 @@ namespace TrelloApp.ViewModels
             DelTaskCommand = new ViewModelCommand(ExecuteDelTaskCommand, CanExecuteDelTaskCommand);
 
             LoadTaskViewCommand = new ViewModelCommand(ExecuteLoadTaskViewCommand, CanExecuteLoadTaskViewCommand);
+            LoadBoardViewCommand = new ViewModelCommand(ExecuteLoadBoardViewCommand, CanExecuteLoadBoardViewCommand);
 
             //Default view
             ExecuteLoadTasksCommand(null);
@@ -113,8 +116,8 @@ namespace TrelloApp.ViewModels
         }
         private bool CanExecuteDelColumnCommand(object obj)
         {
-            return true; 
-                //Column != null;
+            return true;
+            //Column != null;
         }
         private bool CanExecuteSelectTaskCommand(object obj)
         {
@@ -141,6 +144,10 @@ namespace TrelloApp.ViewModels
             return
                 Task != null;
         }
+        private bool CanExecuteLoadBoardViewCommand(object obj)
+        {
+            return true;
+        }
 
         //Executes
         private void ExecuteUpdateColumnCommand(object obj)
@@ -149,24 +156,29 @@ namespace TrelloApp.ViewModels
         }
         private void ExecuteDelColumnCommand(object obj)
         {
-            _columnRepository.DelColumn(_columnRepository.CurrentColumn.ColumnID);
+            _columnRepository.DelColumn(Column.ColumnID);
+            ExecuteLoadBoardViewCommand(null);
         }
         private void ExecuteLoadTasksCommand(object obj)
         {
             Tasks.Clear();
-            //var taskList = _taskRepository.GetTasksByColumnID(Column.ColumnID);
-            var taskList = new List<Task>();
+            var taskList = _taskRepository.GetTasksByColumnID(Column.ColumnID);
+            //var taskList = new List<Task>();
 
             /*For testing*/
-            for (int i = 1; i < 4; i++)
-            {
-                taskList.Add(new Task { Title = "Title" + i.ToString() });
-            }
+            //for (int i = 1; i < 4; i++)
+            //{
+            //    taskList.Add(new Task { Title = "Title" + i.ToString() });
+            //}
 
             foreach (var task in taskList)
             {
                 Tasks.Add(task);
             }
+        }
+        private void ExecuteLoadBoardViewCommand(object obj)
+        {
+            _navigator.GoTo("BoardView.xaml");
         }
         private void ExecuteSelectTaskCommand(object obj)
         {

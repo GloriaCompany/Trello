@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="85" d:DesignWidth="175"
              Width="175" Height="80">
-    <Border Background="Transparent"
+    <Border Background="{Binding Task.Color}"
             BorderBrush="{DynamicResource ThemeBorderColor}"
             BorderThickness="1"
             CornerRadius="14"
@@ -23,7 +23,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" 
-                        Background="{Binding BorderBackground, RelativeSource={RelativeSource AncestorType={x:Type customControls:TaskControl}}}"
+                        Background="{Binding Task.Color}"
                         CornerRadius="13.5,13.5,0,0"
                         HorizontalAlignment="Stretch"
                         />
@@ -42,7 +42,7 @@
                     Background="Transparent"
                     Margin="12,15,0,0"
                     MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"
-                />      
+                />
                 <customControls:CircleImage 
                            Width="23" 
                            Height="23"

@@ -174,12 +174,8 @@ namespace TrelloApp.ViewModels
         {
             Columns.Clear();
             var columnList = _columnRepository.GetColumnsByBoardID(Board.BoardID);
-            Columns.Add(new Column() { BoardID = _boardRepository.CurrentBoard.BoardID, Title = "Test" });
-            Columns.Add(new Column() { BoardID = _boardRepository.CurrentBoard.BoardID, Title = "Test 2" });
-            Columns.Add(new Column() { BoardID = _boardRepository.CurrentBoard.BoardID, Title = "Test 3" });
             foreach (var column in columnList)
             {
-
                 Columns.Add(column);
             }
         }

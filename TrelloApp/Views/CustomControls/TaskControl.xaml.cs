@@ -29,12 +29,10 @@ namespace TrelloApp.Views.CustomControls
             InitializeComponent();
             Loaded += (sender, e) =>
             {
-                DataContext.ToString();
-                var viewModel = new ColumnViewModel(
+                var viewModel = new TaskViewModel(
                     FindResource("Navigation") as INavigator,
-                    FindResource("UserRepository") as IUserRepository,
-                    FindResource("ColumnRepository") as IColumnRepository,
-                    FindResource("TaskRepository") as ITaskRepository);
+                    FindResource("TaskRepository") as ITaskRepository,
+                    FindResource("UserRepository") as IUserRepository);
                 viewModel.Task = DataContext as Task;
                 DataContext = viewModel;
             };
@@ -70,7 +68,7 @@ namespace TrelloApp.Views.CustomControls
 
         private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var viewModel = DataContext as ColumnViewModel;
+            var viewModel = DataContext as TaskViewModel;
             if (viewModel != null)
             {
                 var command = viewModel.LoadTaskViewCommand;

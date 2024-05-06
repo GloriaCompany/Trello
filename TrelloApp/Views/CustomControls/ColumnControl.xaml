@@ -29,8 +29,8 @@
                         <ColumnDefinition Width="45"/>
                     </Grid.ColumnDefinitions>
                     <!--Text="{Binding ColumnName, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"-->
-                    <TextBlock
-                        Text="{Binding ColumnName, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"
+                    <!--, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}-->
+                    <TextBlock Text="{Binding Column.Title}"
                                FontSize="14"
                                Foreground="{DynamicResource ThemeTextColor}"
                                Background="Transparent"
@@ -61,12 +61,12 @@
                     </StackPanel>
                 </Grid>
                 <!--ItemsSource="{Binding Tasks, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"-->
-                <ListView 
-                          Grid.Row="2"
+                <ListView Grid.Row="2"
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch"
                           ItemsSource="{Binding Tasks}"
-                          x:Name="ContentStackPanel">
+                          x:Name="ContentStackPanel"
+                          SelectedItem="{Binding Task}">
                     <ListView.Template>
                         <ControlTemplate>
                             <ScrollViewer VerticalScrollBarVisibility="Hidden"
