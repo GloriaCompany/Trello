@@ -5,6 +5,7 @@
     <system:String x:Key="AddBoardButtonString">ДОДАТИ</system:String>
     <system:String x:Key="DashboardNameString">Швидка панель</system:String>
     <system:String x:Key="AddBoardInputString">Назва дошки</system:String>
+    <system:String x:Key="EditColumnNameInputString">Назва колонки</system:String>
     <system:String x:Key="DarkThemeNameString">Темна</system:String>
     <system:String x:Key="LightThemeNameString">Світла</system:String>
     <system:String x:Key="AddColumnBtnString">ДОДАТИ КОЛОНКУ</system:String>

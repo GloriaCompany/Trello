@@ -331,5 +331,25 @@ namespace TrelloApp.Views.CustomControls
         {
             /*Navigator TaskView*/
         }
+
+        private void ChangesButton_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateColumnName.Visibility = Visibility.Visible;
+            BtnCancelUpdateColumnName.Visibility = Visibility.Visible;
+            BtnUpdateColumnName.IsEnabled = true;
+            BtnCancelUpdateColumnName.IsEnabled = true;
+        }
+
+        private void BtnUpdateColumnName_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateColumnName.Visibility = Visibility.Hidden;
+            BtnCancelUpdateColumnName.Visibility = Visibility.Hidden;
+        }
+
+        private void BtnCancelUpdateColumnName_Click(object sender, RoutedEventArgs e)
+        {
+            BtnUpdateColumnName.Visibility = Visibility.Hidden;
+            BtnCancelUpdateColumnName.Visibility = Visibility.Hidden;
+        }
     }
 }

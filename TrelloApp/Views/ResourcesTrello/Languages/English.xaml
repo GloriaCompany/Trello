@@ -5,6 +5,7 @@
     <system:String x:Key="AddBoardButtonString">ADD BOARD</system:String>
     <system:String x:Key="DashboardNameString">Dashboard</system:String>
     <system:String x:Key="AddBoardInputString">Board Name</system:String>
+    <system:String x:Key="EditColumnNameInputString">Column Name</system:String>
     <system:String x:Key="DarkThemeNameString">Dark</system:String>
     <system:String x:Key="LightThemeNameString">Light</system:String>
     <system:String x:Key="AddColumnBtnString">ADD COLUMN</system:String>

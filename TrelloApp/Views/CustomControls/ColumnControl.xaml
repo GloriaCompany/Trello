@@ -32,11 +32,12 @@
                     <!--, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}-->
                     <customControls:CustomInput 
                                Text="{Binding Column.Title}"
-                               FontSize="14"
+                               FontSize="10"
                                Height="30"
                                Width="90"
                                Foreground="{DynamicResource ThemeTextColor}"
-                               Background="Transparent"
+                               Background="{DynamicResource ThemeMainColor}"
+                               Placeholder="{DynamicResource EditColumnNameInputString}"       
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"/>
                     <customControls:ChangesButton ImageSource="{DynamicResource EditIconPath}"
@@ -45,6 +46,7 @@
                                                   Margin="5,0,0,0"
                                                   Grid.Column="1"
                                                   HorizontalAlignment="Center"
+                                                  Click="ChangesButton_Click"
                                                   Command="{Binding UpdateColumnCommand}"/>
                     <StackPanel Grid.Column="1"
                                 Orientation="Horizontal"
@@ -54,13 +56,19 @@
                                                       Height="17.5"
                                                       Margin="5,0,0,0"
                                                       Grid.Column="1"
-                                                      Visibility="Hidden"/>
+                                                      Visibility="Hidden"
+                                                      IsEnabled="False"
+                                                      x:Name="BtnUpdateColumnName"
+                                                      Click="BtnUpdateColumnName_Click"/>
                         <customControls:ChangesButton ImageSource="/TrelloApp;component/Resources/discard.png"
                                                       Width="17.5"
                                                       Height="17.5"
                                                       Margin="5,0,0,0"
                                                       Grid.Column="1"
-                                                      Visibility="Hidden"/>
+                                                      Visibility="Hidden"
+                                                      IsEnabled="False"
+                                                      x:Name="BtnCancelUpdateColumnName"
+                                                      Click="BtnCancelUpdateColumnName_Click"/>
                     </StackPanel>
                 </Grid>
                 <!--ItemsSource="{Binding Tasks, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"-->
