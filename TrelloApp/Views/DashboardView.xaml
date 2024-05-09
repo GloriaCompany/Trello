@@ -1,0 +1,368 @@
+﻿<Page x:Class="TrelloApp.Views.DashboardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+        xmlns:viewModel="clr-namespace:TrelloApp.ViewModels"
+        xmlns:helpers="clr-namespace:TrelloApp.Helpers"
+        d:DataContext="{d:DesignInstance Type=viewModel:DashboardViewModel}"
+        mc:Ignorable="d"
+        Title="Dashboard"
+        Background="{DynamicResource ThemeMainColor}"
+        d:Width="1000" d:Height="500">
+    <Page.Resources>
+        <Style TargetType="Border" x:Key="HoverBorderStyle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ThemeBorderColor}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="25"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource ThemeHoverColor}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource ThemeHoverTextColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="HoverTextBlockStyle">
+            <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                    <Setter Property="Foreground" Value="{DynamicResource ThemeHoverTextColor}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate x:Key="BoardPlaceholder">
+            <Border
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
+                x:Name="AddBoardBorder"
+                >
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    Width="50"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    >
+                    <customControls:ChangesButton
+                        ImageSource="{DynamicResource AddIconPath}"
+                        x:Name="AddBoardBtn"
+                        Click="AddBoardBtn_Click"
+                        />
+                </Border>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="RealBoard">
+            <Border
+                Style="{StaticResource HoverBorderStyle}"
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Margin="10"
+                MouseDown="Border_MouseDown"
+                >
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="{Binding Title}"
+                    FontSize="14"
+                    Style="{StaticResource HoverTextBlockStyle}"
+                    />
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Left"
+            Grid.Row="0">
+            <Image 
+                Source="{DynamicResource LogoPath}"
+                Width="75"
+                Height="20"
+                Grid.Row="0"
+                VerticalAlignment="Center"
+                Margin="10,0,10,0"
+                />
+            <TextBlock
+                Text="{DynamicResource DashboardNameString}"
+                Grid.Row="0"
+                FontSize="14"
+                Foreground="{DynamicResource ThemeTextColor}"
+                VerticalAlignment="Center"
+                />
+        </StackPanel>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            >
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="ThemesComboBox"
+                SelectionChanged="ThemesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="LanguagesComboBox"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <Border 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1" 
+                Grid.Column="1"
+                CornerRadius="18"
+                Width="215"
+                Height="35"
+                HorizontalAlignment="Right"
+                >
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource ThemeHoverColor}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock 
+                        Text="{Binding User.Username}"
+                        FontSize="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left" 
+                        Grid.Column="1"
+                        Margin="10,0,0,0"
+                        >
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=Border}}" Value="True">
+                                        <Setter Property="Foreground" Value="{DynamicResource ThemeHoverTextColor}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <customControls:CircleImage
+                        Width="35"
+                        Height="33"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        Margin="-17.5,0,0,0"
+                        ImageSource="{Binding User.Avatar}"
+                        IsPopupEnabled="False"
+                        MouseDown="CircleImage_MouseDown"
+                        />
+                </Grid>
+            </Border>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding Boards}">
+                <ItemsControl.ItemTemplateSelector>
+                    <helpers:BoardDataTemplateSelector/>
+                </ItemsControl.ItemTemplateSelector>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel  
+                            Orientation="Horizontal"
+                            ItemWidth="200"
+                            ItemHeight="200">
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
+        <!--<ScrollViewer VerticalScrollBarVisibility="Hidden" 
+                      HorizontalScrollBarVisibility="Hidden"
+                      Grid.Row="1">
+            <WrapPanel
+                Grid.Row="1"
+                Orientation="Horizontal"
+                ItemWidth="200"
+                ItemHeight="200"
+                >
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    x:Name="AddBoardBorder"
+                    >
+                    <Border
+                        Style="{StaticResource HoverBorderStyle}"
+                        BorderBrush="{DynamicResource ThemeBorderColor}" 
+                        BorderThickness="1" 
+                        Width="50"
+                        Height="50"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        >
+                        <customControls:ChangesButton
+                            ImageSource="{DynamicResource AddIconPath}"
+                            x:Name="AddBoardBtn"
+                            Click="AddBoardBtn_Click"
+                            />
+                    </Border>
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+                <Border
+                    Style="{StaticResource HoverBorderStyle}"
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="25"
+                    Margin="10"
+                    >
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Text="Board Name"
+                        FontSize="14"
+                        Style="{StaticResource HoverTextBlockStyle}"
+                        />
+                </Border>
+            </WrapPanel>
+        </ScrollViewer>-->
+        <Popup
+            x:Name="addBoardPopup" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            IsOpen="False"
+            Grid.Row="5"
+            Margin="0,0,0,0"
+            Placement="Bottom"
+            StaysOpen="True"
+            PreviewMouseLeftButtonDown="addBoardPopup_PreviewMouseLeftButtonDown"
+            PlacementTarget="{Binding ElementName=AddBoardBorder}">
+            <Border
+                Background="{DynamicResource ThemeMainColor}" 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1"
+                Width="375" 
+                Height="60">
+                <StackPanel
+                    Margin="10"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <customControls:CustomInput 
+                                Placeholder="{DynamicResource BoardNameInputPlaceholderString}" 
+                                x:Name="BoardNameInput"
+                                FontSize="14"
+                                Width="230"
+                                Height="35"
+                                Text="{Binding Board.Title}"
+                                />
+                    <customControls:CustomButton
+                                Content="{DynamicResource AddBoardButtonString}"
+                                Width="100"
+                                Margin="15,0,0,0"
+                                Height="35"
+                                Click="AddConfirmedBoardButton_Click"
+                                Command="{Binding AddBoardCommand}"
+                                />
+                </StackPanel>
+            </Border>
+        </Popup>
+    </Grid>
+</Page>

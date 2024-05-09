@@ -6,21 +6,31 @@
         mc:Ignorable="d" 
         d:DesignHeight="50" d:DesignWidth="400"
         Content="{Binding Text, RelativeSource={RelativeSource Self}}"
-        Background="#1d2125"
+        Background="{DynamicResource ThemeMainColor}"
         Padding="10"
         FontSize="14">
     <Button.Template>
         <ControlTemplate TargetType="Button">
-            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="White" BorderThickness="1" CornerRadius="25">
-                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Border x:Name="border" 
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{DynamicResource ThemeBorderColor}" 
+                    BorderThickness="1" 
+                    CornerRadius="15"
+                    >
+                <ContentPresenter HorizontalAlignment="Center" 
+                                  VerticalAlignment="Center" 
+                                  />
             </Border>
             <ControlTemplate.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter TargetName="border" Property="Background" Value="#febd69"/>
-                    <Setter Property="Foreground" Value="#1d2125"/>
+                    <Setter TargetName="border" 
+                            Property="Background" 
+                            Value="{DynamicResource ThemeHoverColor}"/>
+                    <Setter Property="Foreground" 
+                            Value="{DynamicResource ThemeHoverTextColor}"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="False">
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Foreground" Value="{DynamicResource ThemeTextColor}"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>

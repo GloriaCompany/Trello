@@ -14,6 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -34,10 +35,27 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TrelloApp.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ColorPicker, Version=3.4.1.0, Culture=neutral, PublicKeyToken=1c61eec504ce2276, processorArchitecture=MSIL">
+      <HintPath>..\packages\PixiEditor.ColorPicker.3.4.1\lib\net451\ColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.31\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -60,37 +78,109 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\ProjectModel.cs" />
+    <Compile Include="Helpers\BoardDataTemplateSelector.cs" />
+    <Compile Include="Helpers\INavigator.cs" />
+    <Compile Include="Models\BoardModel.cs" />
+    <Compile Include="Models\ChecklistModel.cs" />
+    <Compile Include="Models\ColumnModel.cs" />
+    <Compile Include="Models\TaskModel.cs" />
+    <Compile Include="ViewModels\Base\ViewModelCommand.cs" />
+    <Compile Include="ViewModels\BoardVM\BoardDataTemplateSelector.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="ViewModels\ProjectsViewModel.cs" />
-    <Compile Include="ViewModels\RelayCommand.cs" />
-    <Compile Include="ViewModels\UsersViewModel.cs" />
-    <Compile Include="Views\CustomControls\BoardControl.xaml.cs">
-      <DependentUpon>BoardControl.xaml</DependentUpon>
+    <Compile Include="ViewModels\Base\ITrelloDataClassesDataContext.cs" />
+    <Compile Include="ViewModels\Base\TrelloDataContext.cs" />
+    <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\Repository\BoardRepository.cs" />
+    <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\Repository\ChecklistRepository.cs" />
+    <Compile Include="ViewModels\ChecklistViewModel.cs" />
+    <Compile Include="ViewModels\Repository\ColumnRepository.cs" />
+    <Compile Include="ViewModels\ColumnViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\Repository\TaskRepository.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
+    <Compile Include="ViewModels\ChooseAvatarViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\AvatarRepository.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\FolderImageLoader.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\IAvatarRepository.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\IImageLoader.cs" />
+    <Compile Include="ViewModels\UserVM\UserAvatarsLoading\ResourceImageLoader.cs" />
+    <Compile Include="ViewModels\Repository\UserRepository.cs" />
+    <Compile Include="Views\ChooseAvatarView.xaml.cs">
+      <DependentUpon>ChooseAvatarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ResourcesTrello\Assets.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Assets.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Utils\ComboBoxUtils.cs" />
+    <Compile Include="Views\CustomControls\ChangesButton.xaml.cs">
+      <DependentUpon>ChangesButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CircleImage.xaml.cs">
+      <DependentUpon>CircleImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\ColumnControl.xaml.cs">
+      <DependentUpon>ColumnControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\CustomButton.xaml.cs">
       <DependentUpon>CustomButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomControls\CustomCheckBox.xaml.cs">
+      <DependentUpon>CustomCheckBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CustomColorPicker.xaml.cs">
+      <DependentUpon>CustomColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CustomComboBox.xaml.cs">
+      <DependentUpon>CustomComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CustomComboBoxItem.xaml.cs">
+      <DependentUpon>CustomComboBoxItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomControls\CustomInput.xaml.cs">
       <DependentUpon>CustomInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomControls\CustomPasswordInput.xaml.cs">
+      <DependentUpon>CustomPasswordInput.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomControls\StringToVisibilityConverter.cs" />
     <Compile Include="Views\CustomControls\TaskControl.xaml.cs">
       <DependentUpon>TaskControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dashboard.xaml.cs">
-      <DependentUpon>Dashboard.xaml</DependentUpon>
+    <Compile Include="Views\CustomControls\UserSearchControl.xaml.cs">
+      <DependentUpon>UserSearchControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="Views\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Register.xaml.cs">
-      <DependentUpon>Register.xaml</DependentUpon>
+    <Compile Include="Views\BoardView.xaml.cs">
+      <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ResourcesTrello\Images.Designer.cs" />
+    <Compile Include="Views\Navigator.xaml.cs">
+      <DependentUpon>Navigator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ResourcesTrello\UserAvatars.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserAvatars.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskView.xaml.cs">
+      <DependentUpon>TaskView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -110,9 +200,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ResourcesTrello\Images.resx" />
-    <EmbeddedResource Include="Views\ResourcesTrello\Languages\Lang.en.resx" />
-    <EmbeddedResource Include="Views\ResourcesTrello\Languages\Lang.ua.resx" />
+    <EmbeddedResource Include="Views\ResourcesTrello\Assets.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Assets.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ResourcesTrello\UserAvatars.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UserAvatars.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -122,56 +219,180 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\CustomControls\BoardControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\ChooseAvatarView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\ChangesButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\CircleImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\ColumnControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CustomControls\CustomButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\CustomControls\CustomCheckBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\CustomColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\CustomComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomControls\CustomComboBoxItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomControls\CustomInput.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CustomControls\CustomPasswordInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CustomControls\TaskControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Dashboard.xaml">
+    <Page Include="Views\CustomControls\UserSearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DashboardView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Login.xaml">
+    <Page Include="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\BoardView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Register.xaml">
+    <Page Include="Views\Navigator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ResourcesTrello\Themes\DarkThene.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\ResourcesTrello\Languages\English.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResourcesTrello\Languages\Українська.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResourcesTrello\Themes\DarkTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ResourcesTrello\Themes\LightTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\TaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\plus.png" />
-    <Resource Include="Resources\userAvatar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TrelloDBAccess\TrelloDBAccess.csproj">
-      <Project>{6e375a22-6387-4a6f-9900-6842d6f3f69f}</Project>
-      <Name>TrelloDBAccess</Name>
+    <ProjectReference Include="..\TrelloDBLayer\TrelloDBLayer.csproj">
+      <Project>{16b3a097-40f0-4dc0-9f08-d7bef210806b}</Project>
+      <Name>TrelloDBLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserAvatars\TestAvatar1.png" />
+    <Resource Include="UserAvatars\TestAvatar2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\app-logo.ico" />
+    <Resource Include="Resources\app_logo_day.png" />
+    <Resource Include="Resources\app_logo_night.png" />
+    <Resource Include="Resources\arrow.png" />
+    <Resource Include="Resources\Avatar01.png" />
+    <Resource Include="Resources\Avatar02.png" />
+    <Resource Include="Resources\Avatar03.png" />
+    <Resource Include="Resources\Avatar04.png" />
+    <Resource Include="Resources\Avatar05.png" />
+    <Resource Include="Resources\Avatar06.png" />
+    <Resource Include="Resources\Avatar07.png" />
+    <Resource Include="Resources\Avatar08.png" />
+    <Resource Include="Resources\Avatar09.png" />
+    <Resource Include="Resources\Avatar10.jpg" />
+    <Resource Include="Resources\Avatar10.png" />
+    <Resource Include="Resources\Avatar11.png" />
+    <Resource Include="Resources\Avatar12.png" />
+    <Resource Include="Resources\Avatar13.png" />
+    <Resource Include="Resources\Avatar14.png" />
+    <Resource Include="Resources\Avatar15.png" />
+    <Resource Include="Resources\Avatar16.png" />
+    <Resource Include="Resources\Avatar17.png" />
+    <Resource Include="Resources\Avatar18.png" />
+    <Resource Include="Resources\Avatar19.png" />
+    <Resource Include="Resources\Avatar20.png" />
+    <Resource Include="Resources\Avatar21.png" />
+    <Resource Include="Resources\change_column_day.png" />
+    <Resource Include="Resources\change_column_night.png" />
+    <Resource Include="Resources\change_place.png" />
+    <Resource Include="Resources\change_place_day.png" />
+    <Resource Include="Resources\discard.png" />
+    <Resource Include="Resources\edit.png" />
+    <Resource Include="Resources\edit_day.png" />
+    <Resource Include="Resources\en.png" />
+    <Resource Include="Resources\eye.png" />
+    <Resource Include="Resources\eye_day.png" />
+    <Resource Include="Resources\moon.png" />
+    <Resource Include="Resources\move-column.png" />
+    <Resource Include="Resources\move_column_day.png" />
+    <Resource Include="Resources\move_left.png" />
+    <Resource Include="Resources\move_left_day.png" />
+    <Resource Include="Resources\move_right.png" />
+    <Resource Include="Resources\move_right_day.png" />
+    <Resource Include="Resources\plus.png" />
+    <Resource Include="Resources\plus_day.png" />
+    <Resource Include="Resources\search.png" />
+    <Resource Include="Resources\search_day.png" />
+    <Resource Include="Resources\submit.png" />
+    <Resource Include="Resources\sun.png" />
+    <Resource Include="Resources\ua.png" />
+    <Resource Include="Resources\userAvatar.png" />
+    <Resource Include="Resources\window-close.png" />
+    <Resource Include="Resources\window-maximize.png" />
+    <Resource Include="Resources\window-minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete-night.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\create-task-day.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\create-task-night.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete-day.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

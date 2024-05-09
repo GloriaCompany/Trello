@@ -1,0 +1,176 @@
+﻿<UserControl x:Class="TrelloApp.Views.CustomControls.ColumnControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls" xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ColumnViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="260" d:DesignWidth="185"
+             PreviewMouseDown="UserControl_PreviewMouseDown"
+             >
+    <Border Background="Transparent"
+            BorderBrush="{DynamicResource ThemeBorderColor}"
+            BorderThickness="1"
+            CornerRadius="25">
+        <Border Background="{DynamicResource ThemeMainColor}"
+                CornerRadius="25">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="185"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <Grid HorizontalAlignment="Center"
+                      Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="45"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Text="{Binding ColumnName, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"-->
+                    <!--, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}-->
+                    <customControls:CustomInput Text="{Binding Column.Title}"
+                                                x:Name="ColumnNameInput"
+                                                IsEnabled="False"
+                                                FontSize="10"
+                                                Height="30"
+                                                Width="90"
+                                                Foreground="{DynamicResource ThemeTextColor}"
+                                                Background="{DynamicResource ThemeMainColor}"
+                                                Placeholder="{DynamicResource EditColumnNameInputString}"       
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center" LostFocus="ColumnNameInput_LostFocus"/>
+                    <customControls:ChangesButton ImageSource="{DynamicResource EditIconPath}"
+                                                  Width="17.5"
+                                                  Height="17.5"
+                                                  Margin="5,0,0,0"
+                                                  Grid.Column="1"
+                                                  HorizontalAlignment="Center"
+                                                  x:Name="BtnChangesButton"
+                                                  Click="ChangesButton_Click"/>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <customControls:ChangesButton ImageSource="/TrelloApp;component/Resources/submit.png"
+                                                      Width="17.5"
+                                                      Height="17.5"
+                                                      Margin="5,0,0,0"
+                                                      Grid.Column="1"
+                                                      Visibility="Hidden"
+                                                      IsEnabled="False"
+                                                      x:Name="BtnUpdateColumnName"
+                                                      Click="BtnUpdateColumnName_Click"
+                                                      Command="{Binding UpdateColumnCommand}"/>
+                        <customControls:ChangesButton ImageSource="/TrelloApp;component/Resources/discard.png"
+                                                      Width="17.5"
+                                                      Height="17.5"
+                                                      Margin="5,0,0,0"
+                                                      Grid.Column="1"
+                                                      Visibility="Hidden"
+                                                      IsEnabled="False"
+                                                      x:Name="BtnCancelUpdateColumnName"
+                                                      Click="BtnCancelUpdateColumnName_Click"
+                                                      Command="{Binding CancelUpdateColumnName}"/>
+                    </StackPanel>
+                </Grid>
+                <!--ItemsSource="{Binding Tasks, RelativeSource={RelativeSource AncestorType={x:Type customControls:ColumnControl}}}"-->
+                <ListView Grid.Row="2"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          ItemsSource="{Binding Tasks}"
+                          x:Name="ContentStackPanel"
+                          SelectedItem="{Binding Task}">
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                                          HorizontalScrollBarVisibility="Hidden">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListView.Template>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <customControls:TaskControl
+                                TaskName="{Binding Task.Title}"
+                                ChangeColumnClicked="TaskControl_ChangeColumnClicked"
+                                ChangePlaceClicked="TaskControl_ChangePlaceClicked"
+                                MouseDown="TaskControl_MouseDown"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Border Grid.Row="1" Background="{DynamicResource ThemeBorderColor}"/>
+                <Border Grid.Row="3" Background="{DynamicResource ThemeBorderColor}"/>
+                <StackPanel Orientation="Horizontal" 
+                            Grid.Row="4"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            >
+                    <customControls:ChangesButton
+                        Grid.Row="4"
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="0,0,10,0"
+                        Command="{Binding DelColumnCommand}"
+                        ImageSource="{DynamicResource DeleteColumnIconPath}"
+                        />
+                    <customControls:ChangesButton
+                        Grid.Row="4"
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="10,0,0,0"
+                        Command="{Binding AddTaskCommand}"
+                        ImageSource="{DynamicResource AddTaskIconPath}"/>
+                </StackPanel>
+                <customControls:ChangesButton ImageSource="{DynamicResource MoveColumnLeftIconPath}"
+                                              Grid.Row="4"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              Width="18"
+                                              Margin="15,5,5,5"
+                                              Click="MoveLeftButton_Click"/>
+                <customControls:ChangesButton ImageSource="{DynamicResource MoveColumnRightIconPath}"
+                                              Grid.Row="4"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              Width="18"
+                                              Margin="5,5,15,5"
+                                              Click="MoveRightButton_Click"/>
+                <Popup x:Name="addTaskPopup" 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       IsOpen="False"
+                       Grid.Row="5"
+                       Margin="0,0,20,0">
+                    <Border Background="{DynamicResource ThemeMainColor}" 
+                            BorderBrush="{DynamicResource ThemeBorderColor}" 
+                            BorderThickness="1"
+                            Width="375" 
+                            Height="60">
+                        <StackPanel Margin="10"
+                                    Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                            <customControls:CustomInput
+                                Text="{Binding Task.Title}"
+                                Placeholder="Enter Task Name..." 
+                                x:Name="TaskNameInput"
+                                FontSize="14"
+                                Width="230"
+                                Height="35"
+                                />
+                            <customControls:CustomButton
+                                Content="ADD TASK" 
+                                Click="AddConfirmedTaskButton_Click"
+                                Width="100"
+                                Margin="15,0,0,0"
+                                Height="35"
+                                />
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+    </Border>
+</UserControl>

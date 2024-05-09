@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Class="TrelloDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="" Member="User">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" CanBeNull="false" />
+      <Column Name="Avatar" Type="System.String" CanBeNull="true" />
+      <Association Name="User_Board" Member="Board" ThisKey="UserID" OtherKey="AdminID" Type="Board" />
+      <Association Name="User_BoardMember" Member="BoardMember" ThisKey="UserID" OtherKey="UserID" Type="BoardMember" />
+      <Association Name="User_Task" Member="Task" ThisKey="UserID" OtherKey="AssignedUserID" Type="Task" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Board">
+    <Type Name="Board">
+      <Column Name="BoardID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" CanBeNull="false" />
+      <Column Name="AdminID" Type="System.Int32" CanBeNull="false" />
+      <Association Name="Board_Column" Member="Column" ThisKey="BoardID" OtherKey="BoardID" Type="Column" />
+      <Association Name="Board_BoardMember" Member="BoardMember" ThisKey="BoardID" OtherKey="BoardID" Type="BoardMember" />
+      <Association Name="User_Board" Member="User" ThisKey="AdminID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Column">
+    <Type Name="Column">
+      <Column Name="ColumnID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BoardID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" CanBeNull="false" />
+      <Column Name="OrderIndex" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Color" Type="System.String" CanBeNull="false" />
+      <Association Name="Column_Task" Member="Task" ThisKey="ColumnID" OtherKey="ColumnID" Type="Task" />
+      <Association Name="Board_Column" Member="Board" ThisKey="BoardID" OtherKey="BoardID" Type="Board" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="BoardMember">
+    <Type Name="BoardMember">
+      <Column Name="BoardID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" CanBeNull="false" />
+      <Association Name="User_BoardMember" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Board_BoardMember" Member="Board" ThisKey="BoardID" OtherKey="BoardID" Type="Board" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Task">
+    <Type Name="Task">
+      <Column Name="TaskID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ColumnID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" CanBeNull="false" />
+      <Column Name="AssignedUserID" Type="System.Int32" CanBeNull="false" />
+      <Column Member="Color" Type="System.String" CanBeNull="false" />
+      <Association Name="Task_Checklist" Member="Checklist" ThisKey="TaskID" OtherKey="TaskID" Type="Checklist" />
+      <Association Name="User_Task" Member="User" ThisKey="AssignedUserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Column_Task" Member="Column" ThisKey="ColumnID" OtherKey="ColumnID" Type="Column" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Checklist">
+    <Type Name="Checklist">
+      <Column Name="ChecklistID" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TaskID" Type="System.Int32" CanBeNull="false" />
+      <Column Name="TaskDescription" Type="System.String" CanBeNull="false" />
+      <Column Name="IsCompleted" Type="System.Boolean" CanBeNull="false" />
+      <Association Name="Task_Checklist" Member="Task" ThisKey="TaskID" OtherKey="TaskID" Type="Task" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

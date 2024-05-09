@@ -1,0 +1,89 @@
+﻿<ComboBox x:Class="TrelloApp.Views.CustomControls.UserSearchControl"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+          xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+          mc:Ignorable="d" 
+          d:DesignHeight="50" d:DesignWidth="400"
+          Background="{DynamicResource ThemeMainColor}" 
+          BorderBrush="{DynamicResource ThemeBorderColor}" 
+          BorderThickness="1"
+          Padding="10">
+    <ComboBox.Template>
+        <ControlTemplate TargetType="ComboBox">
+            <Grid>
+                <TextBox x:Name="PART_EditableTextBox" 
+                         Background="{DynamicResource ThemeMainColor}" 
+                         Foreground="{DynamicResource ThemeTextColor}" 
+                         BorderThickness="0" 
+                         Padding="5"
+                         >
+                    <TextBox.Template>
+                        <ControlTemplate TargetType="TextBox">
+                            <Grid>
+                                <TextBox x:Name="text" 
+                                         Background="{DynamicResource ThemeMainColor}" 
+                                         Foreground="{DynamicResource ThemeTextColor}" 
+                                         BorderThickness="0" 
+                                         Text="{TemplateBinding Text}" 
+                                         Padding="5"
+                                         />
+                                <Button Width="30" 
+                                        Height="30" 
+                                        HorizontalAlignment="Right" 
+                                        Background="Transparent" 
+                                        BorderThickness="0" 
+                                        Margin="0,0,10,0"
+                                        >
+                                    <customControls:ChangesButton ImageSource="{DynamicResource SearchIconPath}"/>
+                                </Button>
+                            </Grid>
+                        </ControlTemplate>
+                    </TextBox.Template>
+                </TextBox>
+                <Popup x:Name="PART_Popup" 
+                       IsOpen="{TemplateBinding IsDropDownOpen}" 
+                       Placement="Bottom"
+                       >
+                    <Border x:Name="DropDownBorder" 
+                            Background="{DynamicResource ThemeMainColor}" 
+                            BorderBrush="{DynamicResource ThemeBorderColor}" 
+                            BorderThickness="1" 
+                            CornerRadius="5"
+                            >
+                        <ScrollViewer x:Name="DropDownScrollViewer">
+                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                        </ScrollViewer>
+                    </Border>
+                </Popup>
+            </Grid>
+        </ControlTemplate>
+    </ComboBox.Template>
+    <ComboBox.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <customControls:CircleImage Grid.Column="0" 
+                                            ImageSource="{Binding Avatar}" 
+                                            Width="20" 
+                                            Height="20"
+                                            />
+                <ListView Grid.Column="1">
+                    <TextBlock Text="{Binding Nickname}" Foreground="{DynamicResource ThemeTextColor}"/>
+                    <TextBlock Text="{Binding Position}" Foreground="{DynamicResource ThemeTextColor}"/>
+                </ListView>
+                <Image Grid.Column="2" 
+                       Source="{DynamicResource AddIconPath}" 
+                       Width="20" 
+                       Height="20"
+                       />
+            </Grid>
+        </DataTemplate>
+    </ComboBox.ItemTemplate>
+</ComboBox>
+

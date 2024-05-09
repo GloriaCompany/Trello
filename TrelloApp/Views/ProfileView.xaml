@@ -1,0 +1,270 @@
+﻿<Page x:Class="TrelloApp.Views.ProfileView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:ProfileViewModel}"
+      mc:Ignorable="d"
+      Title="Profile"
+      Background="{DynamicResource ThemeMainColor}">
+    <Grid>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top">
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="ThemesComboBox"
+                                           SelectionChanged="ThemesComboBox_SelectionChanged"
+                                           >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox SelectedIndex="1"
+                                           x:Name="LanguagesComboBox"
+                                           SelectionChanged="LanguagesComboBox_SelectionChanged"
+                                           >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+        </StackPanel>
+        <Border 
+                BorderBrush="{DynamicResource ThemeBorderColor}" 
+                BorderThickness="1" 
+                CornerRadius="25"
+                Width="370"
+                Height="555"
+                Padding="5"
+                >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="55"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Grid.Row="0"
+                            >
+                    <customControls:CircleImage
+                        Width="50"
+                        Height="50"
+                        HorizontalAlignment="Center"
+                        Margin="25,0,0,0"
+                        ImageSource="{Binding User.Avatar, Mode=TwoWay}"
+                        IsPopupEnabled="False"
+                        />
+                    <customControls:ChangesButton
+                        Width="15"
+                        Height="15"
+                        Margin="5,0,0,0"
+                        x:Name="BtnChangeAvatar"
+                        ImageSource="{DynamicResource EditIconPath}"
+                        Command="{Binding LoadChooseAvatarView}"
+                        />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            >
+                    <customControls:ChangesButton
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        Visibility="Hidden"
+                        Command="{Binding SetDefaultUserAvatarCommand}"
+                        />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="2"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            >
+                    <customControls:CustomInput
+                        Width="250"
+                        Height="35"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsEnabled="False"
+                        x:Name="UsernameInput"
+                        Text="{Binding User.Username, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                        Placeholder="{DynamicResource UsernameInputPlaceholderString}"
+                        />
+                    <customControls:ChangesButton
+                        Width="15"
+                        Height="15"
+                        Margin="5,0,0,0"
+                        x:Name="BtnChangeUsername"
+                        ImageSource="{DynamicResource EditIconPath}"
+                        Click="BtnChangeUsername_Click"
+                        />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="3"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            >
+                    <customControls:ChangesButton
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        x:Name="BtnUpdateUsername"
+                        Click="BtnUpdateUsername_Click"
+                        Command="{Binding UpdateUserCommand}"
+                        />
+                    <customControls:ChangesButton
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        x:Name="BtnCancelUpdateUsername"
+                        Click="BtnCancelUpdateUsername_Click"
+                        Command="{Binding CancelUpdateUserCommand}"
+                        />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="4"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            >
+                    <customControls:CustomInput
+                        Width="250"
+                        Height="35"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsEnabled="False"
+                        x:Name="EmailInput"
+                        Text="{Binding User.Email, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                        Placeholder="{DynamicResource EmailInputPlaceholderString}"
+                        />
+                    <customControls:ChangesButton
+                        Width="15"
+                        Height="15"
+                        Margin="5,0,0,0"
+                        x:Name="BtnChangeEmail"
+                        ImageSource="{DynamicResource EditIconPath}"
+                        Click="BtnChangeEmail_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <customControls:ChangesButton
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        x:Name="BtnUpdateEmail"
+                        Click="BtnUpdateEmail_Click"
+                        Command="{Binding UpdateUserCommand}"/>
+                    <customControls:ChangesButton
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        x:Name="BtnCancelUpdateEmail"
+                        Click="BtnCancelUpdateEmail_Click"
+                        Command="{Binding CancelUpdateUserCommand}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="6"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            >
+                    <customControls:CustomInput
+                        Width="250"
+                        Height="35"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsEnabled="False"
+                        x:Name="PasswordInput"
+                        Text="{Binding User.Password, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                        Placeholder="{DynamicResource PasswordInputPlaceholderString}"/>
+                    <customControls:ChangesButton
+                        Width="15"
+                        Height="15"
+                        Margin="5,0,0,0"
+                        x:Name="BtnChangePassword"
+                        ImageSource="{DynamicResource EditIconPath}" Click="BtnChangePassword_Click"
+                        />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="7"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            >
+                    <customControls:ChangesButton
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        x:Name="BtnUpdatePassword"
+                        Click="BtnUpdatePassword_Click"
+                        Command="{Binding UpdateUserCommand}"
+                        />
+                    <customControls:ChangesButton
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        x:Name="BtnCancelUpdatePassword"
+                        Click="BtnCancelUpdatePassword_Click"
+                        Command="{Binding CancelUpdateUserCommand}"
+                        />
+                </StackPanel>
+                <!--
+                    1. При просмотре профиля от обычного участника скрывать все кнопки
+                    2. При просмотре профиля от администратора команды оставлять только кнопку удаления из комманды
+                    3. При просмотре профиля от его владельца оставлять все кнопки
+                -->
+                <customControls:CustomButton
+                    Grid.Row="8"
+                    Text="{DynamicResource LogoutBtnString}"
+                    Height="35"
+                    Width="175"
+                    x:Name="BtnLogout"
+                    Command="{Binding LogoutCommand}"
+                    />
+                <customControls:CustomButton
+                    Grid.Row="9"
+                    Text="{DynamicResource DeleteAccountBtnString}"
+                    Height="35"
+                    Width="175"
+                    x:Name="BtnDelAccount"
+                    Command="{Binding DelUserCommand}"
+                    />
+                <customControls:CustomButton
+                    Grid.Row="10"
+                    Text="{DynamicResource LeaveTeamBtnString}"
+                    Height="35"
+                    Width="175"
+                    />
+                <customControls:CustomButton
+                    Grid.Row="11"
+                    Text="{DynamicResource GoToDashboardBtnString}"
+                    Height="35"
+                    Width="175"
+                    x:Name="BtnGoToDashboard"
+                    Click="BtnGoToDashboard_Click"
+                    />
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

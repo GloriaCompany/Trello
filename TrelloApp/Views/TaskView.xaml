@@ -1,0 +1,344 @@
+﻿<Page x:Class="TrelloApp.Views.TaskView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+      xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels"
+      d:DataContext="{d:DesignInstance Type=viewmodels:TaskViewModel}"
+      mc:Ignorable="d"
+      Title="TaskDetails"
+      Background="{DynamicResource ThemeMainColor}"
+      d:Width="500"
+      d:Height="600">
+    <Grid>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="ThemesComboBox"
+                SelectionChanged="ThemesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="LanguagesComboBox"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+        </StackPanel>
+        <Border 
+            BorderBrush="{DynamicResource ThemeBorderColor}" 
+            BorderThickness="1" 
+            CornerRadius="25"
+            Width="400"
+            Height="425"
+            >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="55"/>
+                </Grid.RowDefinitions>
+                <StackPanel
+                    Grid.Row="0"
+                    Orientation="Horizontal">
+                    <customControls:CustomInput
+                        Width="185"
+                        Height="35"
+                        Margin="10,0,0,0"
+                        Text="{Binding Task.Title}"
+                        Placeholder="{DynamicResource TaskNameInputPlaceholderString}"
+                        x:Name="TaskNameInput"
+                        IsEnabled="False" LostFocus="TaskNameInput_LostFocus"/>
+                    <customControls:ChangesButton
+                        x:Name="BtnChangeTaskTitle"
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="5,0,0,0"
+                        ImageSource="{DynamicResource EditIconPath}"
+                        Click="BtnChangeTaskTitle_Click"/>
+                    <customControls:ChangesButton
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="5,0,0,0"
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        x:Name="BtnUpdateTaskTitle"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        Command="{Binding UpdateTaskCommand}"
+                        Click="BtnUpdateTaskTitle_Click"/>
+                    <customControls:ChangesButton
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="5,0,0,0"
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        x:Name="BtnCancelUpdateTaskTitle"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        Command="{Binding CancelUpdateTaskCommand}"
+                        Click="BtnCancelUpdateTaskTitle_Click"
+                        />
+                    <customControls:CustomButton
+                        x:Name="BtnGoToDashboardTask"
+                        Width="120"
+                        Height="35"
+                        Margin="5,0,0,0"
+                        Text="{DynamicResource GoToBoardBtnString}"
+                        Command="{Binding LoadBoardViewCommand}"/>
+                </StackPanel>
+                <Border
+                    Grid.Row="1" 
+                    Background="{DynamicResource ThemeBorderColor}" 
+                    Width="400"/>
+                <customControls:ChangesButton
+                    Grid.Row="2"
+                    Width="35"
+                    Height="35"
+                    ImageSource="{Binding User.Avatar}"
+                    HorizontalAlignment="Left"
+                    Margin="15,0,0,0"
+                    Click="ChangesButton_Click"
+                    />
+                <Popup
+                        x:Name="UsersPopup" 
+                        IsOpen="False" 
+                        StaysOpen="False" 
+                        Placement="Bottom" 
+                        PlacementTarget="{Binding ElementName=PlusButton}"
+                        >
+                    <Border
+                            BorderBrush="{DynamicResource ThemeBorderColor}" 
+                            BorderThickness="1"
+                            >
+                        <ItemsControl ItemsSource="{Binding TeamUsers}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                            x:Name="UserPanel" 
+                                            Orientation="Horizontal" 
+                                            VerticalAlignment="Center" 
+                                            Background="Transparent"
+                                            >
+                                        <customControls:CircleImage
+                                                Margin="5" 
+                                                VerticalAlignment="Center" 
+                                                HorizontalAlignment="Left" 
+                                                Width="30" 
+                                                Height="30" 
+                                                ImageSource="/TrelloApp;component/Resources/userAvatar.png"
+                                                />
+                                        <StackPanel
+                                                Orientation="Vertical" 
+                                                VerticalAlignment="Center" 
+                                                Margin="2,0,0,0"
+                                                >
+                                            <TextBlock
+                                                    x:Name="UsernameText" 
+                                                    Text="Username" 
+                                                    Foreground="{DynamicResource ThemeTextColor}" 
+                                                    FontSize="10" 
+                                                    VerticalAlignment="Stretch"
+                                                    />
+                                            <TextBlock
+                                                    x:Name="JobText" 
+                                                    Text="Job" 
+                                                    Foreground="{DynamicResource ThemeTextColor}" 
+                                                    FontSize="10" 
+                                                    VerticalAlignment="Stretch"
+                                                    />
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <DataTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter
+                                                    TargetName="UsernameText" 
+                                                    Property="Foreground" 
+                                                    Value="{DynamicResource ThemeMainColor}"
+                                                    />
+                                            <Setter
+                                                    TargetName="JobText" 
+                                                    Property="Foreground" 
+                                                    Value="{DynamicResource ThemeMainColor}"
+                                                    />
+                                            <Setter
+                                                    TargetName="UserPanel" 
+                                                    Property="Background" 
+                                                    Value="{DynamicResource ThemeHoverColor}"
+                                                    />
+                                        </Trigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Border>
+                </Popup>
+                <customControls:ChangesButton
+                    Grid.Row="2"
+                    Width="20"
+                    Height="20"
+                    HorizontalAlignment="Left"
+                    Margin="55,0,0,0"
+                    ImageSource="/TrelloApp;component/Resources/discard.png"
+                    />
+                <customControls:ChangesButton
+                    Grid.Row="2"
+                    Width="20"
+                    Height="20"
+                    HorizontalAlignment="Left"
+                    Margin="235,0,0,0"
+                    ImageSource="/TrelloApp;component/Resources/discard.png"
+                    />
+                <customControls:CustomColorPicker
+                    Width="125"
+                    Height="35"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0,0,10,0"
+                    Foreground="{DynamicResource ThemeTextColor}"
+                    SelectedColor="{Binding Task.Color, Mode=TwoWay}"
+                    />
+                <Border
+                    Grid.Row="3" 
+                    Background="{DynamicResource ThemeBorderColor}" 
+                    Width="400"
+                    />
+                <RichTextBox
+                    Grid.Row="4"
+                    Background="Transparent"
+                    Foreground="{DynamicResource ThemeTextColor}"
+                    BorderThickness="0"
+                    Margin="5"
+                    >
+                    <FlowDocument
+                        MaxPageWidth="390"
+                        MaxPageHeight="150"
+                        >
+                        <Paragraph
+                            FontSize="14"
+                            TextAlignment="Justify">
+                            <Run Text="{Binding Task.Description}"/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <Border Grid.Row="5" Background="{DynamicResource ThemeBorderColor}" Width="400"/>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="6"
+                    Width="400"
+                    HorizontalAlignment="Center"
+                    >
+                    <customControls:CustomInput
+                        Width="220"
+                        Height="35"
+                        Margin="5"
+                        Placeholder="{DynamicResource TaskNameInputPlaceholderString}"
+                        />
+                    <customControls:CustomButton
+                        Width="160"
+                        Height="35"
+                        Margin="5"
+                        Text="{DynamicResource AddTaskBtnString}"
+                        />
+                </StackPanel>
+                <ListView
+                    Grid.Row="7"
+                    Background="{DynamicResource ThemeMainColor}"
+                    Padding="5"
+                    BorderThickness="0"
+                    >
+                    <ListView.Resources>
+                        <Style TargetType="ScrollViewer">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ScrollViewer">
+                                        <ScrollContentPresenter />
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.Resources>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="370"/>
+                                    <ColumnDefinition Width="20"/>
+                                </Grid.ColumnDefinitions>
+                                <customControls:CustomCheckBox 
+                                    Grid.Column="0"
+                                    Height="28"
+                                    Content="{Binding Content}"
+                                    Foreground="{DynamicResource ThemeBorderColor}"
+                                    IsChecked="{Binding IsChecked}"
+                                    HorizontalAlignment="Stretch"
+                                    />
+                                <customControls:ChangesButton
+                                    Grid.Column="1"
+                                    Width="20"
+                                    Height="20"
+                                    HorizontalAlignment="Right"
+                                    ImageSource="/TrelloApp;component/Resources/discard.png"
+                                    />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <customControls:CustomCheckBox Content="Task 1" Foreground="{DynamicResource ThemeBorderColor}" IsChecked="True"/>
+                    <customControls:CustomCheckBox Content="Task 2" Foreground="{DynamicResource ThemeBorderColor}"/>
+                    <customControls:CustomCheckBox Content="Task 3" Foreground="{DynamicResource ThemeBorderColor}"/>
+                    <customControls:CustomCheckBox Content="Task 4" Foreground="{DynamicResource ThemeBorderColor}"/>
+                </ListView>
+                <Border Grid.Row="8" Background="{DynamicResource ThemeBorderColor}" Width="400"/>
+                <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="9"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    >
+                    <customControls:CustomButton
+                        x:Name="BtnDelTask"
+                        Width="160"
+                        Height="35"
+                        Margin="5"
+                        Text="{DynamicResource DeleteTaskBtnString}"
+                        Command="{Binding DelTaskCommand}"/>
+                    <customControls:CustomButton
+                        x:Name="BtnUpdateTask"
+                        Width="160"
+                        Height="35"
+                        Margin="5"
+                        Text="{DynamicResource SaveChangesBtnString}"
+                        Command="{Binding UpdateTaskCommand}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

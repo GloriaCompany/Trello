@@ -1,4 +1,22 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <SolidColorBrush x:Key="ThemeMainColor">#ffffff</SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeHoverColor">#febd69</SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeHoverTextColor">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeTextColor">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="ThemeBorderColor">#1e1e1f</SolidColorBrush>
+
+    <ImageSource x:Key="LogoPath">/TrelloApp;component/Resources/app_logo_day.png</ImageSource>
+    <ImageSource x:Key="ChangeColumnIconPath">/TrelloApp;component/Resources/change_column_day.png</ImageSource>
+    <ImageSource x:Key="ChangePlaceIconPath">/TrelloApp;component/Resources/change_place_day.png</ImageSource>
+    <ImageSource x:Key="EditIconPath">/TrelloApp;component/Resources/edit_day.png</ImageSource>
+    <ImageSource x:Key="EyeIconPath">/TrelloApp;component/Resources/eye_day.png</ImageSource>
+    <ImageSource x:Key="MoveColumnIconPath">/TrelloApp;component/Resources/move_column_day.png</ImageSource>
+    <ImageSource x:Key="MoveColumnLeftIconPath">/TrelloApp;component/Resources/move_left_day.png</ImageSource>
+    <ImageSource x:Key="MoveColumnRightIconPath">/TrelloApp;component/Resources/move_right_day.png</ImageSource>
+    <ImageSource x:Key="AddIconPath">/TrelloApp;component/Resources/plus_day.png</ImageSource>
+    <ImageSource x:Key="SearchIconPath">/TrelloApp;component/Resources/search_day.png</ImageSource>
+    <ImageSource x:Key="DeleteColumnIconPath">/TrelloApp;component/Resources/delete-day.png</ImageSource>
+    <ImageSource x:Key="AddTaskIconPath">/TrelloApp;component/Resources/create-task-day.png</ImageSource>
 </ResourceDictionary>

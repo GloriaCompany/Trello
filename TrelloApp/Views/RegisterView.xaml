@@ -1,0 +1,146 @@
+﻿<Page x:Class="TrelloApp.Views.RegisterView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:customControls="clr-namespace:TrelloApp.Views.CustomControls"
+        xmlns:viewModelBase="clr-namespace:TrelloApp.ViewModels.Base" 
+        xmlns:viewmodels="clr-namespace:TrelloApp.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:RegisterViewModel}"
+        mc:Ignorable="d"
+        Title="Register"
+        Background="{DynamicResource ThemeMainColor}">
+    <Grid x:Name="PageContainer">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top">
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="ThemesComboBox"
+                SelectionChanged="ThemesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/sun.png"
+                        Content="{DynamicResource LightThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem 
+                        ImageSource="/TrelloApp;component/Resources/moon.png"
+                        Content="{DynamicResource DarkThemeNameString}">
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+            <customControls:CustomComboBox
+                SelectedIndex="1"
+                x:Name="LanguagesComboBox"
+                SelectionChanged="LanguagesComboBox_SelectionChanged"
+                >
+                <customControls:CustomComboBox.Items>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/ua.png">
+                        Українська
+                    </customControls:CustomComboBoxItem>
+                    <customControls:CustomComboBoxItem ImageSource="/TrelloApp;component/Resources/en.png">
+                        English
+                    </customControls:CustomComboBoxItem>
+                </customControls:CustomComboBox.Items>
+            </customControls:CustomComboBox>
+        </StackPanel>
+        <Image 
+               Source="{DynamicResource LogoPath}"
+               Width="75"
+               Height="20"
+               Grid.Row="0"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               />
+        <Label Content="{DynamicResource RegisterViewDescString}"
+               Foreground="{DynamicResource ThemeTextColor}"
+               Grid.Row="1" 
+               Grid.Column="0" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center"
+               FontSize="14"
+               />
+        <customControls:CustomInput
+            Grid.Row="2"
+            Width="250"
+            Height="35"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="InputUsername"
+            Placeholder="{DynamicResource UsernameInputPlaceholderString}"
+            Text="{Binding User.Username, Mode=TwoWay, ValidatesOnDataErrors=True}"
+            />
+        <customControls:CustomInput
+            Grid.Row="3"
+            Width="250"
+            Height="35"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="InputEmail"
+            Placeholder="{DynamicResource EmailInputPlaceholderString}"
+            Text="{Binding User.Email, Mode=TwoWay, ValidatesOnDataErrors=True}"
+            />
+        <customControls:CustomInput
+            Grid.Row="4"
+            Width="250"
+            Height="35"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="InputPassword"            
+            Placeholder="{DynamicResource PasswordInputPlaceholderString}"
+            Text="{Binding User.Password, Mode=TwoWay, ValidatesOnDataErrors=True}"
+            />
+        <customControls:CustomInput
+            Grid.Row="5"
+            Width="250"
+            Height="35"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="InputConfirmPassword"
+            Placeholder="{DynamicResource ConfirmPasswordInputPlaceholderString}"
+            Text="{Binding User.ConfirmPassword, Mode=TwoWay, ValidatesOnDataErrors=True}"
+            />
+        <customControls:CustomButton 
+            Text="{DynamicResource ContinueBtnString}" 
+            Width="180" 
+            Height="35"
+            Grid.Row="6"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="BtnRegister"
+            Click="BtnRegister_Click"
+            Command="{Binding RegisterCommand}"
+            />
+        <customControls:CustomButton 
+            Text="{DynamicResource LoginBtnString}" 
+            Width="180" 
+            Height="35"
+            Grid.Row="7"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            x:Name="BtnLogin"
+            Click="BtnLogin_Click"
+            />
+        <TextBlock
+            Foreground="Red"
+            Text="{Binding ErrorMessage}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Row="8"
+            FontSize="14"
+            />
+    </Grid>
+</Page>
