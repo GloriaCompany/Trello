@@ -32,6 +32,7 @@
     <system:String x:Key="GoToDashboardBtnString">GO TO DASHBOARD</system:String>
 
     <system:String x:Key="TaskNameInputPlaceholderString">Task Name</system:String>
-    <system:String x:Key="DeleteTaskBtnString">ADD TASK</system:String>
+    <system:String x:Key="DeleteTaskBtnString">DELETE TASK</system:String>
+    <system:String x:Key="GoToBoardBtnString">GO TO BOARD</system:String>
     <system:String x:Key="SaveChangesBtnString">SAVE CHANGES</system:String>
 </ResourceDictionary>

@@ -16,6 +16,8 @@ namespace TrelloApp.ViewModels
         private Task _task;
         private User _user;
 
+        private string _originalTitle;
+
         private IColumnRepository _columnRepository;
         private ITaskRepository _taskRepository;
         private IUserRepository _userRepository;
@@ -51,6 +53,16 @@ namespace TrelloApp.ViewModels
                 OnPropertyChanged(nameof(User));
             }
         }
+        public string OriginalTitle
+        {
+            get => _originalTitle;
+            set
+            {
+                _originalTitle = value;
+                OnPropertyChanged(nameof(OriginalTitle));
+            }
+        }
+
         public ObservableCollection<Task> Tasks
         {
             get => _tasks;
@@ -63,12 +75,11 @@ namespace TrelloApp.ViewModels
 
         //Commands
         public ICommand UpdateColumnCommand { get; set; }
+        public ICommand CancelUpdateColumnName { get; set; }
         public ICommand DelColumnCommand { get; set; }
         public ICommand LoadTasksCommand { get; set; }
         public ICommand SelectTaskCommand { get; set; }
         public ICommand AddTaskCommand { get; set; }
-        public ICommand UpdateTaskCommand { get; set; }
-        public ICommand DelTaskCommand { get; set; }
 
         public ICommand LoadTaskViewCommand { get; set; }
         public ICommand LoadBoardViewCommand { get; set; }
@@ -83,18 +94,18 @@ namespace TrelloApp.ViewModels
             Task = new Task();
             Column = currentColumn;
             User = _userRepository.CurrentUser;
+            OriginalTitle = Column.Title;
 
             //Initialize collections
             Tasks = new ObservableCollection<Task>();
 
             //Initialize commands
             UpdateColumnCommand = new ViewModelCommand(ExecuteUpdateColumnCommand, CanExecuteUpdateColumnCommand);
+            CancelUpdateColumnName = new ViewModelCommand(ExecuteCancelUpdateColumnName, CanExecuteCancelUpdateColumnName);
             DelColumnCommand = new ViewModelCommand(ExecuteDelColumnCommand, CanExecuteDelColumnCommand);
             LoadTasksCommand = new ViewModelCommand(ExecuteLoadTasksCommand, CanExecuteLoadTasksCommand);
             SelectTaskCommand = new ViewModelCommand(ExecuteSelectTaskCommand, CanExecuteSelectTaskCommand);
             AddTaskCommand = new ViewModelCommand(ExecuteAddTaskCommand, CanExecuteAddTaskCommand);
-            UpdateTaskCommand = new ViewModelCommand(ExecuteUpdateTaskCommand, CanExecuteUpdateTaskCommand);
-            DelTaskCommand = new ViewModelCommand(ExecuteDelTaskCommand, CanExecuteDelTaskCommand);
 
             LoadTaskViewCommand = new ViewModelCommand(ExecuteLoadTaskViewCommand, CanExecuteLoadTaskViewCommand);
             LoadBoardViewCommand = new ViewModelCommand(ExecuteLoadBoardViewCommand, CanExecuteLoadBoardViewCommand);
@@ -103,11 +114,16 @@ namespace TrelloApp.ViewModels
             ExecuteLoadTasksCommand(null);
         }
 
+
         //Checks
         private bool CanExecuteLoadTasksCommand(object obj)
         {
             return
                 Task != null;
+        }
+        private bool CanExecuteCancelUpdateColumnName(object obj)
+        {
+            return true;
         }
         private bool CanExecuteUpdateColumnCommand(object obj)
         {
@@ -129,16 +145,6 @@ namespace TrelloApp.ViewModels
             return
                 Column != null;
         }
-        private bool CanExecuteUpdateTaskCommand(object obj)
-        {
-            return
-                Task != null;
-        }
-        private bool CanExecuteDelTaskCommand(object obj)
-        {
-            return
-                Task != null;
-        }
         private bool CanExecuteLoadTaskViewCommand(object obj)
         {
             return
@@ -154,6 +160,10 @@ namespace TrelloApp.ViewModels
         {
             _columnRepository.UpdateColumn(Column);
         }
+        private void ExecuteCancelUpdateColumnName(object obj)
+        {
+            Column.Title = OriginalTitle;
+        }
         private void ExecuteDelColumnCommand(object obj)
         {
             _columnRepository.DelColumn(Column.ColumnID);
@@ -163,13 +173,6 @@ namespace TrelloApp.ViewModels
         {
             Tasks.Clear();
             var taskList = _taskRepository.GetTasksByColumnID(Column.ColumnID);
-            //var taskList = new List<Task>();
-
-            /*For testing*/
-            //for (int i = 1; i < 4; i++)
-            //{
-            //    taskList.Add(new Task { Title = "Title" + i.ToString() });
-            //}
 
             foreach (var task in taskList)
             {
@@ -198,14 +201,6 @@ namespace TrelloApp.ViewModels
             };
             _taskRepository.AddTask(_task);
             ExecuteLoadTasksCommand(null);
-        }
-        private void ExecuteUpdateTaskCommand(object obj)
-        {
-            _taskRepository.UpdateTask(Task);
-        }
-        private void ExecuteDelTaskCommand(object obj)
-        {
-            _taskRepository.DelTask(Task.TaskID);
         }
         private void ExecuteLoadTaskViewCommand(object obj)
         {

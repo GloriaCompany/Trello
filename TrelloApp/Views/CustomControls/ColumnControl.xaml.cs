@@ -334,22 +334,37 @@ namespace TrelloApp.Views.CustomControls
 
         private void ChangesButton_Click(object sender, RoutedEventArgs e)
         {
+            BtnChangesButton.Visibility = Visibility.Hidden;
             BtnUpdateColumnName.Visibility = Visibility.Visible;
             BtnCancelUpdateColumnName.Visibility = Visibility.Visible;
             BtnUpdateColumnName.IsEnabled = true;
             BtnCancelUpdateColumnName.IsEnabled = true;
+
+            ColumnNameInput.IsEnabled = true;
+            ColumnNameInput.Focus();
         }
 
         private void BtnUpdateColumnName_Click(object sender, RoutedEventArgs e)
         {
             BtnUpdateColumnName.Visibility = Visibility.Hidden;
             BtnCancelUpdateColumnName.Visibility = Visibility.Hidden;
+            BtnChangesButton.Visibility = Visibility.Visible;
+
+            ColumnNameInput.IsEnabled = false;
         }
 
         private void BtnCancelUpdateColumnName_Click(object sender, RoutedEventArgs e)
         {
             BtnUpdateColumnName.Visibility = Visibility.Hidden;
             BtnCancelUpdateColumnName.Visibility = Visibility.Hidden;
+            BtnChangesButton.Visibility = Visibility.Visible;
+
+            ColumnNameInput.IsEnabled = false;
+        }
+
+        private void ColumnNameInput_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ColumnNameInput.IsEnabled = false;
         }
     }
 }

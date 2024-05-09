@@ -8,7 +8,9 @@
       d:DataContext="{d:DesignInstance Type=viewmodels:TaskViewModel}"
       mc:Ignorable="d"
       Title="TaskDetails"
-      Background="{DynamicResource ThemeMainColor}">
+      Background="{DynamicResource ThemeMainColor}"
+      d:Width="500"
+      d:Height="600">
     <Grid>
         <StackPanel
             Orientation="Horizontal"
@@ -65,13 +67,53 @@
                     <RowDefinition Height="1"/>
                     <RowDefinition Height="55"/>
                 </Grid.RowDefinitions>
-                <TextBlock
+                <StackPanel
                     Grid.Row="0"
-                    Text="{Binding Task.Title}"
-                    Foreground="{DynamicResource ThemeTextColor}"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontSize="14"/>
+                    Orientation="Horizontal">
+                    <customControls:CustomInput
+                        Width="185"
+                        Height="35"
+                        Margin="10,0,0,0"
+                        Text="{Binding Task.Title}"
+                        Placeholder="{DynamicResource TaskNameInputPlaceholderString}"
+                        x:Name="TaskNameInput"
+                        IsEnabled="False" LostFocus="TaskNameInput_LostFocus"/>
+                    <customControls:ChangesButton
+                        x:Name="BtnChangeTaskTitle"
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="5,0,0,0"
+                        ImageSource="{DynamicResource EditIconPath}"
+                        Click="BtnChangeTaskTitle_Click"/>
+                    <customControls:ChangesButton
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="5,0,0,0"
+                        ImageSource="/TrelloApp;component/Resources/submit.png"
+                        x:Name="BtnUpdateTaskTitle"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        Command="{Binding UpdateTaskCommand}"
+                        Click="BtnUpdateTaskTitle_Click"/>
+                    <customControls:ChangesButton
+                        Width="17.5"
+                        Height="17.5"
+                        Margin="5,0,0,0"
+                        ImageSource="/TrelloApp;component/Resources/discard.png"
+                        x:Name="BtnCancelUpdateTaskTitle"
+                        Visibility="Hidden"
+                        IsEnabled="False"
+                        Command="{Binding CancelUpdateTaskCommand}"
+                        Click="BtnCancelUpdateTaskTitle_Click"
+                        />
+                    <customControls:CustomButton
+                        x:Name="BtnGoToDashboardTask"
+                        Width="120"
+                        Height="35"
+                        Margin="5,0,0,0"
+                        Text="{DynamicResource GoToBoardBtnString}"
+                        Command="{Binding LoadBoardViewCommand}"/>
+                </StackPanel>
                 <Border
                     Grid.Row="1" 
                     Background="{DynamicResource ThemeBorderColor}" 
@@ -180,7 +222,7 @@
                     Grid.Row="2"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Margin="0,0,15,0"
+                    Margin="0,0,10,0"
                     Foreground="{DynamicResource ThemeTextColor}"
                     SelectedColor="{Binding Task.Color, Mode=TwoWay}"
                     />
@@ -224,7 +266,6 @@
                         Width="160"
                         Height="35"
                         Margin="5"
-                        Foreground="{DynamicResource ThemeTextColor}"
                         Text="{DynamicResource AddTaskBtnString}"
                         />
                 </StackPanel>
@@ -287,19 +328,15 @@
                         Width="160"
                         Height="35"
                         Margin="5"
-                        Foreground="{DynamicResource ThemeTextColor}"
-                        Text="{DynamicResource DeleteTaskBtnString}" 
-                        Click="BtnDelTask_Click"
-                        />
+                        Text="{DynamicResource DeleteTaskBtnString}"
+                        Command="{Binding DelTaskCommand}"/>
                     <customControls:CustomButton
                         x:Name="BtnUpdateTask"
                         Width="160"
                         Height="35"
                         Margin="5"
-                        Foreground="{DynamicResource ThemeTextColor}"
                         Text="{DynamicResource SaveChangesBtnString}"
-                        Command="{Binding UpdateTaskCommand}"
-                        />
+                        Command="{Binding UpdateTaskCommand}"/>
                 </StackPanel>
             </Grid>
         </Border>

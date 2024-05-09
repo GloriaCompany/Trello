@@ -43,5 +43,47 @@ namespace TrelloApp.Views
         {
             UsersPopup.IsOpen = !UsersPopup.IsOpen;
         }
+
+        private void BtnChangeTaskTitle_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            BtnUpdateTaskTitle.Visibility = System.Windows.Visibility.Visible;
+            BtnCancelUpdateTaskTitle.Visibility = System.Windows.Visibility.Visible;
+
+            BtnUpdateTaskTitle.IsEnabled = true;
+            BtnCancelUpdateTaskTitle.IsEnabled = true;
+
+            TaskNameInput.IsEnabled = true;
+            TaskNameInput.Focus();
+        }
+
+        private void BtnUpdateTaskTitle_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            BtnUpdateTaskTitle.Visibility = System.Windows.Visibility.Hidden;
+            BtnCancelUpdateTaskTitle.Visibility = System.Windows.Visibility.Hidden;
+            BtnChangeTaskTitle.Visibility = System.Windows.Visibility.Visible;
+
+            BtnUpdateTaskTitle.IsEnabled = false;
+            BtnCancelUpdateTaskTitle.IsEnabled = false;
+        }
+
+        private void BtnCancelUpdateTaskTitle_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            BtnUpdateTaskTitle.Visibility = System.Windows.Visibility.Hidden;
+            BtnCancelUpdateTaskTitle.Visibility = System.Windows.Visibility.Hidden;
+            BtnChangeTaskTitle.Visibility = System.Windows.Visibility.Visible;
+
+            BtnUpdateTaskTitle.IsEnabled = false;
+            BtnCancelUpdateTaskTitle.IsEnabled = false;
+        }
+
+        private void TaskNameInput_LostFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            BtnUpdateTaskTitle.Visibility = System.Windows.Visibility.Hidden;
+            BtnCancelUpdateTaskTitle.Visibility = System.Windows.Visibility.Hidden;
+            BtnChangeTaskTitle.Visibility = System.Windows.Visibility.Visible;
+
+            BtnUpdateTaskTitle.IsEnabled = false;
+            BtnCancelUpdateTaskTitle.IsEnabled = false;
+        }
     }
 }

@@ -32,5 +32,6 @@
 
     <system:String x:Key="TaskNameInputPlaceholderString">Назва завдання</system:String>
     <system:String x:Key="DeleteTaskBtnString">ВИДАЛИТИ ЗАВДАННЯ</system:String>
+    <system:String x:Key="GoToBoardBtnString">ДО ДОШКИ</system:String>
     <system:String x:Key="SaveChangesBtnString">ЗБЕРЕГТИ ЗМІНИ</system:String>
 </ResourceDictionary>
